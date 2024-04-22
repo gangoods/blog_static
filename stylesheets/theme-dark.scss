@@ -1,0 +1,79 @@
+/*-- scss:rules --*/
+// 还需要进行调整 dark mode 下的配置
+// 下面只是随便 弄了一下, 是有问题的, 不应该这么麻烦才对..
+:root {
+color-scheme: dark;
+  --bs-body-color: #dee2e6;
+  --bs-body-color-rgb: 222, 226, 230;
+  --bs-body-bg: #212529;
+  --bs-body-bg-rgb: 33, 37, 41;
+  --bs-emphasis-color: #fff;
+  --bs-emphasis-color-rgb: 255, 255, 255;
+  --bs-secondary-color: rgba(222, 226, 230, 0.75);
+  --bs-secondary-color-rgb: 222, 226, 230;
+  --bs-secondary-bg: #333;
+  --bs-secondary-bg-rgb: 51, 51, 51;
+  --bs-tertiary-color: rgba(222, 226, 230, 0.5);
+  --bs-tertiary-color-rgb: 222, 226, 230;
+  --bs-tertiary-bg: #2a2c2e;
+  --bs-tertiary-bg-rgb: 42, 44, 46;
+  --bs-primary-text-emphasis: #858585;
+  --bs-secondary-text-emphasis: #999999;
+  --bs-success-text-emphasis: #7eca8f;
+  --bs-info-text-emphasis: #74c7d4;
+  --bs-warning-text-emphasis: #ffda6a;
+  --bs-danger-text-emphasis: #ea868f;
+  --bs-light-text-emphasis: #f8f9fa;
+  --bs-dark-text-emphasis: #dee2e6;
+  --bs-primary-bg-subtle: #0a0a0a;
+  --bs-secondary-bg-subtle: #111111;
+  --bs-success-bg-subtle: #08210e;
+  --bs-info-bg-subtle: #052025;
+  --bs-warning-bg-subtle: #332701;
+  --bs-danger-bg-subtle: #2c0b0e;
+  --bs-light-bg-subtle: #333;
+  --bs-dark-bg-subtle: #1a1a1a;
+  --bs-primary-border-subtle: #1f1f1f;
+  --bs-secondary-border-subtle: #333333;
+  --bs-success-border-subtle: #186429;
+  --bs-info-border-subtle: #0e616e;
+  --bs-warning-border-subtle: #997404;
+  --bs-danger-border-subtle: #842029;
+  --bs-light-border-subtle: #555;
+  --bs-dark-border-subtle: #333;
+  --bs-heading-color: inherit;
+  --bs-link-color: #858585;
+  --bs-link-hover-color: #9d9d9d;
+  --bs-link-color-rgb: 133, 133, 133;
+  --bs-link-hover-color-rgb: 157, 157, 157;
+  --bs-code-color: #f18bba;
+  --bs-highlight-color: #dee2e6;
+  --bs-highlight-bg: #664d03;
+  --bs-border-color: #555;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+  --bs-form-valid-color: #7eca8f;
+  --bs-form-valid-border-color: #7eca8f;
+  --bs-form-invalid-color: #ea868f;
+  --bs-form-invalid-border-color: #ea868f;
+
+  --bs-navbar-color: rgba(255, 255, 255, 0.55);
+  --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
+  --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
+  --bs-navbar-active-color: #fff;
+  --bs-navbar-brand-color: #fff;
+  --bs-navbar-brand-hover-color: #fff;
+  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+  .btn-close {
+    filter: var(--bs-btn-close-white-filter);
+  }
+
+}
+
+div.callout-note.callout-style-default>.callout-header {
+    background-color: #0d2024;
+}
+div.callout-tip.callout-style-default>.callout-header {
+    background-color: #0f2010;
+}

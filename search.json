@@ -1,0 +1,445 @@
+[
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "References\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "docs/quarto/basic.html",
+    "href": "docs/quarto/basic.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "quarto官网\nawesome-quarto\n可以选择看看效果quarto bootstrap 主题\ngithub\nrough-notation\n这个主题quarto-sketchy-html和原生带的sketchy 是有点不一样的.(支持高亮文字), 我们直接用原生的就行了\n\ngit clone --depth=1 https://github.com/quarto-dev/quarto-web.git\ncd quarto-web\n# 查看官方文档的本地离线版本\nquarto preview\n# 我们指定端口, 然后不要自动打开浏览器,\n# 有时候 你需要重新执行时,就不会打开浏览器了\nquarto preview --port 4858 --no-browser\n# 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以\nquarto render",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#安装quarto",
+    "href": "docs/quarto/basic.html#安装quarto",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "quarto官网\nawesome-quarto\n可以选择看看效果quarto bootstrap 主题\ngithub\nrough-notation\n这个主题quarto-sketchy-html和原生带的sketchy 是有点不一样的.(支持高亮文字), 我们直接用原生的就行了\n\ngit clone --depth=1 https://github.com/quarto-dev/quarto-web.git\ncd quarto-web\n# 查看官方文档的本地离线版本\nquarto preview\n# 我们指定端口, 然后不要自动打开浏览器,\n# 有时候 你需要重新执行时,就不会打开浏览器了\nquarto preview --port 4858 --no-browser\n# 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以\nquarto render",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#website-book",
+    "href": "docs/quarto/basic.html#website-book",
+    "title": "斯巴拉稀",
+    "section": "website book",
+    "text": "website book\nvscode command+shift+p create project -&gt; website 或者book\n或者使用命令来创建\nquarto create project\nquarto create project &lt;type&gt; &lt;name&gt;\n# 安装主题\n# 好像是默认就有 上面提到的25个主题,不需要安装\n# quarto add schochastics/quarto-sketchy-html\n_quarto.yml 修改主题\nformat:\n# 发布的时候, 会生成的格式类型,如果只要html, 其他可以删除\n  html:\n    theme: sketchy # 修改主题为我们前面添加的\n  # 输出多种格式\n  pdf:\n    documentclass: scrreport\n  epub:\n    cover-image: cover.png",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#静态目录配置",
+    "href": "docs/quarto/basic.html#静态目录配置",
+    "title": "斯巴拉稀",
+    "section": "静态目录配置",
+    "text": "静态目录配置\n_quarto.yml\nproject:\n  type: website\n  # output-dir: _site\n  # 设置 resources, quarto render时,会将下列设置的目录 复制到 _site目录下\n  # 这样 当你访问url /stylesheets/custom.scss 时, 就可以访问到该文件\n  resources:\n    - \"/stylesheets\"\n    - \"/.diagram\"\n我们可以统一将图片放到这里,然后 markdown中 这样插入图片\n![](/.diagram/xxx.png)",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#siderbar",
+    "href": "docs/quarto/basic.html#siderbar",
+    "title": "斯巴拉稀",
+    "section": "siderbar",
+    "text": "siderbar",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#发布部署",
+    "href": "docs/quarto/basic.html#发布部署",
+    "title": "斯巴拉稀",
+    "section": "发布部署",
+    "text": "发布部署\n# 预览, 开发阶段 这样看\nquarto preview\n# 生成\nquarto render   # render all formats\nquarto render --to pdf  # render PDF format only\n_book/\n    index.html # and other book files\n    rust.pdf\n    rust.epub",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#页面format设置",
+    "href": "docs/quarto/basic.html#页面format设置",
+    "title": "斯巴拉稀",
+    "section": "页面format设置",
+    "text": "页面format设置\n我们在某个页面这样设置, 然后 quarto preview 执行后,打开的网页里, 你点击该页面会看到实际打开的是一个pdf了, 不是web 页面了\n---\ntitle: \"Hello Typst!\"\nformat:\n  typst:\n    toc: true\n    section-numbering: 1.1.a\n    columns: 2\n---",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#配置评论",
+    "href": "docs/quarto/basic.html#配置评论",
+    "title": "斯巴拉稀",
+    "section": "配置评论",
+    "text": "配置评论\n\ngiscus\n文档\n\n默认已经全局设置, 想要单个取消显示评论\n---\ncomments: false\n---",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html",
+    "href": "docs/quarto/markdown.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "直接写原生的html代码来渲染,参考sketchy\n\n  \n    Cras justo odio\n    14\n  \n  \n    Dapibus ac facilisis in\n    2\n  \n  \n    Morbi leo risus\n    1\n  \n    Cras justo odio\n    5\n  \n  \n    Dapibus ac facilisis in\n    4\n  \n  \n    Morbi leo risus\n    9\n  \n  \n    Morbi leo risus\n    8\n  \n  \n    Morbi leo risus\n    0",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#html",
+    "href": "docs/quarto/markdown.html#html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "直接写原生的html代码来渲染,参考sketchy\n\n  \n    Cras justo odio\n    14\n  \n  \n    Dapibus ac facilisis in\n    2\n  \n  \n    Morbi leo risus\n    1\n  \n    Cras justo odio\n    5\n  \n  \n    Dapibus ac facilisis in\n    4\n  \n  \n    Morbi leo risus\n    9\n  \n  \n    Morbi leo risus\n    8\n  \n  \n    Morbi leo risus\n    0",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#table",
+    "href": "docs/quarto/markdown.html#table",
+    "title": "斯巴拉稀",
+    "section": "table",
+    "text": "table\n\nPlatform Command\n\n\n\n\n\n\nPlatform\nCommand\n\n\n\n\nMac/Linux\nconda activate ./env\n\n\nWindows\nconda activate .\\env\n\n\n\n控制 颜色,在table代码下方写上\n: Platform Command {.striped .hover tbl-colwidths=\"[35,75]\"}",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#code",
+    "href": "docs/quarto/markdown.html#code",
+    "title": "斯巴拉稀",
+    "section": "code",
+    "text": "code\n\nline-numbers\n{.bash code-line-numbers=\"false\"} 全局已经设置显示行号, 这里可以临时禁止\nls -l\n\n\nfilename\n\n\nmain.py\n\nprint(1)\n\n\n\ncode annotation\n---\n1code-annotations: hover\n---\n\n1\n\n还可以设置成 below,会在下方直接显示, select 则需要点击\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n1penguins |&gt;\n2  mutate(\n    bill_ratio = bill_depth_mm / bill_length_mm,\n    bill_area  = bill_depth_mm * bill_length_mm\n  )\n\n1\n\nTake penguins, and then,\n\n2\n\nadd new columns for the bill ratio and bill area.",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#highlight",
+    "href": "docs/quarto/markdown.html#highlight",
+    "title": "斯巴拉稀",
+    "section": "highlight",
+    "text": "highlight\nThis is some text\nhello world\nhello world\nhello world",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#card",
+    "href": "docs/quarto/markdown.html#card",
+    "title": "斯巴拉稀",
+    "section": "card",
+    "text": "card\n生成后是 .class_name的div结构 ,去看 sketchy 里的元素源码来搞\n\n\nHere is a warning.\n\n\nabc",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#panel-tabset",
+    "href": "docs/quarto/markdown.html#panel-tabset",
+    "title": "斯巴拉稀",
+    "section": "panel-tabset",
+    "text": "panel-tabset\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\ncode结果\n\n\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\n\n\nPythonrust\n\n\nabc\n\n\nefg",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#callout",
+    "href": "docs/quarto/markdown.html#callout",
+    "title": "斯巴拉稀",
+    "section": "callout",
+    "text": "callout\n\n\n\n\n\n\nnote with Title\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nPowerShell Note\n\n\n\nSome quick example text to build on the card title and make up the bulk of the card’s content.",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#extension",
+    "href": "docs/quarto/markdown.html#extension",
+    "title": "斯巴拉稀",
+    "section": "extension",
+    "text": "extension\n\nkroki\nquarto install extension pandoc-ext/diagram\nquarto add data-intuitive/quarto-d2\ndiagram d2\n上面2个扩展可以抛弃了, 使用下面这个就足够了.\n这个插件有问题, 需要自己修改, 我已经修复bug, 并且增加了会下载生成的svg到本地\nquarto add GabrielCoffee9/quarto-kroki\n_quarto.yml 配置自己的kroki 服务器\nkroki:\n  serviceUrl: \"http://192.168.1.103:8000\"\n在页面文件里头部写上, 使用kroki过滤, 到时候就会执行 _extension/xxxx/kroki.lua\n---\nfilters:\n- kroki\n---\n\nplantuml等\n```{kroki-plantuml}\n@startuml\nBob -&gt; Alice : hello\n@enduml\n```\n\n\n\n\nexcalidraw\n\n\n\n\n\n\nTip\n\n\n\n以导入文件的方式来, 其他diagram 也可以\n\n\n\nmarkdown 文档",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html",
+    "href": "docs/rust/basic/quick-start.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "hello.rs\n\n// fn : function\nfn main() {\n    // rust的缩进是4个空格\n    // println! 是一个 rust macro 宏, 不是函数, 如果结尾没有! 则是函数\n    println!(\"hello\"); // 结尾 要有 ;\n    // let 定义变量及初始化\n    // : i32 这种表示 变量x的类型\n    let x: i32 =6;\n    println!(\"{:?}\", x);\n    let y: i32;\n1    println!(\"{:?}\", y);\n}\n\n\n1\n\n报错, 没有初始化会报错\n\n\nrustc 这个只适合编译简单的程序,大型程序 用cargo\n# -o 输出的名字, 没有则默认文件名\nrustc hello.rs -o main",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#main.rs",
+    "href": "docs/rust/basic/quick-start.html#main.rs",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "hello.rs\n\n// fn : function\nfn main() {\n    // rust的缩进是4个空格\n    // println! 是一个 rust macro 宏, 不是函数, 如果结尾没有! 则是函数\n    println!(\"hello\"); // 结尾 要有 ;\n    // let 定义变量及初始化\n    // : i32 这种表示 变量x的类型\n    let x: i32 =6;\n    println!(\"{:?}\", x);\n    let y: i32;\n1    println!(\"{:?}\", y);\n}\n\n\n1\n\n报错, 没有初始化会报错\n\n\nrustc 这个只适合编译简单的程序,大型程序 用cargo\n# -o 输出的名字, 没有则默认文件名\nrustc hello.rs -o main",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#immutable",
+    "href": "docs/rust/basic/quick-start.html#immutable",
+    "title": "斯巴拉稀",
+    "section": "immutable",
+    "text": "immutable\nfn main() {\n    // 变量默认不可变\n    let a: i32 = 5;\n    // a=2;  会直接报错,提示不能修改 不可变的变量\n    println!(\"{:p}\", &a);\n\n    // 申明可变变量\n    let mut c: i32 = 5;\n    c = 7;\n    println!(\"{c}\");\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#shadowing",
+    "href": "docs/rust/basic/quick-start.html#shadowing",
+    "title": "斯巴拉稀",
+    "section": "shadowing",
+    "text": "shadowing\nfn main() {\n    let a: i32 = 5;\n    // a=2;  会直接报错,提示不能修改 不可变的变量\n    println!(\"{:p}\", &a);\n    // shadowing  隐藏了上面的变量a\n    let a: i32 = 5;\n    // 与上面的地址不同, 已经是一个不同的变量了,只是用了相同的变量名\n    // 一开始申明的a 被隐藏了\n    println!(\"重新申明的a变量地址: {:p}\", &a);\n\n    let b = 5i32;\n    {\n        // 在这个作用域中, b 也确实shadowing 了外面的b\n        let b = 8i32;\n        println!(\"b 在作用域中的值: {b}\"); // 是8\n    }\n    // 但是在退出块作用域后, b还是5,因为实际就是2个完全不同的变量\n    println!(\"作用域外,b的值:{b}\");\n\n    // shadowing 可以使用完全不同的类型, 因为实际就是2个完全不同的变量\n    let b = \"abc\";\n    println!(\"{b}\");\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#常量",
+    "href": "docs/rust/basic/quick-start.html#常量",
+    "title": "斯巴拉稀",
+    "section": "常量",
+    "text": "常量\n!!! tip 常量是在编译期就进行求值的. 所以常量 = 的右边是可以使用表达式的\nfn main() {\n    // 一般用大写并且下划线来申明常量\n    // 不可修改, 不可shadowing\n    // 不可以使用mut,永远不可变\n    // 可以在任何作用域申明\n    const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;\n    println!(\"{}\", THREE_HOURS_IN_SECONDS);\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#标量类型-scalar-types",
+    "href": "docs/rust/basic/quick-start.html#标量类型-scalar-types",
+    "title": "斯巴拉稀",
+    "section": "标量类型 (scalar types)",
+    "text": "标量类型 (scalar types)\n\n\n\n\n\n\nTip\n\n\n\n标量类型是指那些不可再分的、基本的、单个值的数据类型。 标量类型通常用于存储单一的数据项，如一个数字、一个字符或一个布尔值。 与标量类型相对的是复合数据类型，如数组、列表、对象和结构体，这些类型可以包含多个值\n\n\n\n整型\nuse std::mem;\nfn main() {\n    // 有符号 i8 i16 i32 i64 i128 isize(根据系统架构决定)\n    // 无符号 u8 u16 u32 u64 u128 usize(根据系统架构决定)\n    let a=6;\n    // 打印i32类型的大小\n    println!(\"{}\",mem::size_of::&lt;i32&gt;());\n    // 打印变量占用的内存大小\n    println!(\"{}\",mem::size_of_val(&a));\n    // 十进制 2_100  下划线只是为了增加可读性, 这里相当于美国的千位加,的意思\n    let b:i32=2_100;\n    println!(\"{}\",b);\n    // hex 16进制 0x 开头\n    let c:i32=0xff;\n    println!(\"{}\",c);\n    // 八进制 0o 开头\n    let d:i32=0o12;\n    println!(\"{}\",d);\n    // 二进制\n    let e:i32=0b1111_0000;\n    println!(\"{}\",e);\n    // byte \n    let f:u8=b'A';\n    println!(\"{}\",f);  \n    // 可以使用类型后缀, 在值后边写上\n    let g=5i16;\n    println!(\"{}\",g);\n}\n\n\n浮点数\nfn main() {\n    let x = 2.0; // f64 默认\n    let y: f32 = 3.0; // f32\n}\n\n\nbool\nfn main() {\n    let t = true;\n    println!(\"{t}\");\n    // 同样必须初始化,否则报错\n    let f: bool = false;\n    println!(\"{f}\");\n}\n\n\n字符 char\nuse std::mem;\n\nfn main() {\n    let c = 'z'; // 这个是字符, 和前面 b'z' 不同哦\n    println!(\"{}\", mem::size_of_val(&c));\n    let z: char = 'ℤ';\n    println!(\"{c}-{z}\");\n    // rust 中的char 是 4个字节,Unicode, 可以表示表情\n    let heart_eyed_cat = '😻';\n    println!(\"{heart_eyed_cat}\");\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#复合类型-compound-types",
+    "href": "docs/rust/basic/quick-start.html#复合类型-compound-types",
+    "title": "斯巴拉稀",
+    "section": "复合类型 (compound types)",
+    "text": "复合类型 (compound types)\n\ntuple 元祖\nfn main() {\n    // 元素可以是多种类型\n    let tup: (i32, f64, u8) = (100, 3.14, 2);\n    println!(\"{},{},{}\", tup.0, tup.1, tup.2);\n    let (x, y, z) = tup;\n    println!(\"{},{},{}\", x, y, z);\n}\n\n\n数组\n\n\n\n\n\n\nTip\n\n\n\n\n元素类型必须一致\n长度是固定的,运行时不能修改\n数组是在栈上分配的单个块的内存\n常用于开辟一个固定大小的Buffer作为缓冲区,比如接收IO输入输出等\n\n\n\nfn main() {\n    let x = [1, 2, 3, 4];\n    println!(\"{}\", x[1]);\n    // [i32;5] 表示每个元素是i32,一共有5个元素\n    let x: [i32; 5] = [1, 2, 3, 4, 5];\n    println!(\"{}\", x.len());\n    // 相当于 let x=[3,3,3,3,3];\n    let x = [3; 5];\n    // 下标读取\n    println!(\"{}\", x[2]);\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#类型转换",
+    "href": "docs/rust/basic/quick-start.html#类型转换",
+    "title": "斯巴拉稀",
+    "section": "类型转换",
+    "text": "类型转换\nfn main() {\n    let a: i8 = 9;\n    // 需要加上 as 否则报错\n    let b: i32 = a as i32;\n    println!(\"{}\",b);\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#函数",
+    "href": "docs/rust/basic/quick-start.html#函数",
+    "title": "斯巴拉稀",
+    "section": "函数",
+    "text": "函数\n\n\n\n\n\n\nTip\n\n\n\n\n语句: 执行动作, 没有返回值\n表达式: 是有一个值的\n函数体是由一系列语句和一个结尾(可以是语句或者表达式)组成\nunit type 单元类型 () 表示一种类型. 表示没有什么特殊的价值, 它的值就是它本身 也是()\n\n\n\n\n语句\nfn main() {\n    // 直接报错, 右边是个语句,没有返回值\n    let x = (let y = 6);\n}\n\n\n表达式\nfn main() {\n    let y = {\n        let x = 3;\n        // 注意没有; , 这样就是表达式了,有返回值\n        // 如果加上; , 那么就变成一个语句了\n        x + 1\n    };\n\n    println!(\"The value of y is: {y}\");\n}\n\n\n返回值\nfn five() -&gt; i32 {\n    // 表达式 ,值为5\n    5\n}\n\nfn main() {\n    let x = five();\n\n    println!(\"The value of x is: {x}\");\n}\n添加;号试试, 会直接报错提示 期望i32, 而实际发现是the unit type ()\n// -&gt; i32 , 表示返回值类型\nfn five() -&gt; i32 {\n    5;\n}\n我们将上面的返回值类型改成 () , 这样就不会报错了\nfn five() -&gt; () {\n    5;\n}\n实际上就是不用写返回值 的类型\n// 没有指明返回值的, 那么返回值类型就是 unit type :()\nfn five(){\n    5;\n}\nfn main() {\n    // 单元值判断\n    if five() == () {\n        // ok的\n        println!(\"ok\");\n    }\n}\nfn t() {\n    // 这里返回了5, 要求的是(),所以会提示错误\n    5\n}\n\n\n函数内部创建函数\nfn main() {\n    // 函数内部可以定义函数\n    fn add(t1: i32, t2: i32) -&gt; i32 {\n        t1 + t2\n    }\n    let r = add(1, 2);\n    print!(\"{}\", r);\n}\n\n\n函数的类型\nfn add1(t: (i32, i32)) -&gt; i32 {\n    t.0 + t.1\n}\n// 实际看来 与add1 参数一样\nfn add2((t1, t2): (i32, i32)) -&gt; i32 {\n    t1 + t2\n}\nfn main() {\n    let a = 1;\n    let b = 2;\n    let c = (1, 2);\n    println!(\"{}\", add1(c));\n    println!(\"{}\", add2((a, b)));\n\n    // f1的类型是 fn (t: (i32, i32)) -&gt; i32\n    let f1 = add1;\n    // 报错了 expected fn item, found a different fn item\n    // 不同的类型, 所以报错了.\n    // f1 = add2;\n\n    // 正确的方式是 定义变量时将 他的类型设置为 fn item 通用的fn 类型\n    let f1 = add1 as fn((i32, i32)) -&gt; i32;\n    println!(\"{}\", f1((1, 2)));\n\n    // 这样定义也可以\n    let mut f1: fn((i32, i32)) -&gt; i32 = add1;\n    f1 = add2; // 不会报错了\n    println!(\"{}\", f1((a, b)));\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#控制流程",
+    "href": "docs/rust/basic/quick-start.html#控制流程",
+    "title": "斯巴拉稀",
+    "section": "控制流程",
+    "text": "控制流程\n\nif\nfn main() {\n    let number = 3;\n    // 报错的, 需要bool类型\n    if number {\n        println!(\"number was three\");\n    }\n\n    let condition = true;\n    let number = if condition { 5 } else { 6 };\n\n    println!(\"The value of number is: {number}\");\n    let number2 = if condition {\n        5;\n        7  // 还是看的返回值\n    } else {\n        6\n    };\n\n    println!(\"The value of number is: {number2}\");\n\n    // 报错, 编译期需要知道变量的类型, 这里编译器无法知道 number3 是什么类型\n    let number3 = if condition { 5 } else { \"six\" };\n}\n\n\nloop\nfn main() {\n    let mut i = 0;\n    let ret = loop {\n        i += 1;\n        if i &gt; 10 {\n            break i; // 返回值, 就是loop的返回值\n        }\n    };\n    println!(\"{}\", ret)\n\n    let y: i32;\n    // 编译器是能够判断出 后面的打印时, y肯定已经赋值了.\n    let x = loop {\n        y = 1;\n        break;\n    };\n    println!(\"{:?}\", x);\n    println!(\"{:?}\", y);\n}\n\n\nfor\n!!! tip 标签 label loop使用也一样\nfn main() {\n    // label 前面有个 ' 单引号\n    'outer: for i in 0..5 {\n        println!(\"Outer loop value: {}\", i);\n\n        for j in 0..5 {\n            println!(\"Inner loop value: {}\", j);\n\n            if i == 2 && j == 3 {\n                break 'outer;\n            }\n        }\n    }\n\n    let a = [10, 20, 30, 40, 50];\n\n    for element in a {\n        println!(\"the value is: {element}\");\n    }\n\n    // (1..4)  1 2 3\n    // 会提示不需要 用 () 将1..4 阔气来\n    for number in (1..4) {\n        println!(\"{number}!\");\n    }\n\n    for number in 1..4 {\n        println!(\"{number}!\");\n    }\n}\n\n\nwhile\nfn main() {\n    let z: i32;\n    while true {\n        z = 1;\n        break;\n    }\n    // 打印这个的时候, 编译器无法直到 z到底是不是赋值了,\n    // 因为他认为while 能否进去是要判断的,\n    // 当然我们一看就知道是true 能进去,但是编译器不行\n    // 相比while loop 肯定是能进去的.\n    println!(\"{}\", z); //报错了\n}",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/quick-start.html#打印-println",
+    "href": "docs/rust/basic/quick-start.html#打印-println",
+    "title": "斯巴拉稀",
+    "section": "打印 println!",
+    "text": "打印 println!",
+    "crumbs": [
+      "basic",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/env.html",
+    "href": "docs/rust/basic/env.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Warning\n\n\n\n教程是以前版本的rust,现在重新更新, 可能有遗漏,导致有结果有出入.",
+    "crumbs": [
+      "basic",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/env.html#安装",
+    "href": "docs/rust/basic/env.html#安装",
+    "title": "斯巴拉稀",
+    "section": "安装",
+    "text": "安装\n配置国内源然后查看官方安装教程\n# 添加, 让下面的安装快点\necho 'export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup' &gt;&gt; ~/.zshrc\necho 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.zshrc\n# 安装\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n安装过程我们可以看到 info: installing component 'rust-docs' 这类信息,说明安装了不少组件\n所有的组件到安装到 ~/.cargo/bin 这个目录\ntree ~/.cargo/bin\n~/.cargo/bin\n├── cargo\n├── cargo-clippy\n├── cargo-fmt\n├── cargo-miri\n├── clippy-driver\n├── rls\n├── rust-analyzer\n├── rust-gdb\n├── rust-gdbgui\n├── rust-lldb\n├── rustc\n├── rustdoc\n├── rustfmt\n└── rustup\n\n\n\n\n\n\nTip\n\n\n\nrustup 是专门管理rust安装的工具, 相当于 node 的nvm\n\n\n配置\n# zsh\necho 'source \"$HOME/.cargo/env\"' &gt;&gt; ~/.zshrc\n# path环境变量的设置\n#  $HOME/.cargo/bin:$PATH\n# fish shell 的配置\n# vim ~/.config/fish/config.fish 添加如下. 然后 source一下即可\n# set -x  PATH ~/.cargo/bin $PATH\n验证安装\nrustc --version\ncargo --version\n\n\n\n\n\n\nTip\n\n\n\ncargo: Rust 的编译工具,包管理器,可以帮助你编译代码,运行,测试,下载代码所依赖的外部库等等\n\n\n安装库\n# RLS的全称是:'Rust Language Server',是一个守护进程\n# 用于和开发时使用的IDE进行IPC通信,完成代码提示、跳转到定义、显示变量类型等功能\n# 这2个库,前面安装的时候已经自动安装了.\nrustup component add rls           --toolchain stable    # RLS\nrustup component add rust-analysis --toolchain stable    # 分析工具\n#std是Rust的标准库. 默认情况下,Rust安装的是标准库的二进制码,而添加源码后容易方便我们查询部分标准库的实现\nrustup component add rust-src      --toolchain stable    # std源码",
+    "crumbs": [
+      "basic",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/env.html#rustup",
+    "href": "docs/rust/basic/env.html#rustup",
+    "title": "斯巴拉稀",
+    "section": "rustup",
+    "text": "rustup\n更新\nrustup update\n安装指定版本\nrustup install  1.20.0\n查看已经安装的版本\nrustup toolchain list\n卸载\n# 会删除所有的工具链,\n# 包括rustup, rustc, cargo, rls, rust-analysis, rust-src等等\n# 注意, 卸载后, 需要重新安装\nrustup self uninstall\n切换版本\n# 全局切换\nrustup default stable/nightly/beta\n# 工作目录切换版本\ncd rust代码目录\nrustup override set 1.20.0\n# 取消当前目录的版本 ,重新设置为默认的全局版本\nrustup override unset",
+    "crumbs": [
+      "basic",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/env.html#查看文档",
+    "href": "docs/rust/basic/env.html#查看文档",
+    "title": "斯巴拉稀",
+    "section": "查看文档",
+    "text": "查看文档\n查看本地离线的rust文档,浏览器会自动打开文档, 可以看到好多教程可以点击查看\nrustup doc\n这个会打开 The Rust Programming Language 这本教程\nrustup docs --book",
+    "crumbs": [
+      "basic",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/env.html#cargo简单介绍",
+    "href": "docs/rust/basic/env.html#cargo简单介绍",
+    "title": "斯巴拉稀",
+    "section": "cargo简单介绍",
+    "text": "cargo简单介绍\ncargo new hello \ncd hello\ntree -a\n# 会创建目录world, 并且 直接有 .git 纳入git管理\n.\n├── .git\n├── .gitignore\n1├── Cargo.toml\n└── src\n    └── main.rs\n\n1\n\ncargo.toml package的一些基本信息 toml参考\n\n\n\n\nCargo.toml\n\n[package]\nname = \"hello\"\n# 注意开发时第一个 version 一般是用0.1.0 不是0.0.1\nversion = \"0.1.0\"\nedition = \"2021\"\n\n\n\nsrc/main.rs\n\nfn main() {\n    println!(\"Hello, world!\");\n}\n\ncargo run\n\n\n运行打印的信息\n\n1       Fresh hello v0.1.0 (~/rust2024/hello)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n2     Running `target/debug/hello`\n3Hello, world!\n\n\n1\n\ncargo 调用 rust编译器 rustc来编译代码,生成可执行文件,会放到 target/debug 目录下\n\n2\n\n运行 可执行文件\n\n3\n\n输出结果",
+    "crumbs": [
+      "basic",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/test2.html",
+    "href": "docs/rust/web/test2.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "web test2 ## tt ff",
+    "crumbs": [
+      "web",
+      "tttt"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/test2.html#tttt",
+    "href": "docs/rust/web/test2.html#tttt",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "web test2 ## tt ff",
+    "crumbs": [
+      "web",
+      "tttt"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/index.html",
+    "href": "docs/rust/web/index.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "rust web",
+    "crumbs": [
+      "web",
+      "ww"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/index.html#ww",
+    "href": "docs/rust/web/index.html#ww",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "rust web",
+    "crumbs": [
+      "web",
+      "ww"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/index.html#tttt",
+    "href": "docs/rust/web/index.html#tttt",
+    "title": "斯巴拉稀",
+    "section": "tttt",
+    "text": "tttt\nfff",
+    "crumbs": [
+      "web",
+      "ww"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html",
+    "href": "docs/rust/basic/03.ownership.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "!!! tip 所有权是rust用来管理内存的一系列规则\n@startmindmap\n&lt;style&gt;\n' 通用设置\nnode {\n    Padding 12\n    Margin 10\n    HorizontalAlignment center\n    LineColor black\n    LineThickness 1.0\n    BackgroundColor #eab8de\n    RoundCorner 15\n    ' 自动换行, 每行最大长度\n    MaximumWidth 100\n    Shadowing 6.0\n    ' leafNode的优先级更高'\n    :depth(3) {\n        BackGroundColor white\n    }\n}\n:depth(3) {\n    BackGroundColor white\n}\nrootNode {\n    ' LineStyle 8.0;3.0\n    RoundCorner 15\n    Padding 12\n    BackgroundColor #a8eb99\n}\nleafNode {\n    LineColor gold\n    RoundCorner 15\n    ' Padding 12\n    LineColor black\n    Shadowing 4.0\n    BackgroundColor #fbe972\n}\narrow {\n    LineStyle 5\n    LineThickness 1.0\n    LineColor green\n' 可设置 层级的 箭头样式\n    :depth(1) {\n        LineColor red\n    }\n}\n' ***_ 无框框的节点的样式\nboxless {\n    FontColor darkgreen\n}\nlegend{\n    LineStyle 4\n    RoundCorner 1\n    BackGroundColor #f3fbec\n    LineColor #f3fbec\n    Padding 10\n    FontColor grey\n}\n' 配置一个class(当成class) 这样可以修改某个node的样式\n' 然后在 node 后面的 ; 后面 使用 &lt;&lt;rose&gt;&gt; 即可\n.rose {\n    BackgroundColor #FFBBCC\n}\n' 影响该节点以及它的所有子孙节点\n.LightCyan *{\n    BackgroundColor LightCyan\n}\n.lightyellow *{\n    BackgroundColor  LightYellow\n    ' 可以使用这种方式来 调颜色, 对应还有 darken'\n    ' BackgroundColor %lighten(yellow, 50)\n}\n.yellow *{\n    BackgroundColor #fbe972\n}\n.lightgreen *{\n    BackgroundColor  #94c644\n}\n.gold *{\n    BackgroundColor gold\n}\n&lt;/style&gt;\ncaption 图 1\ntitle 内存管理\n* 内存管理\n** 垃圾回收器自动回收机制 &lt;&lt;rose&gt;&gt;\n*** golang\n** 自己分配和回收\n*** c &lt;&lt;green&gt;&gt;\n** 所有权\n*** rust\n* 内存\n** 栈\n*** 大小确定,栈指针移动的方式,FILO\n*** 非常快,因为不用去找一块可用的内存去存数据,直接就是栈指针指向的位置\n** 堆\n***:需要在堆上找到一个足够大小的内存(这个查找会耗时),\n标记为在用,返回指针(存的这块内存的地址);\nheader\nmade by x\nendheader\n@endmindmap\n@startmindmap\n&lt;style&gt;\n' 通用设置\nnode {\n    Padding 12\n    Margin 10\n    HorizontalAlignment center\n    LineColor black\n    LineThickness 1.0\n    BackgroundColor #eab8de\n    RoundCorner 15\n    ' 自动换行, 每行最大长度\n    MaximumWidth 100\n    Shadowing 6.0\n    ' leafNode的优先级更高'\n    :depth(3) {\n        BackGroundColor white\n    }\n}\n:depth(3) {\n    BackGroundColor white\n}\nrootNode {\n    ' LineStyle 8.0;3.0\n    RoundCorner 15\n    Padding 12\n    BackgroundColor #a8eb99\n}\nleafNode {\n    LineColor gold\n    RoundCorner 15\n    ' Padding 12\n    LineColor black\n    Shadowing 4.0\n    BackgroundColor #fbe972\n}\narrow {\n    LineStyle 5\n    LineThickness 1.0\n    LineColor green\n' 可设置 层级的 箭头样式\n    :depth(1) {\n        LineColor red\n    }\n}\n' ***_ 无框框的节点的样式\nboxless {\n    FontColor darkgreen\n}\nlegend{\n    LineStyle 4\n    RoundCorner 1\n    BackGroundColor #f3fbec\n    LineColor #f3fbec\n    Padding 10\n    FontColor grey\n}\n' 配置一个class(当成class) 这样可以修改某个node的样式\n' 然后在 node 后面的 ; 后面 使用 &lt;&lt;rose&gt;&gt; 即可\n.rose {\n    BackgroundColor #FFBBCC\n    RoundCorner 1\n}\n' 影响该节点以及它的所有子孙节点\n.LightCyan *{\n    BackgroundColor LightCyan\n}\n.lightyellow *{\n    BackgroundColor  LightYellow\n    ' 可以使用这种方式来 调颜色, 对应还有 darken'\n    ' BackgroundColor %lighten(yellow, 50)\n}\n.yellow *{\n    BackgroundColor #fbe972\n}\n.lightgreen *{\n    BackgroundColor  #94c644\n}\n.gold *{\n    BackgroundColor gold\n}\n&lt;/style&gt;\ncaption 图 2\ntitle 所有权规则\n* 所有权\n** 每个值都有所有者\n** 每个值同时只能有一个所有者\n** 当所有者超出作用域时, 该值将被删除\nheader\nmade by x\nendheader\n\n@endmindmap"
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#定义",
+    "href": "docs/rust/basic/03.ownership.html#定义",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "!!! tip 所有权是rust用来管理内存的一系列规则\n@startmindmap\n&lt;style&gt;\n' 通用设置\nnode {\n    Padding 12\n    Margin 10\n    HorizontalAlignment center\n    LineColor black\n    LineThickness 1.0\n    BackgroundColor #eab8de\n    RoundCorner 15\n    ' 自动换行, 每行最大长度\n    MaximumWidth 100\n    Shadowing 6.0\n    ' leafNode的优先级更高'\n    :depth(3) {\n        BackGroundColor white\n    }\n}\n:depth(3) {\n    BackGroundColor white\n}\nrootNode {\n    ' LineStyle 8.0;3.0\n    RoundCorner 15\n    Padding 12\n    BackgroundColor #a8eb99\n}\nleafNode {\n    LineColor gold\n    RoundCorner 15\n    ' Padding 12\n    LineColor black\n    Shadowing 4.0\n    BackgroundColor #fbe972\n}\narrow {\n    LineStyle 5\n    LineThickness 1.0\n    LineColor green\n' 可设置 层级的 箭头样式\n    :depth(1) {\n        LineColor red\n    }\n}\n' ***_ 无框框的节点的样式\nboxless {\n    FontColor darkgreen\n}\nlegend{\n    LineStyle 4\n    RoundCorner 1\n    BackGroundColor #f3fbec\n    LineColor #f3fbec\n    Padding 10\n    FontColor grey\n}\n' 配置一个class(当成class) 这样可以修改某个node的样式\n' 然后在 node 后面的 ; 后面 使用 &lt;&lt;rose&gt;&gt; 即可\n.rose {\n    BackgroundColor #FFBBCC\n}\n' 影响该节点以及它的所有子孙节点\n.LightCyan *{\n    BackgroundColor LightCyan\n}\n.lightyellow *{\n    BackgroundColor  LightYellow\n    ' 可以使用这种方式来 调颜色, 对应还有 darken'\n    ' BackgroundColor %lighten(yellow, 50)\n}\n.yellow *{\n    BackgroundColor #fbe972\n}\n.lightgreen *{\n    BackgroundColor  #94c644\n}\n.gold *{\n    BackgroundColor gold\n}\n&lt;/style&gt;\ncaption 图 1\ntitle 内存管理\n* 内存管理\n** 垃圾回收器自动回收机制 &lt;&lt;rose&gt;&gt;\n*** golang\n** 自己分配和回收\n*** c &lt;&lt;green&gt;&gt;\n** 所有权\n*** rust\n* 内存\n** 栈\n*** 大小确定,栈指针移动的方式,FILO\n*** 非常快,因为不用去找一块可用的内存去存数据,直接就是栈指针指向的位置\n** 堆\n***:需要在堆上找到一个足够大小的内存(这个查找会耗时),\n标记为在用,返回指针(存的这块内存的地址);\nheader\nmade by x\nendheader\n@endmindmap\n@startmindmap\n&lt;style&gt;\n' 通用设置\nnode {\n    Padding 12\n    Margin 10\n    HorizontalAlignment center\n    LineColor black\n    LineThickness 1.0\n    BackgroundColor #eab8de\n    RoundCorner 15\n    ' 自动换行, 每行最大长度\n    MaximumWidth 100\n    Shadowing 6.0\n    ' leafNode的优先级更高'\n    :depth(3) {\n        BackGroundColor white\n    }\n}\n:depth(3) {\n    BackGroundColor white\n}\nrootNode {\n    ' LineStyle 8.0;3.0\n    RoundCorner 15\n    Padding 12\n    BackgroundColor #a8eb99\n}\nleafNode {\n    LineColor gold\n    RoundCorner 15\n    ' Padding 12\n    LineColor black\n    Shadowing 4.0\n    BackgroundColor #fbe972\n}\narrow {\n    LineStyle 5\n    LineThickness 1.0\n    LineColor green\n' 可设置 层级的 箭头样式\n    :depth(1) {\n        LineColor red\n    }\n}\n' ***_ 无框框的节点的样式\nboxless {\n    FontColor darkgreen\n}\nlegend{\n    LineStyle 4\n    RoundCorner 1\n    BackGroundColor #f3fbec\n    LineColor #f3fbec\n    Padding 10\n    FontColor grey\n}\n' 配置一个class(当成class) 这样可以修改某个node的样式\n' 然后在 node 后面的 ; 后面 使用 &lt;&lt;rose&gt;&gt; 即可\n.rose {\n    BackgroundColor #FFBBCC\n    RoundCorner 1\n}\n' 影响该节点以及它的所有子孙节点\n.LightCyan *{\n    BackgroundColor LightCyan\n}\n.lightyellow *{\n    BackgroundColor  LightYellow\n    ' 可以使用这种方式来 调颜色, 对应还有 darken'\n    ' BackgroundColor %lighten(yellow, 50)\n}\n.yellow *{\n    BackgroundColor #fbe972\n}\n.lightgreen *{\n    BackgroundColor  #94c644\n}\n.gold *{\n    BackgroundColor gold\n}\n&lt;/style&gt;\ncaption 图 2\ntitle 所有权规则\n* 所有权\n** 每个值都有所有者\n** 每个值同时只能有一个所有者\n** 当所有者超出作用域时, 该值将被删除\nheader\nmade by x\nendheader\n\n@endmindmap"
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#变量作用域",
+    "href": "docs/rust/basic/03.ownership.html#变量作用域",
+    "title": "斯巴拉稀",
+    "section": "变量作用域",
+    "text": "变量作用域\nfn main() {\n    println!(\"{}\", 1);\n    {// 这一行时  s 变量 还没申明, 不可用\n        let s = \"hello\"; // s 变量可用\n\n        // do stuff with s\n    } // 这个作用域结束了, s 变量不可用了.\n    // println!(\"{}\", s); // cannot find value s in this scope\n}\n    {\n        let s = String::from(\"hello\");\n    }\n    // s 不可用了\n!!! question “为什么内存在持有它的变量离开作用域后会被自动释放?” 当变量离开作用域, Rust 会调用一个名为{==drop==}的特殊函数\n设计string类型的作者可以在该drop函数中写一些释放内存的代码,以此实现自动释放内存的功能\n\n不同类型变量的drop的实现可能不一样\n\nRust 在结尾的 } 处会自动调用 drop"
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#move",
+    "href": "docs/rust/basic/03.ownership.html#move",
+    "title": "斯巴拉稀",
+    "section": "move",
+    "text": "move\nfn main() {\n    let x = 5;\n    // 将x的值copy 给y, 2个变量同时存在\n    let y = x;\n    println!(\"{:p}-{:p}\", &x, &y);\n    println!(\"{x},{y}\");\n}\nfn main() {\n    {\n        let x = String::from(\"hello\");\n        println!(\"{:p}\", &x);\n        let y = x;\n        println!(\"{:p}\", &y);\n        // 提示错误 : borrow of moved value,x 已经被borrow了\n        // println!(\"{x},{y}\");\n    }\n}\n!!! tip 我们发现string类型的表现和整形完全不一样,这是为什么?\n先看看string类型的内存结构"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Preface\nwelcome\n\n\n\n\n Back to top"
+  }
+]
