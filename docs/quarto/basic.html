@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#安装quarto" id="toc-安装quarto" class="nav-link active" data-scroll-target="#安装quarto">安装quarto</a></li>
+  <li><a href="#安装quarto1" id="toc-安装quarto1" class="nav-link active" data-scroll-target="#安装quarto1">安装quarto</a></li>
   <li><a href="#website-book" id="toc-website-book" class="nav-link" data-scroll-target="#website-book">website book</a></li>
   <li><a href="#静态目录配置" id="toc-静态目录配置" class="nav-link" data-scroll-target="#静态目录配置">静态目录配置</a></li>
   <li><a href="#siderbar" id="toc-siderbar" class="nav-link" data-scroll-target="#siderbar">siderbar</a></li>
@@ -185,71 +185,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="安装quarto" class="level2">
-<h2 class="anchored" data-anchor-id="安装quarto">安装quarto</h2>
-<ul>
-<li><a href="https://quarto.org/">quarto官网</a></li>
-<li><a href="https://github.com/mcanouil/awesome-quarto">awesome-quarto</a></li>
-<li>可以选择看看效果<a href="https://bootswatch.com/sketchy/">quarto bootstrap 主题</a></li>
-<li><a href="https://github.com/thomaspark/bootswatch/">github</a></li>
-<li><a href="https://github.com/rough-stuff/rough-notation">rough-notation</a></li>
-<li>这个主题<a href="https://github.com/schochastics/quarto-sketchy-html">quarto-sketchy-html</a>和原生带的sketchy 是有点不一样的.(支持高亮文字), 我们直接用原生的就行了</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--depth</span><span class="op">=</span>1 https://github.com/quarto-dev/quarto-web.git</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> quarto-web</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看官方文档的本地离线版本</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 我们指定端口, 然后不要自动打开浏览器,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 有时候 你需要重新执行时,就不会打开浏览器了</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview <span class="at">--port</span> 4858 <span class="at">--no-browser</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="安装quarto1" class="level2">
+<h2 class="anchored" data-anchor-id="安装quarto1">安装quarto<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone <span class="at">--depth</span><span class="op">=</span>1 https://github.com/quarto-dev/quarto-web.git</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> quarto-web</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># 查看官方文档的本地离线版本</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="ex">quarto</span> preview</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># 我们指定端口, 然后不要自动打开浏览器,</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 有时候 你需要重新执行时,就不会打开浏览器了</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="ex">quarto</span> preview <span class="at">--port</span> 4858 <span class="at">--no-browser</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="website-book" class="level2">
 <h2 class="anchored" data-anchor-id="website-book">website book</h2>
 <p>vscode <code>command+shift+p</code> create project -&gt; website 或者book</p>
 <p>或者使用命令来创建</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project <span class="op">&lt;</span>type<span class="op">&gt;</span> <span class="op">&lt;</span>name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装主题</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 好像是默认就有 上面提到的25个主题,不需要安装</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quarto add schochastics/quarto-sketchy-html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">quarto</span> create project</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">quarto</span> create project <span class="op">&lt;</span>type<span class="op">&gt;</span> <span class="op">&lt;</span>name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 安装主题</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># 可直接使用Footnotes提到的25个主题,不需要安装</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># quarto add schochastics/quarto-sketchy-html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>_quarto.yml 修改主题</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 发布的时候, 会生成的格式类型,如果只要html, 其他可以删除</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> sketchy</span><span class="co"> # 修改主题为我们前面添加的</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">  # 输出多种格式</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> scrreport</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">epub</span><span class="kw">:</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">cover-image</span><span class="kw">:</span><span class="at"> cover.png</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># 发布的时候, 会生成的格式类型,如果只要html, 其他可以删除</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> sketchy</span><span class="co"> # 修改主题为我们前面添加的</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">  # 输出多种格式</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> scrreport</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="at">  </span><span class="fu">epub</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="at">    </span><span class="fu">cover-image</span><span class="kw">:</span><span class="at"> cover.png</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="静态目录配置" class="level2">
 <h2 class="anchored" data-anchor-id="静态目录配置">静态目录配置</h2>
 <p>_quarto.yml</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">  # output-dir: _site</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">  # 设置 resources, quarto render时,会将下列设置的目录 复制到 _site目录下</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  # 这样 当你访问url /stylesheets/custom.scss 时, 就可以访问到该文件</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">resources</span><span class="kw">:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"/stylesheets"</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"/.diagram"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">  # output-dir: _site</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">  # 设置 resources, quarto render时,会将下列设置的目录 复制到 _site目录下</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">  # 这样 当你访问url /stylesheets/custom.scss 时, 就可以访问到该文件</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="at">  </span><span class="fu">resources</span><span class="kw">:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"/stylesheets"</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="st">"/.diagram"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>我们可以统一将图片放到这里,然后 markdown中 这样插入图片</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](/.diagram/xxx.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="al">![](/.diagram/xxx.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="siderbar" class="level2">
 <h2 class="anchored" data-anchor-id="siderbar">siderbar</h2>
 </section>
 <section id="发布部署" class="level2">
 <h2 class="anchored" data-anchor-id="发布部署">发布部署</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 预览, 开发阶段 这样看</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render   <span class="co"># render all formats</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--to</span> pdf  <span class="co"># render PDF format only</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># 预览, 开发阶段 这样看</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">quarto</span> preview</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># 生成</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">quarto</span> render   <span class="co"># render all formats</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">quarto</span> render <span class="at">--to</span> pdf  <span class="co"># render PDF format only</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>_book/
     index.html # and other book files
     rust.pdf
@@ -258,14 +249,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="页面format设置" class="level2">
 <h2 class="anchored" data-anchor-id="页面format设置">页面format设置</h2>
 <p>我们在某个页面这样设置, 然后 <code>quarto preview</code> 执行后,打开的网页里, 你点击该页面会看到实际打开的是一个pdf了, 不是web 页面了</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>title: "Hello Typst!"</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>format:</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  typst:</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    toc: true</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    section-numbering: 1.1.a</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    columns: 2</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1"></a>---</span>
+<span id="cb9-2"><a href="#cb9-2"></a>title: "Hello Typst!"</span>
+<span id="cb9-3"><a href="#cb9-3"></a>format:</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  typst:</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    toc: true</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    section-numbering: 1.1.a</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    columns: 2</span>
+<span id="cb9-8"><a href="#cb9-8"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="配置评论" class="level2">
 <h2 class="anchored" data-anchor-id="配置评论">配置评论</h2>
@@ -274,14 +265,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://quarto.org/docs/projects/quarto-projects.html">文档</a></li>
 </ul>
 <p>默认已经全局设置, 想要单个取消显示评论</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>comments: false</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1"></a>---</span>
+<span id="cb10-2"><a href="#cb10-2"></a>comments: false</span>
+<span id="cb10-3"><a href="#cb10-3"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://quarto.org/">quarto官网</a><br><a href="https://github.com/mcanouil/awesome-quarto">awesome-quarto</a><br>可以选择看看效果<a href="https://bootswatch.com/sketchy/">quarto bootstrap 主题</a><br><a href="https://github.com/thomaspark/bootswatch/">github</a><br><a href="https://github.com/rough-stuff/rough-notation">rough-notation</a><br>这个主题<a href="https://github.com/schochastics/quarto-sketchy-html">quarto-sketchy-html</a>和原生带的sketchy 是有点不一样的.(支持高亮文字), 我们直接用原生的就行了<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -637,25 +634,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

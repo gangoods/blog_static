@@ -78,9 +78,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-links',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-title','listing-links',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-title","listing-subtitle","listing-links"],
+      searchColumns: ["listing-title","listing-links"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -170,7 +170,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">rust</h1>
-<p class="subtitle lead">hello rust</p>
+<p class="subtitle lead">参考<a href="https://doc.rust-lang.org/book/">The Rust Programming Language book</a>, <a href="https://doc.rust-lang.org/rust-by-example/index.html">rust by example</a></p>
 </div>
 
 
@@ -197,13 +197,36 @@ window.Quarto = {
 <div class="card-body">
 <section id="基础" class="level4 card-title">
 <h4 class="anchored" data-anchor-id="基础">基础</h4>
-<section id="rust-基础" class="level6 card-subtitle text-muted">
-<h6 class="anchored" data-anchor-id="rust-基础">rust 基础</h6>
-</section>
 </section>
 <ul>
-<li><a href="../../docs/rust/basic/env.html">环境准备</a></li>
-<li><a href="../../docs/rust/basic/quick-start.html">快速入门</a></li>
+<li><a href="../../docs/rust/basic/01.env.html">环境准备</a></li>
+<li><a href="../../docs/rust/basic/02.quick-start.html">快速入门</a></li>
+<li><a href="../../docs/rust/basic/03.ownership.html">所有权</a></li>
+<li><a href="../../docs/rust/basic/04.struct.html">结构体</a></li>
+<li><a href="../../docs/rust/basic/05.enum-match.html">枚举和match</a></li>
+<li><a href="../../docs/rust/basic/06.collection.html">集合</a></li>
+<li><a href="../../docs/rust/basic/07.generic.html">泛型</a></li>
+<li><a href="../../docs/rust/basic/08.trait.html">trait</a></li>
+<li><a href="../../docs/rust/basic/09.lifetime.html">生命周期</a></li>
+<li><a href="../../docs/rust/basic/10.error.html">错误处理</a></li>
+<li><a href="../../docs/rust/basic/11.closure.html">闭包与迭代器</a></li>
+<li><a href="../../docs/rust/basic/12.crate-mod.html">模块系统</a></li>
+<li><a href="../../docs/rust/basic/13.cargo.html">cargo</a></li>
+<li><a href="../../docs/rust/basic/14.smart-pointer.html">智能指针</a></li>
+<li><a href="../../docs/rust/basic/15.concurrency.html">并发</a></li>
+<li><a href="../../docs/rust/basic/16.unsafe.html">unsafe</a></li>
+<li><a href="../../docs/rust/basic/17.macro.html">宏</a></li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<section id="进阶" class="level4 card-title">
+<h4 class="anchored" data-anchor-id="进阶">进阶</h4>
+</section>
+<ul>
+<li><a href="../../docs/rust/advanced/01.mem.html">内存</a></li>
+<li><a href="../../docs/rust/advanced/02.type.html">奇异的类型</a></li>
 </ul>
 </div>
 </div>
@@ -211,13 +234,21 @@ window.Quarto = {
 <div class="card-body">
 <section id="web开发" class="level4 card-title">
 <h4 class="anchored" data-anchor-id="web开发">web开发</h4>
-<section id="web开发-1" class="level6 card-subtitle text-muted">
-<h6 class="anchored" data-anchor-id="web开发-1">web开发</h6>
-</section>
 </section>
 <ul>
-<li><a href="../../docs/rust/web/index.html">test</a></li>
-<li><a href="../../docs/rust/web/test2.html">test2</a></li>
+<li><a href="../../docs/rust/web/net.html">简单web服务</a></li>
+<li><a href="../../docs/rust/web/axum/index.html">axum</a></li>
+<li><a href="../../docs/rust/web/actix-web/index.html">actix-web</a></li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<section id="异步编程" class="level4 card-title">
+<h4 class="anchored" data-anchor-id="异步编程">异步编程</h4>
+</section>
+<ul>
+<li><a href="../../docs/rust/async/01.future.html">future</a></li>
 </ul>
 </div>
 </div>
@@ -581,25 +612,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

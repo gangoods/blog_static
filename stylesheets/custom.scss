@@ -11,25 +11,35 @@
     src: url("/stylesheets/font/Virgil-hand.woff2");
 }
 @font-face {
+    // Cabin Sketch 是 当前主题默认的字体
     // https://fonts.googleapis.com/css2?family=Pangolin&display=swap
     font-family: "pangolin";
     src: url("/stylesheets/font/pangolin.woff2");
 }
 
 div.sourceCode {
-    background-color: #f5f5f5;
+    background-color:#fafafa;
+    //  #f5f5f5;
     border-color: #eff7fa;
     border-radius: 0.5rem;
 }
 pre.number-lines>code.sourceCode{
         border-left: 0.5px solid gray !important;
+        border-radius: 0;
+}
+body{
+    font-weight: normal; 
+    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 pre code {
-    border-color: #fdf3d1 !important;
+    // border-color: #fdf3d1 !important;
+    border-color: #f5f5f5 !important;
+    // font-weight: normal;
 }
 div.code-with-filename{
     .code-with-filename-file{
         border-color: #f5f5f5 !important;
+        // background-color: #d9ecdc;
          /* 上边 | 右边 | 下边 | 左边 */
         padding: 0.3rem 0.3rem 0.3rem 0.8rem;
         // border-top-left-radius: 5px 25px;
@@ -40,55 +50,82 @@ div.code-with-filename{
     }
 }
 
-ul.nav-tabs> li.nav-item > a.nav-link.active{
-    background-color: #fdf3d1 !important;
-}
+
 .toc-active li>a.nav-link.active{
-    border-left: 4px solid #f1a93c !important;
+    border-left: 2px solid #f1a93c !important;
     background-color: #fdf5ec;
 }
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active{
+    color: #eb6864 !important;
+}
+div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
+    color: #8f3f3d;
+}
 a.sidebar-link.active{
-    border-left: 4px solid #56a451 !important;
-    background-color: #f0f7f0; 
+
+    border-right: 2px solid #56a451 !important;
+    background-color: #f0f7f0;
+    // padding-top: 0.1rem;
+    // padding-bottom: 0.1rem;
+}
+a.sidebar-link{
+    padding: 0.1rem;
 }
 
 
 
 
-div.tab-content{
-    padding: 0.8em;
-    padding-bottom: 0.2em;
-    border:1px solid gray;
-    // border-radius: 0.5rem;
-    border-radius: 255px 25px 225px 25px / 25px 225px 25px 255px;
-    border-top-left-radius: 255px 25px;
-    border-top-right-radius: 25px 225px;
-    border-bottom-right-radius: 225px 25px;
-    border-bottom-left-radius: 25px 255px;
+div.panel-tabset {
+    ul.nav.nav-tabs{
+        border-bottom: 0px;
+        li.nav-item{
+            border-bottom: 0px;
+            a.nav-link{
+                color: #333333 !important;
+                border:1px solid #cccecf  !important;
+                border-bottom: 0px; 
+                // border-radius: 0;
+                // border-top-left-radius: 0.5rem;
+                border-radius: 8px 3px 0 0;
+                margin-bottom: -1px;
+                // border-top-right-radius:0.5rem; 
+            }
+            a.nav-link.active{
+                background-color: #fdf3d1 !important; 
+            }
+        }
+    }
+    div.tab-content{
+        // margin-top: -1px;
+        padding: 0.8em;
+        padding-bottom: 0.2em;
+        border:1px solid #cccecf;
+        // border-top-right-radius: 0.5rem;
+        border-bottom-right-radius:0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
 }
-ul.nav.nav-tabs{
-    border-bottom: 0px;
-}
+
 div.callout{
     border-radius: 5px 5px 5px 5px / 25px 25px 25px 5px;
     border-top-left-radius: 5px 25px;
     border-top-right-radius: 5px 25px;
     border-bottom-right-radius: 5px 25px;
     border-bottom-left-radius: 5px;
-    
+    div.callout-header{
+        border-top-left-radius: 5px 25px;
+        border-top-right-radius: 5px 25px; 
+        font-family: "Cabin Sketch";
+    }
+    div.callout-body{
+        padding-top: 0.3em;
+        padding-bottom: 0.2em;
+        font-size: 1rem !important;
+        font-family: "pangolin";
+        color: #5e5e5e;
+    }
 }
-div.callout-header{
-    border-top-left-radius: 5px 25px;
-    border-top-right-radius: 5px 25px; 
-    font-family: "Cabin Sketch";
-}
-div.callout-body{
-    padding-top: 0.3em;
-    padding-bottom: 0.2em;
-    font-size: 1rem !important;
-    font-family: "pangolin";
-    color: #5e5e5e;
-}
+
 
 #quarto-sidebar{
     border-right: 1px solid #f5f5f5;
@@ -119,11 +156,8 @@ h5 {
 #quarto-document-content li a , p>a{
     color:#3270eb;
 }
-div.panel-tabset a.nav-link{
-    color: #333333 !important;
-}
-// div.panel-tabset a.nav-link.active{
-// }
+
+
 .txt-highlight{
     background-color: #fdf188;
 }
@@ -151,6 +185,9 @@ div.code-annotation-gutter{
 a.code-annotation-anchor{
     background-color: #9be51c !important;
 }
+button.code-annotation-anchor{
+    background-color: #9be51c !important;
+}
 dl.code-annotation-container-grid {
     background-color: #f2f7f1 ;
     
@@ -173,4 +210,18 @@ dl.code-annotation-container-grid {
         border: solid #aaa 1px;
         background-color: yellow !important;
     }
+}
+
+
+div#code-annotation-line-highlight{
+    background-color: #fdf188 ;
+}
+// #code-annotation-line-highlight-gutter{
+// }
+
+#quarto-margin-sidebar, #quarto-sidebar{
+    // font-family: "pangolin";
+    // font-family: "Cabin Sketch";
+    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: normal;
 }
