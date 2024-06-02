@@ -1,5 +1,610 @@
 [
   {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "References\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "docs/quarto/basic.html",
+    "href": "docs/quarto/basic.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "git clone --depth=1 https://github.com/quarto-dev/quarto-web.git\ncd quarto-web\n# 查看官方文档的本地离线版本\nquarto preview\n# 我们指定端口, 然后不要自动打开浏览器,\n# 有时候 你需要重新执行时,就不会打开浏览器了\nquarto preview --port 4858 --no-browser\n# 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以\nquarto render",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#安装quarto1",
+    "href": "docs/quarto/basic.html#安装quarto1",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "git clone --depth=1 https://github.com/quarto-dev/quarto-web.git\ncd quarto-web\n# 查看官方文档的本地离线版本\nquarto preview\n# 我们指定端口, 然后不要自动打开浏览器,\n# 有时候 你需要重新执行时,就不会打开浏览器了\nquarto preview --port 4858 --no-browser\n# 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以\nquarto render",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#website-book",
+    "href": "docs/quarto/basic.html#website-book",
+    "title": "斯巴拉稀",
+    "section": "website book",
+    "text": "website book\nvscode command+shift+p create project -&gt; website 或者book\n或者使用命令来创建\nquarto create project\nquarto create project &lt;type&gt; &lt;name&gt;\n# 安装主题\n# 可直接使用Footnotes提到的25个主题,不需要安装\n# quarto add schochastics/quarto-sketchy-html\n_quarto.yml 修改主题\nformat:\n# 发布的时候, 会生成的格式类型,如果只要html, 其他可以删除\n  html:\n    theme: sketchy # 修改主题为我们前面添加的\n  # 输出多种格式\n  pdf:\n    documentclass: scrreport\n  epub:\n    cover-image: cover.png",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#静态目录配置",
+    "href": "docs/quarto/basic.html#静态目录配置",
+    "title": "斯巴拉稀",
+    "section": "静态目录配置",
+    "text": "静态目录配置\n_quarto.yml\nproject:\n  type: website\n  # output-dir: _site\n  # 设置 resources, quarto render时,会将下列设置的目录 复制到 _site目录下\n  # 这样 当你访问url /stylesheets/custom.scss 时, 就可以访问到该文件\n  resources:\n    - \"/stylesheets\"\n    - \"/.diagram\"\n我们可以统一将图片放到这里,然后 markdown中 这样插入图片\n![](/.diagram/xxx.png)",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#siderbar",
+    "href": "docs/quarto/basic.html#siderbar",
+    "title": "斯巴拉稀",
+    "section": "siderbar",
+    "text": "siderbar",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#发布部署",
+    "href": "docs/quarto/basic.html#发布部署",
+    "title": "斯巴拉稀",
+    "section": "发布部署",
+    "text": "发布部署\n# 预览, 开发阶段 这样看\nquarto preview\n# 生成\nquarto render   # render all formats\nquarto render --to pdf  # render PDF format only\n_book/\n    index.html # and other book files\n    rust.pdf\n    rust.epub",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#页面format设置",
+    "href": "docs/quarto/basic.html#页面format设置",
+    "title": "斯巴拉稀",
+    "section": "页面format设置",
+    "text": "页面format设置\n我们在某个页面这样设置, 然后 quarto preview 执行后,打开的网页里, 你点击该页面会看到实际打开的是一个pdf了, 不是web 页面了\n---\ntitle: \"Hello Typst!\"\nformat:\n  typst:\n    toc: true\n    section-numbering: 1.1.a\n    columns: 2\n---",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#配置评论",
+    "href": "docs/quarto/basic.html#配置评论",
+    "title": "斯巴拉稀",
+    "section": "配置评论",
+    "text": "配置评论\n\ngiscus\n文档\n\n默认已经全局设置, 想要单个取消显示评论\n---\ncomments: false\n---",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#footnotes",
+    "href": "docs/quarto/basic.html#footnotes",
+    "title": "斯巴拉稀",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nquarto官网awesome-quarto可以选择看看效果quarto bootstrap 主题githubrough-notation这个主题quarto-sketchy-html和原生带的sketchy 是有点不一样的.(支持高亮文字), 我们直接用原生的就行了↩︎",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html",
+    "href": "docs/quarto/markdown.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "可以查看该颜色相近的一些颜色\n\n@startuml\ncolors chocolate\n@enduml",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#color",
+    "href": "docs/quarto/markdown.html#color",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "可以查看该颜色相近的一些颜色\n\n@startuml\ncolors chocolate\n@enduml",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#html",
+    "href": "docs/quarto/markdown.html#html",
+    "title": "斯巴拉稀",
+    "section": "html",
+    "text": "html\n直接写原生的html代码来渲染,参考sketchy\n\n  \n    Cras justo odio\n    14\n  \n  \n    Dapibus ac facilisis in\n    2\n  \n  \n    Morbi leo risus\n    1\n  \n    Cras justo odio\n    5\n  \n  \n    Dapibus ac facilisis in\n    4\n  \n  \n    Morbi leo risus\n    9\n  \n  \n    Morbi leo risus\n    8\n  \n  \n    Morbi leo risus\n    0",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#table",
+    "href": "docs/quarto/markdown.html#table",
+    "title": "斯巴拉稀",
+    "section": "table",
+    "text": "table\n\nPlatform Command\n\n\n\n\n\n\nPlatform\nCommand\n\n\n\n\nMac/Linux\nconda activate ./env\n\n\nWindows\nconda activate .\\env\n\n\n\n控制 颜色,在table代码下方写上\n: Platform Command {.striped .hover tbl-colwidths=\"[35,75]\"}",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#code",
+    "href": "docs/quarto/markdown.html#code",
+    "title": "斯巴拉稀",
+    "section": "code",
+    "text": "code\n\nline-numbers\n{.bash code-line-numbers=\"false\"} 全局已经设置显示行号, 这里可以临时禁止\nls -l\n\n\nfilename\n\n\nmain.py\n\nprint(1)\n\n\n\ncode annotation\n---\n1code-annotations: hover\n---\n\n1\n\n还可以设置成 below,会在下方直接显示, select 则需要点击\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n1penguins |&gt;\n2  mutate(\n    bill_ratio = bill_depth_mm / bill_length_mm,\n    bill_area  = bill_depth_mm * bill_length_mm\n  )\n\n1\n\nTake penguins, and then,\n\n2\n\nadd new columns for the bill ratio and bill area.\n\n\n\n\ninclude code file\nfn main() {\n    let mut x = 5;\n    println!(\"{x}\");\n}",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#highlight",
+    "href": "docs/quarto/markdown.html#highlight",
+    "title": "斯巴拉稀",
+    "section": "highlight",
+    "text": "highlight\nThis is some text\nhello world\nhello world\nhello world",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#card",
+    "href": "docs/quarto/markdown.html#card",
+    "title": "斯巴拉稀",
+    "section": "card",
+    "text": "card\n生成后是 .class_name的div结构 ,去看 sketchy 里的元素源码来搞\n\n\nHere is a warning.\n\n\nabc",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#panel-tabset",
+    "href": "docs/quarto/markdown.html#panel-tabset",
+    "title": "斯巴拉稀",
+    "section": "panel-tabset",
+    "text": "panel-tabset\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\ncode结果\n\n\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\n\n\nPythonrust\n\n\nabc\n\n\nefg",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#callout",
+    "href": "docs/quarto/markdown.html#callout",
+    "title": "斯巴拉稀",
+    "section": "callout",
+    "text": "callout\n\n\n\n\n\n\nnote with Title\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nPowerShell Note\n\n\n\nSome quick example text to build on the card title and make up the bulk of the card’s content.",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#citation-footnote-and-cross-reference",
+    "href": "docs/quarto/markdown.html#citation-footnote-and-cross-reference",
+    "title": "斯巴拉稀",
+    "section": "citation, footnote and cross-reference",
+    "text": "citation, footnote and cross-reference\n鼠标移动到 Xie (2015) 上面 knitr1. Listing 1 shows you how to disable hover behaviour.\n\n\n\nListing 1\n\n\nformat:\n  html:\n    citations-hover: false\n    footnotes-hover: false\n    crossrefs-hover: false\n\n\n\n添加class 让这个隐藏了, 这样只有我们hover 才会显示, 暂时还有问题,这个移动移出有2种显示..\n\n\nreferences.bib 添加如下\n\n@Book{xie2015,\n  title = {Dynamic Documents with {R} and knitr},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2015},\n  edition = {2nd},\n  note = {ISBN 978-1498716963},\n  url = {https://yihui.name/knitr/},\n}\n\n\n\n_quarto.yml 添加如下设置\n\nbibliography: references.bib\n\nHere is an inline note.2 longnote3",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#extension",
+    "href": "docs/quarto/markdown.html#extension",
+    "title": "斯巴拉稀",
+    "section": "extension",
+    "text": "extension\n\nquarto-rust\n将代码块 中使用的 rust改成 playground-rust, 用{} 包起来\n\n\nkroki\nquarto install extension pandoc-ext/diagram\nquarto add data-intuitive/quarto-d2\ndiagram d2\n上面2个扩展可以抛弃了, 使用下面这个就足够了.\n这个插件有问题, 需要自己修改, 我已经修复bug, 并且增加了会下载生成的svg到本地\nquarto add GabrielCoffee9/quarto-kroki\n_quarto.yml 配置自己的kroki 服务器\nkroki:\n  serviceUrl: \"http://192.168.1.103:8000\"\n在页面文件里头部写上, 使用kroki过滤, 到时候就会执行 _extension/xxxx/kroki.lua\n---\nfilters:\n- kroki\n---\n\nplantuml等\n```{kroki-plantuml}\n@startuml\nBob -&gt; Alice : hello\n@enduml\n```\n\n\n\n\nexcalidraw\n\n\n\n\n\n\nTip\n\n\n\n\n以导入文件的方式来, 其他diagram 也可以\n使用这种方式,如果你修改了 diagram文件,是不会重新生成图片的,你可以代码块里 加一行空格,保存\n\n\n\n\n\n\nd24\n生成的svg 太大了, 暂时不知道怎么解决,先不用了,有空研究\nhttps://github.com/svg/svgo svg压缩\nnpm install -g svgo\nsvgo one.svg two.svg -o one.min.svg two.min.svg\n我发现 不要用302主题, 会变小多了, 然后 sketch: true 不要用,再变小\nd2 themes # 查看可用的主题\nclasses: {\n  empty: {\n    label: \"\"\n    style: {\n      fill: transparent\n      stroke-width: 0\n    }\n  }\n  text: {\n    style: {\n      fill: transparent\n      stroke-width: 0\n    }\n  }\n  cluster: {\n    style: {\n      fill: transparent\n      stroke-dash: 4\n      stroke: \"#C6D3DF\"\n    }\n  }\n  grid: {\n    grid-columns: 1\n    label: \"\"\n    style: {\n      fill: white\n      stroke-width: 0\n    }\n  }\n  row: {\n    grid-rows: 1\n    label: \"\"\n    style: {\n      fill: transparent\n      stroke-width: 0\n    }\n  }\n}\n\nvars: {\n  left-cluster: {\n    label: \"n-sized Vector\"\n    class: cluster\n    0*.style.fill: \"#DFEFFA\"\n    0*.style.stroke: black\n    grid-rows: 1\n    grid-gap: 0\n    label.near: outside-top-left\n\n    \"0.62\"\n    \"0.15\"\n    empty1.class: empty\n    n.class: text\n    empty2.class: empty\n    \"0.91\"\n    \"0.48\"\n\n    \"0.15\" &lt;- n -&gt; \"0.91\"\n  }\n  right-cluster: {\n    label: \"m-sized Vector\"\n    class: cluster\n    0*.style.fill: \"#72F5FF\"\n    0*.style.stroke: black\n    grid-rows: 1\n    grid-gap: 0\n    label.near: outside-top-left\n\n    \"0.62\"\n    \"0.15\"\n    empyt1.class: empty\n    m.class: text\n    empty2.class: empty\n    \"0.91\"\n    \"0.48\"\n\n    \"0.15\" &lt;- m -&gt; \"0.91\"\n  }\n}\n\ngrid-rows: 2\n\ntop-row: {\n  class: row\n  empty.class: empty\n  empty.width: 1100\n\n  Random Matrix Generator: {\n    width: 300\n    height: 170\n    style.font-size: 20\n    style.fill: \"#A7BBCF\"\n    style.stroke: black\n    style.border-radius: 10\n  }\n}\n\nbottom-row: {\n  class: row\n  left-grid: {\n    class: grid\n\n    1: ${left-cluster}\n    2: ${left-cluster}\n    3: ${left-cluster}\n  }\n\n  dot-container: {\n    class: empty\n    grid-columns: 1\n    empty1.class: empty\n    dot: Dot product {\n      class: text\n      circle: \"\" {\n        shape: circle\n        style.fill: black\n        style.stroke-width: 0\n        width: 20\n        height: 20\n      }\n      label.near: outside-bottom-center\n    }\n  }\n\n  matrix-container: {\n    class: empty\n    grid-columns: 1\n    matrix: Target dimension matrix {\n      label.near: outside-top-center\n      grid-rows: 4\n      grid-gap: 0\n      *.width: 100\n      *.height: 100\n      *.style.fill: \"#F1F6F9\"\n      *.style.stroke: black\n      \"0.41\"\n      \"0.32\"\n      \"0.92\"\n      \"0.13\"\n\n      \"0.74\"\n      \"0.15\"\n      \"0.53\"\n      \"0.21\"\n\n      \"0.97\"\n      \"0.45\"\n      \"0.11\"\n      \"0.05\"\n\n      \"0.61\"\n      \"0.77\"\n      \"0.59\"\n      \"0.83\"\n    }\n  }\n\n  empty.class: empty\n\n  right-grid: {\n    class: grid\n\n    1: ${right-cluster}\n    2: ${right-cluster}\n    3: ${right-cluster}\n  }\n\n  matrix-container -&gt; right-grid\n}\n\ntop-row.Random Matrix Generator -&gt; bottom-row.matrix-container.matrix",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/markdown.html#footnotes",
+    "href": "docs/quarto/markdown.html#footnotes",
+    "title": "斯巴拉稀",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nmarkdown 文档↩︎\n直接写在这里.↩︎\nHere’s one with multiple blocks.\n\npython\n\nprintln(1)\n\nrust\n\n↩︎\nhttps://d2lang.com↩︎",
+    "crumbs": [
+      "markdown"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/10.error.html",
+    "href": "docs/rust/basic/10.error.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "越界\nfn main() {\n    let v = vec![1, 2, 3];\n\n    v[99];\n}\nfn main() {\n    panic!(\"crash and burn\"); // 后面的不会执行\n    println!(\"1\");\n}",
+    "crumbs": [
+      "基础篇",
+      "错误处理"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/10.error.html#unrecoverable-errors",
+    "href": "docs/rust/basic/10.error.html#unrecoverable-errors",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "越界\nfn main() {\n    let v = vec![1, 2, 3];\n\n    v[99];\n}\nfn main() {\n    panic!(\"crash and burn\"); // 后面的不会执行\n    println!(\"1\");\n}",
+    "crumbs": [
+      "基础篇",
+      "错误处理"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/10.error.html#recoverable-errors",
+    "href": "docs/rust/basic/10.error.html#recoverable-errors",
+    "title": "斯巴拉稀",
+    "section": "Recoverable Errors",
+    "text": "Recoverable Errors\nenum Result&lt;T, E&gt; {\n    Ok(T),\n    Err(E),\n}\n\nmatch\nuse std::fs::File;\n\nfn main() {\n    let greeting_file_result = File::open(\"hello.txt\");\n\n    let greeting_file = match greeting_file_result {\n        Ok(file) =&gt; file, // 返回给 greeting_file\n        Err(error) =&gt; {\n            // 直接panic\n            panic!(\"Problem opening the file: {:?}\", error);\n        }\n    };\n}\nuse std::fs::File;\nuse std::io::ErrorKind;\n\nfn main() {\n    let greeting_file_result = File::open(\"hello.txt\");\n\n    let greeting_file = match greeting_file_result {\n        Ok(file) =&gt; file,\n        Err(error) =&gt; match error.kind() {\n            // 匹配不同的错误\n            ErrorKind::NotFound =&gt; match File::create(\"hello.txt\") {\n                Ok(fc) =&gt; fc,\n                Err(e) =&gt; panic!(\"Problem creating the file: {:?}\", e),\n            },\n            other_error =&gt; {\n                panic!(\"Problem opening the file: {:?}\", other_error);\n            }\n        },\n    };\n}\n\n\nunwrap_or_else\n使用 Result&lt;T, E&gt; 的方法 unwrap_or_else\nuse std::fs::File;\nuse std::io::ErrorKind;\n\nfn main() {\n    let greeting_file = File::open(\"hello.txt\").unwrap_or_else(|error| {\n        if error.kind() == ErrorKind::NotFound {\n            File::create(\"hello.txt\").unwrap_or_else(|error| {\n                panic!(\"Problem creating the file: {:?}\", error);\n            })\n        } else {\n            panic!(\"Problem opening the file: {:?}\", error);\n        }\n    });\n}\n\n\nunwrap\nuse std::fs::File;\n\nfn main() {\n    // unwrap 方法会返回一个 Result 枚举，\n    // 如果 Result 枚举是 Ok 类型，则 unwrap 会返回 Ok 中的值，\n    // 如果 Result 枚举是 Err 类型，则 unwrap 会panic Err 中的错误信息, 程序退出\n    let greeting_file = File::open(\"hello.txt\").unwrap();\n}\n\n\nexpect\n相比unwrap 就是能定义输出的错误信息\nuse std::fs::File;\n\nfn main() {\n    let greeting_file = File::open(\"hello.txt\")\n        .expect(\"hello.txt 文件不存在 \");\n}\n\n\n?\nuse std::fs::File;\nuse std::io::{self, Read};\nfn main() {\n    read_username_from_file().unwrap();\n}\nfn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {\n    let username_file_result = File::open(\"hello.txt\");\n    // 错误的情况, 返回 result&lt;String,Error&gt;\n    let mut username_file = match username_file_result {\n        Ok(file) =&gt; file,\n        // return 会退出函数, 返回Err(e) 给read_username_from_file\n        Err(e) =&gt; return Err(e),\n    };\n\n    let mut username = String::new();\n    // 不管结果如何, 都返回 ,让给调用者处理\n    match username_file.read_to_string(&mut username) {\n        Ok(_) =&gt; Ok(username),\n        Err(e) =&gt; Err(e),\n    }   // 注意这里是没有 ; 的, 因为要返回 result&lt;T,E&gt;\n}\n上面的写法, 你会发现, 有同样类似的逻辑, 就是将结果result 给调用者自己处理, 使用? 简化代码\nuse std::fs::File;\nuse std::io::{self, Read};\nfn main() {\n    read_username_from_file().unwrap();\n}\nfn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {\n    // \\? 放在 Result 类型的返回值上\n    // 如果返回值是 Ok,那么Ok包含的value 会被返回, 程序继续执行\n    // 如果返回值是 Err, 则返回 Err\n    let mut username_file = File::open(\"hello.txt\")?;\n    let mut username = String::new();\n    let s = username_file.read_to_string(&mut username)?;\n    println!(\"s:=={}\", s); // 读取的字节书\n    Ok(username)\n}\n更简洁\nuse std::fs::File;\nuse std::io::{self, Read};\n\nfn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {\n    let mut username = String::new();\n\n    File::open(\"hello.txt\")?.read_to_string(&mut username)?;\n\n    Ok(username)\n}\n当然 标准库 提供了 上面的需求的更好的方法, 知道就行, 这不是我们讨论的点.\nuse std::fs;\nuse std::io;\n\nfn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {\n    fs::read_to_string(\"hello.txt\")\n}\n\n\n\n\n\n\nCaution\n\n\n\n\n? 只能被用在 函数里\n只能用在 Result, Option, 或者其他 实现了 FromResidual的 类型上\n\n\n\n下面代码报错了\nuse std::fs::File;\n\nfn main() {\n    let greeting_file = File::open(\"hello.txt\")?;\n}",
+    "crumbs": [
+      "基础篇",
+      "错误处理"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/17.macro.html",
+    "href": "docs/rust/basic/17.macro.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "宏是用来编写可以生成其他代码的 代码 (metaprogramming)\n编译器编译时会将宏进行展开,就是会替换成具体的rust代码\n\n\n\n Back to top",
+    "crumbs": [
+      "基础篇",
+      "宏"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/04.struct.html",
+    "href": "docs/rust/basic/04.struct.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "1#[derive(Debug)]\nstruct User {\n    active: bool,\n    username: String,\n    email: String,\n    sign_in_count: u64,\n}\n\nfn main() {\n2    let mut u = build_user(\"username123\".to_string(), \"someone@example.com\".to_string());\n\n    println!(\"{}\", u.email);\n    u.active = false;\n    println!(\"{}\", u);\n\n    let u1 = build_user(\"u1@hotmail\".to_string(), \"u1\".to_string());\n    let u2 = User {\n        // 覆盖 base struct的对应字段, 或者说 base struct会 指定剩余没设置值的字段\n        email: String::from(\"u2@hotmail\"),\n\n3        ..u1\n    };\n    println!(\"{:?}\", u2);\n    println!(\"{:#?}\", u2); // 更加直观的打印\n\n4    // println!(\"{:?}\", u1);\n5    println!(\"{:?}\", u1.email);\n\n}\nfn build_user(email: String, username: String) -&gt; User {\n    User {\n        active: true,\n6        username,\n        email,\n        sign_in_count: 1,\n    }\n}\n\n1\n\n需要实现 std::fmt::Debug trait才能 println!\n\n2\n\n不能给单独某个字段设置成 可变,只能整个设置 每个字段都必须设置值, 否则报错\n\n3\n\n作为 base struct 必须放在最后, 否则是报错的\n\n4\n\n报错了, 因为u1里的设置u2那里 username 被 move 掉了.\n\n5\n\n单独某个没有被move的字段还是可以打印的\n\n6\n\n同名,可以这样简便写法\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\ntuple structs\n只有字段的类型,没有name\n\n\n\n// 虽然元素类型一样, 但是2个结构体是不同的类型\nstruct Color(i32, i32, i32);\nstruct Point(i32, i32, i32);\n\nfn main() {\n    let black = Color(0, 0, 0);\n    let origin = Point(0, 0, 0);\n    // 同元祖访问\n    println!(\"{}\", black.0);\n}\n\n\n\nunit-like structs, 没有字段的结构体\n\nstruct AlwaysEqual;\n\nfn main() {\n    // 实例化了\n    let subject = AlwaysEqual;\n}",
+    "crumbs": [
+      "基础篇",
+      "结构体"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/04.struct.html#三种形式",
+    "href": "docs/rust/basic/04.struct.html#三种形式",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "1#[derive(Debug)]\nstruct User {\n    active: bool,\n    username: String,\n    email: String,\n    sign_in_count: u64,\n}\n\nfn main() {\n2    let mut u = build_user(\"username123\".to_string(), \"someone@example.com\".to_string());\n\n    println!(\"{}\", u.email);\n    u.active = false;\n    println!(\"{}\", u);\n\n    let u1 = build_user(\"u1@hotmail\".to_string(), \"u1\".to_string());\n    let u2 = User {\n        // 覆盖 base struct的对应字段, 或者说 base struct会 指定剩余没设置值的字段\n        email: String::from(\"u2@hotmail\"),\n\n3        ..u1\n    };\n    println!(\"{:?}\", u2);\n    println!(\"{:#?}\", u2); // 更加直观的打印\n\n4    // println!(\"{:?}\", u1);\n5    println!(\"{:?}\", u1.email);\n\n}\nfn build_user(email: String, username: String) -&gt; User {\n    User {\n        active: true,\n6        username,\n        email,\n        sign_in_count: 1,\n    }\n}\n\n1\n\n需要实现 std::fmt::Debug trait才能 println!\n\n2\n\n不能给单独某个字段设置成 可变,只能整个设置 每个字段都必须设置值, 否则报错\n\n3\n\n作为 base struct 必须放在最后, 否则是报错的\n\n4\n\n报错了, 因为u1里的设置u2那里 username 被 move 掉了.\n\n5\n\n单独某个没有被move的字段还是可以打印的\n\n6\n\n同名,可以这样简便写法\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\ntuple structs\n只有字段的类型,没有name\n\n\n\n// 虽然元素类型一样, 但是2个结构体是不同的类型\nstruct Color(i32, i32, i32);\nstruct Point(i32, i32, i32);\n\nfn main() {\n    let black = Color(0, 0, 0);\n    let origin = Point(0, 0, 0);\n    // 同元祖访问\n    println!(\"{}\", black.0);\n}\n\n\n\nunit-like structs, 没有字段的结构体\n\nstruct AlwaysEqual;\n\nfn main() {\n    // 实例化了\n    let subject = AlwaysEqual;\n}",
+    "crumbs": [
+      "基础篇",
+      "结构体"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/04.struct.html#方法和关联函数",
+    "href": "docs/rust/basic/04.struct.html#方法和关联函数",
+    "title": "斯巴拉稀",
+    "section": "方法和关联函数",
+    "text": "方法和关联函数\n#[derive(Debug)]\nstruct Rectangle {\n    width: u32,\n    height: u32,\n}\n// impl 块里的所有东西都和 Rectangle 类型产生关联\nimpl Rectangle {\n    // 第一个参数是 &self 是 self: &Self的简写, 是不可变借用\n    // 如果想用 所有权的, 就 用 self 是 self: Self的简写\n    // 如果想用可变借用 就用&mut self 是self: &mut Self 的简写\n    // 调用方法实际上是将调用者作为第一个参数传递给方法\n    fn area_borrows_immutably(&self) -&gt; u32 {\n        println!(\" width... {}\", (*self).width);\n        self.width * self.height\n    }\n\n    fn area_move(self) -&gt; u32 {\n        println!(\" width... {}\", self.width);\n        self.width * self.height\n    }\n    fn area_borrows_mutably(&mut self) -&gt; u32 {\n        println!(\" width... {}\", (*self).width);\n        self.width * self.height\n    }\n\n    fn change_width(&mut self, width: u32) {\n        self.width = width;\n    }\n\n    // 关联函数\n    // 例子: 正方形 ,这里没有用到 &self 作为第一个参数\n    fn square(size: u32) -&gt; Self {\n        Self {\n            width: size,\n            height: size,\n        }\n    }\n    // rust没有专门的构造函数,需要自己定义,我们一般用new 这个方法名,\n    pub fn new(width: u32, height: u32) -&gt; Self {\n        Rectangle {\n            width,\n            height,\n        }\n    }\n}\n\nfn main() {\n    let rect1 = Rectangle {\n        width: 30,\n        height: 50,\n    };\n    // area_borrows_immutably(&rect1)\n    println!(\"{}\", rect1.area_borrows_immutably());\n    println!(\"{:?}\", rect1);\n    println!(\"{}\", rect1.area_move());\n    // 报错, move掉了, 说明 我们的结构体是move 属性的,\n    // println!(\"{:?}\", rect1);\n    let mut rect1 = Rectangle {\n        width: 30,\n        height: 50,\n    };\n    println!(\"{}\", rect1.area_borrows_mutably());\n\n    let mut rect2 = Rectangle {\n        width: 30,\n        height: 50,\n    };\n    // 调用的时候根据方法的第一个参数类型,会自动转为 比如 可变借用\n    rect2.change_width(35);\n    println!(\"{}\", rect2.area_borrows_immutably());\n\n    // 这样的方式调用\n    let r = &mut rect2;\n    Rectangle::change_width(r, 40);\n    println!(\"{}\", r.height);\n    println!(\"{}\", rect2.area_borrows_immutably());\n\n    // 使用 :: 来调用\n    let sq = Rectangle::square(3);\n    println!(\"{}\", sq.area_borrows_immutably());\n}\nDefautl\n// 添加Default 派生宏\n#[derive(Debug, Default)]\nstruct Rectangle {\n    width: u32,\n    height: u32,\n}\nfn main() {\n    // 可以使用这种方式来创建一个实例\n    // 使用方式1\n    let rect1: Rectangle = Default::default();\n    println!(\"{:?}\", rect1);\n    // 使用方式2\n    let rect2 = Rectangle::default();\n    println!(\"{:?}\", rect2);\n}",
+    "crumbs": [
+      "基础篇",
+      "结构体"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/01.env.html",
+    "href": "docs/rust/basic/01.env.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "配置国内源1然后查看官方安装教程2\n# 添加, 让下面的安装快点\necho 'export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup' &gt;&gt; ~/.zshrc\necho 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.zshrc\n# 安装\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n安装过程我们可以看到 info: installing component 'rust-docs' 这类信息,说明安装了不少组件\n所有的组件到安装到 ~/.cargo/bin 这个目录\ntree ~/.cargo/bin\n~/.cargo/bin\n├── cargo\n├── cargo-clippy\n├── cargo-fmt\n├── cargo-miri\n├── clippy-driver\n├── rls\n├── rust-analyzer\n├── rust-gdb\n├── rust-gdbgui\n├── rust-lldb\n├── rustc\n├── rustdoc\n├── rustfmt\n└── rustup\n\n\n\n\n\n\nTip\n\n\n\nrustup 是专门管理rust安装的工具, 相当于 node 的nvm\n\n\n配置\n# zsh\necho 'source \"$HOME/.cargo/env\"' &gt;&gt; ~/.zshrc\n# path环境变量的设置\n#  $HOME/.cargo/bin:$PATH\n# fish shell 的配置\n# vim ~/.config/fish/config.fish 添加如下. 然后 source一下即可\n# set -x  PATH ~/.cargo/bin $PATH\n验证安装\nrustc --version\ncargo --version\n\n\n\n\n\n\nTip\n\n\n\ncargo: Rust 的编译工具,包管理器,可以帮助你编译代码,运行,测试,下载代码所依赖的外部库等等\n\n\n安装库\n# RLS的全称是:'Rust Language Server',是一个守护进程\n# 用于和开发时使用的IDE进行IPC通信,完成代码提示、跳转到定义、显示变量类型等功能\n# 这2个库,前面安装的时候已经自动安装了.\nrustup component add rls           --toolchain stable    # RLS\nrustup component add rust-analysis --toolchain stable    # 分析工具\n#std是Rust的标准库. 默认情况下,Rust安装的是标准库的二进制码,而添加源码后容易方便我们查询部分标准库的实现\nrustup component add rust-src      --toolchain stable    # std源码",
+    "crumbs": [
+      "基础篇",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/01.env.html#安装",
+    "href": "docs/rust/basic/01.env.html#安装",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "配置国内源1然后查看官方安装教程2\n# 添加, 让下面的安装快点\necho 'export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup' &gt;&gt; ~/.zshrc\necho 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.zshrc\n# 安装\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n安装过程我们可以看到 info: installing component 'rust-docs' 这类信息,说明安装了不少组件\n所有的组件到安装到 ~/.cargo/bin 这个目录\ntree ~/.cargo/bin\n~/.cargo/bin\n├── cargo\n├── cargo-clippy\n├── cargo-fmt\n├── cargo-miri\n├── clippy-driver\n├── rls\n├── rust-analyzer\n├── rust-gdb\n├── rust-gdbgui\n├── rust-lldb\n├── rustc\n├── rustdoc\n├── rustfmt\n└── rustup\n\n\n\n\n\n\nTip\n\n\n\nrustup 是专门管理rust安装的工具, 相当于 node 的nvm\n\n\n配置\n# zsh\necho 'source \"$HOME/.cargo/env\"' &gt;&gt; ~/.zshrc\n# path环境变量的设置\n#  $HOME/.cargo/bin:$PATH\n# fish shell 的配置\n# vim ~/.config/fish/config.fish 添加如下. 然后 source一下即可\n# set -x  PATH ~/.cargo/bin $PATH\n验证安装\nrustc --version\ncargo --version\n\n\n\n\n\n\nTip\n\n\n\ncargo: Rust 的编译工具,包管理器,可以帮助你编译代码,运行,测试,下载代码所依赖的外部库等等\n\n\n安装库\n# RLS的全称是:'Rust Language Server',是一个守护进程\n# 用于和开发时使用的IDE进行IPC通信,完成代码提示、跳转到定义、显示变量类型等功能\n# 这2个库,前面安装的时候已经自动安装了.\nrustup component add rls           --toolchain stable    # RLS\nrustup component add rust-analysis --toolchain stable    # 分析工具\n#std是Rust的标准库. 默认情况下,Rust安装的是标准库的二进制码,而添加源码后容易方便我们查询部分标准库的实现\nrustup component add rust-src      --toolchain stable    # std源码",
+    "crumbs": [
+      "基础篇",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/01.env.html#rustup",
+    "href": "docs/rust/basic/01.env.html#rustup",
+    "title": "斯巴拉稀",
+    "section": "rustup",
+    "text": "rustup\n更新\nrustup update\n安装指定版本\nrustup install  1.20.0\n查看已经安装的版本\nrustup toolchain list\n卸载\n# 会删除所有的工具链,\n# 包括rustup, rustc, cargo, rls, rust-analysis, rust-src等等\n# 注意, 卸载后, 需要重新安装\nrustup self uninstall\n切换版本\n# 全局切换\nrustup default stable/nightly/beta\n# 工作目录切换版本\ncd rust代码目录\nrustup override set 1.20.0\n# 取消当前目录的版本 ,重新设置为默认的全局版本\nrustup override unset",
+    "crumbs": [
+      "基础篇",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/01.env.html#查看文档",
+    "href": "docs/rust/basic/01.env.html#查看文档",
+    "title": "斯巴拉稀",
+    "section": "查看文档",
+    "text": "查看文档\n查看本地离线的rust文档,浏览器会自动打开文档, 可以看到好多教程可以点击查看\nrustup doc\n这个会打开 The Rust Programming Language 这本教程\nrustup docs --book\n# 查看帮助,可以看到其他book的 命令\nrustup docs --help\n# 直接打开 rust-by-example 这本书\nrustup docs --rust-by-example",
+    "crumbs": [
+      "基础篇",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/01.env.html#cargo简单介绍",
+    "href": "docs/rust/basic/01.env.html#cargo简单介绍",
+    "title": "斯巴拉稀",
+    "section": "cargo简单介绍",
+    "text": "cargo简单介绍\ncargo new hello \ncd hello\ntree -a\n# 会创建目录world, 并且 直接有 .git 纳入git管理\n.\n├── .git\n├── .gitignore\n1├── Cargo.toml\n└── src\n    └── main.rs\n\n1\n\ncargo.toml package的一些基本信息 toml参考\n\n\n\n\nCargo.toml\n\n[package]\nname = \"hello\"\n# 注意开发时第一个 version 一般是用0.1.0 不是0.0.1\nversion = \"0.1.0\"\nedition = \"2021\"\n\n\n\nsrc/main.rs\n\nfn main() {\n    println!(\"Hello, world!\");\n}\n\n\n\n执行命令\n\ncargo run\n\n\n\n运行打印的信息\n\n1       Fresh hello v0.1.0 (~/rust2024/hello)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n2     Running `target/debug/hello`\n3Hello, world!\n\n\n1\n\ncargo 调用 rust编译器 rustc来编译代码,生成可执行文件,会放到 target/debug 目录下\n\n2\n\n运行 可执行文件\n\n3\n\n输出结果\n\n\n配置crates国内源3, 下载依赖包就快了\nmkdir -vp ${CARGO_HOME:-$HOME/.cargo}\n\ncat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config\n[source.crates-io]\nreplace-with = 'ustc'\n\n[source.ustc]\nregistry = \"sparse+https://mirrors.ustc.edu.cn/crates.io-index/\"\nEOF\n或者\nmkdir -vp ${CARGO_HOME:-$HOME/.cargo}\n\ncat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config\n[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/\"\nEOF",
+    "crumbs": [
+      "基础篇",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/01.env.html#footnotes",
+    "href": "docs/rust/basic/01.env.html#footnotes",
+    "title": "斯巴拉稀",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nrustup国内源↩︎\n官方安装教程↩︎\n中科大开源镜像站 清华大学开源软件镜像站↩︎",
+    "crumbs": [
+      "基础篇",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/06.collection.html",
+    "href": "docs/rust/basic/06.collection.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Tip\n\n\n\n\n只能存储相同类型的数据\n在内存中连续存放\n容量可以在执行过程中动态扩大和缩放\n\n既然是动态的,那么它必定是要在堆上分配的.\n\n\n\n\n\n\nfn main() {\n    // 第一种方式,存放的类型是i32,\n    // 也可以不指定是什么类型的(去掉Vec&lt;i32&gt;),push 后 就推断出什么类型了\n    let mut v: Vec&lt;i32&gt; = Vec::new();\n    // 添加\n    v.push(5);\n    v.push(6);\n    // 第二种定义方式\n    // 宏等价于调用 Vec::new 创建一个新的空 vector，然后向其中添加元素\n    let mut y=vec![1,2,3,4,5];\n    // 第三种 通过迭代器创建\n    let v: Vec&lt;i32&gt; = (0..5).collect();\n    println!(\"{:?}\", v);\n    // 第四中 设置 capacity\n    let mut v = Vec::with_capacity(5);\n    v.push(1);\n    println!(\"{}-{}\", v.capacity(), v.len());\n\n    // 插入和删除\n    let mut v = vec![10, 20, 30, 40, 50];\n    // 在索引为 3的地方插入 35\n    v.insert(3, 35);\n    assert_eq!(v, [10, 20, 30, 35, 40, 50]);\n    // 移除索引为 1的元素\n    v.remove(1);\n    assert_eq!(v, [10, 30, 35, 40, 50])\n}\n\n\n\n#[test]\nfn test() {\n    let v = vec![1, 2, 3, 4, 5];\n\n    let third: &i32 = &v[2];\n    println!(\"The third element is {third}\");\n\n    // get的返回类型是  Option\n    let third: Option&lt;&i32&gt; = v.get(2);\n    match third {\n        Some(third) =&gt; println!(\"The third element is {third}\"),\n        None =&gt; println!(\"There is no third element.\"),\n    }\n}\n越界,报错\n#[test]\nfn test() {\n    let v = vec![1, 2, 3, 4, 5];\n    // 会直接panic: index out of bounds\n    let does_not_exist = &v[100];\n    // 这个不会报错\n    let does_not_exist = v.get(100);\n}\n\n\n\nenum SpreadsheetCell {\n    Int(i32),\n    Float(f64),\n    Text(String),\n}\nfn main() {\n    let row = vec![\n        SpreadsheetCell::Int(3),\n        SpreadsheetCell::Text(String::from(\"blue\")),\n        SpreadsheetCell::Float(10.12),\n    ];\n}\n\n\n\n#[test]\nfn test() {\n    let v = vec![100, 32, 57];\n    // 不可变借用 遍历\n    for i in &v {\n        println!(\"{i}\");\n    }\n\n    let mut v2 = vec![100, 32, 57];\n    // 可变借用,然后修改元素\n    for i in &mut v2 {\n        *i += 50;\n    }\n    println!(\"{:?}\", v2)\n}",
+    "crumbs": [
+      "基础篇",
+      "集合"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/06.collection.html#vector",
+    "href": "docs/rust/basic/06.collection.html#vector",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Tip\n\n\n\n\n只能存储相同类型的数据\n在内存中连续存放\n容量可以在执行过程中动态扩大和缩放\n\n既然是动态的,那么它必定是要在堆上分配的.\n\n\n\n\n\n\nfn main() {\n    // 第一种方式,存放的类型是i32,\n    // 也可以不指定是什么类型的(去掉Vec&lt;i32&gt;),push 后 就推断出什么类型了\n    let mut v: Vec&lt;i32&gt; = Vec::new();\n    // 添加\n    v.push(5);\n    v.push(6);\n    // 第二种定义方式\n    // 宏等价于调用 Vec::new 创建一个新的空 vector，然后向其中添加元素\n    let mut y=vec![1,2,3,4,5];\n    // 第三种 通过迭代器创建\n    let v: Vec&lt;i32&gt; = (0..5).collect();\n    println!(\"{:?}\", v);\n    // 第四中 设置 capacity\n    let mut v = Vec::with_capacity(5);\n    v.push(1);\n    println!(\"{}-{}\", v.capacity(), v.len());\n\n    // 插入和删除\n    let mut v = vec![10, 20, 30, 40, 50];\n    // 在索引为 3的地方插入 35\n    v.insert(3, 35);\n    assert_eq!(v, [10, 20, 30, 35, 40, 50]);\n    // 移除索引为 1的元素\n    v.remove(1);\n    assert_eq!(v, [10, 30, 35, 40, 50])\n}\n\n\n\n#[test]\nfn test() {\n    let v = vec![1, 2, 3, 4, 5];\n\n    let third: &i32 = &v[2];\n    println!(\"The third element is {third}\");\n\n    // get的返回类型是  Option\n    let third: Option&lt;&i32&gt; = v.get(2);\n    match third {\n        Some(third) =&gt; println!(\"The third element is {third}\"),\n        None =&gt; println!(\"There is no third element.\"),\n    }\n}\n越界,报错\n#[test]\nfn test() {\n    let v = vec![1, 2, 3, 4, 5];\n    // 会直接panic: index out of bounds\n    let does_not_exist = &v[100];\n    // 这个不会报错\n    let does_not_exist = v.get(100);\n}\n\n\n\nenum SpreadsheetCell {\n    Int(i32),\n    Float(f64),\n    Text(String),\n}\nfn main() {\n    let row = vec![\n        SpreadsheetCell::Int(3),\n        SpreadsheetCell::Text(String::from(\"blue\")),\n        SpreadsheetCell::Float(10.12),\n    ];\n}\n\n\n\n#[test]\nfn test() {\n    let v = vec![100, 32, 57];\n    // 不可变借用 遍历\n    for i in &v {\n        println!(\"{i}\");\n    }\n\n    let mut v2 = vec![100, 32, 57];\n    // 可变借用,然后修改元素\n    for i in &mut v2 {\n        *i += 50;\n    }\n    println!(\"{:?}\", v2)\n}",
+    "crumbs": [
+      "基础篇",
+      "集合"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/06.collection.html#hashmap",
+    "href": "docs/rust/basic/06.collection.html#hashmap",
+    "title": "斯巴拉稀",
+    "section": "hashmap",
+    "text": "hashmap\nuse std::collections::HashMap;\nfn main() {\n    // 如果仅仅只有这个语句, 则会报错,因为编译器无法知道数据类型,就无法分配内存了\n    // let mut s = HashMap::new();\n    // 这样就不会了\n    let mut scores: HashMap&lt;String, i32&gt; = HashMap::new();\n    // 插入元素\n    scores.insert(String::from(\"Blue\"), 10);\n    scores.insert(String::from(\"Yellow\"), 50);\n\n    // 读取\n    let team_name = String::from(\"Blue2\");\n    // get() 返回 类型是Option&lt;&V&gt;,没有的话就是 返回 None\n    // copied() 将 返回的Option&lt;&i32&gt; 变成 Option&lt;i32&gt;\n    // unwrap_or(0)  表示如果该key ,则返回一个 0\n    let score = scores.get(&team_name).copied().unwrap_or(2);\n    println!(\"{}\", score);\n\n    // 遍历\n    for (key, value) in &scores {\n        println!(\"{key}: {value}\");\n    }\n\n    // 更新元素, 还是用insert 会覆盖\n    scores.insert(String::from(\"Blue\"), 12);\n\n    // key Yellow 不存在,才添加\n    // 返回一个value的可变借用\n    scores.entry(String::from(\"Yellow\")).or_insert(50);\n\n    let text = \"hello world wonderful world\";\n    let mut map = HashMap::new();\n    for word in text.split_whitespace() {\n        // 第一次 word  key 不存在的时候, 插入 0, 返回value的可变借用\n        // 下面的操作才会是  *count +=1\n        // 第二次来, 存在, 返回旧 value 的可变借用 ,后面 还是 *count +=1\n        let count = map.entry(word).or_insert(0);\n        *count += 1;\n    }\n\n    println!(\"{:?}\", map);\n    println!(\"{:#?}\",map); // 格式化打印\n}\n所有权\nuse std::collections::HashMap;\nfn main() {\n    let field_name = String::from(\"Favorite color\");\n    let field_value = String::from(\"Blue\");\n\n    let mut map = HashMap::new();\n    map.insert(field_name, field_value);\n    //  field_name, field_value  已经被move 了. 报错了. 看值的类型\n    // println!(\"{}-{}\", field_name, field_value);\n}",
+    "crumbs": [
+      "基础篇",
+      "集合"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/06.collection.html#字符串",
+    "href": "docs/rust/basic/06.collection.html#字符串",
+    "title": "斯巴拉稀",
+    "section": "字符串",
+    "text": "字符串\n可对比一下go的字符串设计\n\n\n字符串相关的几种定义\n\n\nstr\nfn main(){\n    let a = \"abc\";\n    let b = \"hello\";\n}\n\n我们可以得到这个a和b的类型是 &str,在没有学习切片前,仅从这个类型名称看,我们可以推断 &str 是一个指向字符串字面量的指针.\n既然是 &这个操作, 那么*a 指向的类型似乎就是str了,a和b指向的str类型占用的空间不同,这样说来str类型的长度是可变的.\n所以我们无法在代码中直接使用str类型, 因为编译期间需要确定变量的大小.\n那么不难推断出&str这种引用可变长度类型的类型, 除了有指针指向str外, 还必须有一个信息来存储你引用的长度.\n\n\n\n&str\n字符串切片: 只是对一块内存空间的借用,无所有权\nuse std::mem;\nfn main() {\n    // 字符切片 &str , abc 这个是 字符串字面量\n    let x = \"abc\";\n    println!(\n        \"x指向的字符串实际地址:{:p}--长度:{}--占用字节数: {}\",\n        x.as_ptr(),\n        x.len(),\n        mem::size_of_val(&x)\n    );\n    let y: &'static str = \"abc\";\n    println!(\n        \"y指向的字符串实际地址:{:p}--长度:{}--占用字节数: {}\",\n        y.as_ptr(),\n        y.len(),\n        mem::size_of_val(&y)\n    );\n    // 字符串 String\n    let z = String::from(x);\n    println!(\"z指向的字符串的地址:{:p}\", z.as_ptr());\n    let s = String::from(\"hello world\");\n    // 字符串切片\n    let s2 = &s[0..4]; // s2 内容是 \"hell\"\n    println!(\"String s:{:p}\", s.as_ptr());\n    println!(\"&str s2:{:p}\", s2.as_ptr());\n    println!(\"{s}-{s2}\");\n}\n看看是否能修改\nfn main() {\n    // 会直接提示不需要mut\n    let mut a = \"abc\";\n    // let mut a = \"abc\".to_string();\n    let b = a.as_ptr() as *mut i8;\n    unsafe {\n        println!(\"11\");\n        *b = 98; // 修改字符串内容\n        println!(\"22\"); // 上一步无法成功执行,但是没报错, 这里不会执行打印\n    }\n    println!(\"x{}\", a);\n}\nfn main() {\n    // 不会转义, 原样输出\n    let a = r\"\\a\\b\";\n    println!(\"{}\", a);\n    println!(\n        r#\"hello\nworld \\n ('\"')\n\"#\n    )\n}\n\n\nString\n字符串:有这块内存空间的所有权\n是一种集合类型,所以前面集合类型的操作也适用\n\n基础操作\nuse std::mem;\nfn main() {\n    let s1 = \"hello\".to_string();\n    // 空字符串\n    let s2 = String::new();\n    let s3 = \" world\".to_string();\n    // + 法 , 第二个变量 要是 字符串的借用\n    let c = s1 + &s3; //s1 被move 了\n    println!(\"{}\", c);\n\n    // format! 宏 来拼接字符串, 类似 println! ,只不过返回结果,不打印\n    let s1 = String::from(\"tic\");\n    let s2 = String::from(\"tac\");\n    let s3 = String::from(\"toe\");\n    // let s = s1 + \"-\" + &s2 + \"-\" + &s3;\n    let s = format!(\"{s1}-{s2}-{s3}\");\n    println!(\"{}-{}-{}\", s1, s2, s3); // 都可用\n\n    let mut x = String::from(\"abc\");\n    println!(\"{:p}\", &x);\n    println!(\"{}\", mem::size_of_val(&x));\n    x.push_str(\"我们\");\n    println!(\"{}\", x);\n    println!(\"{}\", mem::size_of_val(&x));\n    println!(\"{:?}-{}-{}\", x.as_ptr(), x.len(), x.capacity());\n    x.pop();\n    println!(\"{:?}-{}-{}\", x.as_ptr(), x.len(), x.capacity());\n    x.push('x');\n    println!(\"{:?}-{}-{}\", x.as_ptr(), x.len(), x.capacity());\n    // cap 这个显示的值和 内部实际预留空间,应该是不同, 参考go的设计\n    x.push_str(\"hello world python golang rust c++ c# java php\");\n    println!(\"{:?}-{}-{}\", x.as_ptr(), x.len(), x.capacity());\n}\n\n\n切片\nfn main() {\n    let s = String::from(\"hello\");\n    // [start_index..end_index]\n    let slice1 = &s[0..2];\n    let slice2 = &s[..2]; // 同上\n    println!(\"{}-{}\", slice1, slice2);\n\n    let len = s.len();\n\n    let slice3 = &s[3..len];\n    let slice4 = &s[3..]; //同上\n    println!(\"{}-{}\", slice3, slice4);\n\n    let slice5 = &s[0..len];\n    let slice6 = &s[..]; // 同上\n    println!(\"{}-{}\", slice5, slice6);\n}\n\n\n索引操作?\nString 类型无法进行 索引操作\nfn main() {\n    let s1 = String::from(\"hello\");\n    let h = s1[0]; // 报错\n}\n\n\n三种方式读取\nString 类型是对 Vec[u8]的一种包装\nfn main() {\n    let s1 = String::from(\"नमस्ते\");\n    println!(\"{}\", s1.len());\n    // 1. 以字节(byte) 的形式\n    for b in s1.bytes() {\n        println!(\"{b}\");\n    }\n    // 2. 以unicode 标量值(scalar values)的形式\n\n    // 打印了 每一个字(或字母)\n    for c in \"hello我们\".chars() {\n        println!(\"{}\", c);\n    }\n    // 但是 这个好像不对了,\n    // .chars()  用unicode 编码的方式来读取,按理说应该能读取到想要的字才对\n    // 毕竟 unicode 编码了全世界的字符(每个字符都有对应的unicode编码)\n    // 原因是 梵文中的某些字符可能由多个Unicode标量值组成，这些标量值在视觉上被视为一个整体\n    // 所以 这里只打印了 \"真正字符\"的一部分\n    for c in s1.chars() {\n        println!(\"{}\", c);\n    }\n    println!(\"=============\");\n    // 3. 获取真正更接近 字母的 字形簇 (grapheme clusters)\n    // 需要添加 第三方crate: cargo add unicode_segmentation\n    use unicode_segmentation::UnicodeSegmentation;\n    for grapheme in s1.graphemes(true) {\n        println!(\"{}\", grapheme);\n    }\n}\n\n\n\n字节字符串\n这个实际是字节数组\nuse std::any::type_name;\n\nfn print_type_of&lt;T&gt;(_: &T) {\n    println!(\"{}\", type_name::&lt;T&gt;());\n}\nfn main() {\n    let a = b\"hello\";\n    // &[u8; 5]  结果发现是 [u8;5] 这种数组的引用\n    print_type_of(&a);\n    let b = a as &[u8]; // 转切片\n}",
+    "crumbs": [
+      "基础篇",
+      "集合"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/05.enum-match.html",
+    "href": "docs/rust/basic/05.enum-match.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "枚举是这样一种类型,允许你通过列举可能的成员(variants:变体)来定义一个类型\nenum IpAddrKind {\n    V4,\n    V6,\n}\n\nstruct IpAddr {\n    kind: IpAddrKind,\n    address: String,\n}\n\nfn main() {\n    // 下面2个的类型都是 IpAddrKind\n    // 他们的值,只能是枚举定义里的成员的其中一个\n    let four = IpAddrKind::V4;\n    let six = IpAddrKind::V6;\n    // 任何一个传给函数的参数类型是 IpAddrKind ,是ok的\n    route(IpAddrKind::V4);\n    route(IpAddrKind::V6);\n\n    let home = IpAddr {\n        kind: IpAddrKind::V4,\n        address: String::from(\"127.0.0.1\"),\n    };\n\n    let loopback = IpAddr {\n        kind: IpAddrKind::V6,\n        address: String::from(\"::1\"),\n    };\n}\n\nfn route(ip_kind: IpAddrKind) {}\n\n\n上面的例子中, 我们可能会问, 枚举的成员本身要是能携带数据岂不是更好?\nenum IpAddr {\n    // 可以设置携带不同类型的数据\n    // 就好像一个构造方法一样了\n    V4(u8, u8, u8, u8),\n    V6(String),\n}\nenum Message {\n    Quit,\n    // 像一个结构体一样\n    Move { x: i32, y: i32 },\n    Write(String),\n    ChangeColor(i32, i32, i32),\n}\n\nfn main() {\n    // 就好像调用了构造方法,返回类型 IpAddr的一个实例\n    let home = IpAddr::V4(127, 0, 0, 1);\n\n    let loopback = IpAddr::V6(String::from(\"::1\"));\n\n    let m = Message::Move { x: 22, y: 11 };\n}\n上面的message 的成员就好像 不同的 struct\nstruct QuitMessage; // unit struct\nstruct MoveMessage {\n    x: i32,\n    y: i32,\n}\nstruct WriteMessage(String); // tuple struct\nstruct ChangeColorMessage(i32, i32, i32); // tuple struct\n\n\n\n可以像 struct 一样 设置方法\nenum Message {\n    Quit,\n    // 像一个结构体一样\n    Move { x: i32, y: i32 },\n    Write(String),\n    ChangeColor(i32, i32, i32),\n    // hello(),\n}\nimpl Message {\n    // 方法\n    fn call(&self) {\n        // method body would be defined here\n    }\n    // 如果 Message的成员里有个成员名字和这个一样\n    // 那么 Message::hello()  会被认为是 成员,类型是Message\n    fn hello() {}\n}\n\nfn main() {\n    let m = Message::Write(String::from(\"hello\"));\n    m.call();\n    // 注意这里的f 的类型 是() 单元类型\n    let f = Message::hello();\n}\n\n\n\nrust 标准库里有一个 Option 枚举, 后面我们再讨论\n// 在rust 中用 Option 枚举来表示一个值是存在的还是缺失的\nenum Option&lt;T&gt; {\n    None,\n    // T 泛型, 这里说明Some这个成员可以携带任何数据\n    Some(T),\n}\n\n\n\n// An attribute to hide warnings for unused code.\n#![allow(dead_code)]\n\n// 从0开始自增\nenum Number {\n    Zero,\n    One,\n    Two,\n}\n// 从3 开始自增\nenum Number2 {\n    Zero = 3,\n    One,\n    Two,\n}\n\n// 明确指定值\nenum Color {\n    Red = 0xff0000,\n    Green = 0x00ff00,\n    Blue = 0x0000ff,\n}\n\nfn main() {\n    // `enums` 使用 as 进行转换, 获取数据.\n    println!(\"zero is {}\", Number::Zero as i32);\n    println!(\"one is {}\", Number::One as i32);\n    println!(\"number2 one is {}\", Number2::One as i32); //4\n    println!(\"number2 two is {}\", Number2::Two as i32); //5\n\n    println!(\"roses are #{:06x}\", Color::Red as i32);\n    println!(\"violets are #{:06x}\", Color::Blue as i32);\n}\n\n\n\n#![allow(dead_code)]\nenum Status {\n    Rich,\n    Poor,\n}\n\nfn main() {\n    // 使用use ,这样使用的时候,不用 写前面的 Status\n    // 可以这样, use crate::Status::*;\n    use crate::Status::{Poor, Rich};\n    // 等价于 `Status::Poor`.\n    let status = Poor;\n}",
+    "crumbs": [
+      "基础篇",
+      "枚举和match"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/05.enum-match.html#枚举",
+    "href": "docs/rust/basic/05.enum-match.html#枚举",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "枚举是这样一种类型,允许你通过列举可能的成员(variants:变体)来定义一个类型\nenum IpAddrKind {\n    V4,\n    V6,\n}\n\nstruct IpAddr {\n    kind: IpAddrKind,\n    address: String,\n}\n\nfn main() {\n    // 下面2个的类型都是 IpAddrKind\n    // 他们的值,只能是枚举定义里的成员的其中一个\n    let four = IpAddrKind::V4;\n    let six = IpAddrKind::V6;\n    // 任何一个传给函数的参数类型是 IpAddrKind ,是ok的\n    route(IpAddrKind::V4);\n    route(IpAddrKind::V6);\n\n    let home = IpAddr {\n        kind: IpAddrKind::V4,\n        address: String::from(\"127.0.0.1\"),\n    };\n\n    let loopback = IpAddr {\n        kind: IpAddrKind::V6,\n        address: String::from(\"::1\"),\n    };\n}\n\nfn route(ip_kind: IpAddrKind) {}\n\n\n上面的例子中, 我们可能会问, 枚举的成员本身要是能携带数据岂不是更好?\nenum IpAddr {\n    // 可以设置携带不同类型的数据\n    // 就好像一个构造方法一样了\n    V4(u8, u8, u8, u8),\n    V6(String),\n}\nenum Message {\n    Quit,\n    // 像一个结构体一样\n    Move { x: i32, y: i32 },\n    Write(String),\n    ChangeColor(i32, i32, i32),\n}\n\nfn main() {\n    // 就好像调用了构造方法,返回类型 IpAddr的一个实例\n    let home = IpAddr::V4(127, 0, 0, 1);\n\n    let loopback = IpAddr::V6(String::from(\"::1\"));\n\n    let m = Message::Move { x: 22, y: 11 };\n}\n上面的message 的成员就好像 不同的 struct\nstruct QuitMessage; // unit struct\nstruct MoveMessage {\n    x: i32,\n    y: i32,\n}\nstruct WriteMessage(String); // tuple struct\nstruct ChangeColorMessage(i32, i32, i32); // tuple struct\n\n\n\n可以像 struct 一样 设置方法\nenum Message {\n    Quit,\n    // 像一个结构体一样\n    Move { x: i32, y: i32 },\n    Write(String),\n    ChangeColor(i32, i32, i32),\n    // hello(),\n}\nimpl Message {\n    // 方法\n    fn call(&self) {\n        // method body would be defined here\n    }\n    // 如果 Message的成员里有个成员名字和这个一样\n    // 那么 Message::hello()  会被认为是 成员,类型是Message\n    fn hello() {}\n}\n\nfn main() {\n    let m = Message::Write(String::from(\"hello\"));\n    m.call();\n    // 注意这里的f 的类型 是() 单元类型\n    let f = Message::hello();\n}\n\n\n\nrust 标准库里有一个 Option 枚举, 后面我们再讨论\n// 在rust 中用 Option 枚举来表示一个值是存在的还是缺失的\nenum Option&lt;T&gt; {\n    None,\n    // T 泛型, 这里说明Some这个成员可以携带任何数据\n    Some(T),\n}\n\n\n\n// An attribute to hide warnings for unused code.\n#![allow(dead_code)]\n\n// 从0开始自增\nenum Number {\n    Zero,\n    One,\n    Two,\n}\n// 从3 开始自增\nenum Number2 {\n    Zero = 3,\n    One,\n    Two,\n}\n\n// 明确指定值\nenum Color {\n    Red = 0xff0000,\n    Green = 0x00ff00,\n    Blue = 0x0000ff,\n}\n\nfn main() {\n    // `enums` 使用 as 进行转换, 获取数据.\n    println!(\"zero is {}\", Number::Zero as i32);\n    println!(\"one is {}\", Number::One as i32);\n    println!(\"number2 one is {}\", Number2::One as i32); //4\n    println!(\"number2 two is {}\", Number2::Two as i32); //5\n\n    println!(\"roses are #{:06x}\", Color::Red as i32);\n    println!(\"violets are #{:06x}\", Color::Blue as i32);\n}\n\n\n\n#![allow(dead_code)]\nenum Status {\n    Rich,\n    Poor,\n}\n\nfn main() {\n    // 使用use ,这样使用的时候,不用 写前面的 Status\n    // 可以这样, use crate::Status::*;\n    use crate::Status::{Poor, Rich};\n    // 等价于 `Status::Poor`.\n    let status = Poor;\n}",
+    "crumbs": [
+      "基础篇",
+      "枚举和match"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/05.enum-match.html#模式匹配pattern-match",
+    "href": "docs/rust/basic/05.enum-match.html#模式匹配pattern-match",
+    "title": "斯巴拉稀",
+    "section": "模式匹配(pattern match)",
+    "text": "模式匹配(pattern match)\n\nmatch\n\n枚举\n判断是枚举的哪个成员(变体)\nenum Coin {\n    Penny,\n    Nickel,\n    Dime(String),\n    Quarter,\n}\n\nfn main() {\n    let c = Coin::Penny;\n    let d = Coin::Dime(\"hello\".to_string());\n    let r = match d {\n        Coin::Penny =&gt; {\n            println!(\"Lucky penny!\");\n            1\n        }\n        Coin::Nickel =&gt; 5,\n        Coin::Dime(s) =&gt; {\n            println!(\"{}\", s); // 可以在这边获取枚举成员携带的数据\n            10 //返回值\n        }\n        // 必须把所有成员匹配都写上,否则报错, 去看 Pattern Syntax\n        Coin::Quarter =&gt; 25,\n    };\n    println!(\"{}\", r);\n}\n\n\n结构体\nstruct Point {\n    x: i32,\n    y: i32,\n}\n\nfn main() {\n    let p = Point { x: 10, y: 0 };\n\n    match p {\n        Point { x, y: 0 } =&gt; println!(\"y=0 才能匹配上 {}\", x),\n        Point { x, y: 0..=2 } =&gt; println!(\"y&gt;=0 &lt;=2 是才匹配上 {}\", x),\n        Point { x: 0, y } =&gt; println!(\"x=0 才能匹配上 {}\", y),\n        Point { x, y } =&gt; println!(\"都能匹配上 ({}, {})\", x, y),\n    }\n}\n\n\n\nif let\n相当于 使用 match ,然后只匹配一个成员,然后执行代码块, 更加简洁\n    let config_max = Some(3u8);\n    match config_max {\n        Some(max) =&gt; println!(\"The maximum is configured to be {}\", max),\n        _ =&gt; (),\n    }\nenum Number {\n    Zero,\n    One,\n    Two,\n}\nfn main() {\n    // Some 这个是Option&lt;t&gt; 枚举里的成员, 因为 默认 use了,所以可以直接拿来用\n    let config_max = Some(3u8);\n    // 相当于上面的 match 里不用写 _\n    if let Some(max) = config_max {\n        println!(\"The maximum is configured to be {}\", max);\n    }\n\n    let n = Number::One;\n    // else\n    if let Number::Two = n {\n        println!(\"{}\", 1);\n    } else {\n        println!(\"{}\", 2);\n    }\n}\n\n\nwhile let\nfn main() {\n    let mut optional = Some(0);\n\n    while let Some(i) = optional {\n        if i &gt; 9 {\n            println!(\"Greater than 9, quit!\");\n            optional = None;\n        } else {\n            println!(\"`i` is `{:?}`. Try again.\", i);\n            optional = Some(i + 1);\n        }\n    }\n}\n\n\nlet 本身\nlet PATTERN = EXPRESSION;\nstruct Person {\n    name: String,\n    age: i32,\n}\nfn main() {\n    // 这种其实就是模式匹配\n    // x 就是pattern , 然后1 就是能匹配到的所有\n    let x = 1;\n    let a = (1, 2);\n    // 我们在其他语言也有看到这种,其实就是模式匹配\n    let (b, c) = a;\n    println!(\"{}-{}\", b, c);\n\n    let p1 = Person {\n        name: \"zhang fei\".to_string(),\n        age: 22,\n    };\n    let Person { name: n, age: m } = p1;\n    println!(\"{} : {}\", n, m);\n\n    let p2 = Person {\n        name: \"liu bei\".to_string(),\n        age: 32,\n    };\n    // 名字与字段名一样的情况,可以省略\n    let Person { name, age } = p2;\n    println!(\"{} : {}\", name, age);\n}\n函数参数的情况\nfn print_coordinates(&(x, y): &(i32, i32)) {\n    println!(\"Current location: ({}, {})\", x, y);\n}\n\nfn main() {\n    let point = (3, 5);\n    print_coordinates(&point);\n}\n\n\nref\nref 是模式的一部分, 而 & 是借用运算符,是表达式的一部分\nfn main() {\n    let ref_c2 = &1;\n    // 等价上面,  如果是ref mut 就是可变借用了\n    let ref ref_c1 = 1;\n    println!(\"{}-{}\", *ref_c1, *ref_c2);\n\n\n}\n看一下这个例子, 报错了\nstruct Person {\n    name: String,\n    age: i32,\n}\nfn main() {\n    let p1 = Person {\n        name: \"zhang fei\".to_string(),\n        age: 22,\n    };\n    let Person { name: n, age: m } = p1;\n    println!(\"{} : {}\", n, m);\n\n    // 我们发现这里会报错,提示 p1.name 以及被move给前面的 n了\n    let Person { name, age } = p1;\n    println!(\"{} : {}\", name, age);\n}\n实际上,我们只需要 借用 p1的name,因为我们只需要它的值而已,不需要move, 我们使用ref\nstruct Person {\n    name: String,\n    age: i32,\n}\nfn main() {\n    let p1 = Person {\n        name: \"zhang fei\".to_string(),\n        age: 22,\n    };\n    // 我们发现这里会报错,提示 p1.name 以及被move给前面的 n了\n    let Person { ref name, age } = p1;\n    println!(\"{} : {}\", name, age);\n    // 这里 ref name 会错的, 似乎只能上面的简写方式里用ref?\n    let Person { name: n, age: m } = p1;\n    println!(\"{} : {}\", n, m);\n}\n再看个例子,下面报错了\nfn main() {\n    let x: Option&lt;String&gt; = Some(\"hello\".to_string());\n    match x {\n        Some(e) =&gt; println!(\"{}\", e),\n        _ =&gt; println!(\"other\"),\n    }\n    // x中的数据被转移所有权了. 给了e,所以这里报错了\n    println!(\"{:?}\", x);\n}\n添加ref\nfn main() {\n    let x: Option&lt;String&gt; = Some(\"hello\".to_string());\n    match x {\n        // 加上ref ,表示这里e 是 借用了 x里面的数据\n        // x 数据是完整的, 后面就不会报错了.\n        Some(ref e) =&gt; println!(\"hello{}\", e),\n        _ =&gt; println!(\"other\"),\n    }\n\n    println!(\"{:?}\", x);\n}\n\n\nPattern Syntax\n\n.. 剩余\nstruct Point {\n    x: i32,\n    y: i32,\n    z: i32,\n}\nfn main() {\n    let (a, ..) = (1, 2, 3, 4, 5);\n    println!(\"{}\", a); // 1\n    let (b, .., c) = (1, 2, 3, 4, 5);\n    println!(\"{}-{}\", b, c); // 1-5\n\n    // 结构体 不能 将.. 放中间\n    let Point { x: x1, .. } = Point {\n        x: 11,\n        y: 22,\n        z: 33,\n    };\n    println!(\"{}\", x1); // 1\n}\n\n\n_ 忽略绑定\nfn main() {\n    let (_, x, _) = (1, 2, 3);\n    println!(\"{}\", x);\n\n    let y = Some(String::from(\"hello\"));\n    // - 没有绑定, 所以没有move,后面的y打印不会报错\n    if let Some(_) = y {\n        println!(\"ss\");\n    };\n    println!(\"{:?}\", y);\n}\n\n\n_ 剩余部分\n成员不用全部写上的方式\nenum Coin {\n    Penny,\n    Nickel,\n    Dime(String),\n    Quarter,\n}\n\nfn main() {\n    let d = Coin::Dime(\"hello\".to_string());\n    let r = match d {\n        Coin::Penny =&gt; {\n            println!(\"Lucky penny!\");\n            1\n        }\n        // 用other 表示其他情况\n        other =&gt; 666,\n    };\n    println!(\"{}\", r);\n}\n使用_来表示不匹配的情况,这里的和枚举显然不一样,在枚举里如果要写,是肯定能匹配上的,这里是完全可能匹配不上,所以用 _ 来区分 前面用的other.\n其实都用 _ 就行\nfn main() {\n    let d = 3;\n    let r = match d {\n        1 =&gt; 11,\n        2 =&gt; 22,\n        _ =&gt; 888,\n    };\n    println!(\"{}\", r);\n}\n\n\n| 和 if\nfn main() {\n    let x = 4;\n    let y = true;\n\n    match x {\n        // 或者等4或5,或6 并且 y为真才行, y是外部定义的那个y\n        4 | 5 | 6 if y =&gt; println!(\"yes\"),\n        7 | 8 =&gt; println!(\"7-8\"),\n        _ =&gt; println!(\"no\"),\n    }\n}\nfn main() {\n    let x = Some(5);\n    let y = 5;\n\n    match x {\n        Some(50) =&gt; println!(\"50\"),\n        // ==y 的y 是外部 定义的 y =5\n        // Some(y) 的y 与外部无关\n        Some(y) if y == y =&gt; {\n            println!(\"Matched, n = {}\", y)\n        }\n        _ =&gt; println!(\"Default case, x = {:?}\", x),\n    }\n}\n\n\n..= 范围\n&gt;=xx &lt;=yy\nfn main() {\n    let x = 5i32;\n\n    match x {\n        1..=5 =&gt; println!(\"&gt;=1 &lt;=5\"),\n        _ =&gt; println!(\"something else\"),\n    }\n    println!(\"i32最小值{}\", i32::MIN);\n    match x {\n        i32::MIN..=2_i32 =&gt; println!(\"&lt;=2\"),\n        3 =&gt; println!(\"=3\"),\n        4 =&gt; println!(\"=4\"),\n        5_i32..=i32::MAX =&gt; println!(\"&gt;=5\"),\n    };\n}\n\n\n@\nenum Student {\n    primary { age: i32 },\n    junior { age: i32 },\n}\nfn main() {\n    let s = Student::primary { age: 3 };\n\n    match s {\n        Student::primary { age: primary_age } if primary_age &gt;= 7 && primary_age &lt;= 11 =&gt; {\n            println!(\"Hello\")\n        }\n        // 相当于上面 primary_age &gt;= 3 && primary_age &lt;= 6\n        // @前面是绑定的变量\n        Student::primary {\n            age: primary_age @ 3..=6,\n        } =&gt; println!(\"是 &gt;=3 &lt;=6 岁的小学生: {}\", primary_age),\n        Student::junior { age: 10..=12 } =&gt; {\n            println!(\"10-12 岁的初中生\")\n        }\n        Student::junior { age } =&gt; println!(\"Found: {}\", age),\n        _ =&gt; (),\n    }\n}\nfn main() {\n    let x = 11;\n    match x {\n        // | 多个情况 绑定\n        e @ 11 | e @ 1..=3 =&gt; println!(\"{}\", e),\n        _ =&gt; println!(\"other\"),\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "枚举和match"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html",
+    "href": "docs/rust/basic/15.concurrency.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "rust 标准库就提供1:1 模型的实现, 第三方crate 有m:n模型的实现",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html#实现模型",
+    "href": "docs/rust/basic/15.concurrency.html#实现模型",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "rust 标准库就提供1:1 模型的实现, 第三方crate 有m:n模型的实现",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html#使用线程",
+    "href": "docs/rust/basic/15.concurrency.html#使用线程",
+    "title": "斯巴拉稀",
+    "section": "使用线程",
+    "text": "使用线程\nuse std::thread;\nuse std::time::Duration;\n\nfn main() {\n\n    thread::spawn(|| {\n        for i in 1..10 {\n            println!(\"hi number {} from the spawned thread!\", i);\n            thread::sleep(Duration::from_millis(1));\n        }\n    });\n\n    for i in 1..5 {\n        println!(\"hi number {} from the main thread!\", i);\n        thread::sleep(Duration::from_millis(1));\n    }\n}\n线程没有完全执行完,就退出了\n等待线程完成\nuse std::thread;\nuse std::time::Duration;\n\nfn main() {\n    //thread::spawn 的返回类型是 JoinHandle,它有值的所有权\n    let handle = thread::spawn(|| {\n        for i in 1..10 {\n            println!(\"hi number {} from the spawned thread!\", i);\n            thread::sleep(Duration::from_millis(1));\n        }\n    });\n\n    for i in 1..5 {\n        println!(\"hi number {} from the main thread!\", i);\n        thread::sleep(Duration::from_millis(1));\n    }\n    // 等待其他线程执行完成\n    handle.join().unwrap();\n}",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html#move-闭包",
+    "href": "docs/rust/basic/15.concurrency.html#move-闭包",
+    "title": "斯巴拉稀",
+    "section": "move 闭包",
+    "text": "move 闭包\n报错\nuse std::thread;\n\nfn main() {\n    let v = vec![1, 2, 3];\n    // 闭包使用外部数据,是一种借用\n    // rust无法确定 子线程什么时候结束, 而线程使用的借用数据可能被其他线程修改(比如主线程),这样就有问题了\n    let handle = thread::spawn(|| {\n        println!(\"Here's a vector: {:?}\", v);\n    });\n\n    handle.join().unwrap();\n}\n使用move\nuse std::thread;\n\nfn main() {\n    let v = vec![1, 2, 3];\n    // v的所有权被move到闭包中\n    let handle = thread::spawn(move || {\n        println!(\"Here's a vector: {:?}\", v);\n    });\n    // println!(\"{:?}\", v);  // 提示v 已经被move了, 无法借用\n    handle.join().unwrap();\n}",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html#channel-使用消息传递",
+    "href": "docs/rust/basic/15.concurrency.html#channel-使用消息传递",
+    "title": "斯巴拉稀",
+    "section": "channel 使用消息传递",
+    "text": "channel 使用消息传递\n类似go的channel, 线程之间通过发送消息来通信\nmpsc : multiple producer, single consumer\nuse std::sync::mpsc;\nuse std::thread;\n\nfn main() {\n    //tx 发送端, rx 接收端\n    let (tx, rx) = mpsc::channel();\n\n    thread::spawn(move || {\n        let val = String::from(\"hi\");\n        // send() 返回    Result&lt;T, E&gt;\n        tx.send(val).unwrap();\n    });\n    // recv 会堵塞, 直到channel 有数据发送过来\n    // 成功返回 Result&lt;T,E&gt; 发送端关闭,会返回错误\n    let received = rx.recv().unwrap();\n    println!(\"Got: {}\", received);\n}\n使用for in来接收数据\nuse std::sync::mpsc;\nuse std::thread;\nuse std::time::Duration;\n\nfn main() {\n    let (tx, rx) = mpsc::channel();\n\n    thread::spawn(move || {\n        let vals = vec![\n            String::from(\"hi\"),\n            String::from(\"from\"),\n            String::from(\"the\"),\n            String::from(\"thread\"),\n        ];\n\n        for val in vals {\n            tx.send(val).unwrap();\n            thread::sleep(Duration::from_secs(1));\n        }\n    });\n\n    for received in rx {\n        println!(\"Got: {}\", received);\n    }\n}\n多个生产者\nuse std::sync::mpsc;\nuse std::thread;\nuse std::time::Duration;\n\nfn main() {\n    // --snip--\n\n    let (tx, rx) = mpsc::channel();\n\n    let tx1 = tx.clone();\n    thread::spawn(move || {\n        let vals = vec![\n            String::from(\"hi\"),\n            String::from(\"from\"),\n            String::from(\"the\"),\n            String::from(\"thread\"),\n        ];\n\n        for val in vals {\n            tx1.send(val).unwrap();\n            thread::sleep(Duration::from_secs(1));\n        }\n    });\n\n    thread::spawn(move || {\n        let vals = vec![\n            String::from(\"more\"),\n            String::from(\"messages\"),\n            String::from(\"for\"),\n            String::from(\"you\"),\n        ];\n\n        for val in vals {\n            tx.send(val).unwrap();\n            thread::sleep(Duration::from_secs(1));\n        }\n    });\n\n    for received in rx {\n        println!(\"Got: {}\", received);\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html#共享状态的并发",
+    "href": "docs/rust/basic/15.concurrency.html#共享状态的并发",
+    "title": "斯巴拉稀",
+    "section": "共享状态的并发",
+    "text": "共享状态的并发\nShared-State Concurrency\n多所有权, 多个线程同时访问一块内存 ### Mutex\nuse std::sync::Mutex;\n\nfn main() {\n    // 返回Mutex&lt;T&gt;  也是智能指针\n    let m = Mutex::new(5);\n\n    {\n        // 通过.lock() 获取锁, 如果获取不到,就会阻塞当前线程\n        // 返回值是 MutexGuard 类型,它实现了 Deref trait 和Drop trait\n        let mut num = m.lock().unwrap();\n        *num = 6;\n        // 报错, 锁还没释放, 下面的代码不能执行\n        // let mut num2 = m.lock().unwrap();\n    }\n    // 这里 m 已经释放锁(drop 操作), 下面的代码可以执行\n    let mut num2 = m.lock().unwrap();\n\n    println!(\"m = {:?}\", m);\n}\n\nRc? 多个线程send\n报错了, rc 是不能在线程间安全发送,因为没有实现 Send trait\nuse std::rc::Rc;\nuse std::sync::Mutex;\nuse std::thread;\n\nfn main() {\n    let counter = Rc::new(Mutex::new(0));\n    let mut handles = vec![];\n\n    for _ in 0..10 {\n        let counter = Rc::clone(&counter);\n        let handle = thread::spawn(move || {\n            let mut num = counter.lock().unwrap();\n\n            *num += 1;\n        });\n        handles.push(handle);\n    }\n\n    for handle in handles {\n        handle.join().unwrap();\n    }\n\n    println!(\"Result: {}\", *counter.lock().unwrap());\n}\n\n\nArc\nArc= atomic rc\nuse std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn main() {\n    let counter = Arc::new(Mutex::new(0));\n    let mut handles = vec![];\n\n    for _ in 0..10 {\n        let counter = Arc::clone(&counter);\n        let handle = thread::spawn(move || {\n            let mut num = counter.lock().unwrap();\n\n            *num += 1;\n        });\n        handles.push(handle);\n    }\n\n    for handle in handles {\n        handle.join().unwrap();\n    }\n\n    println!(\"Result: {}\", *counter.lock().unwrap());\n}",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/15.concurrency.html#send-sync-trait",
+    "href": "docs/rust/basic/15.concurrency.html#send-sync-trait",
+    "title": "斯巴拉稀",
+    "section": "Send Sync trait",
+    "text": "Send Sync trait\n\nSend\n\n实现Send trait的类型, 就可以线程间转移所有权\n几乎所有类型都实现了Send, 但是Rc 没有实现,它只能用于单线程\n由Send 成员组成的类型 也是Send\n\nSync\n\n实现Sync trait的类型,可以安全的被多线程引用\nT 是 Sync, 那么 &T 就是 Send\n基础类型都实现了 Sync, 完全由Sync组成的类型 也是Sync\nRc,RefCell, Cell不是 Sync, Mutex是Sync\n\n\n手动实现Send和Sync 是很难做到安全的",
+    "crumbs": [
+      "基础篇",
+      "并发"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/16.unsafe.html",
+    "href": "docs/rust/basic/16.unsafe.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "之前我们说到的代码都是安全的,(就是编译器编译时会做检查,确保内存安全).",
+    "crumbs": [
+      "基础篇",
+      "unsafe"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/16.unsafe.html#解引用原始指针",
+    "href": "docs/rust/basic/16.unsafe.html#解引用原始指针",
+    "title": "斯巴拉稀",
+    "section": "解引用原始指针",
+    "text": "解引用原始指针\n\nstruct Two {\n    first: i8,\n    second: i8,\n}\nfn main() {\n    //  0000 0011  0000 1001\n    let mut num = 777;\n    let r1 = &num as *const i32 as *const i8;\n    // 想一下 golang\n    let r2 = &num as *const i32 as *const Two;\n\n    let r3 = &mut num as *mut i32;\n    // 解引用的时候,需要unsafe 包裹\n    unsafe {\n        println!(\"num第一个字节==&gt; r1 is: {}\", *r1); // 9\n        let f = r1.wrapping_add(1);\n        println!(\"num第二个字节==&gt;f is :{}\", *f); //3\n\n        println!(\"num第一个字节==&gt; r1 is: {:?}\", (*r2).first); // 9\n        println!(\"num第二个字节==&gt;f is :{}\", (*r2).second); //3\n\n        println!(\"r2 is: {}\", *r3);\n    }\n    // 可以指向不合理的内存地址\n    let address = 0x012345usize;\n    let r = address as *const i32;\n}",
+    "crumbs": [
+      "基础篇",
+      "unsafe"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/16.unsafe.html#调用unsafe函数或方法",
+    "href": "docs/rust/basic/16.unsafe.html#调用unsafe函数或方法",
+    "title": "斯巴拉稀",
+    "section": "调用unsafe函数或方法",
+    "text": "调用unsafe函数或方法\n\n\n\n\n\n\nTip\n\n\n\nunsafe函数或方法: 就是在定义前面加上unsafe关键字.\n\n\nunsafe fn dangerous() {}\nfn main() {\n    unsafe {\n        dangerous();\n    }\n}\n函数或方法内部有unsafe代码块,调用这样的函数或方法,不需要unsafe包裹.\nfn main() {\n    let mut v = vec![1, 2, 3, 4, 5, 6];\n\n    let r = &mut v[..];\n    // 切分成2个切片 [0,mid) [mid,len)\n    // split_at_mut 方法里面有 unsafe 代码块, 但是我们这里调用的时候 不需要unsafe\n    let (a, b) = r.split_at_mut(3);\n\n    assert_eq!(a, &mut [1, 2, 3]);\n    assert_eq!(b, &mut [4, 5, 6]);\n}\nsplit_at_mut\nuse std::slice;\n\nfn split_at_mut(values: &mut [i32], mid: usize) -&gt; (&mut [i32], &mut [i32]) {\n    let len = values.len();\n    let ptr = values.as_mut_ptr();\n\n    assert!(mid &lt;= len);\n\n    unsafe {\n        (\n            slice::from_raw_parts_mut(ptr, mid),\n            slice::from_raw_parts_mut(ptr.add(mid), len - mid),\n        )\n    }\n}\nuse std::slice;\nfn main() {\n    let mut a = [1, 2, 3, 4, 5];\n    let b = &mut a;\n    let r = b as *mut i32; // a.as_mut_ptr()\n    let values: &[i32] = unsafe { slice::from_raw_parts_mut(r, 2) };\n    println!(\"{:?}\", values);\n}\n\nextern 调用外部函数(FFI)\nFFI: 外部函数接口, 可以让一种编程语言定义函数,然后其他语言可以调用\nrust 调用C\nextern \"C\" {\n    // 我们想要调用的外部函数的名称和参数返回值定义\n    fn abs(input: i32) -&gt; i32;\n}\n\nfn main() {\n    unsafe {\n        println!(\"Absolute value of -3 according to C: {}\", abs(-3));\n    }\n}\n其他语言调用rust\n#[no_mangle]\npub extern \"C\" fn call_from_c() {\n    println!(\"Just called a Rust function from C!\");\n}",
+    "crumbs": [
+      "基础篇",
+      "unsafe"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/16.unsafe.html#读写可变的静态变量",
+    "href": "docs/rust/basic/16.unsafe.html#读写可变的静态变量",
+    "title": "斯巴拉稀",
+    "section": "读写可变的静态变量",
+    "text": "读写可变的静态变量\n// 类型要指定\nstatic HELLO_WORLD: &str = \"Hello, world!\";\n\nstatic mut COUNTER: u32 = 0;\n\nfn add_to_count(inc: u32) {\n    unsafe {\n        COUNTER += inc;\n    }\n}\n\nfn main() {\n    add_to_count(3);\n\n    unsafe {\n        println!(\"COUNTER: {}\", COUNTER);\n    }\n}\nstatic mut COUNTER: u32 = 0;\nconst COUNTER2: i32 = 1;\nstatic mut S1: &str = \"bello\";\nconst S2: &str = \"bello\";\nfn main() {\n    let a = 1;\n    println!(\"{:p}\", &a);\n    let b = Box::new(5);\n    let c = Box::into_raw(b);\n    println!(\"{:p}\", c);\n    unsafe {\n        println!(\"{}\", *c);\n    }\n\n    println!(\"{:p}\", &COUNTER2);\n    unsafe {\n        println!(\"{:p}\", &COUNTER);\n    }\n    unsafe {\n        let s11 = S1.as_ptr();\n        println!(\"{:p}\", s11);\n        println!(\"{}\", *s11);\n        S1 = \"aorld\";\n        let s11 = S1.as_ptr();\n        // let s11 = S1.as_ptr() as *mut u8;\n        println!(\"{:p}\", s11);\n        println!(\"{}\", *s11);\n        let s22 = S2.as_ptr();\n        println!(\"s22={:p}\", s22);\n        println!(\"*s22={}\", *s22);\n    }\n\n    // {\n    //     static mut COUNTER3: u32 = 3;\n    // }\n    // println!(\"{}\", &COUNTER3);\n}",
+    "crumbs": [
+      "基础篇",
+      "unsafe"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/16.unsafe.html#实现unsafe-trait",
+    "href": "docs/rust/basic/16.unsafe.html#实现unsafe-trait",
+    "title": "斯巴拉稀",
+    "section": "实现unsafe trait",
+    "text": "实现unsafe trait\nunsafe trait Foo {\n    // methods go here\n}\n\nunsafe impl Foo for i32 {\n    // method implementations go here\n}\n\nfn main() {}",
+    "crumbs": [
+      "基础篇",
+      "unsafe"
+    ]
+  },
+  {
+    "objectID": "docs/rust/async/01.future.html",
+    "href": "docs/rust/async/01.future.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "async-std tokio https://tokio.rs/tokio/tutorial\n\n\n\n Back to top",
+    "crumbs": [
+      "异步编程",
+      "future"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/actix-web/index.html#footnotes",
+    "href": "docs/rust/web/actix-web/index.html#footnotes",
+    "title": "斯巴拉稀",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\ngithubhttps://actix.rs/docs/↩︎",
+    "crumbs": [
+      "web开发",
+      "actix-web"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/test2.html",
+    "href": "docs/rust/web/test2.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "web test2 ## tt ff"
+  },
+  {
+    "objectID": "docs/rust/web/test2.html#tttt",
+    "href": "docs/rust/web/test2.html#tttt",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "web test2 ## tt ff"
+  },
+  {
     "objectID": "docs/rust/advanced/01.mem.html",
     "href": "docs/rust/advanced/01.mem.html",
     "title": "斯巴拉稀",
@@ -97,5 +702,950 @@
       "进阶",
       "内存"
     ]
+  },
+  {
+    "objectID": "docs/devops/podman/quick-start.html",
+    "href": "docs/devops/podman/quick-start.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "podman machine init\n# podman machine set --rootful --storage-path /data/podman\npodman machine start\npodman machine ssh # ssh到 podman 虚拟机\n# podman 默认是用的qemu 来创建虚拟机的\n/usr/local/bin/qemu-system-x86_64  --version\npodman run -it --rm --name alpine-podman alpine\n# 设置国内源 cat ~/.config/containers/registries.conf\nunqualified-search-registries = [\"docker.io\"]\n\n[[registry]]\nprefix = \"docker.io\"\nlocation = \"registry.docker-cn.com\"\n\n[[registry.mirror]]\nlocation = \"hub-mirror.c.163.com\"\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "docs/rust/advanced/02.type.html#dst",
+    "href": "docs/rust/advanced/02.type.html#dst",
+    "title": "斯巴拉稀",
+    "section": "DST",
+    "text": "DST\nuse std::mem;\ntrait Summary {\n    fn summarize(&self) -&gt; String;\n    fn hello(&self) {\n        println!(\"hello\");\n    }\n}\nfn main() {\n    // 报错, 无法获取大小\n    println!(\"{}\", mem::size_of::&lt;Summary&gt;());\n}",
+    "crumbs": [
+      "进阶",
+      "奇异的类型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/advanced/02.type.html#zst",
+    "href": "docs/rust/advanced/02.type.html#zst",
+    "title": "斯巴拉稀",
+    "section": "ZST",
+    "text": "ZST\nuse std::mem;\nstruct Nothing; // No fields = no size\n                // All fields have no size = no size\nstruct LotsOfNothing {\n    foo: Nothing,\n    qux: (),      // empty tuple has no size\n    baz: [u8; 0], // empty array has no size\n}\n\nfn main() {\n    println!(\"{}\", mem::size_of::&lt;Nothing&gt;());\n    println!(\"{}\", mem::size_of::&lt;LotsOfNothing&gt;());\n    let a = Nothing {};\n    let b = &a;\n    println!(\"{}\", mem::size_of_val(&a)); // 0\n    println!(\"{:p}\", &a); // 0x7ff7b1bacf4f\n    println!(\"{:p}\", &b); // 0x7ff7b1bacf50\n    println!(\"{}\", mem::size_of_val(&b)); // 8\n}",
+    "crumbs": [
+      "进阶",
+      "奇异的类型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/advanced/02.type.html#空类型",
+    "href": "docs/rust/advanced/02.type.html#空类型",
+    "title": "斯巴拉稀",
+    "section": "空类型",
+    "text": "空类型\nuse std::mem;\nenum NoVariants {} // No variants = no size\nfn main() {\n    // 无法实例化\n    // let a = NoVariants;\n    println!(\"{}\", mem::size_of::&lt;NoVariants&gt;());\n}",
+    "crumbs": [
+      "进阶",
+      "奇异的类型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/advanced/02.type.html#repr",
+    "href": "docs/rust/advanced/02.type.html#repr",
+    "title": "斯巴拉稀",
+    "section": "repr",
+    "text": "repr\n\nrepr(C)\n它的目的很简单, 就是和 C 保持一致. 数据的顺序,大小,对齐方式都和你在C 或C++中见到的一摸一样.\n我们前面在内存对齐看对Struct A的对齐方式和它的大小,这里我们使用repr(C)来定义Struct A\n#[repr(C)]\nstruct A {\n    a: u8,\n    b: u32,\n    c: u16,\n}\n\nuse std::mem;\nfn main() {\n    let x = A { a: 1, b: 2, c: 3 };\n    // 12\n    println!(\"{}\", mem::size_of_val(&x));\n    println!(\"0x{:p}-0x{:p}-0x{:p}\", &x.a, &x.b, &x.c);\n}\nTODO 特殊情况\n\nZSTs are still zero-sized …\n…\n\n\n\nrepr(transparent)\n\n\nrepr(u) repr(i)\n\n\nrepr(packed)",
+    "crumbs": [
+      "进阶",
+      "奇异的类型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/axum/index.html",
+    "href": "docs/rust/web/axum/index.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "TODO",
+    "crumbs": [
+      "web开发",
+      "axum"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/axum/index.html#环境准备",
+    "href": "docs/rust/web/axum/index.html#环境准备",
+    "title": "斯巴拉稀",
+    "section": "环境准备",
+    "text": "环境准备\ncargo add axum\n# cargo add tokio --features macros,rt-multi-thread\ncargo add tokio  --features full\ncargo add serde_json",
+    "crumbs": [
+      "web开发",
+      "axum"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/axum/index.html#样例",
+    "href": "docs/rust/web/axum/index.html#样例",
+    "title": "斯巴拉稀",
+    "section": "样例",
+    "text": "样例\nuse axum::{response::Html, routing::get, Json, Router};\nuse serde_json::{json, Value};\n#[tokio::main]\nasync fn main() {\n    // build our application with a single route\n    // get 请求\n    let app = Router::new().route(\"/\", get(index_handler)).route(\n        \"/foo\",\n        // get post 2个请求都设置\n        get(|| async { \"Hello, Foo!\" }).post(json_handler),\n    );\n\n    // run our app with hyper, listening globally on port 3000\n    let listener = tokio::net::TcpListener::bind(\"0.0.0.0:3000\").await.unwrap();\n    axum::serve(listener, app).await.unwrap();\n}\nasync fn index_handler() -&gt; Html&lt;&'static str&gt; {\n    Html(\"&lt;h1&gt;Hello, World!&lt;/h1&gt;\")\n}\n\n// `&'static str` becomes a `200 OK` with `content-type: text/plain;charset=utf-8`\nasync fn plain_text() -&gt; &'static str {\n    \"foo\"\n}\n// `Json` gives a content-type of `application/json` and works with any type\n// that implements `serde::Serialize`\nasync fn json_handler() -&gt; Json&lt;Value&gt; {\n    Json(json!({ \"data\": 42 }))\n}\ngithub1 github2",
+    "crumbs": [
+      "web开发",
+      "axum"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/axum/index.html#footnotes",
+    "href": "docs/rust/web/axum/index.html#footnotes",
+    "title": "斯巴拉稀",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\naxum: https://github.com/tokio-rs/axum↩︎\naxum生态: https://github.com/tokio-rs/axum/blob/main/ECOSYSTEM.md#tutorials↩︎",
+    "crumbs": [
+      "web开发",
+      "axum"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/net.html",
+    "href": "docs/rust/web/net.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "hello.html\n\n&lt;!DOCTYPE html&gt;\n&lt;html lang=\"en\"&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"utf-8\"&gt;\n    &lt;title&gt;Hello!&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;Hello!&lt;/h1&gt;\n    &lt;p&gt;Hi from Rust&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n\n\n\nsrc/main.rs\n\nuse std::{\n    fs,\n    io::{prelude::*, BufReader},\n    net::{TcpListener, TcpStream},\n};\nfn main() {\n    let listener = TcpListener::bind(\"127.0.0.1:7878\").unwrap();\n\n    for stream in listener.incoming() {\n        // 每一个stream 表示 客户端和服务端之间的链接\n        // 包含客户端发送来的数据\n        let stream = stream.unwrap();\n\n        handle_connection(stream);\n    }\n}\n\nfn handle_connection(mut stream: TcpStream) {\n    let buf_reader = BufReader::new(&mut stream);\n    let http_request: Vec&lt;_&gt; = buf_reader\n        .lines()\n        .map(|result| result.unwrap())\n        .take_while(|line| !line.is_empty())\n        .collect();\n\n    println!(\"Request: {:#?}\", http_request);\n\n    // response\n    let status_line = \"HTTP/1.1 200 OK\";\n    let contents = fs::read_to_string(\"hello.html\").unwrap();\n    let length = contents.len();\n\n    let response = format!(\"{status_line}\\r\\nContent-Length: {length}\\r\\n\\r\\n{contents}\");\n\n    stream.write_all(response.as_bytes()).unwrap();\n}\n\nfn handle_connection2(mut stream: TcpStream) {\n    let buf_reader = BufReader::new(&mut stream);\n    let request_line = buf_reader.lines().next().unwrap().unwrap();\n\n    if request_line == \"GET / HTTP/1.1\" {\n        let status_line = \"HTTP/1.1 200 OK\";\n        let contents = fs::read_to_string(\"hello.html\").unwrap();\n        let length = contents.len();\n\n        let response = format!(\n            \"{status_line}\\r\\nContent-Length: {length}\\r\\n\\r\\n{contents}\"\n        );\n\n        stream.write_all(response.as_bytes()).unwrap();\n    } else {\n        let status_line = \"HTTP/1.1 404 NOT FOUND\";\n        // 再弄个 404.html \n        let contents = fs::read_to_string(\"404.html\").unwrap();\n        let length = contents.len();\n\n        let response = format!(\n            \"{status_line}\\r\\nContent-Length: {length}\\r\\n\\r\\n{contents}\"\n        );\n\n        stream.write_all(response.as_bytes()).unwrap();\n    }\n}\n\n运行后,",
+    "crumbs": [
+      "web开发",
+      "简单web服务"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/net.html#单线程",
+    "href": "docs/rust/web/net.html#单线程",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "hello.html\n\n&lt;!DOCTYPE html&gt;\n&lt;html lang=\"en\"&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"utf-8\"&gt;\n    &lt;title&gt;Hello!&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;Hello!&lt;/h1&gt;\n    &lt;p&gt;Hi from Rust&lt;/p&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n\n\n\nsrc/main.rs\n\nuse std::{\n    fs,\n    io::{prelude::*, BufReader},\n    net::{TcpListener, TcpStream},\n};\nfn main() {\n    let listener = TcpListener::bind(\"127.0.0.1:7878\").unwrap();\n\n    for stream in listener.incoming() {\n        // 每一个stream 表示 客户端和服务端之间的链接\n        // 包含客户端发送来的数据\n        let stream = stream.unwrap();\n\n        handle_connection(stream);\n    }\n}\n\nfn handle_connection(mut stream: TcpStream) {\n    let buf_reader = BufReader::new(&mut stream);\n    let http_request: Vec&lt;_&gt; = buf_reader\n        .lines()\n        .map(|result| result.unwrap())\n        .take_while(|line| !line.is_empty())\n        .collect();\n\n    println!(\"Request: {:#?}\", http_request);\n\n    // response\n    let status_line = \"HTTP/1.1 200 OK\";\n    let contents = fs::read_to_string(\"hello.html\").unwrap();\n    let length = contents.len();\n\n    let response = format!(\"{status_line}\\r\\nContent-Length: {length}\\r\\n\\r\\n{contents}\");\n\n    stream.write_all(response.as_bytes()).unwrap();\n}\n\nfn handle_connection2(mut stream: TcpStream) {\n    let buf_reader = BufReader::new(&mut stream);\n    let request_line = buf_reader.lines().next().unwrap().unwrap();\n\n    if request_line == \"GET / HTTP/1.1\" {\n        let status_line = \"HTTP/1.1 200 OK\";\n        let contents = fs::read_to_string(\"hello.html\").unwrap();\n        let length = contents.len();\n\n        let response = format!(\n            \"{status_line}\\r\\nContent-Length: {length}\\r\\n\\r\\n{contents}\"\n        );\n\n        stream.write_all(response.as_bytes()).unwrap();\n    } else {\n        let status_line = \"HTTP/1.1 404 NOT FOUND\";\n        // 再弄个 404.html \n        let contents = fs::read_to_string(\"404.html\").unwrap();\n        let length = contents.len();\n\n        let response = format!(\n            \"{status_line}\\r\\nContent-Length: {length}\\r\\n\\r\\n{contents}\"\n        );\n\n        stream.write_all(response.as_bytes()).unwrap();\n    }\n}\n\n运行后,",
+    "crumbs": [
+      "web开发",
+      "简单web服务"
+    ]
+  },
+  {
+    "objectID": "docs/rust/web/net.html#多线程版本",
+    "href": "docs/rust/web/net.html#多线程版本",
+    "title": "斯巴拉稀",
+    "section": "多线程版本",
+    "text": "多线程版本\n这个版本, 每一个请求, 都会开启一个线程,没有限制了, 不断访问,可就产生很多的线程,服务器要完\nuse std::net::{TcpListener, TcpStream};\nuse std::thread;\nfn main() {\n    let listener = TcpListener::bind(\"127.0.0.1:7878\").unwrap();\n\n    for stream in listener.incoming() {\n        let stream = stream.unwrap();\n\n        thread::spawn(|| {\n            handle_connection(stream);\n        });\n    }\n}\n\nfn handle_connection(mut stream: TcpStream) {}\n使用线程池,设计了一个线程池\n\n\nsrc/main.rs\n\nuse hello::ThreadPool;\nuse std::fs;\nuse std::io::prelude::*;\nuse std::net::TcpListener;\nuse std::net::TcpStream;\nuse std::thread;\nuse std::time::Duration;\n\nfn main() {\n    let listener = TcpListener::bind(\"127.0.0.1:7878\").unwrap();\n    let pool = ThreadPool::new(4);\n\n    for stream in listener.incoming().take(2) {\n        let stream = stream.unwrap();\n\n        pool.execute(|| {\n            handle_connection(stream);\n        });\n    }\n\n    println!(\"Shutting down.\");\n}\n\nfn handle_connection(mut stream: TcpStream) {\n    let mut buffer = [0; 1024];\n    stream.read(&mut buffer).unwrap();\n\n    let get = b\"GET / HTTP/1.1\\r\\n\";\n    let sleep = b\"GET /sleep HTTP/1.1\\r\\n\";\n\n    let (status_line, filename) = if buffer.starts_with(get) {\n        (\"HTTP/1.1 200 OK\", \"hello.html\")\n    } else if buffer.starts_with(sleep) {\n        thread::sleep(Duration::from_secs(5));\n        (\"HTTP/1.1 200 OK\", \"hello.html\")\n    } else {\n        (\"HTTP/1.1 404 NOT FOUND\", \"404.html\")\n    };\n\n    let contents = fs::read_to_string(filename).unwrap();\n\n    let response = format!(\n        \"{}\\r\\nContent-Length: {}\\r\\n\\r\\n{}\",\n        status_line,\n        contents.len(),\n        contents\n    );\n\n    stream.write_all(response.as_bytes()).unwrap();\n    stream.flush().unwrap();\n}\n\n\n\nsrc/lib.rs\n\nuse std::{\n    sync::{mpsc, Arc, Mutex},\n    thread,\n};\n\npub struct ThreadPool {\n    workers: Vec&lt;Worker&gt;,\n    sender: Option&lt;mpsc::Sender&lt;Job&gt;&gt;,\n}\n\ntype Job = Box&lt;dyn FnOnce() + Send + 'static&gt;;\n\nimpl ThreadPool {\n    /// Create a new ThreadPool.\n    ///\n    /// The size is the number of threads in the pool.\n    ///\n    /// # Panics\n    ///\n    /// The `new` function will panic if the size is zero.\n    pub fn new(size: usize) -&gt; ThreadPool {\n        assert!(size &gt; 0);\n\n        let (sender, receiver) = mpsc::channel();\n\n        let receiver = Arc::new(Mutex::new(receiver));\n\n        let mut workers = Vec::with_capacity(size);\n\n        for id in 0..size {\n            workers.push(Worker::new(id, Arc::clone(&receiver)));\n        }\n\n        ThreadPool {\n            workers,\n            sender: Some(sender),\n        }\n    }\n    // 模拟 thread spawn\n    pub fn execute&lt;F&gt;(&self, f: F)\n    where\n        F: FnOnce() + Send + 'static,\n    {\n        let job = Box::new(f);\n\n        self.sender.as_ref().unwrap().send(job).unwrap();\n    }\n}\n// 优雅退出\nimpl Drop for ThreadPool {\n    fn drop(&mut self) {\n        drop(self.sender.take());\n\n        for worker in &mut self.workers {\n            println!(\"Shutting down worker {}\", worker.id);\n\n            if let Some(thread) = worker.thread.take() {\n                thread.join().unwrap();\n            }\n        }\n    }\n}\n\nstruct Worker {\n    id: usize,\n    thread: Option&lt;thread::JoinHandle&lt;()&gt;&gt;,\n}\n\nimpl Worker {\n    fn new(id: usize, receiver: Arc&lt;Mutex&lt;mpsc::Receiver&lt;Job&gt;&gt;&gt;) -&gt; Worker {\n        let thread = thread::spawn(move || loop {\n            let message = receiver.lock().unwrap().recv();\n\n            match message {\n                Ok(job) =&gt; {\n                    println!(\"Worker {id} got a job; executing.\");\n\n                    job();\n                }\n                Err(_) =&gt; {\n                    println!(\"Worker {id} disconnected; shutting down.\");\n                    break;\n                }\n            }\n        });\n\n        Worker {\n            id,\n            thread: Some(thread),\n        }\n    }\n}",
+    "crumbs": [
+      "web开发",
+      "简单web服务"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html",
+    "href": "docs/rust/basic/09.lifetime.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "fn main() {\n    let r;\n\n    {\n        let x = 5;\n        r = &x;\n    }    // x 离开作用域，其值被丢弃\n\n    println!(\"r: {}\", r);\n}\ncargo run \n --&gt; src/main.rs:6:13\n  |\n5 |         let x = 5;\n  |             - binding `x` declared here\n6 |         r = &x;\n  |             ^^ borrowed value does not live long enough\n7 |     }\n  |     - `x` dropped here while still borrowed\n8 |\n9 |     println!(\"r: {}\", r);\n  |                       - borrow later used here\nrust编译器 如何发现问题的呢?",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#先看个例子",
+    "href": "docs/rust/basic/09.lifetime.html#先看个例子",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "fn main() {\n    let r;\n\n    {\n        let x = 5;\n        r = &x;\n    }    // x 离开作用域，其值被丢弃\n\n    println!(\"r: {}\", r);\n}\ncargo run \n --&gt; src/main.rs:6:13\n  |\n5 |         let x = 5;\n  |             - binding `x` declared here\n6 |         r = &x;\n  |             ^^ borrowed value does not live long enough\n7 |     }\n  |     - `x` dropped here while still borrowed\n8 |\n9 |     println!(\"r: {}\", r);\n  |                       - borrow later used here\nrust编译器 如何发现问题的呢?",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#借用检查器",
+    "href": "docs/rust/basic/09.lifetime.html#借用检查器",
+    "title": "斯巴拉稀",
+    "section": "借用检查器",
+    "text": "借用检查器\nThe Borrow Checker\nrust编译器 有一个 borrow checker 它会比较作用域来判断所有借用是否合法\n标注上变量的生命周期,我们看看\nfn main() {\n    let r;                // ---------+-- 'a\n                          //          |\n    {                     //          |\n        let x = 5;        // -+-- 'b  |\n        r = &x;           //  |       |\n    }                     // -+       |\n                          //          |\n    println!(\"r: {}\", r); //          |\n}                         // ---------+\n这里用 ’a 表示 变量r 的生命周期, ’b 表示变量x 的生命周期 变量r的生命周期 ’a 比 ’b 长 , 但是使用了’b 生命周期中的 x, 而这个时候’b 已经结束了,x不可用了\n将上面的代码修改成如下,就ok了\nfn main() {\n    let x = 5;            // ----------+-- 'b\n                          //           |\n    let r = &x;           // --+-- 'a  |\n                          //   |       |\n    println!(\"r: {}\", r); //   |       |\n                          // --+       |\n}                         // ----------+",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#函数参数的生命周期",
+    "href": "docs/rust/basic/09.lifetime.html#函数参数的生命周期",
+    "title": "斯巴拉稀",
+    "section": "函数参数的生命周期",
+    "text": "函数参数的生命周期\n每个引用都有生命周期, 就是他的有效的作用域. 标注生命周期不会改变原来变量的生命周期,因为有些时候 编译器在运行时会发生什么事, 标注只是为了帮助编译器理解其中的生命周期(借用之间的相互关系),如果违反实际生命周期，编译器也是会拒绝编译的.\n\n// 编译器无法通过观察静态代码分析出返回的到底是x, 还是y\nfn longest(x: &str, y: &str) -&gt; &str {\n    if x.len() &gt; y.len() {\n        x\n    } else {\n        y\n    }\n}\nfn main() {\n    let string1 = String::from(\"abcd\");\n    let string2 = \"xyz\";\n\n    let result = longest(string1.as_str(), string2);\n    println!(\"The longest string is {}\", result);\n}",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#生命周期的标注",
+    "href": "docs/rust/basic/09.lifetime.html#生命周期的标注",
+    "title": "斯巴拉稀",
+    "section": "生命周期的标注",
+    "text": "生命周期的标注\n使用 ’a ’b 这种 单个简单字母, 放在 &后面\n&i32        // 一个借用\n&'a i32     // 一个带有显式生命周期的借用\n&'a mut i32 //\n\n\n\n\n\n\nTip\n\n\n\nThe function signature now\n\ntells Rust that for some lifetime ’a\ntells Rust two parameters that the function takes will live at least as long as lifetime ’a.\ntells Rust that the string slice returned from the function will live at least as long as lifetime ’a\n\n\n\n// 我们将前面的代码加上生命周期标注\nfn longest&lt;'a&gt;(x: &'a str, y: &'a str) -&gt; &'a str {\n    if x.len() &gt; y.len() {\n        x\n    } else {\n        y\n    }\n}\n//it means that the lifetime of the reference returned by the longest function is the same as the smaller of the lifetimes of the values referred to by the function arguments\n正确的例子\nfn longest&lt;'a&gt;(x: &'a str, y: &'a str) -&gt; &'a str {\n    if x.len() &gt; y.len() {\n        x\n    } else {\n        y\n    }\n}\nfn main() {\n    let string1 = String::from(\"long string is long\");\n    let result;\n    {\n        let string2 = \"xyz\";\n        result = longest(string1.as_str(), string2);\n    } // string2 所借用的 xyz 这个数据实际是在 静态内存中分配的,所以到这里, 没有被free掉\n      // println!(\"{}\", string2); 注意这个还是会报错的, 因为变量string2 已经不可用了\n      // OK,\n    println!(\"The longest string is {}\", result);\n}\n错误的例子\nfn longest&lt;'a&gt;(x: &'a str, y: &'a str) -&gt; &'a str {\n    if x.len() &gt; y.len() {\n        x\n    } else {\n        y\n    }\n}\nfn main() {\n    let string1 = String::from(\"long string is long\");\n    let result;\n    {\n        let string2 = String::from(\"xyz\");\n        result = longest(string1.as_str(), string2.as_str());\n    } // 这个时候 string2 指向的 xyz (在堆上) 已经被free了\n    println!(\"The longest string is {}\", result);\n}\ny不需要标注, 因为与x和返回值 没有任何关系\nfn longest&lt;'a&gt;(x: &'a str, y: &str) -&gt; &'a str {\n    x\n}",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#结构体中的生命周期",
+    "href": "docs/rust/basic/09.lifetime.html#结构体中的生命周期",
+    "title": "斯巴拉稀",
+    "section": "结构体中的生命周期",
+    "text": "结构体中的生命周期\nstruct Book&lt;'a&gt; {\n    title: &'a str,\n    author: &'a str,\n}\n\nfn main() {\n    let title = \"The Rust Programming Language\";\n    let author = \"Steve Klabnik and Carol Nichols\";\n    let book = Book { title, author };\n\n    println!(\"Book title: {}\", book.title);\n    println!(\"Book author: {}\", book.author);\n}\n生命周期标注 ’a 表明这两个字段的生命周期是相同的，并且它们至少活得和 Book 实例一样久\n如果没有生命周期标注，Rust 编译器就无法确定 title 和 author 引用的数据是否会在 Book 实例之前被释放。生命周期标注提供了一种方式，让编译器能够检查引用是否在有效范围内，从而确保内存安全",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#生命周期的省略",
+    "href": "docs/rust/basic/09.lifetime.html#生命周期的省略",
+    "title": "斯巴拉稀",
+    "section": "生命周期的省略",
+    "text": "生命周期的省略\n// 早期像这样的,都是需要 进行生命周期标注的\n// fn first_word(s: &str) -&gt; &str {\nfn first_word&lt;'a&gt;(s: &'a str) -&gt; &'a str {\n    let bytes = s.as_bytes();\n\n    for (i, &item) in bytes.iter().enumerate() {\n        if item == b' ' {\n            return &s[0..i];\n        }\n    }\n    &s[..]\n}\n\n三个规则\n\n\n\n\n\n\nNote\n\n\n\n\nrust的开发人员注意到, 每次都要写很多这种标注, 很麻烦, 于是总结了一些规则,让编译器自动处理\n生命周期在函数的参数时,被称为输入生命周期\n生命周期在函数的返回值时,被称为输出生命周期\n\n\n\n\n每个引用参数都有自己的生命周期参数\n如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数\n如果有多个输入生命周期参数, 且其中一个是&self 或 &mut self(是方法), 则self的生命周期会被赋予所有的输出生命周期参数\n\n如果编译器应用完这3个规则,还有无法确定生命周期的借用,那么就报错\n// 我们写的代码\nfn first_word(s: &str) -&gt; &str {}\n// 1. 编译器应用第一条规则后\nfn first_word&lt;'a&gt;(s: &'a str) -&gt; &str {}\n// 2. 编译器应用第二条规则后\nfn first_word&lt;'a&gt;(s: &'a str) -&gt; &'a str {}\n\n// 我们写的代码\nfn longest(x: &str, y: &str) -&gt; &str {}\n// 1. 编译器应用第一条规则后\nfn longest&lt;'a, 'b&gt;(x: &'a str, y: &'b str) -&gt; &str {\n// 2. 编译器应用第二条规则,发现有多个输入参数,pass\n// 3. 编译器应用第三条规则,发现是个函数,不是方法,pass\n//  结果, 返回值的生命周期 还是不确定, 所以报错了\n\n\n结构体方法生命周期\n// 需要在 impl后面申明,这个生命周期是结构体类型的一部分\nimpl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {\n    fn level(&self) -&gt; i32 {\n        3\n    }\n}\n// 1. 编译器应用第一条规则, &'a self, 所以我们不用标注了\n\n// 我们来看看方法中多个参数的情况,\nimpl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {\n    fn announce_and_return_part(&self, announcement: &str) -&gt; &str {\n        println!(\"Attention please: {}\", announcement);\n        self.part\n    }\n}\n// 1. 编译器应用第一条规则后,\n    fn announce_and_return_part(&'a self, announcement: &'a str) -&gt; &str {}\n// 2. 编译器应用第三条规则后,\n    fn announce_and_return_part&lt;'a&gt;(&'a self, announcement: &'a str) -&gt; &'a str {}",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#静态生命周期",
+    "href": "docs/rust/basic/09.lifetime.html#静态生命周期",
+    "title": "斯巴拉稀",
+    "section": "静态生命周期",
+    "text": "静态生命周期\n\n\n\n\n\n\nTip\n\n\n\n整个程序的持续时间就是静态生命周期\n\n\nlet s: &'static str = \"I have a static lifetime.\";",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/09.lifetime.html#泛型trait约束中使用",
+    "href": "docs/rust/basic/09.lifetime.html#泛型trait约束中使用",
+    "title": "斯巴拉稀",
+    "section": "泛型,trait约束中使用",
+    "text": "泛型,trait约束中使用\n\n\n\n\n\n\nImportant\n\n\n\nlifetimes are a type of generic,所以会将它和泛型T的申明放在一起\n\n\nuse std::fmt::Display;\n\nfn longest_with_an_announcement&lt;'a, T&gt;(\n    x: &'a str,\n    y: &'a str,\n    ann: T,\n) -&gt; &'a str\nwhere\n    T: Display,\n{\n    println!(\"Announcement! {}\", ann);\n    if x.len() &gt; y.len() {\n        x\n    } else {\n        y\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "生命周期"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html",
+    "href": "docs/rust/basic/13.cargo.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "发布的配置信息, 是预定义好的,可自定义\n\ncargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.0s\ncargo build --release\n    Finished release [optimized] target(s) in 0.0s\n我们运行2个命令看看, 看到 dev 和 release, 实际就是使用了不同的默认配置 dev默认的一些配置\n[profile.dev]\nopt-level = 0\ndebug = true\nsplit-debuginfo = '...'  # Platform-specific.\nstrip = \"none\"\ndebug-assertions = true\noverflow-checks = true\nlto = false\npanic = 'unwind'\nincremental = true\ncodegen-units = 256\nrpath = false\n我们可以通过修改Cargo.toml来覆盖一些默认配置\n[package]\nname = \"world\"\nversion = \"0.1.0\"\nedition = \"2021\"\n[dependencies]\nrand = \"0.8.5\"\n[profile.dev] # dev 配置\nopt-level = 1\n[profile.release] # release 配置\nopt-level = 3\n修改完后, 我们再次编译可以看到 optimized\ncargo build\n    Finished dev [optimized + debuginfo] target(s) in 3.14s\ndependencies的三种方式\n[dependencies]\nclap = \"2.27.1\" # from crates.io\nrand = { git = \"https://github.com/rust-lang-nursery/rand\" } # from online repo\nbar = { path = \"../bar\" } # from a path in the local filesystem",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html#配置文件",
+    "href": "docs/rust/basic/13.cargo.html#配置文件",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "发布的配置信息, 是预定义好的,可自定义\n\ncargo build\n    Finished dev [unoptimized + debuginfo] target(s) in 0.0s\ncargo build --release\n    Finished release [optimized] target(s) in 0.0s\n我们运行2个命令看看, 看到 dev 和 release, 实际就是使用了不同的默认配置 dev默认的一些配置\n[profile.dev]\nopt-level = 0\ndebug = true\nsplit-debuginfo = '...'  # Platform-specific.\nstrip = \"none\"\ndebug-assertions = true\noverflow-checks = true\nlto = false\npanic = 'unwind'\nincremental = true\ncodegen-units = 256\nrpath = false\n我们可以通过修改Cargo.toml来覆盖一些默认配置\n[package]\nname = \"world\"\nversion = \"0.1.0\"\nedition = \"2021\"\n[dependencies]\nrand = \"0.8.5\"\n[profile.dev] # dev 配置\nopt-level = 1\n[profile.release] # release 配置\nopt-level = 3\n修改完后, 我们再次编译可以看到 optimized\ncargo build\n    Finished dev [optimized + debuginfo] target(s) in 3.14s\ndependencies的三种方式\n[dependencies]\nclap = \"2.27.1\" # from crates.io\nrand = { git = \"https://github.com/rust-lang-nursery/rand\" } # from online repo\nbar = { path = \"../bar\" } # from a path in the local filesystem",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html#文档",
+    "href": "docs/rust/basic/13.cargo.html#文档",
+    "title": "斯巴拉稀",
+    "section": "文档",
+    "text": "文档\n\n注释\n生成HTML文档,显示如何使用API\n我们 在src/lib.rs中添加一些文档注释\n\n\nsrc/lib.rs\n\n1//! # My Crate\n//!\n//! `my_crate` is a collection of utilities to make performing certain\n//! calculations more convenient.\n\n/// Adds one to the number given.\n///\n2/// # Examples\n///\n/// ```\n3/// let arg = 5;\n/// let answer = my_crate::add_one(arg);\n///\n/// assert_eq!(6, answer);\n/// ```\npub fn add_one(x: i32) -&gt; i32 {\n    x + 1\n}\n\n\n1\n\n描述 我们要发布的 整个crate, 使用 //!\n\n2\n\n使用 ///,可以用markdown 语法  Example 是一个常见的我们要去写的区域,后面写上示例Panics: 描述可能发生panic的场景 Errors: 如何函数返回Result,描述可能的错误种类,以及导致错误的条件Safty: 如果函数处于unsafe调用, 那么就描述使用unsafe的原因和使用的前提\n\n3\n\n使用cargo test 会测试这里的代码, 注意 需要将 示例代码里使用的 my_crate改成 Cargo.toml中 [package] 的 name\n\n\n# --open 会直接打开 生成的 html\ncargo doc --open\n# 会测试 文档注释中的代码\ncargo test\n   Doc-tests ....\n\n\npub use\n\nsrc/lib.rssrc/main.rs\n\n\n//! # Art\n//!\n//! A library for modeling artistic concepts.\n\n// --加上这些--\n1pub use self::kinds::PrimaryColor;\npub use self::kinds::SecondaryColor;\npub use self::utils::mix;\n//  -----\n\npub mod kinds {\n    /// The primary colors according to the RYB color model.\n    pub enum PrimaryColor {\n        Red,\n        Yellow,\n        Blue,\n    }\n\n    /// The secondary colors according to the RYB color model.\n    pub enum SecondaryColor {\n        Orange,\n        Green,\n        Purple,\n    }\n}\n\npub mod utils {\n    use crate::kinds::*;\n\n    /// Combines two primary colors in equal amounts to create\n    /// a secondary color.\n    pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -&gt; SecondaryColor {\n        SecondaryColor::Orange\n    }\n}\n\n1\n\n这样生成的文档方便用户查看,不需要点击多次才能看到\n\n\n\n\n// use art::kinds::PrimaryColor;\n// use art::utils::mix;\n\n// 在lib.rs 添加 pub use 后, 这里可以这样了,生成的文档也方便用户使用\nuse art::mix;\nuse art::PrimaryColor;\n\nfn main() {\n    let red = PrimaryColor::Red;\n    let yellow = PrimaryColor::Yellow;\n    mix(red, yellow);\n}\n\n\n\ncargo doc --open # 查看一下",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html#发布crate到crate.io",
+    "href": "docs/rust/basic/13.cargo.html#发布crate到crate.io",
+    "title": "斯巴拉稀",
+    "section": "发布crate到crate.io",
+    "text": "发布crate到crate.io\n\n登录crate.io获取token\n登录crate.io后,进入settings页面, 生成一个token\n# 该命令会将token 存储在 ~/.cargo/credentials\ncargo login abcdefghijklmnopqrstuvwxyz012345\n\n\n修改Cargo.toml\n[package]\n1name = \"guessing_game\"\nversion = \"0.1.0\"\nedition = \"2021\"\n2description = \"该描述会显示在crate.io的搜索结果里\"\n3license = \"MIT OR Apache-2.0\"\n[dependencies]\n\n1\n\n名字在crate.io中必须是独一无二的\n\n2\n\n必填项\n\n3\n\n必填项,许可标识值可在spdx上查找\n\n\n\n\n发布\ncargo publish\n发布已存在crate的新版本, 需要修改 toml文件中的 version 参考 http://semver.org/, 再执行cargo publish 即可\n\n\ncargo yank 撤回\n\n首先 crate.io 是不能让你删除已经发布的版本的,因为如果已经有人用了怎么办\n但是可以让你撤回,它的意思是, 防止新的用户使用这个可能不太好的版本,cargo add xxxx 后不会使用到这个撤回的版本, 如果是已经使用了这个版本的人(Cargo.lock里指定了版本了), 还是可以下载使用的\n\ncargo yank --vers 1.0.1\n    Updating crates.io index\n        Yank guessing_game@1.0.1\n# 取消 yank\ncargo yank --vers 1.0.1 --undo\n    Updating crates.io index\n      Unyank guessing_game@1.0.1",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html#工作空间",
+    "href": "docs/rust/basic/13.cargo.html#工作空间",
+    "title": "斯巴拉稀",
+    "section": "工作空间",
+    "text": "工作空间\n\n创建\nmkdir add\ncd add \ntouch Cargo.toml\nresolver-versions\n\n\nCargo.toml\n\n[workspace]\n\nmembers = [\n    \"adder\",\n]\nresolver = \"2\"\n\n# 添加 binary crate\ncargo new adder\ncargo build\ntree -L 2\n    .\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── adder\n    │   ├── Cargo.toml\n    │   └── src\n    └── target # 存放所有members 编译后的东西\n        ├── CACHEDIR.TAG\n        └── debug\ncd adder\n# 我们没有看到在这个adder目录下生成target目录\n# 还是会在 外层的 target 目录下生成\ncargo build\n\n# 添加一个 lib crate\n# 该命令会在 Cargo.toml的 members 里自动添加\ncargo new add_one --lib\ntree -L 2\n    ├── Cargo.lock\n    ├── Cargo.toml\n    ├── add_one\n    │   ├── Cargo.toml\n    │   └── src\n    │       └── lib.rs\n    ├── adder\n    │   ├── Cargo.toml\n    │   └── src\n    │       └── main.rs\n    └── target\n\n\n在add_one/src/lib.rs添加一个方法\n\npub fn add_one(x: i32) -&gt; i32 {\n    x + 1\n}\n\n现在我们要在adder 中依赖add_one这个库,需要在adder/Cargo.toml中添加\n\n\nadder/Cargo.toml\n\n[package]\nname = \"adder\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\nadd_one = { path = \"../add_one\" }\n\n\n\nadder/src/main.rs\n\nuse add_one;\n\nfn main() {\n    let num = 10;\n    println!(\"Hello, world! {num} plus one is {}!\", add_one::add_one(num));\n}\n\n# 运行指定 binary crate\ncargo run  -p adder\n\n\n使用外部crate\nadder/Cargo.toml[dependencies]中添加rand = \"0.8.1\",然后在add_one/Cargo.toml[dependencies]中添加rand = \"0.8.5\"后, cargo build 只会在外层Cargo.lock中生成一个rand版本.这样工作空间中的crate 都会使用同一个版本的rand\n\n\n测试\n# 在add目录下\n# 会test 工作空间中所有的crate\ncargo test\n# 指定\ncargo test -p adder",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html#安装二进制crate",
+    "href": "docs/rust/basic/13.cargo.html#安装二进制crate",
+    "title": "斯巴拉稀",
+    "section": "安装二进制crate",
+    "text": "安装二进制crate\n只能安装具有 binary target的 crate (binary crate)\n# 会安装到 $HOME/.cargo/bin 目录\ncargo install ripgrep",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/13.cargo.html#自定义命令扩展",
+    "href": "docs/rust/basic/13.cargo.html#自定义命令扩展",
+    "title": "斯巴拉稀",
+    "section": "自定义命令扩展",
+    "text": "自定义命令扩展\n在系统中你可以直接运行的一个命令 名字是cargo-xxxx,那么你就可以运行cargo xxxx 这样来替代运行它, cargo --list 可以查看到.\n我们在安装rust后, 可以在~/.cargo/bin 看到一些可执行文件, cargo-fmt 就是其中的一个, 我们可以发现有cargo fmt这个命令,就像cargo 的内置命令一样",
+    "crumbs": [
+      "基础篇",
+      "cargo"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/11.closure.html",
+    "href": "docs/rust/basic/11.closure.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Tip\n\n\n\n\nclosures can capture values from the scope in which they’re defined\n可以捕获其所在环境的匿名函数\n\n在它定义的作用域中捕获值\n\n\n\n\nfn main() {\n    fn add_one_v1(x: u32) -&gt; u32 {\n        x + 1\n    }\n    // 闭包,匿名函数, |参数|-&gt;返回值 { 函数体}\n    let add_one_v2 = |x: u32| -&gt; u32 { x + 1 };\n    // 等价与 |x| {x + 1}  因为只有一个表达式, 所以 {} 可以省略\n    let add_one_v3 = |x| x + 1;\n    // 上面的定义没有类型, 如果没有的调用语句, 是会报错的, 因为函数没有类型,内存占用无法确定\n    // 调用后, 编译器推断了类型,这个时候类型就确定了\n    let r = add_one_v3(1);\n    println!(\"{}\", r);\n    // 后续如果你用其他类型,就会报错的\n    // let r2 = add_one_v3(\"a\");\n}\n\n\n\n不可变借用\nfn main() {\n    let list = vec![1, 2, 3];\n    println!(\"Before defining closure: {:?}\", list);\n    // 捕获了闭包所在环境, 变量list\n    let only_borrows = || {\n        // 这里的list,就是外面的那个list,不是赋值操作\n        // 只有我们指定 move|| {} 时才会 转移所有权\n        // println! 本身使用list的不可变借用\n        println!(\"From closure: {:?}\", list);\n    }\n\n    println!(\"Before calling closure: {:?}\", list);\n    only_borrows();\n    println!(\"After calling closure: {:?}\", list);\n}\n可变借用\nfn main() {\n    let mut list = vec![1, 2, 3];\n    println!(\"Before defining closure: {:?}\", list);\n    // 需要mut\n    let mut borrows_mutably = || list.push(7);\n\n    borrows_mutably();\n    println!(\"After calling closure: {:?}\", list); // [1, 2, 3, 7]\n}\nmove 所有权\nuse std::thread;\n\nfn main() {\n    let list = vec![1, 2, 3];\n    println!(\"Before defining closure: {:?}\", list);\n    // 指定move, 所有权移动\n    thread::spawn(move || println!(\"From thread: {:?}\", list))\n        .join()\n        .unwrap();\n    // println!(\"after defining closure: {:?}\", list); // 被move了,报错\n}\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n闭包可能实现了Fn,FnMut,FnOnce这三个trait中的一个或多个\n创建闭包时,通过闭包对环境值的使用情况,rust推断出闭包实现了哪些trait\n\n\n\n\n\n\n\n\n\n\n\nFnOnce表示的意思\n\n\n\n\n可以被调用一次,很显然我们编写的闭包肯定是要能被调用至少一次的.\n如果只实现了 FnOnce这个trait, 其他trait没有实现,那么表示该闭包只能被调用一次\n当你闭包捕获的环境值离开闭包它自己的body时(值无效了),它就是 只实现了 FnOnce,因为它被调用一次后,里面变量值无效了,再调用就报错了\n\n\n\nfn main() {\n    let farewell = \"goodbye\".to_owned();\n    let diary = move || {\n        println!(\"I said {}.\", farewell);\n    };\n    diary(); // ok\n    diary(); // ok\n}\n// trait 是FnOnce , 表示传递的参数必须是实现了FnOnce的闭包\n// 这里的写法 和一般的trait 不太一样\nfn apply&lt;F&gt;(f: F)\nwhere\n    F: FnOnce(),\n{\n    f();\n}\nfn main() {\n    let mut farewell = \"goodbye\".to_owned();\n1    let diary = move || {\n        println!(\"I said {}.\", farewell);\n        {\n            farewell;\n        } // farewell 被drop掉了,\n    };\n    apply(diary);\n    // diary();\n    // 我们可以推断, 因为闭包内部使用的farewell 已经drop掉了,再次调用就有问题了\n    // 闭包对应的汇编指令,使用的farewell的地址是确定的\n    // 所以报错了, 提示diary 变量本身被move掉了\n    // 你可以认为因为你这样使用捕获的变量,导致 该闭包没有实现 copy,使用时就是move操作\n    diary();\n    // 可以用这个,也是报错了\n    // println!(\"{:p}\", &diary);\n}\n\n1\n\n不用move 去捕获变量,这里的结果还是一样的,主要是看你闭包内部是如何使用这个捕获的变量\n\n\n看这个例子,只能调用一次\nfn main() {\n    let mut farewell = \"goodbye\".to_owned();\n    let diary = || {\n        println!(\"I said {}.\", farewell);\n        // 将farewell 作为返回值move给了 diary\n        // 我们没有使用move, 这个farewell 就是外面的那个变量本身\n        // 如果使用move || {}, 只不过将外部的move给这里的farewell\n        farewell\n    };\n    diary();\n    // diary(); //报错\n    // println!(\"{}\", farewell); //报错\n}\n使用move但是实际可以被调用多次,因为实际要看闭包内部如何使用这个捕获的变量\nfn main() {\n    let farewell = \"goodbye\".to_owned();\n    let diary = move || {\n        println!(\"I said {}.\", farewell);\n    };\n    diary();\n    diary();\n}\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n闭包可以修改它捕获的变量,但是不能move 捕获的值 out of their body\n说到底就是能够调用多次(内部使用的变量多次调用还有效),还能修改捕获的变量\n\n\n\nfn apply&lt;F&gt;(mut f: F)\nwhere\n    F: FnMut(),\n{\n    f();\n    f();\n}\nfn main() {\n    let mut farewell = \"goodbye\".to_owned();\n    // 使用 move || {} 结果也是一样的\n    // 还是那句话, 关键在闭包内部如何使用这个捕获的值\n    let mut diary = || {\n        farewell.push_str(\"hello\");\n        // 内部修改捕获的值, 值没有失效\n        println!(\"I said {}.\", farewell);\n    };\n    diary(); // 调用本身需要 let mut diary\n    apply(diary);\n}\n看看这个…\nfn apply&lt;F&gt;(mut f: F)\nwhere\n    F: FnMut(),\n{\n    f();\n}\nfn main() {\n    let x = \"goodbye\".to_owned();\n    let print = || {\n        println!(\"{}\", x);\n    };\n    apply(print);\n}\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n不修改捕获的值,不move 捕获的值 out of their body,或者那种不捕获任何值的闭包\n\n\nfn apply&lt;F&gt;(f: F)\nwhere\n    F: Fn(),\n{\n    f();\n}\n// 也是实现了 Fn() trait\nfn function() {\n    println!(\"I'm a function!\");\n}\nfn main() {\n    let x = 7;\n    let print = || {\n        println!(\"{}\", x);\n    };\n    apply(print);\n    apply(function);\n}\n\n\n\n\nfn create_fn() -&gt; impl Fn() {\n    let text = \"Fn\".to_owned();\n    // move 必须要有,要不然最后 text 会被 drop\n    move || println!(\"This is a: {}\", text)\n}\n\nfn create_fnmut() -&gt; impl FnMut() {\n    let text = \"FnMut\".to_owned();\n    // 同样move\n    move || println!(\"This is a: {}\", text)\n}\n\nfn create_fnonce() -&gt; impl FnOnce() {\n    let text = \"FnOnce\".to_owned();\n\n    move || println!(\"This is a: {}\", text)\n}\n\nfn main() {\n    let fn_plain = create_fn();\n    let mut fn_mut = create_fnmut();\n    let fn_once = create_fnonce();\n\n    fn_plain();\n    fn_mut();\n    fn_once();\n}",
+    "crumbs": [
+      "基础篇",
+      "闭包与迭代器"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/11.closure.html#闭包",
+    "href": "docs/rust/basic/11.closure.html#闭包",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Tip\n\n\n\n\nclosures can capture values from the scope in which they’re defined\n可以捕获其所在环境的匿名函数\n\n在它定义的作用域中捕获值\n\n\n\n\nfn main() {\n    fn add_one_v1(x: u32) -&gt; u32 {\n        x + 1\n    }\n    // 闭包,匿名函数, |参数|-&gt;返回值 { 函数体}\n    let add_one_v2 = |x: u32| -&gt; u32 { x + 1 };\n    // 等价与 |x| {x + 1}  因为只有一个表达式, 所以 {} 可以省略\n    let add_one_v3 = |x| x + 1;\n    // 上面的定义没有类型, 如果没有的调用语句, 是会报错的, 因为函数没有类型,内存占用无法确定\n    // 调用后, 编译器推断了类型,这个时候类型就确定了\n    let r = add_one_v3(1);\n    println!(\"{}\", r);\n    // 后续如果你用其他类型,就会报错的\n    // let r2 = add_one_v3(\"a\");\n}\n\n\n\n不可变借用\nfn main() {\n    let list = vec![1, 2, 3];\n    println!(\"Before defining closure: {:?}\", list);\n    // 捕获了闭包所在环境, 变量list\n    let only_borrows = || {\n        // 这里的list,就是外面的那个list,不是赋值操作\n        // 只有我们指定 move|| {} 时才会 转移所有权\n        // println! 本身使用list的不可变借用\n        println!(\"From closure: {:?}\", list);\n    }\n\n    println!(\"Before calling closure: {:?}\", list);\n    only_borrows();\n    println!(\"After calling closure: {:?}\", list);\n}\n可变借用\nfn main() {\n    let mut list = vec![1, 2, 3];\n    println!(\"Before defining closure: {:?}\", list);\n    // 需要mut\n    let mut borrows_mutably = || list.push(7);\n\n    borrows_mutably();\n    println!(\"After calling closure: {:?}\", list); // [1, 2, 3, 7]\n}\nmove 所有权\nuse std::thread;\n\nfn main() {\n    let list = vec![1, 2, 3];\n    println!(\"Before defining closure: {:?}\", list);\n    // 指定move, 所有权移动\n    thread::spawn(move || println!(\"From thread: {:?}\", list))\n        .join()\n        .unwrap();\n    // println!(\"after defining closure: {:?}\", list); // 被move了,报错\n}\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n闭包可能实现了Fn,FnMut,FnOnce这三个trait中的一个或多个\n创建闭包时,通过闭包对环境值的使用情况,rust推断出闭包实现了哪些trait\n\n\n\n\n\n\n\n\n\n\n\nFnOnce表示的意思\n\n\n\n\n可以被调用一次,很显然我们编写的闭包肯定是要能被调用至少一次的.\n如果只实现了 FnOnce这个trait, 其他trait没有实现,那么表示该闭包只能被调用一次\n当你闭包捕获的环境值离开闭包它自己的body时(值无效了),它就是 只实现了 FnOnce,因为它被调用一次后,里面变量值无效了,再调用就报错了\n\n\n\nfn main() {\n    let farewell = \"goodbye\".to_owned();\n    let diary = move || {\n        println!(\"I said {}.\", farewell);\n    };\n    diary(); // ok\n    diary(); // ok\n}\n// trait 是FnOnce , 表示传递的参数必须是实现了FnOnce的闭包\n// 这里的写法 和一般的trait 不太一样\nfn apply&lt;F&gt;(f: F)\nwhere\n    F: FnOnce(),\n{\n    f();\n}\nfn main() {\n    let mut farewell = \"goodbye\".to_owned();\n1    let diary = move || {\n        println!(\"I said {}.\", farewell);\n        {\n            farewell;\n        } // farewell 被drop掉了,\n    };\n    apply(diary);\n    // diary();\n    // 我们可以推断, 因为闭包内部使用的farewell 已经drop掉了,再次调用就有问题了\n    // 闭包对应的汇编指令,使用的farewell的地址是确定的\n    // 所以报错了, 提示diary 变量本身被move掉了\n    // 你可以认为因为你这样使用捕获的变量,导致 该闭包没有实现 copy,使用时就是move操作\n    diary();\n    // 可以用这个,也是报错了\n    // println!(\"{:p}\", &diary);\n}\n\n1\n\n不用move 去捕获变量,这里的结果还是一样的,主要是看你闭包内部是如何使用这个捕获的变量\n\n\n看这个例子,只能调用一次\nfn main() {\n    let mut farewell = \"goodbye\".to_owned();\n    let diary = || {\n        println!(\"I said {}.\", farewell);\n        // 将farewell 作为返回值move给了 diary\n        // 我们没有使用move, 这个farewell 就是外面的那个变量本身\n        // 如果使用move || {}, 只不过将外部的move给这里的farewell\n        farewell\n    };\n    diary();\n    // diary(); //报错\n    // println!(\"{}\", farewell); //报错\n}\n使用move但是实际可以被调用多次,因为实际要看闭包内部如何使用这个捕获的变量\nfn main() {\n    let farewell = \"goodbye\".to_owned();\n    let diary = move || {\n        println!(\"I said {}.\", farewell);\n    };\n    diary();\n    diary();\n}\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n闭包可以修改它捕获的变量,但是不能move 捕获的值 out of their body\n说到底就是能够调用多次(内部使用的变量多次调用还有效),还能修改捕获的变量\n\n\n\nfn apply&lt;F&gt;(mut f: F)\nwhere\n    F: FnMut(),\n{\n    f();\n    f();\n}\nfn main() {\n    let mut farewell = \"goodbye\".to_owned();\n    // 使用 move || {} 结果也是一样的\n    // 还是那句话, 关键在闭包内部如何使用这个捕获的值\n    let mut diary = || {\n        farewell.push_str(\"hello\");\n        // 内部修改捕获的值, 值没有失效\n        println!(\"I said {}.\", farewell);\n    };\n    diary(); // 调用本身需要 let mut diary\n    apply(diary);\n}\n看看这个…\nfn apply&lt;F&gt;(mut f: F)\nwhere\n    F: FnMut(),\n{\n    f();\n}\nfn main() {\n    let x = \"goodbye\".to_owned();\n    let print = || {\n        println!(\"{}\", x);\n    };\n    apply(print);\n}\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n不修改捕获的值,不move 捕获的值 out of their body,或者那种不捕获任何值的闭包\n\n\nfn apply&lt;F&gt;(f: F)\nwhere\n    F: Fn(),\n{\n    f();\n}\n// 也是实现了 Fn() trait\nfn function() {\n    println!(\"I'm a function!\");\n}\nfn main() {\n    let x = 7;\n    let print = || {\n        println!(\"{}\", x);\n    };\n    apply(print);\n    apply(function);\n}\n\n\n\n\nfn create_fn() -&gt; impl Fn() {\n    let text = \"Fn\".to_owned();\n    // move 必须要有,要不然最后 text 会被 drop\n    move || println!(\"This is a: {}\", text)\n}\n\nfn create_fnmut() -&gt; impl FnMut() {\n    let text = \"FnMut\".to_owned();\n    // 同样move\n    move || println!(\"This is a: {}\", text)\n}\n\nfn create_fnonce() -&gt; impl FnOnce() {\n    let text = \"FnOnce\".to_owned();\n\n    move || println!(\"This is a: {}\", text)\n}\n\nfn main() {\n    let fn_plain = create_fn();\n    let mut fn_mut = create_fnmut();\n    let fn_once = create_fnonce();\n\n    fn_plain();\n    fn_mut();\n    fn_once();\n}",
+    "crumbs": [
+      "基础篇",
+      "闭包与迭代器"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/11.closure.html#iterator-迭代器",
+    "href": "docs/rust/basic/11.closure.html#iterator-迭代器",
+    "title": "斯巴拉稀",
+    "section": "iterator 迭代器",
+    "text": "iterator 迭代器\n\n\n\n\n\n\nTip\n\n\n\n除非调用迭代器的方法,否则迭代器本身没有任何消耗\n\n\n\n简单使用\nlet v1 = vec![1, 2, 3];\n// 仅仅定义而没有使用它, 这样不会有任何的消耗\nlet v1_iter = v1.iter();\nfn main() {\n    let v1 = vec![1, 2, 3];\n\n    // v1_iter 本身取得的是 v1元素的不可变借用\n    let v1_iter = v1.iter();\n\n    // for循环 会取得v1_iter的所有权\n    // 底层是调用next\n    for val in v1_iter {\n        println!(\"Got: {}\", val);\n    }\n    //  v1_iter 已经被move了, 报错\n    // println!(\"{:?}\", v1_iter);\n\n    let mut v1_iter = v1.iter();\n    if let Some(b) = v1_iter.next() {\n        println!(\"{}\", b);\n    }\n    // 调用next 会消耗迭代器 (体会一下消耗的意思)\n    v1_iter.next();\n    v1_iter.next();\n    if let None = v1_iter.next() {\n        println!(\"没有元素后再调用next 返回None\");\n    }\n\n    let v1_iter = v1.iter();\n    let total: i32 = v1_iter.sum();\n    println!(\"{total}\");\n    // 调用sum 会获取v1_iter的所有权,所以报错了,提示move掉了\n    // println!(\"{:?}\", v1_iter);\n\n    // into_iter 会获取v1的所有权\n    let v1_iter = v1.into_iter();\n    // println!(\"{:?}\", v1); 报错\n\n    let mut v1 = vec![1, 2, 3];\n    // 取得v1的可变借用\n    let v1_iter = v1.iter_mut();\n\n}\n\n\n迭代器适配器\n\n\n\n\n\n\nTip\n\n\n\n\n非消耗型迭代器适配器 是定义在 迭代器 trait上的一些方法,它不会消耗迭代器,相反它是产生一个新的迭代器\n消耗型迭代器适配器, 前面我们使用的next 就是\n\n\n\nfn main() {\n    let v1: Vec&lt;i32&gt; = vec![1, 2, 3];\n\n    let v1_iter = v1.iter();\n    // 取得迭代器的所有权,生成新的迭代器\n    let v_map = v1_iter.map(|x| x + 1);\n    // 使用消耗迭代器适配器\n    let v2: Vec&lt;_&gt; = v_map.collect();\n\n    assert_eq!(v2, vec![2, 3, 4]);\n}\n使用闭包捕获环境\nfn main() {\n    let v1: Vec&lt;i32&gt; = vec![1, 2, 3];\n    // any 如果有一个满足条件就返回true\n    // v1.iter() =&gt; iter(&v1)\n    println!(\"2 in v1: {}\", v1.iter().any(|&x| x == 2));\n\n    let mut iter = v1.iter();\n    println!(\"Find 2 in v1: {:?}\", iter.find(|&&x| x == 2));\n\n    let v1: Vec&lt;i32&gt; = vec![1, 2, 3];\n    println!(\"Find 2 in v1: {:?}\", v1.into_iter().find(|&x| x == 2));\n\n    let v1: Vec&lt;i32&gt; = vec![1, 2, 3];\n    let index_of_first_even_number = v1.iter().position(|&x| x % 2 == 0);\n    assert_eq!(index_of_first_even_number, Some(5));\n\n    let v1: Vec&lt;i32&gt; = vec![1, 2, 3];\n    let v1_iter = v1.into_iter();\n    let two = 2;\n    // filter 将符合条件的返回 (true的情况)\n    let v_map = v1_iter.filter(|x| x &gt;= &two);\n    let v2: Vec&lt;_&gt; = v_map.collect();\n    println!(\"{:?}\", v2);\n}\n/*\nfn any&lt;F&gt;(&mut self, mut f: F) -&gt; bool\nwhere\n    Self: Sized,\n    F: FnMut(Self::Item) -&gt; bool,\n{\n    while let Some(x) = self.next() {\n        if f(x) {\n            return true;\n        }\n    }\n    false\n}\npub trait Iterator {\n    type Item;\n\n    fn find&lt;P&gt;(&mut self, predicate: P) -&gt; Option&lt;Self::Item&gt; where\n        P: FnMut(&Self::Item) -&gt; bool;\n}\n*/\n\n\niterator trait\n所有迭代器都实现了 iterator trait\n\n\nIterator trait 在标准库中的定义\n\npub trait Iterator {\n    type Item;\n\n    fn next(&mut self) -&gt; Option&lt;Self::Item&gt;;\n\n    // methods with default implementations elided\n}\n\n我们自定义迭代器时,只需要实现next方法即可\n// 定义一个能生成范围内所有奇数的迭代器\nstruct OddNumbers {\n    current: u32,\n    end: u32,\n}\n\n// 为 OddNumbers 实现迭代器 trait\nimpl Iterator for OddNumbers {\n    type Item = u32; // 迭代器的项类型是 u32\n\n    // next() 方法返回下一个奇数，如果没有更多奇数则返回 None\n    fn next(&mut self) -&gt; Option&lt;Self::Item&gt; {\n        if self.current &gt;= self.end {\n            None // 如果当前值已经大于或等于结束值，返回 None\n        } else {\n            let result = self.current;\n            self.current += 2; // 移动到下一个奇数\n            Some(result) // 返回当前的奇数\n        }\n    }\n}\n\nfn main() {\n    // 创建迭代器实例，生成从 1 到 9 的所有奇数\n    let mut odd_numbers = OddNumbers {\n        current: 1,\n        end: 10,\n    };\n\n    // 通过循环来迭代奇数\n    loop {\n        match odd_numbers.next() {\n            Some(n) =&gt; println!(\"{}\", n),\n            None =&gt; break, // 如果没有更多元素，则退出循环\n        }\n    }\n\n    let odd_numbers = OddNumbers {\n        current: 1,\n        end: 10,\n    };\n    // 使用 for 循环来简化迭代\n    for odd in odd_numbers {\n        println!(\"{}\", odd);\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "闭包与迭代器"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html",
+    "href": "docs/rust/basic/02.quick-start.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "hello.rs\n\n// fn : function\nfn main() {\n    // rust的缩进是4个空格\n    // println! 是一个 rust macro 宏, 不是函数, 如果结尾没有! 则是函数\n    println!(\"hello\"); // 结尾 要有 ;\n    /* let 定义变量及初始化 */\n    // : i32 这种表示 变量x的类型\n    let x: i32 =6;\n    println!(\"{:?}\", x);\n    let y: i32;\n1    println!(\"{:?}\", y);\n\n    // 定义了变量,但是没有使用它,rust会警告你,_开头的 rust不会警告\n    let _z = 5;\n}\n\n\n1\n\n报错, 没有初始化会报错\n\n\nrustc 这个只适合编译简单的程序,大型程序 用cargo\n# -o 输出的名字, 没有则默认文件名\nrustc hello.rs -o main",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#main.rs",
+    "href": "docs/rust/basic/02.quick-start.html#main.rs",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "hello.rs\n\n// fn : function\nfn main() {\n    // rust的缩进是4个空格\n    // println! 是一个 rust macro 宏, 不是函数, 如果结尾没有! 则是函数\n    println!(\"hello\"); // 结尾 要有 ;\n    /* let 定义变量及初始化 */\n    // : i32 这种表示 变量x的类型\n    let x: i32 =6;\n    println!(\"{:?}\", x);\n    let y: i32;\n1    println!(\"{:?}\", y);\n\n    // 定义了变量,但是没有使用它,rust会警告你,_开头的 rust不会警告\n    let _z = 5;\n}\n\n\n1\n\n报错, 没有初始化会报错\n\n\nrustc 这个只适合编译简单的程序,大型程序 用cargo\n# -o 输出的名字, 没有则默认文件名\nrustc hello.rs -o main",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#immutable",
+    "href": "docs/rust/basic/02.quick-start.html#immutable",
+    "title": "斯巴拉稀",
+    "section": "immutable",
+    "text": "immutable\nfn main() {\n    // 变量默认不可变\n    let a: i32 = 5;\n    // a=2;  会直接报错,提示不能修改 不可变的变量\n    println!(\"{:p}\", &a);\n\n    // 申明可变变量\n    let mut c: i32 = 5;\n    c = 7;\n    println!(\"{c}\");\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#shadowing",
+    "href": "docs/rust/basic/02.quick-start.html#shadowing",
+    "title": "斯巴拉稀",
+    "section": "shadowing",
+    "text": "shadowing\nfn main() {\n    let a: i32 = 5;\n    // a=2;  会直接报错,提示不能修改 不可变的变量\n    println!(\"{:p}\", &a);\n    // shadowing  隐藏了上面的变量a\n    let a: i32 = 5;\n    // 与上面的地址不同, 已经是一个不同的变量了,只是用了相同的变量名\n    // 一开始申明的a 被隐藏了\n    println!(\"重新申明的a变量地址: {:p}\", &a);\n\n    let b = 5i32;\n    {\n        // 在这个作用域中, b 也确实shadowing 了外面的b\n        let b = 8i32;\n        println!(\"b 在作用域中的值: {b}\"); // 是8\n    }\n    // 但是在退出块作用域后, b还是5\n    println!(\"作用域外,b的值:{b}\");\n\n    // shadowing 可以使用完全不同的类型, 因为实际就是2个完全不同的变量\n    let b = \"abc\";\n    println!(\"{b}\");\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#常量",
+    "href": "docs/rust/basic/02.quick-start.html#常量",
+    "title": "斯巴拉稀",
+    "section": "常量",
+    "text": "常量\n常量是在编译期就进行求值的. 所以常量 = 的右边是可以使用表达式的\nunsafe章节里有关于static定义的方式\nconst A: u32 = 60 * 60 * 3;\n\nfn main() {\n    // 一般用大写并且下划线来申明常量\n    // 不可修改, 不可shadowing\n    // 不可以使用mut,永远不可变\n    // 可以在任何作用域申明\n    const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;\n    println!(\"{}\", THREE_HOURS_IN_SECONDS);\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#数据类型",
+    "href": "docs/rust/basic/02.quick-start.html#数据类型",
+    "title": "斯巴拉稀",
+    "section": "数据类型",
+    "text": "数据类型\n\n\n\n\n\n\nTip\n\n\n\n标量类型是指那些不可再分的、基本的、单个值的数据类型。 标量类型通常用于存储单一的数据项，如一个数字、一个字符或一个布尔值。 与标量类型相对的是复合数据类型，如数组、列表、对象和结构体，这些类型可以包含多个值\n\n\n\n整型\n\n介绍一些方法\n\n\nuse std::mem;\nfn main() {\n    // 有符号 i8 i16 i32 i64 i128 isize(根据系统架构决定)\n    // 无符号 u8 u16 u32 u64 u128 usize(根据系统架构决定)\n    let a=6;\n    // 打印i32类型的大小\n    println!(\"{}\",mem::size_of::&lt;i32&gt;());\n    // 打印变量占用的内存大小\n    println!(\"{}\",mem::size_of_val(&a));\n    // 十进制 2_100  下划线只是为了增加可读性, 这里相当于美国的千位加,的意思\n    let b:i32=2_100;\n    println!(\"{}\",b);\n    // hex 16进制 0x 开头\n    let c:i32=0xff;\n    println!(\"{}\",c);\n    // 八进制 0o 开头\n    let d:i32=0o12;\n    println!(\"{}\",d);\n    // 二进制\n    let e:i32=0b1111_0000;\n    println!(\"{}\",e);\n    // byte \n    let f:u8=b'A';\n    println!(\"{}\",f);  \n    // 可以使用类型后缀, 在值后边写上\n    let g=5i16;\n    println!(\"{}\",g);\n}\n\n\nfn main() {\n    println!(\"{}\", i32::MAX); // i32最大值\n    println!(\"{}\", 2_u16.pow(4)); // 求指数幂\n    println!(\"{}\", (-4_i32).abs()); // 求绝对值\n    println!(\"{}\", 0b0011_1101_u8.count_ones()); // 位计数(多少个1)\n    // 可以使用这种方式来调用方法\n    println!(\"{}\", i32::abs(-4));\n    println!(\"{}\", i8::count_zeros(0b0011_1101));\n\n    // Checked_ 操作返回一个结果的 Option 值：如果运算结果可以被结果类型正确表示就返\n    // 回 Some(v)，否则返回 None\n    assert_eq!((10_u8).checked_add(20), Some(30));\n    assert_eq!((100_u8).checked_add(200), None);\n\n    // wrapping_ 的结果是对 2的8次方 256的取模得到的余数\n    assert_eq!(16_u8.wrapping_mul(15), 240);\n    assert_eq!(18_u8.wrapping_mul(15), 14);\n\n    // 有符号数的操作可能会回环成负数。\n    // 0111 1111 + 1  =&gt;1000 0000 补码的 -128\n    assert_eq!(127_i8.wrapping_add(1), -128);\n    // 0111 1111 + 1+1  =&gt; 补码 1000 0001 =&gt; 反码:1000 0000 ==&gt; 1111 1111 原码\n    assert_eq!(127_i8.wrapping_add(2), -127);\n\n    // 在移位操作中，移动的位数会回环到该类型的位数之内\n    // 因此对 8位的数字移动 9位等于移动 1位\n    // 0000 0101 相当于左移 1位=&gt; 0000 1010\n    assert_eq!(5_i8.wrapping_shl(9), 10);\n\n    // Saturating_ 操作会返回最接近正确结果的表示,结果被“截断”到这个类型能表示的最大或最小值\n    assert_eq!(127_i8.saturating_add(1), 127);\n\n    // Overflowing_ 操作返回一个 tuple (result, overflowed)，其中result 是回环版本的方法\n    // 返回的结果，而 overflowed 是一个指示是否发生溢出的 bool 值：\n    assert_eq!(255_u8.overflowing_sub(2), (253, false));\n    assert_eq!(255_u8.overflowing_add(2), (1, true));\n    // 只有当位移距离大于等 于类型的位宽度时 overflowed 才为 true\n    // 实际的移位距离等于要求的距离对位宽度取余后的结果\n    // 0000 0101 相当于左移1位 (9%8)=&gt; 0000 1010\n    assert_eq!(5_u8.overflowing_shl(9), (10, true));\n    // 0000 0101 左移6位=&gt; 1 0100 0000: 64\n    assert_eq!(5_u8.overflowing_shl(6), (64, false));\n}\n\n\n\n\n\n浮点数\n\n介绍一些方法提供的一些常量\n\n\nfn main() {\n    let x = 2.0; // f64 默认\n    let y: f32 = 3.0; // f32\n    // 科学计数法\n    let a = 1e6; // f64类型\n    let b = 7.6e-4; // f64类型\n    println!(\"a is {}\", a);\n    println!(\"a is {}\", b);\n}\n\n\nfn main() {\n    // 平方根\n    println!(\"{}\", 8f32.sqrt());\n    println!(\"{}\", 8.2f32.floor()); // 8\n    println!(\"{}\", 8.9f32.floor()); // 8\n    println!(\"{}\", (-8.9f32).floor()); // -9\n    // 方法调用的优先级高于前缀运算符，因此对负数调用方法时确保要用括号括起来\n    println!(\"{}\", -8.9f32.floor()); // -8\n    println!(\"{}\", 8.2f32.round()); // 8\n    println!(\"{}\", 8.5f32.round()); // 9\n}\n\n\nuse std::f32::consts;\nfn main() {\n    // rust 提供了一些常量, 比如 PI\n    println!(\"{}\", consts::PI);\n}\n\n\n\n\n\nbool\nfn main() {\n    let t = true;\n    println!(\"{t}\");\n    // 同样必须初始化,否则报错\n    let f: bool = false;\n    println!(\"{f}\"); // false\n    // bool 可以转 整型\n    let d = false as i8;\n    println!(\"{d}\"); // 0\n    // 整型不能转 bool\n    //    let c = 1i8 as bool;\n}\n\n\nchar\nuse std::mem;\n\nfn main() {\n    let c = 'z'; // 这个是字符, 和前面 b'z' 是整型不同哦\n    println!(\"{}\", mem::size_of_val(&c)); // 4\n    let z: char = 'ℤ';\n    println!(\"{c}-{z}\");\n    // rust 中的char 是 4个字节,Unicode, 可以表示表情\n    let heart_eyed_cat = '😻';\n    println!(\"{heart_eyed_cat}\");\n\n    let a = 'a';\n    println!(\"{}\", a as u8); // 97\n    // 标准库提供了函数 std::char::from_u32 接受\n    // 任何 u32 值，并返回 Option&lt;char&gt;：\n        // 如果 u32 的值不是合法的 Unicode 码点，from_u32 会返回 None；\n        // 否则，它会返回 Some(c)，c 就是作为转换结果的 char\n    let hex_char = char::from_u32(97);\n    println!(\"{:?}\", hex_char);\n}\n\n\ntuple\nfn main() {\n    // 元素可以是多种类型\n    let tup: (i32, f64, u8) = (100, 3.14, 2);\n    println!(\"{},{},{}\", tup.0, tup.1, tup.2);\n    let (x, y, z) = tup;\n    println!(\"{},{},{}\", x, y, z);\n}\n\n\n数组\n\n\n\n\n\n\nTip\n\n\n\n\n元素类型必须一致\n长度是固定的,运行时不能修改, 长度是类型的一部分\n数组是在栈上分配的单个块的内存\n常用于开辟一个固定大小的Buffer作为缓冲区,比如接收IO输入输出等\n\n\n\nfn main() {\n    let x = [1, 2, 3, 4];\n    println!(\"{}\", x[1]);\n    // [i32;5] 表示每个元素是i32,一共有5个元素\n    let x: [i32; 5] = [1, 2, 3, 4, 5];\n    println!(\"{}\", x.len());\n    // 相当于 let x=[3,3,3,3,3];\n    let x = [3; 5];\n    // 下标读取\n    println!(\"{}\", x[2]);\n}\n\n\n切片\n\n\n\n\n\n\nNote\n\n\n\n\n医学上切片的意思是将组织样本切成薄片以便于在显微镜下观察,可以说切片是原物品的一部分\n编程上切片的意思: 原数据一段连续部分的引用,不难推断出它的数据结构是一个原数据的地址和引用的长度\n\n\n\nuse std::mem;\nfn main() {\n    let mut x = [1, 2, 3];\n    println!(\"{}\", mem::size_of_val(&x));  // 12\n    println!(\"{:p}\", x.as_ptr());\n    // 切片是对一块连续内存数据的引用\n    // 由2个部分组成, 一个是data指向数据,一个len 表示长度\n    // 这种比一般指针要多出一些信息的叫 胖指针\n    let y = &mut x[1..3];\n    println!(\"{:p}\", y.as_ptr());\n    println!(\"{}\", y.len());\n    println!(\"{}\", mem::size_of_val(&y));  // 16\n\n    let x = [1, 2, 3, 4, 5];\n    let (a, b) = x.split_at(2);\n    println!(\"{:?}\", a); // [1,2]\n    println!(\"{:?}\", b); // [3,4,5]\n}\n// &[T] 切片的表示方式\nfn analyze_slice(slice: &[i32]) {\n    println!(\"First element of the slice: {}\", slice[0]);\n    println!(\"The slice has {} elements\", slice.len());\n}\nfn main() {\n    let x: [i32; 5] = [2, 1, 4, 3, 5];\n    let y = &x[1..3];\n    analyze_slice(&y);\n\n    let mut chaos = [3, 5, 4, 1, 2];\n    //Rust会隐式的把数组的引用转换为切片\n    chaos.sort();\n    println!(\"{:?}\", chaos);\n    chaos.reverse();\n    println!(\"{:?}\", chaos);\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#类型转换",
+    "href": "docs/rust/basic/02.quick-start.html#类型转换",
+    "title": "斯巴拉稀",
+    "section": "类型转换",
+    "text": "类型转换\nfn main() {\n    let a: i8 = 9;\n    // 需要加上 as 否则报错\n    let b: i32 = a as i32;\n    println!(\"{}\",b);\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#函数",
+    "href": "docs/rust/basic/02.quick-start.html#函数",
+    "title": "斯巴拉稀",
+    "section": "函数",
+    "text": "函数\n\n\n\n\n\n\nTip\n\n\n\n\n语句: 执行动作, 没有返回值\n表达式: 是有一个值的\n函数体是由一系列语句和一个结尾(可以是语句或者表达式)组成\nunit type 单元类型 () 表示一种类型. 表示没有什么特殊的价值, 它的值就是它本身 也是()\n\n\n\n\n语句\nfn main() {\n    // 直接报错, 右边是个语句,没有返回值\n    let x = (let y = 6);\n}\n\n\n表达式\nfn main() {\n    let y = {\n        let x = 3;\n        // 注意没有; , 这样就是表达式了,有返回值\n        // 如果加上; , 那么就变成一个语句了\n        x + 1\n    };\n\n    println!(\"The value of y is: {y}\");\n}\n\n\n返回值\nfn five() -&gt; i32 {\n    // 表达式 ,值为5\n    5\n}\n\nfn main() {\n    let x = five();\n\n    println!(\"The value of x is: {x}\");\n}\n添加;号试试, 会直接报错提示 期望i32, 而实际发现是the unit type ()\n// -&gt; i32 , 表示返回值类型\nfn five() -&gt; i32 {\n    5;\n}\n我们将上面的返回值类型改成 () , 这样就不会报错了\nfn five() -&gt; () {\n    5;\n}\n实际上就是不用写返回值 的类型\n// 没有指明返回值的, 那么返回值类型就是 unit type :()\nfn five(){\n    5;\n}\nfn main() {\n    // 单元值判断\n    if five() == () {\n        // ok的\n        println!(\"ok\");\n    }\n}\nfn t() {\n    // 这里返回了5, 要求的是(),所以会提示错误\n    5\n}\n\n\n函数内部创建函数\nfn main() {\n    // 函数内部可以定义函数\n    fn add(t1: i32, t2: i32) -&gt; i32 {\n        t1 + t2\n    }\n    let r = add(1, 2);\n    print!(\"{}\", r);\n}\n\n\n函数的类型\nfn add1(t: (i32, i32)) -&gt; i32 {\n    t.0 + t.1\n}\n// 实际看来 与add1 参数一样\nfn add2((t1, t2): (i32, i32)) -&gt; i32 {\n    t1 + t2\n}\nfn main() {\n    let a = 1;\n    let b = 2;\n    let c = (1, 2);\n    println!(\"{}\", add1(c));\n    println!(\"{}\", add2((a, b)));\n\n    // f1的类型是 fn (t: (i32, i32)) -&gt; i32\n    let f1 = add1;\n    // 报错了 expected fn item, found a different fn item\n    // 不同的类型, 所以报错了.\n    // f1 = add2;\n\n    // 正确的方式是 定义变量时将 他的类型设置为 fn item 通用的fn 类型\n    let f1 = add1 as fn((i32, i32)) -&gt; i32;\n    println!(\"{}\", f1((1, 2)));\n\n    // 这样定义也可以\n    let mut f1: fn((i32, i32)) -&gt; i32 = add1;\n    f1 = add2; // 不会报错了\n    println!(\"{}\", f1((a, b)));\n}\n\n\n发散函数 !\ndiverging functions, ! 被称为 The Never Type\n我们知道前面提到的函数其实都是有返回值, 即使是没有返回值的函数, 也会返回一个 () 单元类型的值\n那么一个 永远不会返回的函数它有返回值吗? 还有 panic 这种函数呢?\nfn main() {\n    let a = bar();\n    a=2;// 虽然不会执行到这里, 但是编译器不会报错\n    println!(\"{}\", a);\n}\n// 返回 ! never type\nfn bar() -&gt; ! {\n    loop {\n        print!(\"and ever \");\n    }\n}\n\nfn foo() -&gt;!{\n    panic!(\"error\");\n}\n下面我们都知道会报错\nfn main() {\n    let guess = \"42\";\n    let guess = match guess.trim().parse() {\n        Ok(_) =&gt; 5,\n        Err(_) =&gt; \"hello\", // 报错了\n    };\n}\n下面这个没有报错\nfn main() {\n    let r = bar();\n}\nfn bar() -&gt; ! {\n    let guess = \"42\";\n    loop {\n        let guess = match guess.trim().parse::&lt;i32&gt;() {\n            Ok(_) =&gt; 5,\n            Err(_) =&gt; continue, // ! 类型可以被转换为任何类型\n        };\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#控制流程",
+    "href": "docs/rust/basic/02.quick-start.html#控制流程",
+    "title": "斯巴拉稀",
+    "section": "控制流程",
+    "text": "控制流程\n\nif\nfn main() {\n    let number = 3;\n    // 报错的, 需要bool类型\n    if number {\n        println!(\"number was three\");\n    }\n\n    let condition = true;\n    let number = if condition { 5 } else { 6 };\n\n    println!(\"The value of number is: {number}\");\n    let number2 = if condition {\n        5;\n        7  // 还是看的返回值\n    } else {\n        6\n    };\n\n    println!(\"The value of number is: {number2}\");\n\n    // 报错\n    let number3 = if condition { 5 } else { \"six\" };\n}\n\n\nloop\nfn main() {\n    let mut i = 0;\n    let ret = loop {\n        i += 1;\n        if i &gt; 10 {\n            break i; // 返回值, 就是loop的返回值\n        }\n    };\n    println!(\"{}\", ret)\n\n    let y: i32;\n    // 编译器是能够判断出 后面的打印时, y肯定已经赋值了.\n    let x = loop {\n        y = 1;\n        break;\n    };\n    println!(\"{:?}\", x);\n    println!(\"{:?}\", y);\n}\n跳出多层 loop\n#![allow(unreachable_code, unused_labels)]\nfn main() {\n    'outer: loop {\n        println!(\"Entered the outer loop\");\n\n        'inner: loop {\n            println!(\"Entered the inner loop\");\n            // This would break only the inner loop\n            //break;\n            // This breaks the outer loop\n            break 'outer;\n        }\n        println!(\"This point will never be reached\");\n    }\n    println!(\"Exited the outer loop\");\n}\n\n\nfor (and range)\n标签 label loop使用也一样\nfn main() {\n    // label 前面有个 ' 单引号\n    'outer: for i in 0..5 {\n        println!(\"Outer loop value: {}\", i);\n\n        for j in 0..5 {\n            println!(\"Inner loop value: {}\", j);\n\n            if i == 2 && j == 3 {\n                break 'outer;\n            }\n        }\n    }\n\n    let a = [10, 20, 30, 40, 50];\n\n    for element in a {\n        println!(\"the value is: {element}\");\n    }\n\n    // (1..4)  1 2 3\n    // 会提示不需要 用 () 将1..4 阔气来\n    for number in (1..4) {\n        println!(\"{number}!\");\n    }\n    // 不包含4\n    for number in 1..4 {\n        println!(\"{number}!\");\n    }\n    // =4 包含4\n    for number in 1..=4 {\n        println!(\"{number}\");\n    }\n\n    for number in 1.. {\n        if number == 10 {\n            break;\n        }\n        println!(\"{}\", number);\n    }\n\n    use std::ops::Range;\n    let a = Range { start: 1, end: 10 };\n    for j in a {\n        println!(\"{}\", j);\n    }\n    // x 是一个RangeFrom&lt;i32&gt; 类型\n    let x = (0..);\n    // Range\n    let x = (0..5);\n}\n数组来测试 range\n\n#[cfg(test)] //配置测试模块\nmod abc {\n    #[test] //单元测试用例\n    fn it_works() {\n        let result = 2 + 2;\n        assert_eq!(result, 4);\n    }\n    #[test]\n    fn arr_range() {\n        let arr = [0, 1, 2, 3, 4];\n        assert_eq!(arr[..], [0, 1, 2, 3, 4]);\n        assert_eq!(arr[..3], [0, 1, 2]);\n        assert_eq!(arr[..=3], [0, 1, 2, 3]);\n        assert_eq!(arr[1..], [1, 2, 3, 4]);\n        assert_eq!(arr[1..3], [1, 2]); // This is a `Range`\n        assert_eq!(arr[1..=3], [1, 2, 3]);\n        assert_eq!((3..5), std::ops::Range { start: 3, end: 5 });\n    }\n}\n\n\nwhile\nfn main() {\n    let z: i32;\n    while true {\n        z = 1;\n        break;\n    }\n    // 打印这个的时候, 编译器无法直到 z到底是不是赋值了,\n    // 因为他认为while 能否进去是要判断的,\n    // 当然我们一看就知道是true 能进去,但是编译器不行\n    // 相比while loop 肯定是能进去的.\n    println!(\"{}\", z); //报错了\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#测试",
+    "href": "docs/rust/basic/02.quick-start.html#测试",
+    "title": "斯巴拉稀",
+    "section": "测试",
+    "text": "测试\n#[cfg(test)]  //配置测试模块\nmod tests {\n    #[test]  //单元测试用例\n    fn it_works() {\n        let result = 2 + 2;\n        assert_eq!(result, 4);\n    }\n    // 再来一个测试用例\n    #[test]\n    fn it_works2() {\n        let result = 2 + 2;\n        assert_eq!(result, 4);\n    }\n}\ncargo test",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#查看汇编",
+    "href": "docs/rust/basic/02.quick-start.html#查看汇编",
+    "title": "斯巴拉稀",
+    "section": "查看汇编",
+    "text": "查看汇编\nrustc --emit=asm main.rs",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/02.quick-start.html#打印信息",
+    "href": "docs/rust/basic/02.quick-start.html#打印信息",
+    "title": "斯巴拉稀",
+    "section": "打印信息",
+    "text": "打印信息\n\n打印变量类型名\nuse std::any::type_name;\n\nfn print_type_of&lt;T&gt;(_: &T) {\n    println!(\"{}\", type_name::&lt;T&gt;());\n}\n\nfn main() {\n    let x = 42;\n    print_type_of(&x); // 输出: i32\n\n    let y = 3.14;\n    print_type_of(&y); // 输出: f64\n\n    let z = \"hello\";\n    print_type_of(&z); // 输出: &str\n}\n\n\n常用打印\n\nformat!: 格式化文本到 String\nprint!: 同format! 只不过输出到 (io::stdout).\nprintln!: 同print! 但是换行\neprint!: 同 print! 只不过输出到 (io::stderr).\neprintln!: 同eprint! 但是换行\n\nfn main() {\n    println!(\"{} days\", 31);\n    // 多个可以使用 0 1 指定\n    println!(\"{0}, this is {1}. {1}, this is {0}\", \"Alice\", \"Bob\");\n    let x = \"Alice\";\n    let y = \"Bob\";\n    println!(\"{x}, this is {y}. {y}, this is {x}\");\n    println!(\"{a}, this is {b}. {b}, this is {a}\", a = \"Alice\", b = \"Bob\");\n    println!(\"Base 10:               {}\", 69420); // 69420\n    println!(\"Base 2 (binary):       {:b}\", 69420); // 10000111100101100\n    println!(\"Base 8 (octal):        {:o}\", 69420); //八进制: 207454\n    println!(\"Base 16 (hexadecimal): {:x}\", 69420); //16禁止: 10f2c\n                                                    // &gt; 表示往右对齐,然后这里左边填充\n    println!(\"|{number:&gt;5}|\", number = 1); // 4个空格 和一个1\n    println!(\"{number:0&gt;5}\", number = 1); // 用0填充 :   00001\n    println!(\"{number:0&lt;5}\", number = 1); // 用0填充 :   10000\n                                          // 注意 需要 $\n    println!(\"{number:0&gt;width$}\", number = 1, width = 5);\n\n    let number: f64 = 1.0;\n    let width: usize = 5;\n    println!(\"{number:&gt;width$}\");\n}\n\n\nDebug\n所有实现了fmt::Debug这个trait(暂时不用管这个概念)的类型,才能使用println!(\"{:?}\")中{:?}或{:#?}这种打印方式\nstruct Cat(i32);\n\n#[derive(Debug)] // 添加这个就自动实现了Debug trait\nstruct Dog(i32);\nfn main() {\n    println!(\"Cat: {:?} \", Cat(5)); // 报错了\n    println!(\"Dog: {:?} \", Dog(5)); // ok\n}\n\n\nDisplay\n所有实现了fmt::Display这个trait(暂时不用管这个概念)的类型,才能使用println!(\"{}\")中{}这种打印方式\nuse std::fmt;\nstruct Point2D {\n    x: f64,\n    y: f64,\n}\n\n// implement `Display` for `Point2D`.\nimpl fmt::Display for Point2D {\n    fn fmt(&self, f: &mut fmt::Formatter) -&gt; fmt::Result {\n        // Customize so only `x` and `y` are denoted.\n        write!(f, \"x: {}, y: {}\", self.x, self.y)\n    }\n}\nfn main() {\n    let p = Point2D { x: 3.3, y: 7.2 };\n    println!(\"p: {}\", p);\n    // 实现了Display, 就能.to_string() 获取字符串 String\n    println!(\"{}\", p.to_string());\n}",
+    "crumbs": [
+      "基础篇",
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/12.crate-mod.html#crate",
+    "href": "docs/rust/basic/12.crate-mod.html#crate",
+    "title": "斯巴拉稀",
+    "section": "crate",
+    "text": "crate\nRust 程序由 crate组成. 每个 crate 都是既完整又内聚的单元,包括单个库(library)或可执行程序的所有源代码,以及任何相关的测试、示例、工具、配置和其他杂项\ncrate root 是源代码文件,编译器会从这里开始组成你的crate的根module\ncargo new hello\ncd hello\ntree\n.\n├── Cargo.toml\n└── src\n    ├   # 这个是 binary crate 的crate root\n    ├   # 这个 binary crate 的名字与package相同, hello\n    └── main.rs\n# 我们手动创建一个library crate\n# 这个 library crate 的名字也是与package相同,hello\ntouch src/lib.rs # 这个文件默认就是 library crate 的crate root\nCargo.toml 没有指定上面2个文件名是 crate root ,因为这个是一种默认约定, 就像go里的main.go, cargo 会把crate root 文件给 rustc来构建",
+    "crumbs": [
+      "基础篇",
+      "模块系统"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/12.crate-mod.html#module",
+    "href": "docs/rust/basic/12.crate-mod.html#module",
+    "title": "斯巴拉稀",
+    "section": "module",
+    "text": "module\n模块是组织代码的一种方式,它允许你将代码分割到不同的文件中,并让每个文件只包含相关的代码. 模块可以嵌套,并且可以被任意数量的模块使用\nmod front_of_house {\n    mod hosting {\n        fn add_to_waitlist() {}\n        fn seat_at_table() {}\n    }\n    mod serving {\n        fn take_order() {}\n        fn serve_order() {}\n        fn take_payment() {}\n    }\n}\n前面我们说到 src/main.rs and src/lib.rs 之所以被称为 crate root, 这是因为 main.rs或lib.rs 文件的内容形成了一个名字叫做 crate的模块,位于module tree的root位置\n上面代码的 module tree\ncrate #(根部,名字为crate的模块)\n └── front_of_house # (名字为front_of_house的模块)\n     ├── hosting #(名字为hosting的模块)\n     │   ├── add_to_waitlist\n     │   └── seat_at_table\n     └── serving #(名字为serving的模块)\n         ├── take_order\n         ├── serve_order\n         └── take_payment\n就像目录一样, 这样我们是不是就可以像目录一样的访问方式去找到我们的模块",
+    "crumbs": [
+      "基础篇",
+      "模块系统"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/12.crate-mod.html#path",
+    "href": "docs/rust/basic/12.crate-mod.html#path",
+    "title": "斯巴拉稀",
+    "section": "path",
+    "text": "path\n.\n├── Cargo.toml\n└── src\n    ├── lib.rs\n    └── main.rs\n\n\nsrc/lib.rs\n\nmod front_of_house {\n    // hosting 是模块, 是front_of_house 私有的\n    // 如果要让外部访问, 需要 + pub\n    pub mod hosting {\n        // 同理\n        pub fn add_to_waitlist() {}\n    }\n}\n\npub fn eat_at_restaurant() {\n    // 绝对路径调用, 这个lib.rs 文件隐含着 形成的 名为 crate的模块\n    // 因为 front_of_house 和 eat_at_restaurant 在同一个crate中,\n    // 注意 eat_at_restaurant 是方法,不是模块, 所以它是在 根模块 crate 中\n    // 好比 linux的目录 / 中, 而 front_of_house 是模块, 就好比 /front_of_house 目录\n    // 所以可以直接使用 crate:: 来,不需要 pub front_of_house\n    crate::front_of_house::hosting::add_to_waitlist();\n\n    // 相对路径\n    // 好比在目录 / 中访问 front_of_house/hosting/add_to_waitlist\n    front_of_house::hosting::add_to_waitlist();\n\n    let mut meal = back_of_house::Breakfast::summer(\"Rye\");\n    meal.toast = String::from(\"Wheat\");\n    println!(\"I'd like {} toast please\", meal.toast);\n\n    //  seasonal_fruit 是私有的, 无法访问\n    // meal.seasonal_fruit = String::from(\"blueberries\");\n}\n\nfn deliver_order() {}\n\nmod back_of_house {\n    fn fix_incorrect_order() {\n        cook_order();\n        // super 父模块 ,得到根模块 crate\n        // 子模块访问父模块的方法, 方法不需要pub\n        super::deliver_order();\n        // 绝对路径\n        crate::deliver_order();\n    }\n\n    fn cook_order() {\n        // 父模块访问子模块 fridge里的方法, 方法需要pub\n        fridge::get_item();\n    }\n\n    mod fridge {\n        pub fn get_item() {}\n    }\n\n    // 结构体的 权限\n    pub struct Breakfast {\n        pub toast: String, // pub\n        seasonal_fruit: String, //私有\n    }\n\n    impl Breakfast {\n        pub fn summer(toast: &str) -&gt; Breakfast {\n            Breakfast {\n                toast: String::from(toast),\n                seasonal_fruit: String::from(\"peaches\"),\n            }\n        }\n    }\n    // 枚举的权限, 只要 pub enum ,成员变体就全是pub了\n    pub enum Appetizer {\n        Soup,\n        Salad,\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "模块系统"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/12.crate-mod.html#use",
+    "href": "docs/rust/basic/12.crate-mod.html#use",
+    "title": "斯巴拉稀",
+    "section": "use",
+    "text": "use\n\n\n\n\n\n\nTip\n\n\n\nuse 语句将路径引入到当前作用域,从而允许你使用路径中指定的名称\n\n\n\nmod\nmod front_of_house {\n    pub mod hosting {\n        pub fn add_to_waitlist() {}\n        pub struct Dog {}\n    }\n}\n// 将hosting 引入当前作用域, 这样 就能直接使用 这个hosting模块\n// 相当于在 crate 根模块中 定义了 hosting 模块\n1use crate::front_of_house::hosting;\n// 使用相对路径, as 别名\nuse front_of_house::hosting as hosting2;\n// 引入函数一般是引入到父级模块\n// 可以use 引入具体的函数,但是一般我们不这样弄,\n// 因为 最后是让你自己知道使用的函数是引入的模块里的还是你自己这里定义的\nuse front_of_house::hosting::add_to_waitlist as waitlist;\n// 如果是引入 struct enum 等其他不是函数的东西 ,一般就use 到 具体的struct,enum.\nuse front_of_house::hosting::Dog;\n\n// 外部代码 默认是不能访问, use 还需要 加上pub\n// pub use 表示导出, 这样外部代码就能 导入到它的作用域\npub use front_of_house::hosting as pub_hosting;\n\npub fn eat_at_restaurant() {\n    hosting::add_to_waitlist();\n    hosting2::add_to_waitlist();\n    waitlist();\n    let a = Dog {};\n}\n\nmod back_of_house {\n    use crate::front_of_house::hosting;\n\n    fn take() {\n        // 当前这个 back_of_house 模块下想直接使用, 还是得 use 引入\n        // add_to_waitlist 还是必须pub\n        hosting::add_to_waitlist();\n        // 使用super 来\n        super::hosting::add_to_waitlist();\n    }\n}\n\n1\n\n将hosting 引入当前作用域, 这样 就能直接使用 这个hosting模块 相当于在 crate 根模块中 定义了 hosting 模块\n\n\n\n\npackage\n\n\n\n\n\n\n使用外部package\n\n\n\n\nCargo.toml 添加要依赖的包\n代码中使用 use 将包引入到自己的作用域\n虽然std标准库也是外部包,但是已经被内置,所以不需要Cargo.toml 中添加\n\n\n\n添加包\ncargo add rand\n查看一下Cargo.toml\n[package]\nname = \"hello\"\nversion = \"0.1.0\"\nedition = \"2021\"\n[dependencies]\nrand = \"0.8.5\"\nuse rand::Rng;  // 引入添加的外部包\nuse std::collections::HashMap; // 引入标准库\nfn main() {}\n\n\nuse 其他语法\nuse std::cmp::Ordering;\nuse std::io;\n使用{} 来简写\nuse std::{cmp::Ordering, io};\nuse std::io;\nuse std::io::Write;\n使用 self\nuse std::io::{self, Write};\n使用*\nuse std::collections::*;",
+    "crumbs": [
+      "基础篇",
+      "模块系统"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/12.crate-mod.html#模块拆分",
+    "href": "docs/rust/basic/12.crate-mod.html#模块拆分",
+    "title": "斯巴拉稀",
+    "section": "模块拆分",
+    "text": "模块拆分\n1mod front_of_house;\n\npub use crate::front_of_house::hosting;\n\npub fn eat_at_restaurant() {\n    hosting::add_to_waitlist();\n}\n\n1\n\n如果我们在定义mod 时, 模块名后面跟着 ; 号,那么rust会从src目录下找与模块同名的文件,里面的内容就是这个模块的定义\n\n\n\n\nsrc/front_of_house.rs\n\npub mod hosting {\n    pub fn add_to_waitlist() {\n        println!(\"hello\");\n    }\n}\n\n我们继续将front_of_house.rs里的hosting模块进行拆分\n\n\nsrc/front_of_house.rs\n\npub mod hosting;\n\ncd src\nmkdir -p front_of_house\n我们需要在 front_of_house 目录下创建hosting.rs 文件\n\n\nsrc/front_of_house/hosting.rs\n\npub fn add_to_waitlist() {\n    println!(\"hello\");\n}",
+    "crumbs": [
+      "基础篇",
+      "模块系统"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/12.crate-mod.html#参考链接",
+    "href": "docs/rust/basic/12.crate-mod.html#参考链接",
+    "title": "斯巴拉稀",
+    "section": "参考链接",
+    "text": "参考链接\ncrates.io github crates.io",
+    "crumbs": [
+      "基础篇",
+      "模块系统"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html",
+    "href": "docs/rust/basic/03.ownership.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "所有权是rust用来管理内存的一系列规则",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#所有权规则",
+    "href": "docs/rust/basic/03.ownership.html#所有权规则",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "所有权是rust用来管理内存的一系列规则",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#变量作用域",
+    "href": "docs/rust/basic/03.ownership.html#变量作用域",
+    "title": "斯巴拉稀",
+    "section": "变量作用域",
+    "text": "变量作用域\nfn main() {\n    println!(\"{}\", 1);\n    {// 这一行时  s 变量 还没申明, 不可用\n        let s = \"hello\"; // s 变量可用\n\n        // do stuff with s\n    } // 这个作用域结束了, s 变量无效了\n    // println!(\"{}\", s); // cannot find value s in this scope\n}\n    {\n        let s = String::from(\"hello\");\n    }\n    // s 无效了\n\n\n\n\n\n\n为什么内存在持有它的变量离开作用域后会被无效了呢?\n\n\n\n当变量离开作用域, Rust 会调用一个名为{==drop==}的特殊函数\n设计string类型的作者可以在该drop函数中写一些释放内存的代码,以此实现自动释放内存的功能\n不同类型变量的drop的实现可能不一样\nRust 在结尾的 } 处会自动调用 drop",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#move-copy",
+    "href": "docs/rust/basic/03.ownership.html#move-copy",
+    "title": "斯巴拉稀",
+    "section": "Move & Copy",
+    "text": "Move & Copy\n\ncopy\n类型实现了 Copy trait 则会被copy\nfn main() {\n    let x = 5;\n    // 将x的值copy 给y, 2个变量同时存在\n    // 因为这里是直接在栈上,拷贝起来是非常快的\n    // 所以在设计上就直接简单复制,对比看后面的字符串的情况\n    let y = x;\n    println!(\"{:p}-{:p}\", &x, &y);\n    println!(\"{x},{y}\");\n}\n不可变引用的赋值\nfn main() {\n    let a = 1;\n    let b = &a;\n    let c = b; // copy\n\n    println!(\"{b}\"); //ok\n    println!(\"{c}\");\n}\n\n\nmove\nfn main() {\n    // s1 拥有这个hello字符串的所有权\n    let s1 = String::from(\"hello\");\n    println!(\"{:p}\", &s1);\n    // s1 没有了 hello字符串的所有权,s1 将处于不可用状态\n    //  转移给了 s2,s2有了所有权\n    let s2 = s1;\n    println!(\"{:p}\", &s2);\n    // 提示错误 : borrow of moved value,s1 已经被borrow了\n    // println!(\"{s1}\");\n    println!(\"{s2}\");\n}\n\n\n\n\n\n\n字符串为啥设计成move?\n\n\n\n\ns2=s1 实际会将栈上的数据复制一份\n如果这个时候 s1和s2 离开作用域, 那么要drop(释放堆上实际的字符串)了,会做释放同一块内存的操作,导致double free error,这样有安全问题\n既然这样rust 设计成让执行 s2=s1的时候, 让s1 无效,这样s1跳出作用域时,不需要free了, 这就是 Move ,s1 was moved into s2\n\n\n\n\n可变引用的赋值操作\nfn main() {\n    let mut a = 1;\n    let b = &mut a;\n    let c = b;\n    // 报错了\n    // 因为 b 已经移动给了 c, b 已经不可用了\n    println!(\"{b}\");\n}\n\n\n\n\n\n\nImportant\n\n\n\nrust 永远不会做深拷贝的事情,因为开销大,当然除非你主动\n\n\n    let s1 = String::from(\"hello\");\n    // 深拷贝了\n    let s2 = s1.clone();\n\n    println!(\"s1 = {}, s2 = {}\", s1, s2);\n\n\nmove 还是 copy",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#函数传参所有权问题",
+    "href": "docs/rust/basic/03.ownership.html#函数传参所有权问题",
+    "title": "斯巴拉稀",
+    "section": "函数传参所有权问题",
+    "text": "函数传参所有权问题\n\n\n官方例子\nfn main() {\n    let s = String::from(\"hello\");\n    // s move into 函数\n    takes_ownership(s);\n    // 所以s 这个时候已经不可用了.\n    // println!(\"{s}\"); //报错了\n\n    let x = 5;\n    // x would move into the function,\n    // 但是 x 是i32 类型,在栈上,前面说过它会 copy 操作\n    makes_copy(x);\n    println!(\"{x}\"); // 这里还是可以访问的\n} // Here, x goes out of scope, then s. But because s's value was moved, nothing\n  // special happens.\n\nfn takes_ownership(some_string: String) {\n    // some_string comes into scope\n    println!(\"{}\", some_string);\n} // 跳出作用域,some_string 指向的堆以及自身(栈会弹)都会被drop, 内存会释放\n\nfn makes_copy(some_integer: i32) {\n    // some_integer comes into scope\n    println!(\"{}\", some_integer);\n} // Here, some_integer goes out of scope. Nothing special happens.\nTODO",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#函数返回值所有权",
+    "href": "docs/rust/basic/03.ownership.html#函数返回值所有权",
+    "title": "斯巴拉稀",
+    "section": "函数返回值所有权",
+    "text": "函数返回值所有权\nfn main() {\n    let s1 = gives_ownership();\n\n    let s2 = String::from(\"hello\");\n\n    // s2 move 给了 takes_and_gives_back的参数\n    // takes_and_gives_back 返回值 move 给了 调用者, 给了s3\n    let s3 = takes_and_gives_back(s2);\n} // Here, s3 goes out of scope and is dropped. s2 was moved, so nothing\n  // happens. s1 goes out of scope and is dropped.\n\n// 会将返回值 move 给它的调用者\nfn gives_ownership() -&gt; String {\n    let some_string = String::from(\"yours\");\n\n    // 这个会作为返回值, move 给 当前函数的调用者\n    some_string\n}\n\n// This function takes a String and returns one\nfn takes_and_gives_back(a_string: String) -&gt; String {\n    // a_string comes into\n    // scope\n\n    a_string // a_string is returned and moves out to the calling function\n}",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/03.ownership.html#借用-borrow",
+    "href": "docs/rust/basic/03.ownership.html#借用-borrow",
+    "title": "斯巴拉稀",
+    "section": "借用 borrow",
+    "text": "借用 borrow\n前面调用函数我们发现,每次调用函数,都会有 taking ownership 和 returning ownership,很烦, 有没有 可以直接使用某个值,而不需要 转移所有权的呢? –&gt; 引用\n\n\n\n\n\n\nTip\n\n\n\n我们想一想: 你引用某个文章, 这个文章肯定不是你的,对吧, 就好像你借了别人东西来用一样, 所有权还是别人的. 所以在rsut中 引用也叫借用\n\n\n& 表示引用某些值, 而不取得其所有权\nfn main() {\n    let s1 = String::from(\"hello\");\n    // &s1, 引用s1,  知道s1的地址, 就意味着 知道它的值\n    let len = calculate_length(&s1);\n\n    println!(\"The length of '{}' is {}.\", s1, len);\n}\n\nfn calculate_length(s: &String) -&gt; usize {\n    s.len()\n}//s 并不拥有 s1变量指向的值的所有权, 所以当 drop 后, s1变量指向的值不会free\n\n不可变和可变\nfn main() {\n    let s = String::from(\"hello\");\n\n    // changeImmutable(&s);\n\n    // 字符串 需要 可变\n    let mut s2 = String::from(\"hello\");\n    // 引用也需要可变\n    changeMutable(&mut s2);\n    println!(\"{:?}-{:?}\", s.as_ptr(), s2.as_ptr());\n\n}\n\nfn changeImmutable(some_string: &String) {\n    some_string.push_str(\", world\");  //报错了\n}\n// 参数需要可变\nfn changeMutable(some_string: &mut String) {\n    // some_string.push_str(\", world\");\n    some_string.pop();\n}\n\n\n编译是否成功的判断方法\n\n\n\n\n\n\n含引用的代码,编译是否成功的判断逻辑\n\n\n\n\nrust 希望你是明确知道自己是想要如何使用这块内存,然后正确定义合适的变量\n如果你使用不可变引用\n\n那么定义这个不可变引用后到最后一次使用它之前, 你肯定是希望它指向的数据不会被修改, 要不然你用个屁的不可变啊\n所以在定义一个不可变引用后 &a,你修改了a的数据, 然后你再使用这个不可变引用,那么就报错了,因为这和你的初衷是违背的\n\n如果你使用了可变引用\n\n那么定义这个可变引用后到最后一次使用它之前, 你肯定不希望有其他人来修改它,你希望只有你自己可以修改a的值,就是你在最后使用它之前,对 a 完全可控的,你不希望在读取它之前,被其他人修改\n所以在定义一个可变引用后, 你要确保你最后在使用它之前, 没有其他人修改它\n\n你可以认为 从你定义引用后到最后一次使用这个引用这段代码块是你这个引用变量的作用域\n\n前面的逻辑是我从 rust为什么要这样设计去思考得出的结论\n这里说的作用域是网上有这样说, 我觉得刚好符合我的逻辑思考,觉得挺好.\n\n\n\n\n报错的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    a = 31; // 这里提示错误\n    // 在使用这个 可变引用前,有其他人对a做了修改了\n    // 这不符合 定义可变引用的初衷\n    println!(\"{}\", b);\n}\n正确的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    *b = 11;\n    // 前面自己修改, 最后使用的地方, 都是想要的结果\n    // 用作用域来理解 也ok的\n    println!(\"{}\", b);\n    a = 31;\n    println!(\"{}\", a);\n}\n作用域\nfn main() {\n    let mut s2 = String::from(\"hello\");\n    {\n        let r3 = &mut s2;\n        println!(\"{}\", r3);\n    } // 这个时候r3 drop了. 所以后面 可以有 r4\n    let r4 = &mut s2;\n    println!(\"{}\", r4);\n}\n多个可变引用,ok的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    println!(\"{}\", b);\n    let c = &mut a;\n    println!(\"{}\", c);\n}\n报错的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    let c = &mut a;\n    // 你使用b的时候,前面有 个c 可能做 对a的修改\n    // 这样你这里使用b时,可能就不是你想要的结果了.\n    // 按照前面的说法, 可以理解为: 一个作用域内 只能有一个可变引用\n    println!(\"{}\", b);\n    println!(\"{}\", c);\n}\n报错了\nfn main() {\n    let mut a = 3;\n    let b = &a;\n    let c = &mut a;\n    // 报错了, 你使用不可变引用,但是前面c 可能会修改a\n    println!(\"{}\", b);\n    println!(\"{}\", c);\n}\n多个不可变引用\nfn main() {\n    let mut s = String::from(\"hello\");\n    // 在有一个可变引用之前的 多个不可变引用, 完全ok\n    // 这个道理很好理解,因为在 可变引用之前,变量不存在竞争\n    let a1 = &s; // 不可变引用\n    let a2 = &s; // 多个不可变引用 ,可以的\n    // 关键: 因为在可变引用之前,所以使用的时候,不会出现被修改的情况\n    println!(\"{}-{}\", a1, a2);\n    let x1 = &mut s; // 可变引用\n    println!(\"{}\", x1);\n}\n报错\nfn main() {\n    let mut s = String::from(\"hello\");\n    let a1 = &s;\n    let a2 = &s;\n    s.push_str(\"world\");  // 同样会报错\n    // 因为这个时候, s 已经被修改了, 不可变引用的意义没了\n    println!(\"{}-{}\", a1, a2);\n}\n\n\n悬挂引用\nrust 编译器会直接报错\nfn main() {\n    let reference_to_nothing = dangle();\n}\n\nfn dangle() -&gt; &String {\n    let s = String::from(\"hello\");\n\n    &s\n} // s drop 掉了, 所在内存被释放了. &s 引用了一个不可控的内存\n\n\nreborrow (好好看看)\n\n可变借用直接赋值\n报错的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    let c = b;  // 被move掉了, \n    println!(\"{}\", b); //报错\n    println!(\"{}\", c);\n}\n报错了, 你可能以为这不和上面一样吗, b move给了c, 你打印b肯定错了\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    let c: &mut i32 = b;\n    println!(\"{}\", b);\n    println!(\"{}\", c);\n}\n实际上我们看下报错信息,非常有意思, 竟然说b被可变借用了,而不是move给了c?\n\n\nerror信息\n\nerror[E0502]: cannot borrow `b` as immutable because it is also borrowed as mutable\n --&gt; src/main.rs:5:20\n  |\n4 |     let c: &mut i32 = b;\n  |                       - mutable borrow occurs here\n5 |     println!(\"{}\", b);\n  |                    ^ immutable borrow occurs here\n6 |     println!(\"{}\", c); //\n  |                    - mutable borrow later used here\n\n先看下这个类比\nfn main() {\n    let mut b = 1;\n    let c=&mut b;\n    // 报错了 b的一个不可变借用在一个可变借用的包围圈里\n    // 这里我再说下我自己对于前面理论的一种理解\n    // 可能有人觉得 这里不可变借用就刚好是我想要的结果,即使前面c对b做了修改\n    // 我想编译器可不会搞这么细, 我想它是认为你在可变借用包围里,可能被修改了\n    // 就好比\n    /*\n    let d=&b;\n    *c=11;  ---&gt; 可能有这种情况的,所以编译器不会搞那么细,直接交集就当错\n    println!(\"{}\", d);\n    */\n    println!(\"{}\", b);\n    println!(\"{}\", c);\n}\n再看看前面的 let c: &mut i32 = b; 说是b被可变借用了,怎么就可变借用了? 只有下面这种可能了 let c: &mut i32 = b; 估计是等价于\nlet c= &mut *b; // 这样b 确实可以说被可变借用了\n完整类比\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    let c = &mut *b;\n    println!(\"{}\", b);\n    println!(\"{}\", c);\n}\n现在在看看正确的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    // c是(*b)的可变借用,认为与a无关, 虽然实际和 &mut a一样\n    // 这样 实际上 就好像有 a的2个可变借用,且还有交集的样子\n    let c = &mut *b;\n    *c = 4;\n    println!(\"{}\", c);\n    println!(\"{}\", b);\n}\n\n\n可变借用函数传参\n我是最先测试函数传可变借用时,发现奇怪现象的\nfn main() {\n    let mut a = 3;\n    let b = &mut a;\n    ppp(b);\n    // ppp(&mut a); // 对比这个,如果用这个,就会报错了\n    println!(\"{b}\"); // ok\n}\n// 相当于 let s:&mut i32=b;\nfn ppp(s: &mut i32) {\n    *s = 11;\n}\n同样的,b 没有发生 move",
+    "crumbs": [
+      "基础篇",
+      "所有权"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/07.generic.html",
+    "href": "docs/rust/basic/07.generic.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "fn largest_i32(list: &[i32]) -&gt; &i32 {\n    let mut largest = &list[0];\n\n    for item in list {\n        if item &gt; largest {\n            largest = item;\n        }\n    }\n\n    largest\n}\n\nfn largest_char(list: &[char]) -&gt; &char {\n    let mut largest = &list[0];\n\n    for item in list {\n        if item &gt; largest {\n            largest = item;\n        }\n    }\n\n    largest\n}\n\nfn main() {\n    let number_list = vec![34, 50, 25, 100, 65];\n\n    let result = largest_i32(&number_list);\n    println!(\"The largest number is {}\", result);\n\n    let char_list = vec!['y', 'm', 'a', 'q'];\n\n    let result = largest_char(&char_list);\n    println!(\"The largest char is {}\", result);\n}\n我们发现 同样的逻辑代码,我们写了2遍, 很麻烦,重复代码, 使用泛型来作为具体类型的抽象\n泛型是一种类型,在函数中使用它作为参数的类型,是需要申明的,首先肯定不会和参数的申明放在一块,所以rust在函数名和参数列表之间使用&lt;T&gt;,一般用T来作为泛型标识\n// T: std::cmp::PartialOrd\n// 这里的代码 运行会提示错误, 很显然 不是所有的类型都能做比较大小的操作的\n// 将T改成 T: std::cmp::PartialOrd 就ok了, 后面trait 里会说\nfn largest&lt;T&gt;(list: &[T]) -&gt; &T {\n    let mut largest = &list[0];\n\n    for item in list {\n        if item &gt; largest {\n            largest = item;\n        }\n    }\n\n    largest\n}\n\nfn main() {\n    let number_list = vec![34, 50, 25, 100, 65];\n\n    let result = largest(&number_list);\n    println!(\"The largest number is {}\", result);\n\n    let char_list = vec!['y', 'm', 'a', 'q'];\n\n    let result = largest(&char_list);\n    println!(\"The largest char is {}\", result);\n}",
+    "crumbs": [
+      "基础篇",
+      "泛型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/07.generic.html#在函数中使用",
+    "href": "docs/rust/basic/07.generic.html#在函数中使用",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "fn largest_i32(list: &[i32]) -&gt; &i32 {\n    let mut largest = &list[0];\n\n    for item in list {\n        if item &gt; largest {\n            largest = item;\n        }\n    }\n\n    largest\n}\n\nfn largest_char(list: &[char]) -&gt; &char {\n    let mut largest = &list[0];\n\n    for item in list {\n        if item &gt; largest {\n            largest = item;\n        }\n    }\n\n    largest\n}\n\nfn main() {\n    let number_list = vec![34, 50, 25, 100, 65];\n\n    let result = largest_i32(&number_list);\n    println!(\"The largest number is {}\", result);\n\n    let char_list = vec!['y', 'm', 'a', 'q'];\n\n    let result = largest_char(&char_list);\n    println!(\"The largest char is {}\", result);\n}\n我们发现 同样的逻辑代码,我们写了2遍, 很麻烦,重复代码, 使用泛型来作为具体类型的抽象\n泛型是一种类型,在函数中使用它作为参数的类型,是需要申明的,首先肯定不会和参数的申明放在一块,所以rust在函数名和参数列表之间使用&lt;T&gt;,一般用T来作为泛型标识\n// T: std::cmp::PartialOrd\n// 这里的代码 运行会提示错误, 很显然 不是所有的类型都能做比较大小的操作的\n// 将T改成 T: std::cmp::PartialOrd 就ok了, 后面trait 里会说\nfn largest&lt;T&gt;(list: &[T]) -&gt; &T {\n    let mut largest = &list[0];\n\n    for item in list {\n        if item &gt; largest {\n            largest = item;\n        }\n    }\n\n    largest\n}\n\nfn main() {\n    let number_list = vec![34, 50, 25, 100, 65];\n\n    let result = largest(&number_list);\n    println!(\"The largest number is {}\", result);\n\n    let char_list = vec!['y', 'm', 'a', 'q'];\n\n    let result = largest(&char_list);\n    println!(\"The largest char is {}\", result);\n}",
+    "crumbs": [
+      "基础篇",
+      "泛型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/07.generic.html#在结构体中使用",
+    "href": "docs/rust/basic/07.generic.html#在结构体中使用",
+    "title": "斯巴拉稀",
+    "section": "在结构体中使用",
+    "text": "在结构体中使用\nstruct Point&lt;T&gt; {\n    x: T,\n    y: T,\n}\n\nfn main() {\n    let integer = Point { x: 5, y: 10 };\n    let float = Point { x: 1.0, y: 4.0 };\n}\n使用多个泛型\nstruct Point&lt;T, U&gt; {\n    x: T,\n    y: U,\n}\n\nfn main() {\n    let both_integer = Point { x: 5, y: 10 };\n    let both_float = Point { x: 1.0, y: 4.0 };\n    // 这样你随便写啥都行\n    let integer_and_float = Point { x: 5, y: 4.0 };\n}",
+    "crumbs": [
+      "基础篇",
+      "泛型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/07.generic.html#在枚举中使用",
+    "href": "docs/rust/basic/07.generic.html#在枚举中使用",
+    "title": "斯巴拉稀",
+    "section": "在枚举中使用",
+    "text": "在枚举中使用\nenum Option&lt;T&gt; {\n    Some(T),\n    None,\n}\n\nenum Result&lt;T, E&gt; {\n    Ok(T),\n    Err(E),\n}\n\nfn main() {\n    let some_value = Option::Some(5);\n    let none_value = Option::None;\n\n    let integer_value = Result::Ok(5);\n    let error_value = Result::Err(5);\n}",
+    "crumbs": [
+      "基础篇",
+      "泛型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/07.generic.html#在方法中使用",
+    "href": "docs/rust/basic/07.generic.html#在方法中使用",
+    "title": "斯巴拉稀",
+    "section": "在方法中使用",
+    "text": "在方法中使用\nstruct Point&lt;T&gt; {\n    x: T,\n    y: T,\n}\n// 在impl 后&lt;T&gt; 来申明\n// 来表明是为  Point&lt;T&gt; 这个类型实现方法\nimpl&lt;T&gt; Point&lt;T&gt; {\n    fn x(&self) -&gt; &T {\n        &self.x\n    }\n}\n// 可以为 某个具体的类型实现方法\n// 因为上面的泛型包含了这种情况, 所以同时存在会报错\n// impl Point&lt;i32&gt; {\n//     fn x(&self) -&gt; &i32 {\n//         &self.x\n//     }\n// }\nfn main() {\n    let p = Point { x: 5, y: 10 };\n\n    println!(\"p.x = {}\", p.x());\n}\n方法与结构体使用不同的泛型\nstruct Point&lt;X1, Y1&gt; {\n    x: X1,\n    y: Y1,\n}\n\nimpl&lt;X1, Y1&gt; Point&lt;X1, Y1&gt; {\n    // 这里mixup后申明的X2,Y2,表示 方法里使用了X2,Y2泛型,与Point&lt;X1, Y1&gt;中的X1,Y1不一样\n    fn mixup&lt;X2, Y2&gt;(self, other: Point&lt;X2, Y2&gt;) -&gt; Point&lt;X1, Y2&gt; {\n        Point {\n            x: self.x,\n            y: other.y,\n        }\n    }\n}\n\nfn main() {\n    let p1 = Point { x: 5, y: 10.4 };\n    let p2 = Point { x: \"Hello\", y: 'c' };\n\n    let p3 = p1.mixup(p2);\n\n    println!(\"p3.x = {}, p3.y = {}\", p3.x, p3.y);\n}",
+    "crumbs": [
+      "基础篇",
+      "泛型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/07.generic.html#性能问题",
+    "href": "docs/rust/basic/07.generic.html#性能问题",
+    "title": "斯巴拉稀",
+    "section": "性能问题",
+    "text": "性能问题\n\n\n\n\n\n\nTip\n\n\n\n其实泛型相当于占位符,然后把你编写的代码理解成模板, 编译器编译的时候,会将这些占位符替换成具体的类型, 比如上面的例子, 编译器会根据你实际使用的情况,将T替换成具体的类型比如 i32,f64,会生成对应的代码, 这个叫单态化, 这样运行时不会有额外的开销\n\n\nimpl Point&lt;i32&gt; {\n    fn x(&self) -&gt; &i32 {\n        &self.x\n    }\n}\n\nimpl Point&lt;f64&gt; {\n    fn x(&self) -&gt; &f64 {\n        &self.x\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "泛型"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html",
+    "href": "docs/rust/basic/14.smart-pointer.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "指针: 指向一块内存地址的变量,变量的值是内存地址\n智能指针\n\nRust 的智能指针是一类数据结构，它们对传统指针的功能进行了扩展\n它们通常包含元数据（例如，引用计数）以管理内存和对象的生命周期\nRust 标准库中定义了几种智能指针，如 Box, Rc, Arc, Ref, RefMut, Cell, RefCell 等\n智能指针的主要目的是提供对内存安全、并发安全以及数据共享和所有权转移的更精细的控制\n\n\n\n智能指针通常使用struct来实现,实现了Deref和Drop trait\n\nDeref trait 允许智能指针像引用一样使用, 例如解引用\nDrop trait 智能指针在离开作用域时执行的代码",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#相关概念",
+    "href": "docs/rust/basic/14.smart-pointer.html#相关概念",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "指针: 指向一块内存地址的变量,变量的值是内存地址\n智能指针\n\nRust 的智能指针是一类数据结构，它们对传统指针的功能进行了扩展\n它们通常包含元数据（例如，引用计数）以管理内存和对象的生命周期\nRust 标准库中定义了几种智能指针，如 Box, Rc, Arc, Ref, RefMut, Cell, RefCell 等\n智能指针的主要目的是提供对内存安全、并发安全以及数据共享和所有权转移的更精细的控制\n\n\n\n智能指针通常使用struct来实现,实现了Deref和Drop trait\n\nDeref trait 允许智能指针像引用一样使用, 例如解引用\nDrop trait 智能指针在离开作用域时执行的代码",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#box",
+    "href": "docs/rust/basic/14.smart-pointer.html#box",
+    "title": "斯巴拉稀",
+    "section": "Box",
+    "text": "Box\nBox 是一个智能指针,它允许在堆上存储数据，并确保在离开作用域时正确清理\nfn main() {\n    // 5 是在 堆上分配的, 栈上的变量b 指向了 它\n    let b = Box::new(5);\n    println!(\"b = {}\", b);\n}\n我们运行一下这个,看看报错的信息\n// 这里的定义本身就报错了, 因为这个 枚举类型的大小无法确定\nenum List {\n    Cons(i32, List),\n    Nil,\n}\n\nuse crate::List::{Cons, Nil};\n\nfn main() {\n    let list = Cons(1, Cons(2, Cons(3, Nil)));\n}\n提示使用Box ,这样 cons(i32, Box&lt;List&gt;) 大小就确定了.\nhelp: insert some indirection (e.g., a `Box`, `Rc`, or `&`) to break the cycle\n  |\n2 |     Cons(i32, Box&lt;List&gt;),\n修改后\nenum List {\n    Cons(i32, Box&lt;List&gt;),\n    Nil,\n}\n\nuse crate::List::{Cons, Nil};\n\nfn main() {\n    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));\n}",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#deref-trait",
+    "href": "docs/rust/basic/14.smart-pointer.html#deref-trait",
+    "title": "斯巴拉稀",
+    "section": "deref trait",
+    "text": "deref trait\n\nBox\nfn main() {\n    let x = 5;\n    let y = &x;\n\n    assert_eq!(5, x);\n    assert_eq!(5, *y);// *y 解引用 得到 x\n}\n因为Box 实现了Deref trait,所以可以对Box&lt;T&gt;进行解引用操作是可以的\nfn main() {\n    let x = 5;  // 栈上的5\n    let y = Box::new(x); // 将5复制到堆上\n\n    assert_eq!(5, x);\n    assert_eq!(5, *y);\n}\n\n\n自定义智能指针\nstruct MyBox&lt;T&gt;(T, T);\n\nimpl&lt;T&gt; MyBox&lt;T&gt; {\n    fn new(x: T, y: T) -&gt; MyBox&lt;T&gt; {\n        MyBox(x, y)\n    }\n}\nuse std::ops::Deref;\n\nimpl&lt;T&gt; Deref for MyBox&lt;T&gt; {\n    type Target = T;\n    // 实现 Deref trait 的这个deref 方法的返回值,就是我们 * 操作的真正目标\n    // 因为返回的是引用, 所以 * 操作 ok的\n    fn deref(&self) -&gt; &Self::Target {\n        &self.1\n    }\n}\n\nfn main() {\n    let x = 5;\n    let y = MyBox::new(x, 12);\n    // 如果没有实现 Deref trait, 那么 * 操作就会报错\n    println!(\"{}\", *y); // 12\n    // 显然 上面实现的 deref(&self)方法是 类型MyBox的方法,\n    // 所以可以 y.deref() 获取\n    println!(\"{}\", *(y.deref())); // 12\n}\n\n\n隐式解引用转化(Deref coercion)\n\n\n\n\n\n\nTip\n\n\n\n当把某个类型T(实现了Deref trait)的引用传递给一个函数或方法时,与函数或方法定义的参数类型不一样时,会自动进行式解引用转化,转化为经过 deref 操作后返回的那个引用\n可变引用的情况需要实现 DerefMut trait\n\n下面三种情况会发生自动转化\n\nFrom &T to &U when T: Deref&lt;Target=U&gt;\nFrom &mut T to &mut U when T: DerefMut&lt;Target=U&gt;\nFrom &mut T to &U when T: Deref&lt;Target=U&gt;\n\n\n\n\nstruct MyBox&lt;T&gt;(T);\n\nimpl&lt;T&gt; MyBox&lt;T&gt; {\n    fn new(x: T) -&gt; MyBox&lt;T&gt; {\n        MyBox(x)\n    }\n}\nuse std::ops::Deref;\n\nimpl&lt;T&gt; Deref for MyBox&lt;T&gt; {\n    type Target = T;\n    // 实现 Deref trait 的这个deref 方法的返回值,就是我们 * 操作的真正目标\n    // 因为返回的是引用, 所以 * 操作 ok的\n    fn deref(&self) -&gt; &Self::Target {\n        &self.0\n    }\n}\nfn hello(name: &str) {\n    println!(\"Hello, {name}!\");\n}\n\nfn main() {\n    let m = MyBox::new(String::from(\"Rust\"));\n    // &m: MyBox&lt;String&gt; deref 转化为 &String\n    // String 也实现了 Deref trait ,&String deref返回的是 &str\n    // 这些过程在编译时就完成了, 所以不会有额外的开销\n    hello(&m);\n    // 如果 没有这个自动转化功能,需要这样写\n    hello(&(*m)[..])\n}",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#drop-trait",
+    "href": "docs/rust/basic/14.smart-pointer.html#drop-trait",
+    "title": "斯巴拉稀",
+    "section": "drop trait",
+    "text": "drop trait\n\n相当于析构函数\n通过实现 Drop trait, 可以自定义值离开作用域时发生的事情(比如文件资源的释放).\n任何类型都可以实现这个 Drop trait\n\ndrop 一个 实现了copy的类型, 不会执行任何操作\n\n\nstruct CustomSmartPointer {\n    data: String,\n}\n// Drop 在预导入模块里, 所以不需要use\nimpl Drop for CustomSmartPointer {\n    // 参数是可变借用 &mut self\n    fn drop(&mut self) {\n        println!(\"Dropping CustomSmartPointer with data `{}`!\", self.data);\n    }\n}\n\nfn main() {\n    let a = CustomSmartPointer {\n        data: String::from(\"hello stuff\"),\n    };\n    // 无法显示的调用 drop 方法\n    // a.drop()\n    // 可以使用  std::mem::drop(a); 来提前调用\n    // drop(a);  这样就行了, 因为drop 是预导入模块里的\n    {\n        let c = CustomSmartPointer {\n            data: String::from(\"my stuff\"),\n        };\n    }// c 最先执行drop, 所以先打印 my stuff\n    let d = CustomSmartPointer {\n        data: String::from(\"other stuff\"),\n    };\n    println!(\"CustomSmartPointers created.\");\n}",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#rc-引用计数智能指针",
+    "href": "docs/rust/basic/14.smart-pointer.html#rc-引用计数智能指针",
+    "title": "斯巴拉稀",
+    "section": "Rc 引用计数智能指针",
+    "text": "Rc 引用计数智能指针\n\nRc = reference counting\nRc 允许同一个数据有多个所有者\n当最后是0个引用,那么该值就会被清理\n就好像有一群人在看电视, 不知道最后是谁离开, 所以首先谁离开了是不能关掉电视,只有最后一个人走了,才能关,这种需求的时候我们就可以用这个 Rc 类型\n通过不可变引用来共享数据,只读\n\nenum List {\n    Cons(i32, Box&lt;List&gt;),\n    Nil,\n}\n\nuse crate::List::{Cons, Nil};\n\nfn main() {\n    let a = Cons(5, Box::new(Cons(10, Box::new(Nil))));\n    let b = Cons(3, Box::new(a));\n    let c = Cons(4, Box::new(a)); // 报错了, a 被move了\n}\n使用 Rc 就可以解决这个问题\nenum List {\n    Cons(i32, Rc&lt;List&gt;),\n    Nil,\n}\n\nuse crate::List::{Cons, Nil};\nuse std::rc::Rc;\n\nfn main() {\n    let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));\n    println!(\"count after creating a = {}\", Rc::strong_count(&a)); //1\n    // Rc::clone() 只会使 引用计数+1, 不会进行深度 copy \n    // a.clone()  会进行深度copy\n    let b = Cons(3, Rc::clone(&a)); // a 的引用计数+1\n    println!(\"count after creating b = {}\", Rc::strong_count(&a)); //2\n     {\n        let d = Cons(4, Rc::clone(&a));\n        println!(\"count after creating d = {}\", Rc::strong_count(&a)); // 3\n    } // 这里d离开作用域,drop操作, 所以a的引用计数-1, 变为2\n    let c = Cons(4, Rc::clone(&a)); // a 的引用计数+1\n    println!(\"count after creating c = {}\", Rc::strong_count(&a)); // 3\n}",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#refcell",
+    "href": "docs/rust/basic/14.smart-pointer.html#refcell",
+    "title": "斯巴拉稀",
+    "section": "RefCell",
+    "text": "RefCell\n\n单线程内部使用\n数据所有者只有一个\n运行时检查\n\n报错了,因为你不能可变借用一个不可变的值\nfn main() {\n    let x = 5;\n    let y = &mut x;\n}\n有这样的需求, 我们希望该值对外部是不可变的, 对于它内部可以有方法来修改它的值.\nRefCell 就是能够可变借用一个原本不可变的值\nuse std::cell::RefCell;\n\nfn main() {\n    let shared_map = RefCell::new(vec![1, 2, 3]);\n    // 创建1个可变引用\n    let mut first_ref = shared_map.borrow_mut();\n    // 不允许多个可变借用同时存在\n    // let mut second_ref = shared_map.borrow_mut();\n\n    // 修改通过不可变引用获取的数据\n    first_ref.push(4);\n    println!(\"{:?}\", shared_map);\n}\nuse std::cell::RefCell;\n\nfn main() {\n    let c = RefCell::new(5);\n    // 多个不可变借用\n    let borrowed_five = c.borrow();\n    let borrowed_five2 = c.borrow();\n}\n\n每次 调用 .borrow() 方法, 不可变借用计数+1, 其返回值离开作用域,不可变计数-1\n每次调用 .borrow_mut() 方法, 可变借用计数+1,其返回值离开作用域,可变计数-1\n根据上面2点来检查借用规则, 只允许一个可变借用,或多个不可变借用",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#rc-refcell-结合使用",
+    "href": "docs/rust/basic/14.smart-pointer.html#rc-refcell-结合使用",
+    "title": "斯巴拉稀",
+    "section": "Rc RefCell 结合使用",
+    "text": "Rc RefCell 结合使用\n#[derive(Debug)]\nenum List {\n    Cons(Rc&lt;RefCell&lt;i32&gt;&gt;, Rc&lt;List&gt;),\n    Nil,\n}\n\nuse crate::List::{Cons, Nil};\nuse std::cell::RefCell;\nuse std::rc::Rc;\n\nfn main() {\n    let value = Rc::new(RefCell::new(5));\n\n    let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));\n\n    let b = Cons(Rc::new(RefCell::new(3)), Rc::clone(&a));\n    let c = Cons(Rc::new(RefCell::new(4)), Rc::clone(&a));\n\n    *value.borrow_mut() += 10;\n\n    println!(\"a after = {:?}\", a);\n    println!(\"b after = {:?}\", b);\n    println!(\"c after = {:?}\", c);\n}",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/14.smart-pointer.html#引用循环",
+    "href": "docs/rust/basic/14.smart-pointer.html#引用循环",
+    "title": "斯巴拉稀",
+    "section": "引用循环",
+    "text": "引用循环\n\nRc\nuse crate::List::{Cons, Nil};\nuse std::cell::RefCell;\nuse std::rc::Rc;\n\n#[derive(Debug)]\nenum List {\n    Cons(i32, RefCell&lt;Rc&lt;List&gt;&gt;),\n    Nil,\n}\n\nimpl List {\n    fn tail(&self) -&gt; Option&lt;&RefCell&lt;Rc&lt;List&gt;&gt;&gt; {\n        // self: &Self\n        match self {\n            Cons(_, item) =&gt; Some(item),\n            Nil =&gt; None,\n        }\n    }\n}\n\nfn main() {\n    let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));\n\n    println!(\"a initial rc count = {}\", Rc::strong_count(&a)); // 1\n    println!(\"a next item = {:?}\", a.tail());\n    // b的下一个元素是a\n    let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&a))));\n\n    println!(\"a rc count after b creation = {}\", Rc::strong_count(&a)); //2\n    println!(\"b initial rc count = {}\", Rc::strong_count(&b)); //1\n    println!(\"b next item = {:?}\", b.tail());\n\n    if let Some(link) = a.tail() {\n        // a的下一个元素是b, a和b 之间循环引用了.\n        *link.borrow_mut() = Rc::clone(&b); // b +1\n    }\n\n    println!(\"b rc count after changing a = {}\", Rc::strong_count(&b)); //2\n    println!(\"a rc count after changing a = {}\", Rc::strong_count(&a)); //2\n\n    // 栈溢出了, 因为打印 a.tail() ,就是要打印b, 而要完全打印b,就需要打印a的值,因为b的\"下一个元素\"是a\n    // println!(\"a next item = {:?}\", a.tail());\n} // 离开作用域, b 做引用计数-1操作,那么还有1个, 接着a离开作用域 引用计数-1,也是还剩1个. 这样2个都没被释放\n\n\nWeak\n\n强引用\n\nRc.clone 后rc的引用计数(strong_count)会+1, 实例只有在 strong_count=0,才会被释放\n\n弱引用\n\nRc::downgrade 会创建值的弱引用(weak_count+1),返回类型是 Weak\nweak_count不为0,不会影响值的释放\nstrong_ount为0, 弱引用会自动断开\n使用Weak前,需要确保它指向的值依然存在\n\n\nuse std::cell::RefCell;\nuse std::rc::{Rc, Weak};\n\n#[derive(Debug)]\nstruct Node {\n    value: i32,\n    parent: RefCell&lt;Weak&lt;Node&gt;&gt;,\n    children: RefCell&lt;Vec&lt;Rc&lt;Node&gt;&gt;&gt;,\n}\nfn main() {\n    let leaf = Rc::new(Node {\n        value: 3,\n        parent: RefCell::new(Weak::new()),\n        children: RefCell::new(vec![]),\n    });\n    println!(\n        \"leaf strong = {}, weak = {}\",\n        Rc::strong_count(&leaf),\n        Rc::weak_count(&leaf),\n    );\n    // upgrade: 从 Weak&lt;T&gt; 获取一个 Rc&lt;T&gt;\n    println!(\"leaf parent = {:?}\", leaf.parent.borrow().upgrade());\n\n    let branch = Rc::new(Node {\n        value: 5,\n        parent: RefCell::new(Weak::new()),\n        children: RefCell::new(vec![Rc::clone(&leaf)]),\n    });\n    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);\n    println!(\n        \"branch strong = {}, weak = {}\",\n        Rc::strong_count(&branch),\n        Rc::weak_count(&branch),\n    );\n\n    println!(\n        \"leaf strong = {}, weak = {}\",\n        Rc::strong_count(&leaf), //2\n        Rc::weak_count(&leaf),\n    );\n\n    println!(\"leaf parent = {:?}\", leaf.parent.borrow().upgrade());\n    println!(\n        \"leaf strong = {}, weak = {}\",\n        Rc::strong_count(&leaf),\n        Rc::weak_count(&leaf),\n    );\n}",
+    "crumbs": [
+      "基础篇",
+      "智能指针"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html",
+    "href": "docs/rust/basic/08.trait.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Tip\n\n\n\n\ntrait在其他语言里,类似接口interface\ntrait是一种约束,定义了类型应该实现哪些方法,也是一种代码共享(默认trait方法)\n\n类型是对变量申请的内存空间的一种约束\n泛型可以说就是因为类型约束的过于严格而产生的\n然后泛型又过于宽泛了,啥都行,我就想要符合某种特征的类型,这样就产生了trait用来约束类型\n\n\n\n\n// 定义一个trait\npub trait Summary {\n    // 实现这个Summary trait的 type 自己写具体方法的body\n    // 如果没有方法体, 那么必须实现这个方法, 否则编译不过\n    fn summarize(&self) -&gt; String;\n    // 默认实现, 实现这个Summary trait的 type 可以不写这个方法的具体实现,直接用\n    // 当然你也可以重新写来覆盖这个方法的具体实现\n    fn hello(&self) {\n        println!(\"hello\");\n    }\n}\n\npub struct NewsArticle {\n    pub headline: String,\n    pub location: String,\n    pub author: String,\n    pub content: String,\n}\n\n// 为 NewsArticle 实现  Summary trait\nimpl Summary for NewsArticle {\n    fn summarize(&self) -&gt; String {\n        format!(\"{}, by {} ({})\", self.headline, self.author, self.location)\n    }\n}\n\npub struct Tweet {\n    pub username: String,\n    pub content: String,\n    pub reply: bool,\n    pub retweet: bool,\n}\n\nimpl Summary for Tweet {\n    fn summarize(&self) -&gt; String {\n        format!(\"{}: {}\", self.username, self.content)\n    }\n}\n\nfn main() {\n    let article = NewsArticle {\n        headline: String::from(\"Penguins win the Stanley Cup Championship!\"),\n        location: String::from(\"Pittsburgh, PA, USA\"),\n        author: String::from(\"Iceburgh\"),\n        content: String::from(\n            \"The Pittsburgh Penguins once again are the best \\\n             hockey team in the NHL.\",\n        ),\n    };\n\n    println!(\"New article available! {}\", article.summarize());\n    article.hello();\n}\n\n\n\nuse std::fmt::Display;\n\ntrait Animal&lt;T&gt;\nwhere\n    T: Display,\n{\n    fn shout(&self, _: T);\n}\nstruct Dog;\n\n\nimpl&lt;T&gt; Animal&lt;T&gt; for Dog\nwhere\n    T: Display,\n{\n    fn shout(&self, _: T) {\n        println!(\"汪汪汪\");\n    }\n}\n// 这里会报错, 因为 前面 的  `impl&lt;T&gt; Animal&lt;T&gt; for Dog` 已经包含了这里的情况\n// 如果你 上面的不要写, 单独为Dog 实现多个 trait, `impl Animal&lt;String&gt;` ,`impl Animal&lt;i32&gt;`这样具化类型, 是可以的\n// impl Animal&lt;String&gt; for Dog {\n//     fn shout(&self, _t: String) {\n//         println!(\"汪汪汪\");\n//     }\n// }\n\nfn main() {\n    let a = Dog;\n    // Dog 的实例实现了 trait (Animal&lt;T&gt;)的shout 方法\n    // shout 使用的参数类型, 具化了 T\n    // 下面2个都ok\n    a.shout(123);\n    a.shout(\"wang wang\"); \n}\n\n\n\nuse std::fmt::Display;\n\ntrait Animal&lt;T = String&gt;\nwhere\n    T: Display,\n{\n    fn shout(&self, _: T);\n}\nstruct Dog;\n\n// 默认 用的 前面定义 trait时 T=String 的String\nimpl Animal for Dog {\n    fn shout(&self, _: String) {\n        println!(\"String 汪汪汪\");\n    }\n}\n\n// 还是可以指定\nimpl Animal&lt;i32&gt; for Dog {\n    fn shout(&self, _: i32) {\n        println!(\"i32 wang wang wang \");\n    }\n}\nfn main() {\n    let a = Dog;\n    // Dog 的实例实现了 trait (Animal&lt;String&gt; 和Animal&lt;i32&gt;)的shout 方法\n    // shout 使用的参数类型, 具化了 T\n    // 下面2个都ok\n    a.shout(123);\n    a.shout(\"wang wang\".to_string());\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#定义一个trait",
+    "href": "docs/rust/basic/08.trait.html#定义一个trait",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Tip\n\n\n\n\ntrait在其他语言里,类似接口interface\ntrait是一种约束,定义了类型应该实现哪些方法,也是一种代码共享(默认trait方法)\n\n类型是对变量申请的内存空间的一种约束\n泛型可以说就是因为类型约束的过于严格而产生的\n然后泛型又过于宽泛了,啥都行,我就想要符合某种特征的类型,这样就产生了trait用来约束类型\n\n\n\n\n// 定义一个trait\npub trait Summary {\n    // 实现这个Summary trait的 type 自己写具体方法的body\n    // 如果没有方法体, 那么必须实现这个方法, 否则编译不过\n    fn summarize(&self) -&gt; String;\n    // 默认实现, 实现这个Summary trait的 type 可以不写这个方法的具体实现,直接用\n    // 当然你也可以重新写来覆盖这个方法的具体实现\n    fn hello(&self) {\n        println!(\"hello\");\n    }\n}\n\npub struct NewsArticle {\n    pub headline: String,\n    pub location: String,\n    pub author: String,\n    pub content: String,\n}\n\n// 为 NewsArticle 实现  Summary trait\nimpl Summary for NewsArticle {\n    fn summarize(&self) -&gt; String {\n        format!(\"{}, by {} ({})\", self.headline, self.author, self.location)\n    }\n}\n\npub struct Tweet {\n    pub username: String,\n    pub content: String,\n    pub reply: bool,\n    pub retweet: bool,\n}\n\nimpl Summary for Tweet {\n    fn summarize(&self) -&gt; String {\n        format!(\"{}: {}\", self.username, self.content)\n    }\n}\n\nfn main() {\n    let article = NewsArticle {\n        headline: String::from(\"Penguins win the Stanley Cup Championship!\"),\n        location: String::from(\"Pittsburgh, PA, USA\"),\n        author: String::from(\"Iceburgh\"),\n        content: String::from(\n            \"The Pittsburgh Penguins once again are the best \\\n             hockey team in the NHL.\",\n        ),\n    };\n\n    println!(\"New article available! {}\", article.summarize());\n    article.hello();\n}\n\n\n\nuse std::fmt::Display;\n\ntrait Animal&lt;T&gt;\nwhere\n    T: Display,\n{\n    fn shout(&self, _: T);\n}\nstruct Dog;\n\n\nimpl&lt;T&gt; Animal&lt;T&gt; for Dog\nwhere\n    T: Display,\n{\n    fn shout(&self, _: T) {\n        println!(\"汪汪汪\");\n    }\n}\n// 这里会报错, 因为 前面 的  `impl&lt;T&gt; Animal&lt;T&gt; for Dog` 已经包含了这里的情况\n// 如果你 上面的不要写, 单独为Dog 实现多个 trait, `impl Animal&lt;String&gt;` ,`impl Animal&lt;i32&gt;`这样具化类型, 是可以的\n// impl Animal&lt;String&gt; for Dog {\n//     fn shout(&self, _t: String) {\n//         println!(\"汪汪汪\");\n//     }\n// }\n\nfn main() {\n    let a = Dog;\n    // Dog 的实例实现了 trait (Animal&lt;T&gt;)的shout 方法\n    // shout 使用的参数类型, 具化了 T\n    // 下面2个都ok\n    a.shout(123);\n    a.shout(\"wang wang\"); \n}\n\n\n\nuse std::fmt::Display;\n\ntrait Animal&lt;T = String&gt;\nwhere\n    T: Display,\n{\n    fn shout(&self, _: T);\n}\nstruct Dog;\n\n// 默认 用的 前面定义 trait时 T=String 的String\nimpl Animal for Dog {\n    fn shout(&self, _: String) {\n        println!(\"String 汪汪汪\");\n    }\n}\n\n// 还是可以指定\nimpl Animal&lt;i32&gt; for Dog {\n    fn shout(&self, _: i32) {\n        println!(\"i32 wang wang wang \");\n    }\n}\nfn main() {\n    let a = Dog;\n    // Dog 的实例实现了 trait (Animal&lt;String&gt; 和Animal&lt;i32&gt;)的shout 方法\n    // shout 使用的参数类型, 具化了 T\n    // 下面2个都ok\n    a.shout(123);\n    a.shout(\"wang wang\".to_string());\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#参数指定trait",
+    "href": "docs/rust/basic/08.trait.html#参数指定trait",
+    "title": "斯巴拉稀",
+    "section": "参数指定trait",
+    "text": "参数指定trait\n\n指定单个trait\n// 参数item ,必须是实现了Summary这个trait的类型\npub fn notify(item: &impl Summary) {\n    println!(\"Breaking news! {}\", item.summarize());\n}\nimpl Summary 相比较这个写法, 我们一般用下面这样的写法\npub fn notify&lt;T: Summary&gt;(item: &T) {\n    println!(\"Breaking news! {}\", item.summarize());\n}\n\npub fn notify(item1: &impl Summary, item2: &impl Summary) {}\n//这样写就比上面的简洁\npub fn notify&lt;T: Summary&gt;(item1: &T, item2: &T) {}\n\n\n指定多个trait\npub fn notify(item: &(impl Summary + Display)) {}\n\npub fn notify&lt;T: Summary + Display&gt;(item: &T) {}\n\n\nwhere\n当我们在指定多个参数 然后每个参数要实现多个trait时, 写起来可能不是那么清晰, 这时我们可以使用where来简化\nfn some_function&lt;T: Display + Clone, U: Clone + Debug&gt;(t: &T, u: &U) -&gt; i32 {}\n使用where的写法\nfn some_function&lt;T, U&gt;(t: &T, u: &U) -&gt; i32\nwhere\n    T: Display + Clone,\n    U: Clone + Debug,\n{\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#返回值指定trait",
+    "href": "docs/rust/basic/08.trait.html#返回值指定trait",
+    "title": "斯巴拉稀",
+    "section": "返回值指定trait",
+    "text": "返回值指定trait\nfn returns_summarizable() -&gt; impl Summary {\n    Tweet {\n        username: String::from(\"horse_ebooks\"),\n        content: String::from(\n            \"of course, as you probably already know, people\",\n        ),\n        reply: false,\n        retweet: false,\n    }\n}\n下面这个会报错\nfn returns_summarizable(switch: bool) -&gt; impl Summary {\n    if switch {\n        NewsArticle {\n            headline: String::from(\n                \"Penguins win the Stanley Cup Championship!\",\n            ),\n            location: String::from(\"Pittsburgh, PA, USA\"),\n            author: String::from(\"Iceburgh\"),\n            content: String::from(\n                \"The Pittsburgh Penguins once again are the best \\\n                 hockey team in the NHL.\",\n            ),\n        }\n    } else {\n        Tweet {\n            username: String::from(\"horse_ebooks\"),\n            content: String::from(\n                \"of course, as you probably already know, people\",\n            ),\n            reply: false,\n            retweet: false,\n        }\n    }\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#关联类型associated-types",
+    "href": "docs/rust/basic/08.trait.html#关联类型associated-types",
+    "title": "斯巴拉稀",
+    "section": "关联类型(Associated types)",
+    "text": "关联类型(Associated types)\n关联类型起到一种类型占位功能,定义trait时声明,在把trait实现到类型上的时候为其指定具体的类型\n\n产生的原因\ntrait上使用泛型的情况\nstruct Container(i32, i32);\n\ntrait Contains&lt;A, B&gt; {\n    fn contains(&self, _: &A, _: &B) -&gt; bool;\n    fn first(&self) -&gt; i32;\n    fn last(&self) -&gt; i32;\n}\n\nimpl Contains&lt;i32, i32&gt; for Container {\n    fn contains(&self, number_1: &i32, number_2: &i32) -&gt; bool {\n        println!(\"{:p}-{:p}\", &self.0, number_1);\n        (&self.0 == number_1) && (&self.1 == number_2)\n    }\n    fn first(&self) -&gt; i32 {\n        self.0\n    }\n    fn last(&self) -&gt; i32 {\n        self.1\n    }\n}\n\n// 由于 trait 用的是 泛型, 我们可以为 Container 实现很多个trait(用不同参数类型)\n// 这种感觉  有些时候应该不是我们希望的\n// impl Contains&lt;i64, i64&gt; for Container {\n// ...\n// }\n\n// 然后比如定义这类函数时, 实际上 内部没有调用到A,B, 但是你还是要标注类型, 就繁琐了\nfn difference&lt;A, B, C&gt;(container: &C) -&gt; i32\nwhere\n    C: Contains&lt;A, B&gt;,\n{\n    container.last() - container.first()\n}\n\nfn main() {\n    let number_1 = 3;\n    let number_2 = 10;\n\n    let container = Container(number_1, number_2);\n\n    println!(\n        \"Does container contain {} and {}: {}\",\n        &number_1,\n        &number_2,\n        container.contains(&number_1, &number_2)\n    );\n    println!(\"First number: {}\", container.first());\n    println!(\"Last number: {}\", container.last());\n\n    println!(\"The difference is: {}\", difference(&container));\n}\n使用 关联类型, 无需标注类型\nstruct Container(i32, i32);\n\ntrait Contains {\n    type A;\n    type B;\n\n    fn contains(&self, _: &Self::A, _: &Self::B) -&gt; bool;\n    fn first(&self) -&gt; i32;\n    fn last(&self) -&gt; i32;\n}\n\nimpl Contains for Container {\n    // 在类中 定义 具体 A 和 B\n    type A = i32;\n    type B = i32;\n\n    // `&Self::A` and `&Self::B` are also valid here.\n    fn contains(&self, number_1: &i32, number_2: &i32) -&gt; bool {\n        (&self.0 == number_1) && (&self.1 == number_2)\n    }\n    fn first(&self) -&gt; i32 {\n        self.0\n    }\n    fn last(&self) -&gt; i32 {\n        self.1\n    }\n}\n\n// 简洁了\nfn difference&lt;C: Contains&gt;(container: &C) -&gt; i32 {\n    container.last() - container.first()\n}\n\nfn main() {\n    let number_1 = 3;\n    let number_2 = 10;\n\n    let container = Container(number_1, number_2);\n\n    println!(\n        \"Does container contain {} and {}: {}\",\n        &number_1,\n        &number_2,\n        container.contains(&number_1, &number_2)\n    );\n    println!(\"First number: {}\", container.first());\n    println!(\"Last number: {}\", container.last());\n\n    println!(\"The difference is: {}\", difference(&container));\n}\n\n\n泛型上使用 关联类型\ntrait Person {\n    type AAA;\n    fn shout(&self, msg: Self::AAA);\n}\n// 定义一个结构体, 约束了内部成员homeowner的类型必须是 实现了Person 这个trait的类,\n// 成员 house_name 的类型 必须是 实现了Person 这个trait的类 中定义的关联类型 AAA\nstruct House&lt;T: Person&gt; {\n    homeowner: T,\n    house_name: T::AAA,\n}\n\nstruct Man {\n    name: String,\n}\nimpl Person for Man {\n    // 如果将这个 AAA 改成其他类型, 那么就会在实例化 House时house_name 也要改成这里指定的类型\n    type AAA = String;\n    fn shout(&self, msg: Self::AAA) {\n        println!(\"{}\", msg);\n    }\n}\nfn main() {\n    let s = House {\n        homeowner: Man {\n            name: \"jerry\".to_string(),\n        },\n        house_name: \"jerry's home\".to_string(),\n    };\n    s.homeowner.shout(\"啊啊啊\".to_string());\n}\n\n\n直接指定具体类型来约束关联类型\ntrait Person {\n    type AAA;\n    fn shout(&self, msg: Self::AAA);\n}\n// 定义一个结构体, 约束了内部成员的类型必须是 实现了Person 这个trait的类,\n// 并且直接设置了它的关联类型是String ,也就是再约束了你具体实现类中使用的哪种关联类型\nstruct House&lt;T: Person&lt;AAA = String&gt;&gt; {\n    homeowner: T,\n}\n\nstruct Man {\n    name: String,\n}\nimpl Person for Man {\n    // 如果将这个 AAA 改成其他类型, 那么就会在实例化 House 那里报错\n    // 因为这样的 Man 不是我们要的\n    type AAA = String;\n    fn shout(&self, msg: Self::AAA) {\n        println!(\"{}\", msg);\n    }\n}\nfn main() {\n    let s = House {\n        homeowner: Man {\n            name: \"jerry\".to_string(),\n        },\n    };\n    s.homeowner.shout(\"啊啊啊\".to_string());\n}\n\n\n使用trait 约束关联类型\nuse std::fmt::Display;\n\ntrait Person {\n    type AAA: Display;\n    fn shout(&self, msg: Self::AAA);\n}\nstruct House&lt;T: Person&gt; {\n    homeowner: T,\n}\n\nstruct Man {\n    name: String,\n}\nimpl Person for Man {\n    type AAA = i32; //String 也行, 必须是实现了 Display 这个trait\n    fn shout(& self, msg: Self::AAA) {\n        println!(\"{}\", msg);\n    }\n}\nfn main() {\n    let  s = House {\n        homeowner: Man {\n            name: \"jerry\".to_string(),\n        },\n    };\n    s.homeowner.shout(123);\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#关联常量",
+    "href": "docs/rust/basic/08.trait.html#关联常量",
+    "title": "斯巴拉稀",
+    "section": "关联常量",
+    "text": "关联常量\ntrait Country {\n    const HISTORY: u32 = 5000;\n    const INDEPENDENT: bool = true;\n}\n\nstruct China;\nimpl Country for China {\n    const HISTORY: u32 = 7000;\n}\n\nfn main() {\n    println!(\"{:?}\", China::HISTORY);\n    println!(\"{:?}\", &lt;China as Country&gt;::HISTORY);\n    println!(\"{:?}\", China::INDEPENDENT);\n    println!(\"{:?}\", &lt;China as Country&gt;::INDEPENDENT);\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#trait的依赖",
+    "href": "docs/rust/basic/08.trait.html#trait的依赖",
+    "title": "斯巴拉稀",
+    "section": "trait的依赖",
+    "text": "trait的依赖\ntrait Animal {\n    fn shout(&self);\n}\n// 表示如果有类型要实现 Person 这个 trait, 那么它必须也要实现 Animal这个trait\n// 相当于 T: Person + Animal\ntrait Person: Animal {\n    fn speak(&self);\n    fn shout(&self);\n}\n\nstruct Student;\n\nimpl Person for Student {\n    fn speak(&self) {\n        println!(\"hello...\");\n    }\n    fn shout(&self) {\n        println!(\"person...\");\n    }\n}\nimpl Animal for Student {\n    fn shout(&self) {\n        println!(\"animal...\");\n    }\n}\nimpl Student {\n    // 如果没有自己实现自己的方法,\n    // 上面2个trait 中都有shout, main中调用 d.shout() 会报错\n    fn shout(&self) {\n        println!(\"类自己的方法...\");\n    }\n}\nfn main() {\n    let d = &Student;\n    d.shout(); // 类自己的方法...\n    // &lt;Type as Trait&gt;:: 完全限定语法,\n        // 在没有参数的情况下使用Person::shout()会报错, 需要用这个语法才可以\n    //  使用  Student 实现Person 这个trait 时的shout 方法\n    &lt;Student as Person&gt;::shout(d); // person...\n    Person::shout(d); // person...\n    &lt;Student as Animal&gt;::shout(d); // animal...\n    Animal::shout(d); // animal...\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#孤儿规则orphan-rule",
+    "href": "docs/rust/basic/08.trait.html#孤儿规则orphan-rule",
+    "title": "斯巴拉稀",
+    "section": "孤儿规则(orphan rule)",
+    "text": "孤儿规则(orphan rule)\n\n如果你想要为类型A实现trait B,那么至少有一个是本地crate（即你当前的crate）所拥有的\n换句话说,要么类型A是在当前的crate中定义的,要么trait B是在当前的crate中定义的\n如果要实现外部定义的trait需要先将其导入作用域\n\n不允许对外部类型实现外部trait\n\n可以对外部类型实现自定义的trait\n可以对自定义类型上实现外部trait\n外部是指不是由自己,而是由外部定义的,包括标准库",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#newtype-实现外部trait",
+    "href": "docs/rust/basic/08.trait.html#newtype-实现外部trait",
+    "title": "斯巴拉稀",
+    "section": "newtype 实现外部trait",
+    "text": "newtype 实现外部trait\n孤儿规则: 只有当 trait或类型定义在本地crate的时候,才能为类型实现trait\n我们可以用newtype 模式来绕过这个\nuse std::fmt;\n\n// only traits defined in the current crate can be implemented for types defined outside of the crate\n// define and implement a trait or new type instead\n// impl fmt::Display for Vec&lt;String&gt; {\n//     fn fmt(&self, f: &mut fmt::Formatter) -&gt; fmt::Result {\n//         write!(f, \"[{}]\", self.0.join(\", \"))\n//     }\n// }\n// 使用元祖结构体 变成一个新的类型,是本地的\nstruct Wrapper(Vec&lt;String&gt;);\n// fmt::Display 这个是外部trait\nimpl fmt::Display for Wrapper {\n    fn fmt(&self, f: &mut fmt::Formatter) -&gt; fmt::Result {\n        write!(f, \"[{}]\", self.0.join(\", \"))\n    }\n}\n\nfn main() {\n    let w = Wrapper(vec![String::from(\"hello\"), String::from(\"world\")]);\n    println!(\"w = {}\", w);\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#运算符重载",
+    "href": "docs/rust/basic/08.trait.html#运算符重载",
+    "title": "斯巴拉稀",
+    "section": "运算符重载",
+    "text": "运算符重载\nuse std::ops::Add;\n\n#[derive(Debug, Copy, Clone, PartialEq)]\nstruct Point {\n    x: i32,\n    y: i32,\n}\n// 给Point 实现Add trait, Add trait 定义了+加法 会如何操作\nimpl Add for Point {\n    type Output = Point;\n\n    fn add(self, other: Point) -&gt; Point {\n        Point {\n            x: self.x + other.x,\n            y: self.y + other.y,\n        }\n    }\n}\n\nfn main() {\n    assert_eq!(\n        Point { x: 1, y: 0 } + Point { x: 2, y: 3 },\n        Point { x: 3, y: 3 }\n    );\n}\n我们看下Add trait的定义,发现实际带有类型参数,默认值是Self\npub trait Add&lt;Rhs = Self&gt; {\n    // ...\n}\n不同类型的+ 加法重载\nuse std::ops::Add;\n\nstruct Millimeters(u32);\nstruct Meters(u32);\n\nimpl Add&lt;Meters&gt; for Millimeters {\n    type Output = Millimeters;\n\n    fn add(self, other: Meters) -&gt; Millimeters {\n        Millimeters(self.0 + (other.0 * 1000))\n    }\n}\n\nfn main() {\n    let mm = Millimeters(10);\n    let m = Meters(1);\n\n    let sum = mm + m;\n    // sum is of type Millimeters\n    println!(\"sum is {}\", sum.0); // 1010\n    // 注意这样是不行的, 顺序是有关系的\n    // let sum2 = m + mm;\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#类型别名",
+    "href": "docs/rust/basic/08.trait.html#类型别名",
+    "title": "斯巴拉稀",
+    "section": "类型别名",
+    "text": "类型别名\nfn main() {\n    // 类型别名\n    // 让类型含义更加的有意义\n    type Kilometers = i32;\n\n    let x: i32 = 5;\n    let y: Kilometers = 5;\n    // 实际还是是i32 所以可以 +\n    println!(\"x + y = {}\", x + y);\n}\n减少重复代码, 让代码更简洁\n    type Thunk = Box&lt;dyn Fn() + Send + 'static&gt;;\n\n    let f: Thunk = Box::new(|| println!(\"hi\"));\n\n    fn takes_long_type(f: Thunk) {\n        // --snip--\n    }\n\n    fn returns_long_type() -&gt; Thunk {\n        // --snip--\n    }\n我们可以看到 Result&lt;usize, Error&gt; 类似这样的很多, 都要写Error\nuse std::fmt;\nuse std::io::Error;\n\npub trait Write {\n    fn write(&mut self, buf: &[u8]) -&gt; Result&lt;usize, Error&gt;;\n    fn flush(&mut self) -&gt; Result&lt;(), Error&gt;;\n\n    fn write_all(&mut self, buf: &[u8]) -&gt; Result&lt;(), Error&gt;;\n    fn write_fmt(&mut self, fmt: fmt::Arguments) -&gt; Result&lt;(), Error&gt;;\n}\nfn main() {}\n使用别名后的情况\nuse std::fmt;\n// std::io 中有这样一个别名\n// 标准库中类似这样的别名设计有还多\n// type Result&lt;T&gt; = std::result::Result&lt;T, std::io::Error&gt;;\n\n// 我们本地这样设计一个别名, 就不用每次 都写上Error\ntype Result&lt;T&gt; = std::io::Result&lt;T&gt;;\npub trait Write {\n    fn write(&mut self, buf: &[u8]) -&gt; Result&lt;usize&gt;;\n    fn flush(&mut self) -&gt; Result&lt;()&gt;;\n\n    fn write_all(&mut self, buf: &[u8]) -&gt; Result&lt;()&gt;;\n    fn write_fmt(&mut self, fmt: fmt::Arguments) -&gt; Result&lt;()&gt;;\n}\nfn main() {}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#trait-object",
+    "href": "docs/rust/basic/08.trait.html#trait-object",
+    "title": "斯巴拉稀",
+    "section": "trait object",
+    "text": "trait object\n\n使用\n我们有这样一个需求, 创建一个GUI 工具, 会遍历一个列表, 调用每个元素的draw方法\n我们很快就能想到使用泛型,试试看\npub trait Draw {\n    fn draw(&self);\n}\npub struct ScreenWithGeneric&lt;T: Draw&gt; {\n    pub components: Vec&lt;T&gt;,\n}\n\nimpl&lt;T&gt; ScreenWithGeneric&lt;T&gt;\nwhere\n    T: Draw,\n{\n    pub fn run(&self) {\n        for component in self.components.iter() {\n            component.draw();\n        }\n    }\n}\n\npub struct Button {}\n\nimpl Draw for Button {\n    fn draw(&self) {\n        println!(\"Button\");\n    }\n}\nstruct SelectBox {}\nimpl Draw for SelectBox {\n    fn draw(&self) {\n        println!(\"SelectBox\");\n    }\n}\n\nfn main() {\n    let botton = Button {};\n    let botton2 = Button {};\n    let select_box = SelectBox {};\n    let s = ScreenWithGeneric {\n        // 报错了, 类型不一致了\n        components: vec![botton, select_box],\n    };\n    s.run();\n}\n结果发现行不通, 问题的关键是我们只要列表里的元素能够执行 draw 方法就行, 不管它是什么类型. 有什么办法呢? trait object 可以解决这个问题\n\npub trait Draw {\n    fn draw(&self);\n}\npub struct Screen {\n    // Box&lt;dyn Draw&gt; : 定义了一个 trait object\n    // 表示 Box里的元素必须都实现了 Draw 这个trait 就行, 不管它是什么类型\n    pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,\n}\nimpl Screen {\n    pub fn run(&self) {\n        for component in self.components.iter() {\n            component.draw();\n        }\n    }\n}\npub struct Button {}\n\nimpl Draw for Button {\n    fn draw(&self) {\n        println!(\"Button\");\n    }\n}\nstruct SelectBox {}\nimpl Draw for SelectBox {\n    fn draw(&self) {\n        println!(\"SelectBox\");\n    }\n}\nfn main() {\n    let button = Button {};\n\n    let select_box = SelectBox {};\n    let s = Screen {\n        // 这里ok了\n        components: vec![Box::new(button), Box::new(select_box)],\n    };\n    s.run();\n}\n\n\n\n动态派发\n\n\n\n\n\n\nTip\n\n\n\n\n当你使用泛型函数或方法时，编译器会为每个具体使用的数据类型生成专门的代码。这种机制称为单态化（Monomorphization）,单态化后的代码 会执行静态派发\n\n\n\n// 使用trait约束泛型T，这里T必须实现了Summary trait\nfn notify&lt;T: Summary&gt;(item: T) {\n    println!(\"Breaking news! {}\", item.summarize());\n}\n\n// 编译器会为每个具体使用的数据类型生成专门的代码,这样，当调用notify(tweet)和notify(article)时，直接调用的就是针对Tweet和NewsArticle预先生成好的、类型特定的函数，这就是静态派发的过程\n\n// 为Tweet类型特化生成的notify函数\nfn notify_Tweet(item: Tweet) {\n    println!(\"Breaking news! {}\", item.summarize());\n}\n\n// 为NewsArticle类型特化生成的notify函数\nfn notify_NewsArticle(item: NewsArticle) {\n    println!(\"Breaking news! {}\", item.summarize());\n}\n动态派发 ,使用dyn trait会用动态派发, 无法在编译期确定你调用的是哪个方法,会在运行时确定\n\n\n\n对象安全\n只能把满足对象安全的trait 转为 trait object\n\n安全的标准\n\n方法返回类型不是Self\n方法中没有泛型类型参数",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#sized-trait",
+    "href": "docs/rust/basic/08.trait.html#sized-trait",
+    "title": "斯巴拉稀",
+    "section": "Sized Trait",
+    "text": "Sized Trait\n动态大小的类型 DST (Dynamically Sized Types)\n类型可以说是规定了你如何去使用一块内存: 占用多少空间, 怎么读写,比如给你弄了写方法, 方便读写\n在数组里, [1i32,2] 占用了8字节 [1i32,2,3] 12个字节, 这2个是不同的类型, 虽然我们都说他们是数组\n报错了, str 类型,我们看过 &str 字符串切片类型, 很明显, 有一个&符号, 这看起来就是某个类型的取地址操作, 那么这个str 是啥呢? 应该是 字符串实际存放的地方?\nstr 就是一个DST, 所以下面的操作是会报错的, 你可能会问号脸, 啊? 下面的占用多少空间不是很明显,好像没问题? 实际 s1 s2 两个变量是同一个类型, 但是占用的空间却不一样? 这就有问题了\n\nlet s1: str = \"Hello there!\";\nlet s2: str = \"How's it going?\";\n\n// 这个就ok了, 因为这个 &str 类型的 占用空间是确定的,\n// 可以说 动态类型的数据的  一种通用使用方式, 就是 一个指针去指向它的实际数据,其他比如长度等信息, 看具体设计\nlet s3: &str = \"Hello there!\";\n为了处理这种动态大小的类型,rust提供了Sized trait 来去确定一个类型的大小在编译器是否是已知的.\n在编译期知道大小的类型, rust会为其自动的实现一个trait (Sized)\nfn generic&lt;T&gt;(t: T) {\n    // --snip--\n}\n上面的代码实际上 等同与, rust 会为 每个泛型函数隐式添加 Sized trait约束\nfn generic&lt;T: Sized&gt;(t: T) {\n    // --snip--\n}\n默认情况下, 泛型函数只能在编译期知道其类型大小的情况下工作。但是, 你可以使用以下特殊语法来放宽这一限制:\n// ?Sized 表示 T的大小可能是不确定的\nfn generic&lt;T: ?Sized&gt;(t: &T) {\n    // --snip--\n}",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/rust/basic/08.trait.html#常用trait",
+    "href": "docs/rust/basic/08.trait.html#常用trait",
+    "title": "斯巴拉稀",
+    "section": "常用trait",
+    "text": "常用trait\n\nFrom & Into\nFrom trait 让你可以从另外一个B类型的数据,创建一个A类型的数据\nuse std::convert::From;\n\n#[derive(Debug)]\nstruct Number {\n    value: i32,\n}\n\nimpl From&lt;i32&gt; for Number {\n    fn from(item: i32) -&gt; Self {\n        Number { value: item  }\n    }\n}\n\nfn main() {\n    let num = Number::from(30);\n    println!(\"My number is {:?}\", num);\n}\nuse std::convert::Into;\n\n#[derive(Debug)]\nstruct Number {\n    value: i32,\n}\n\nimpl Into&lt;Number&gt; for i32 {\n    fn into(self) -&gt; Number {\n        Number { value: self }\n    }\n}\n\nfn main() {\n    let int = 5;\n    // Try removing the type annotation\n    let num: Number = int.into();\n    println!(\"My number is {:?}\", num);\n}\n\n\nTryFrom and TryInto\n会报错的情况 使用\nuse std::convert::TryFrom;\nuse std::convert::TryInto;\n\n#[derive(Debug, PartialEq)]\nstruct EvenNumber(i32);\n\nimpl TryFrom&lt;i32&gt; for EvenNumber {\n    type Error = ();\n\n    fn try_from(value: i32) -&gt; Result&lt;Self, Self::Error&gt; {\n        if value % 2 == 0 {\n            Ok(EvenNumber(value))\n        } else {\n            Err(())\n        }\n    }\n}\n\nfn main() {\n    // TryFrom\n\n    assert_eq!(EvenNumber::try_from(8), Ok(EvenNumber(8)));\n    assert_eq!(EvenNumber::try_from(5), Err(()));\n\n    // TryInto\n\n    let result: Result&lt;EvenNumber, ()&gt; = 8i32.try_into();\n    assert_eq!(result, Ok(EvenNumber(8)));\n    let result: Result&lt;EvenNumber, ()&gt; = 5i32.try_into();\n    assert_eq!(result, Err(()));\n}\n\n\nDisplay (to_string方法)\nuse std::fmt;\n\nstruct Circle {\n    radius: i32\n}\n// 实现这个trait ,就有了 to_string 方法\nimpl fmt::Display for Circle {\n    fn fmt(&self, f: &mut fmt::Formatter) -&gt; fmt::Result {\n        write!(f, \"Circle of radius {}\", self.radius)\n    }\n}\n\nfn main() {\n    let circle = Circle { radius: 6 };\n    let c=circle.to_string();\n    println!(\"{}\", c);\n}\n\n\nFromStr\n定义一个类型如何从字符串转换而来\nuse std::str::FromStr;\n\n// 定义一个简单的结构体，它包含一个 u32 类型的值\nstruct MyNumber {\n    value: u32,\n}\n\n// 为 MyNumber 实现 FromStr trait\nimpl FromStr for MyNumber {\n    type Err = &'static str; // 定义错误类型为 &'static str\n\n    // from_str 方法尝试将字符串解析为 MyNumber\n    fn from_str(s: &str) -&gt; Result&lt;Self, Self::Err&gt; {\n        // 尝试将字符串转换为 u32\n        let value = s.parse::&lt;u32&gt;().map_err(|_| \"Parse error\")?;\n        // 如果成功，创建并返回 MyNumber 实例\n        Ok(Self { value })\n    }\n}\n\nfn main() {\n    // 使用 parse::&lt;MyNumber&gt;() 方法将字符串转换为 MyNumber\n    // 如果不实现 MyNumber 类型的from_str 方法, 是不能 parse的\n    let number = \"42\".parse::&lt;MyNumber&gt;().unwrap();\n    println!(\"Parsed value: {}\", number.value);\n\n    // 如果解析失败，会返回一个错误\n    if let Err(e) = \"not a number\".parse::&lt;MyNumber&gt;() {\n        println!(\"Failed to parse: {}\", e);\n    }\n}\nTODO\n    let a = 42;\n    let b = 42;\n\n    let ref_a = &a;\n    let ref_b = &b;\n\n    println!(\"{}\", ref_a == ref_b); // true",
+    "crumbs": [
+      "基础篇",
+      "trait"
+    ]
+  },
+  {
+    "objectID": "docs/ai/index.html",
+    "href": "docs/ai/index.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "deepseek https://chat.deepseek.com/sign_in kimi SenseNova 5 万知AI\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Preface\nwelcome\n\n\n\n\n Back to top"
   }
 ]

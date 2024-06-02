@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -130,19 +130,239 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/rust/basic/01.env.html">基础篇</a></li><li class="breadcrumb-item"><a href="../../../docs/rust/basic/03.ownership.html">所有权</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">基础篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/01.env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/02.quick-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/03.ownership.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">所有权</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/04.struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">结构体</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/05.enum-match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">枚举和match</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/06.collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">集合</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/07.generic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">泛型</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/08.trait.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">trait</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/09.lifetime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生命周期</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/10.error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">错误处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/11.closure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">闭包与迭代器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/12.crate-mod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">模块系统</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/13.cargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cargo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/14.smart-pointer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">智能指针</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/15.concurrency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">并发</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/16.unsafe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">unsafe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/basic/17.macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">宏</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">进阶</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/advanced/01.mem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">内存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/advanced/02.type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">奇异的类型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">web开发</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/web/net.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">简单web服务</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/web/axum/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">axum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/web/actix-web/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">actix-web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">异步编程</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/rust/async/01.future.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">future</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#定义" id="toc-定义" class="nav-link active" data-scroll-target="#定义">定义</a></li>
+  <li><a href="#所有权规则" id="toc-所有权规则" class="nav-link active" data-scroll-target="#所有权规则">所有权规则</a></li>
   <li><a href="#变量作用域" id="toc-变量作用域" class="nav-link" data-scroll-target="#变量作用域">变量作用域</a></li>
+  <li><a href="#move-copy" id="toc-move-copy" class="nav-link" data-scroll-target="#move-copy">Move &amp; Copy</a>
+  <ul>
+  <li><a href="#copy" id="toc-copy" class="nav-link" data-scroll-target="#copy">copy</a></li>
   <li><a href="#move" id="toc-move" class="nav-link" data-scroll-target="#move">move</a></li>
+  <li><a href="#move-还是-copy" id="toc-move-还是-copy" class="nav-link" data-scroll-target="#move-还是-copy">move 还是 copy</a></li>
+  </ul></li>
+  <li><a href="#函数传参所有权问题" id="toc-函数传参所有权问题" class="nav-link" data-scroll-target="#函数传参所有权问题">函数传参所有权问题</a>
+  <ul>
+  <li><a href="#官方例子" id="toc-官方例子" class="nav-link" data-scroll-target="#官方例子">官方例子</a></li>
+  </ul></li>
+  <li><a href="#函数返回值所有权" id="toc-函数返回值所有权" class="nav-link" data-scroll-target="#函数返回值所有权">函数返回值所有权</a></li>
+  <li><a href="#借用-borrow" id="toc-借用-borrow" class="nav-link" data-scroll-target="#借用-borrow">借用 borrow</a>
+  <ul>
+  <li><a href="#不可变和可变" id="toc-不可变和可变" class="nav-link" data-scroll-target="#不可变和可变">不可变和可变</a></li>
+  <li><a href="#编译是否成功的判断方法" id="toc-编译是否成功的判断方法" class="nav-link" data-scroll-target="#编译是否成功的判断方法">编译是否成功的判断方法</a></li>
+  <li><a href="#悬挂引用" id="toc-悬挂引用" class="nav-link" data-scroll-target="#悬挂引用">悬挂引用</a></li>
+  <li><a href="#reborrow-好好看看" id="toc-reborrow-好好看看" class="nav-link" data-scroll-target="#reborrow-好好看看">reborrow (好好看看)</a>
+  <ul class="collapse">
+  <li><a href="#可变借用直接赋值" id="toc-可变借用直接赋值" class="nav-link" data-scroll-target="#可变借用直接赋值">可变借用直接赋值</a></li>
+  <li><a href="#可变借用函数传参" id="toc-可变借用函数传参" class="nav-link" data-scroll-target="#可变借用函数传参">可变借用函数传参</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -152,250 +372,465 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="定义" class="level2">
-<h2 class="anchored" data-anchor-id="定义">定义</h2>
-<p>!!! tip 所有权是rust用来管理内存的一系列规则</p>
-<pre class="x-plantuml"><code>@startmindmap
-&lt;style&gt;
-' 通用设置
-node {
-    Padding 12
-    Margin 10
-    HorizontalAlignment center
-    LineColor black
-    LineThickness 1.0
-    BackgroundColor #eab8de
-    RoundCorner 15
-    ' 自动换行, 每行最大长度
-    MaximumWidth 100
-    Shadowing 6.0
-    ' leafNode的优先级更高'
-    :depth(3) {
-        BackGroundColor white
-    }
-}
-:depth(3) {
-    BackGroundColor white
-}
-rootNode {
-    ' LineStyle 8.0;3.0
-    RoundCorner 15
-    Padding 12
-    BackgroundColor #a8eb99
-}
-leafNode {
-    LineColor gold
-    RoundCorner 15
-    ' Padding 12
-    LineColor black
-    Shadowing 4.0
-    BackgroundColor #fbe972
-}
-arrow {
-    LineStyle 5
-    LineThickness 1.0
-    LineColor green
-' 可设置 层级的 箭头样式
-    :depth(1) {
-        LineColor red
-    }
-}
-' ***_ 无框框的节点的样式
-boxless {
-    FontColor darkgreen
-}
-legend{
-    LineStyle 4
-    RoundCorner 1
-    BackGroundColor #f3fbec
-    LineColor #f3fbec
-    Padding 10
-    FontColor grey
-}
-' 配置一个class(当成class) 这样可以修改某个node的样式
-' 然后在 node 后面的 ; 后面 使用 &lt;&lt;rose&gt;&gt; 即可
-.rose {
-    BackgroundColor #FFBBCC
-}
-' 影响该节点以及它的所有子孙节点
-.LightCyan *{
-    BackgroundColor LightCyan
-}
-.lightyellow *{
-    BackgroundColor  LightYellow
-    ' 可以使用这种方式来 调颜色, 对应还有 darken'
-    ' BackgroundColor %lighten(yellow, 50)
-}
-.yellow *{
-    BackgroundColor #fbe972
-}
-.lightgreen *{
-    BackgroundColor  #94c644
-}
-.gold *{
-    BackgroundColor gold
-}
-&lt;/style&gt;
-caption 图 1
-title 内存管理
-* 内存管理
-** 垃圾回收器自动回收机制 &lt;&lt;rose&gt;&gt;
-*** golang
-** 自己分配和回收
-*** c &lt;&lt;green&gt;&gt;
-** 所有权
-*** rust
-* 内存
-** 栈
-*** 大小确定,栈指针移动的方式,FILO
-*** 非常快,因为不用去找一块可用的内存去存数据,直接就是栈指针指向的位置
-** 堆
-***:需要在堆上找到一个足够大小的内存(这个查找会耗时),
-标记为在用,返回指针(存的这块内存的地址);
-header
-made by x
-endheader
-@endmindmap</code></pre>
-<pre class="x-plantuml"><code>@startmindmap
-&lt;style&gt;
-' 通用设置
-node {
-    Padding 12
-    Margin 10
-    HorizontalAlignment center
-    LineColor black
-    LineThickness 1.0
-    BackgroundColor #eab8de
-    RoundCorner 15
-    ' 自动换行, 每行最大长度
-    MaximumWidth 100
-    Shadowing 6.0
-    ' leafNode的优先级更高'
-    :depth(3) {
-        BackGroundColor white
-    }
-}
-:depth(3) {
-    BackGroundColor white
-}
-rootNode {
-    ' LineStyle 8.0;3.0
-    RoundCorner 15
-    Padding 12
-    BackgroundColor #a8eb99
-}
-leafNode {
-    LineColor gold
-    RoundCorner 15
-    ' Padding 12
-    LineColor black
-    Shadowing 4.0
-    BackgroundColor #fbe972
-}
-arrow {
-    LineStyle 5
-    LineThickness 1.0
-    LineColor green
-' 可设置 层级的 箭头样式
-    :depth(1) {
-        LineColor red
-    }
-}
-' ***_ 无框框的节点的样式
-boxless {
-    FontColor darkgreen
-}
-legend{
-    LineStyle 4
-    RoundCorner 1
-    BackGroundColor #f3fbec
-    LineColor #f3fbec
-    Padding 10
-    FontColor grey
-}
-' 配置一个class(当成class) 这样可以修改某个node的样式
-' 然后在 node 后面的 ; 后面 使用 &lt;&lt;rose&gt;&gt; 即可
-.rose {
-    BackgroundColor #FFBBCC
-    RoundCorner 1
-}
-' 影响该节点以及它的所有子孙节点
-.LightCyan *{
-    BackgroundColor LightCyan
-}
-.lightyellow *{
-    BackgroundColor  LightYellow
-    ' 可以使用这种方式来 调颜色, 对应还有 darken'
-    ' BackgroundColor %lighten(yellow, 50)
-}
-.yellow *{
-    BackgroundColor #fbe972
-}
-.lightgreen *{
-    BackgroundColor  #94c644
-}
-.gold *{
-    BackgroundColor gold
-}
-&lt;/style&gt;
-caption 图 2
-title 所有权规则
-* 所有权
-** 每个值都有所有者
-** 每个值同时只能有一个所有者
-** 当所有者超出作用域时, 该值将被删除
-header
-made by x
-endheader
-
-@endmindmap</code></pre>
+<section id="所有权规则" class="level2">
+<h2 class="anchored" data-anchor-id="所有权规则">所有权规则</h2>
+<p>所有权是rust用来管理内存的一系列规则</p>
+<embed src="../../../.diagram/a6892174dd4fbc7af0bf229c96c0ad9a.svg">
+<embed src="../../../.diagram/748af850bd9c0a4f7e288ddd737816fa.svg">
 </section>
 <section id="变量作用域" class="level2">
 <h2 class="anchored" data-anchor-id="变量作用域">变量作用域</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="co">// 这一行时  s 变量 还没申明, 不可用</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> s <span class="op">=</span> <span class="st">"hello"</span><span class="op">;</span> <span class="co">// s 变量可用</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// do stuff with s</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="co">// 这个作用域结束了, s 变量不可用了.</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// println!("{}", s); // cannot find value s in this scope</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// s 不可用了</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>!!! question “为什么内存在持有它的变量离开作用域后会被自动释放?” 当变量离开作用域, Rust 会调用一个名为{==<code>drop</code>==}的特殊函数</p>
-<pre><code>设计string类型的作者可以在该drop函数中写一些释放内存的代码,以此实现自动释放内存的功能
-
-不同类型变量的drop的实现可能不一样
-
-Rust 在结尾的 } 处会自动调用 drop</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="op">{</span><span class="co">// 这一行时  s 变量 还没申明, 不可用</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="kw">let</span> s <span class="op">=</span> <span class="st">"hello"</span><span class="op">;</span> <span class="co">// s 变量可用</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="co">// do stuff with s</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="op">}</span> <span class="co">// 这个作用域结束了, s 变量无效了</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="co">// println!("{}", s); // cannot find value s in this scope</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>        <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="op">}</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="co">// s 无效了</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="为什么内存在持有它的变量离开作用域后会被无效了呢?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+为什么内存在持有它的变量离开作用域后会被无效了呢?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>当变量离开作用域, Rust 会调用一个名为{==<code>drop</code>==}的特殊函数</p>
+<p>设计string类型的作者可以在该drop函数中写一些释放内存的代码,以此实现自动释放内存的功能</p>
+<p>不同类型变量的drop的实现可能不一样</p>
+<p>Rust 在结尾的 <code>}</code> 处会自动调用 drop</p>
+</div>
+</div>
 </section>
-<section id="move" class="level2">
-<h2 class="anchored" data-anchor-id="move">move</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 将x的值copy 给y, 2个变量同时存在</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y <span class="op">=</span> x<span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:p}-{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="op">&amp;</span>y)<span class="op">;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{x},{y}"</span>)<span class="op">;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> x <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>x)<span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> y <span class="op">=</span> x<span class="op">;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>y)<span class="op">;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 提示错误 : borrow of moved value,x 已经被borrow了</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// println!("{x},{y}");</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>!!! tip 我们发现string类型的表现和整形完全不一样,这是为什么?</p>
-<p>先看看string类型的内存结构</p>
-<pre class="x-excalidraw"><code></code></pre>
+<section id="move-copy" class="level2">
+<h2 class="anchored" data-anchor-id="move-copy">Move &amp; Copy</h2>
+<section id="copy" class="level3">
+<h3 class="anchored" data-anchor-id="copy">copy</h3>
+<p>类型实现了 Copy trait 则会被copy</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="co">// 将x的值copy 给y, 2个变量同时存在</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">// 因为这里是直接在栈上,拷贝起来是非常快的</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="co">// 所以在设计上就直接简单复制,对比看后面的字符串的情况</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="kw">let</span> y <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="pp">println!</span>(<span class="st">"{:p}-{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>x<span class="op">,</span> <span class="op">&amp;</span>y)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="pp">println!</span>(<span class="st">"{x},{y}"</span>)<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>不可变引用的赋值</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span>a<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">let</span> c <span class="op">=</span> b<span class="op">;</span> <span class="co">// copy</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="pp">println!</span>(<span class="st">"{b}"</span>)<span class="op">;</span> <span class="co">//ok</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="pp">println!</span>(<span class="st">"{c}"</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="move" class="level3">
+<h3 class="anchored" data-anchor-id="move">move</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">// s1 拥有这个hello字符串的所有权</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">let</span> s1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="pp">println!</span>(<span class="st">"{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>s1)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="co">// s1 没有了 hello字符串的所有权,s1 将处于不可用状态</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="co">//  转移给了 s2,s2有了所有权</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="kw">let</span> s2 <span class="op">=</span> s1<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="pp">println!</span>(<span class="st">"{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>s2)<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="co">// 提示错误 : borrow of moved value,s1 已经被borrow了</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="co">// println!("{s1}");</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="pp">println!</span>(<span class="st">"{s2}"</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="字符串为啥设计成move?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+字符串为啥设计成move?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>s2=s1 实际会将栈上的数据复制一份</li>
+<li>如果这个时候 s1和s2 离开作用域, 那么要drop(释放堆上实际的字符串)了,会做释放同一块内存的操作,导致double free error,这样有安全问题</li>
+<li>既然这样rust 设计成让执行 s2=s1的时候, 让s1 无效,这样s1跳出作用域时,不需要free了, 这就是 Move ,s1 was moved into s2</li>
+</ul>
+</div>
+</div>
+<embed src="../../../.diagram/9ad9364f8d240133abb64416023880e5.svg">
+<p>可变引用的赋值操作</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="kw">let</span> c <span class="op">=</span> b<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="co">// 报错了</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="co">// 因为 b 已经移动给了 c, b 已经不可用了</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="pp">println!</span>(<span class="st">"{b}"</span>)<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>rust 永远不会做深拷贝的事情,因为开销大,当然除非你主动</p>
+</div>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a>    <span class="kw">let</span> s1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="co">// 深拷贝了</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="kw">let</span> s2 <span class="op">=</span> s1<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="pp">println!</span>(<span class="st">"s1 = {}, s2 = {}"</span><span class="op">,</span> s1<span class="op">,</span> s2)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="move-还是-copy" class="level3">
+<h3 class="anchored" data-anchor-id="move-还是-copy">move 还是 copy</h3>
+<embed src="../../../.diagram/ce15ebe88dfc1bdc97f845f145b1ffbd.svg">
+</section>
+</section>
+<section id="函数传参所有权问题" class="level2">
+<h2 class="anchored" data-anchor-id="函数传参所有权问题">函数传参所有权问题</h2>
+<embed src="../../../.diagram/52b5cb390f330a9a9d4a9ce366d307af.svg">
+<section id="官方例子" class="level3">
+<h3 class="anchored" data-anchor-id="官方例子">官方例子</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="co">// s move into 函数</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    takes_ownership(s)<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="co">// 所以s 这个时候已经不可用了.</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="co">// println!("{s}"); //报错了</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="co">// x would move into the function,</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="co">// 但是 x 是i32 类型,在栈上,前面说过它会 copy 操作</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>    makes_copy(x)<span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="pp">println!</span>(<span class="st">"{x}"</span>)<span class="op">;</span> <span class="co">// 这里还是可以访问的</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="op">}</span> <span class="co">// Here, x goes out of scope, then s. But because s's value was moved, nothing</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="co">// special happens.</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="kw">fn</span> takes_ownership(some_string<span class="op">:</span> <span class="dt">String</span>) <span class="op">{</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="co">// some_string comes into scope</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> some_string)<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="op">}</span> <span class="co">// 跳出作用域,some_string 指向的堆以及自身(栈会弹)都会被drop, 内存会释放</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="kw">fn</span> makes_copy(some_integer<span class="op">:</span> <span class="dt">i32</span>) <span class="op">{</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>    <span class="co">// some_integer comes into scope</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> some_integer)<span class="op">;</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="op">}</span> <span class="co">// Here, some_integer goes out of scope. Nothing special happens.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>TODO</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="函数返回值所有权" class="level2">
+<h2 class="anchored" data-anchor-id="函数返回值所有权">函数返回值所有权</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="kw">let</span> s1 <span class="op">=</span> gives_ownership()<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="kw">let</span> s2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="co">// s2 move 给了 takes_and_gives_back的参数</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="co">// takes_and_gives_back 返回值 move 给了 调用者, 给了s3</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="kw">let</span> s3 <span class="op">=</span> takes_and_gives_back(s2)<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="op">}</span> <span class="co">// Here, s3 goes out of scope and is dropped. s2 was moved, so nothing</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="co">// happens. s1 goes out of scope and is dropped.</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co">// 会将返回值 move 给它的调用者</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="kw">fn</span> gives_ownership() <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="kw">let</span> some_string <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"yours"</span>)<span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a></span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="co">// 这个会作为返回值, move 给 当前函数的调用者</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>    some_string</span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="op">}</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="co">// This function takes a String and returns one</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="kw">fn</span> takes_and_gives_back(a_string<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a>    <span class="co">// a_string comes into</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a>    <span class="co">// scope</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a></span>
+<span id="cb10-25"><a href="#cb10-25"></a>    a_string <span class="co">// a_string is returned and moves out to the calling function</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="借用-borrow" class="level2">
+<h2 class="anchored" data-anchor-id="借用-borrow">借用 borrow</h2>
+<p>前面调用函数我们发现,每次调用函数,都会有 taking ownership 和 returning ownership,很烦, 有没有 可以直接使用某个值,而不需要 转移所有权的呢? –&gt; 引用</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>我们想一想: 你引用某个文章, 这个文章肯定不是你的,对吧, 就好像你借了别人东西来用一样, 所有权还是别人的. 所以在rsut中 引用也叫借用</p>
+</div>
+</div>
+<p><span class="txt-highlight"><code>&amp;</code> 表示引用某些值, 而不取得其所有权</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="kw">let</span> s1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="co">// &amp;s1, 引用s1,  知道s1的地址, 就意味着 知道它的值</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="kw">let</span> len <span class="op">=</span> calculate_length(<span class="op">&amp;</span>s1)<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="pp">println!</span>(<span class="st">"The length of '{}' is {}."</span><span class="op">,</span> s1<span class="op">,</span> len)<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="op">}</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">fn</span> calculate_length(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">String</span>) <span class="op">-&gt;</span> <span class="dt">usize</span> <span class="op">{</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>    s<span class="op">.</span>len()</span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="op">}</span><span class="co">//s 并不拥有 s1变量指向的值的所有权, 所以当 drop 后, s1变量指向的值不会free</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="不可变和可变" class="level3">
+<h3 class="anchored" data-anchor-id="不可变和可变">不可变和可变</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="co">// changeImmutable(&amp;s);</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="co">// 字符串 需要 可变</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="kw">let</span> <span class="kw">mut</span> s2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="co">// 引用也需要可变</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>    changeMutable(<span class="op">&amp;</span><span class="kw">mut</span> s2)<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>    <span class="pp">println!</span>(<span class="st">"{:?}-{:?}"</span><span class="op">,</span> s<span class="op">.</span>as_ptr()<span class="op">,</span> s2<span class="op">.</span>as_ptr())<span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="op">}</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="kw">fn</span> changeImmutable(some_string<span class="op">:</span> <span class="op">&amp;</span><span class="dt">String</span>) <span class="op">{</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>    some_string<span class="op">.</span>push_str(<span class="st">", world"</span>)<span class="op">;</span>  <span class="co">//报错了</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="op">}</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="co">// 参数需要可变</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="kw">fn</span> changeMutable(some_string<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">String</span>) <span class="op">{</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a>    <span class="co">// some_string.push_str(", world");</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a>    some_string<span class="op">.</span>pop()<span class="op">;</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="编译是否成功的判断方法" class="level3">
+<h3 class="anchored" data-anchor-id="编译是否成功的判断方法">编译是否成功的判断方法</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="含引用的代码,编译是否成功的判断逻辑">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+含引用的代码,编译是否成功的判断逻辑
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="txt-highlight">rust 希望你是明确知道自己是想要如何使用这块内存,然后正确定义合适的变量</span></li>
+<li><span class="txt-highlight">如果你使用不可变引用</span>
+<ul>
+<li><strong>那么定义这个不可变引用后到最后一次使用它之前, 你肯定是希望它指向的数据不会被修改, 要不然你用个屁的不可变啊</strong></li>
+<li>所以在定义一个不可变引用后 &amp;a,你修改了a的数据, 然后你再使用这个不可变引用,那么就报错了,因为这和你的初衷是违背的</li>
+</ul></li>
+<li><span class="txt-highlight">如果你使用了可变引用</span>
+<ul>
+<li><strong>那么定义这个可变引用后到最后一次使用它之前, 你肯定不希望有其他人来修改它,你希望只有你自己可以修改a的值,就是你在最后使用它之前,对 a 完全可控的,你不希望在读取它之前,被其他人修改</strong></li>
+<li>所以在定义一个可变引用后, 你要确保你最后在使用它之前, 没有其他人修改它</li>
+</ul></li>
+<li>你可以认为 <span class="txt-highlight">从你定义引用后到最后一次使用这个引用这段代码块是你这个引用变量的作用域</span>
+<ul>
+<li>前面的逻辑是我从 <code>rust为什么要这样设计</code>去思考得出的结论</li>
+<li>这里说的作用域是网上有这样说, 我觉得刚好符合我的逻辑思考,觉得挺好.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p>报错的</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>    a <span class="op">=</span> <span class="dv">31</span><span class="op">;</span> <span class="co">// 这里提示错误</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="co">// 在使用这个 可变引用前,有其他人对a做了修改了</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="co">// 这不符合 定义可变引用的初衷</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>正确的</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="op">*</span>b <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="co">// 前面自己修改, 最后使用的地方, 都是想要的结果</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="co">// 用作用域来理解 也ok的</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>    a <span class="op">=</span> <span class="dv">31</span><span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> a)<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>作用域</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> s2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>        <span class="kw">let</span> r3 <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> s2<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>        <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> r3)<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="op">}</span> <span class="co">// 这个时候r3 drop了. 所以后面 可以有 r4</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="kw">let</span> r4 <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> s2<span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> r4)<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>多个可变引用,ok的</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>报错的</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>    <span class="co">// 你使用b的时候,前面有 个c 可能做 对a的修改</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>    <span class="co">// 这样你这里使用b时,可能就不是你想要的结果了.</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>    <span class="co">// 按照前面的说法, 可以理解为: 一个作用域内 只能有一个可变引用</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>报错了</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span>a<span class="op">;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="co">// 报错了, 你使用不可变引用,但是前面c 可能会修改a</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>多个不可变引用</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="co">// 在有一个可变引用之前的 多个不可变引用, 完全ok</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="co">// 这个道理很好理解,因为在 可变引用之前,变量不存在竞争</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="kw">let</span> a1 <span class="op">=</span> <span class="op">&amp;</span>s<span class="op">;</span> <span class="co">// 不可变引用</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>    <span class="kw">let</span> a2 <span class="op">=</span> <span class="op">&amp;</span>s<span class="op">;</span> <span class="co">// 多个不可变引用 ,可以的</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>    <span class="co">// 关键: 因为在可变引用之前,所以使用的时候,不会出现被修改的情况</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>    <span class="pp">println!</span>(<span class="st">"{}-{}"</span><span class="op">,</span> a1<span class="op">,</span> a2)<span class="op">;</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>    <span class="kw">let</span> x1 <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> s<span class="op">;</span> <span class="co">// 可变引用</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> x1)<span class="op">;</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>报错</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="kw">let</span> a1 <span class="op">=</span> <span class="op">&amp;</span>s<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="kw">let</span> a2 <span class="op">=</span> <span class="op">&amp;</span>s<span class="op">;</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>    s<span class="op">.</span>push_str(<span class="st">"world"</span>)<span class="op">;</span>  <span class="co">// 同样会报错</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="co">// 因为这个时候, s 已经被修改了, 不可变引用的意义没了</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="pp">println!</span>(<span class="st">"{}-{}"</span><span class="op">,</span> a1<span class="op">,</span> a2)<span class="op">;</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="悬挂引用" class="level3">
+<h3 class="anchored" data-anchor-id="悬挂引用">悬挂引用</h3>
+<p>rust 编译器会直接报错</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="kw">let</span> reference_to_nothing <span class="op">=</span> dangle()<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="op">}</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="kw">fn</span> dangle() <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a>    <span class="op">&amp;</span>s</span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="op">}</span> <span class="co">// s drop 掉了, 所在内存被释放了. &amp;s 引用了一个不可控的内存</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reborrow-好好看看" class="level3">
+<h3 class="anchored" data-anchor-id="reborrow-好好看看">reborrow (好好看看)</h3>
+<section id="可变借用直接赋值" class="level4">
+<h4 class="anchored" data-anchor-id="可变借用直接赋值">可变借用直接赋值</h4>
+<p>报错的</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="kw">let</span> c <span class="op">=</span> b<span class="op">;</span>  <span class="co">// 被move掉了, </span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span> <span class="co">//报错</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>报错了, 你可能以为这不和上面一样吗, b move给了c, 你打印b肯定错了</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="kw">let</span> c<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">i32</span> <span class="op">=</span> b<span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>实际上我们看下报错信息,非常有意思, <span class="txt-highlight">竟然说b被可变借用了,而不是move给了c?</span></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>error信息</strong></pre>
+</div>
+<div class="sourceCode" id="cb24" data-filename="error信息"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1"></a>error[E0502]: cannot borrow `b` as immutable because it is also borrowed as mutable</span>
+<span id="cb24-2"><a href="#cb24-2"></a> --&gt; src/main.rs:5:20</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  |</span>
+<span id="cb24-4"><a href="#cb24-4"></a>4 |     let c: &amp;mut i32 = b;</span>
+<span id="cb24-5"><a href="#cb24-5"></a>  |                       - mutable borrow occurs here</span>
+<span id="cb24-6"><a href="#cb24-6"></a>5 |     println!("{}", b);</span>
+<span id="cb24-7"><a href="#cb24-7"></a>  |                    ^ immutable borrow occurs here</span>
+<span id="cb24-8"><a href="#cb24-8"></a>6 |     println!("{}", c); //</span>
+<span id="cb24-9"><a href="#cb24-9"></a>  |                    - mutable borrow later used here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>先看下这个类比</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> b <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>    <span class="kw">let</span> c<span class="op">=&amp;</span><span class="kw">mut</span> b<span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="co">// 报错了 b的一个不可变借用在一个可变借用的包围圈里</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="co">// 这里我再说下我自己对于前面理论的一种理解</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="co">// 可能有人觉得 这里不可变借用就刚好是我想要的结果,即使前面c对b做了修改</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="co">// 我想编译器可不会搞这么细, 我想它是认为你在可变借用包围里,可能被修改了</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="co">// 就好比</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>    <span class="co">/*</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="co">    let d=&amp;b;</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="co">    *c=11;  ---&gt; 可能有这种情况的,所以编译器不会搞那么细,直接交集就当错</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co">    println!("{}", d);</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a><span class="co">    */</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>再看看前面的 <code>let c: &amp;mut i32 = b;</code> 说是b被可变借用了,怎么就可变借用了? 只有下面这种可能了<br> <code>let c: &amp;mut i32 = b;</code> 估计是等价于</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">let</span> c<span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="op">*</span>b<span class="op">;</span> <span class="co">// 这样b 确实可以说被可变借用了</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>完整类比</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="op">*</span>b<span class="op">;</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>现在在看看正确的</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="co">// c是(*b)的可变借用,认为与a无关, 虽然实际和 &amp;mut a一样</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="co">// 这样 实际上 就好像有 a的2个可变借用,且还有交集的样子</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="op">*</span>b<span class="op">;</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="op">*</span>c <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="可变借用函数传参" class="level4">
+<h4 class="anchored" data-anchor-id="可变借用函数传参">可变借用函数传参</h4>
+<p>我是最先测试函数传可变借用时,发现奇怪现象的</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> a<span class="op">;</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>    ppp(b)<span class="op">;</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="co">// ppp(&amp;mut a); // 对比这个,如果用这个,就会报错了</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="pp">println!</span>(<span class="st">"{b}"</span>)<span class="op">;</span> <span class="co">// ok</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="op">}</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="co">// 相当于 let s:&amp;mut i32=b;</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="kw">fn</span> ppp(s<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">i32</span>) <span class="op">{</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>    <span class="op">*</span>s <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="txt-highlight">同样的,b 没有发生 move</span></p>
 
 
+</section>
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -754,25 +1189,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
