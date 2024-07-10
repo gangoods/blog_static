@@ -1,227 +1,265 @@
 /*-- scss:rules --*/
 @font-face {
-    /* excalidraw英文手写 ,注意在obsidian 中的excalidraw 使用 第一个手写字体,就是这里的了.
+  /* excalidraw英文手写 ,注意在obsidian 中的excalidraw 使用 第一个手写字体,就是这里的了.
     使用m 号字体就可以了*/
-    font-family: "Virgil";
-    /* https://github.com/arrowtype/shantell-sans */
-    /* 这里我用的是 tldraw 的手写英文字体
+  font-family: "Virgil";
+  /* https://github.com/arrowtype/shantell-sans */
+  /* 这里我用的是 tldraw 的手写英文字体
     Shantell_Sans-Normal-SemiBold.woff2
     Shantell_Sans-Normal-Medium.woff2 重命名的 */
-    // 如果想该成你想要的手写字体, 你就复制过来改成这个名字, 因为 后续的svg里使用的字体就是这个名字和路径
-    src: url("/stylesheets/font/Virgil-hand.woff2");
+  // 如果想该成你想要的手写字体, 你就复制过来改成这个名字, 因为 后续的svg里使用的字体就是这个名字和路径
+  src: url("/stylesheets/font/Virgil-hand.woff2");
 }
 @font-face {
-    // Cabin Sketch 是 当前主题默认的字体
-    // https://fonts.googleapis.com/css2?family=Pangolin&display=swap
-    font-family: "pangolin";
-    src: url("/stylesheets/font/pangolin.woff2");
+  // Cabin Sketch 是 当前主题默认的字体
+  // https://fonts.googleapis.com/css2?family=Pangolin&display=swap
+  font-family: "pangolin";
+  src: url("/stylesheets/font/pangolin.woff2");
 }
 
 div.sourceCode {
-    background-color:#fafafa;
-    //  #f5f5f5;
-    border-color: #eff7fa;
-    border-radius: 0.5rem;
+  background-color: #fafafa;
+  //  #f5f5f5;
+  border-color: #eff7fa;
+  border-radius: 0.5rem;
 }
-pre.number-lines>code.sourceCode{
-        border-left: 0.5px solid gray !important;
-        border-radius: 0;
+pre.number-lines > code.sourceCode {
+  border-left: 0.5px solid gray !important;
+  border-radius: 0;
 }
-body{
-    font-weight: normal; 
-    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+body {
+  font-weight: normal;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 pre code {
-    // border-color: #fdf3d1 !important;
+  // border-color: #fdf3d1 !important;
+  border-color: #f5f5f5 !important;
+  // font-weight: normal;
+}
+div.code-with-filename {
+  .code-with-filename-file {
     border-color: #f5f5f5 !important;
-    // font-weight: normal;
-}
-div.code-with-filename{
-    .code-with-filename-file{
-        border-color: #f5f5f5 !important;
-        // background-color: #d9ecdc;
-         /* 上边 | 右边 | 下边 | 左边 */
-        padding: 0.3rem 0.3rem 0.3rem 0.8rem;
-        // border-top-left-radius: 5px 25px;
-        // border-top-right-radius: 5px 25px; 
-    }
-    pre{
-        border: none;
-    }
+    // background-color: #d9ecdc;
+    /* 上边 | 右边 | 下边 | 左边 */
+    padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+    // border-top-left-radius: 5px 25px;
+    // border-top-right-radius: 5px 25px;
+  }
+  pre {
+    border: none;
+  }
 }
 
-
-.toc-active li>a.nav-link.active{
-    border-left: 2px solid #f1a93c !important;
-    background-color: #fdf5ec;
+.toc-active li > a.nav-link.active {
+  border-left: 2px solid #f1a93c !important;
+  background-color: #fdf5ec;
 }
-.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active{
-    color: #eb6864 !important;
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  color: #eb6864 !important;
 }
-div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
-    color: #8f3f3d;
+div.sidebar-item-container .active,
+div.sidebar-item-container .show > .nav-link,
+div.sidebar-item-container .sidebar-link > code {
+  color: #8f3f3d;
 }
-a.sidebar-link.active{
-
-    border-right: 2px solid #56a451 !important;
-    background-color: #f0f7f0;
-    // padding-top: 0.1rem;
-    // padding-bottom: 0.1rem;
+a.sidebar-link.active {
+  border-right: 2px solid #56a451 !important;
+  background-color: #f0f7f0;
+  // padding-top: 0.1rem;
+  // padding-bottom: 0.1rem;
 }
-a.sidebar-link{
-    padding: 0.1rem;
+a.sidebar-link {
+  padding: 0.1rem;
 }
-
-
-
 
 div.panel-tabset {
-    ul.nav.nav-tabs{
+  ul.nav.nav-tabs {
+    border-bottom: 0px;
+    li.nav-item {
+      border-bottom: 0px;
+      a.nav-link {
+        color: #333333 !important;
+        border: 1px solid #cccecf !important;
         border-bottom: 0px;
-        li.nav-item{
-            border-bottom: 0px;
-            a.nav-link{
-                color: #333333 !important;
-                border:1px solid #cccecf  !important;
-                border-bottom: 0px; 
-                // border-radius: 0;
-                // border-top-left-radius: 0.5rem;
-                border-radius: 8px 3px 0 0;
-                margin-bottom: -1px;
-                // border-top-right-radius:0.5rem; 
-            }
-            a.nav-link.active{
-                background-color: #fdf3d1 !important; 
-            }
-        }
+        // border-radius: 0;
+        // border-top-left-radius: 0.5rem;
+        border-radius: 8px 3px 0 0;
+        margin-bottom: -1px;
+        // border-top-right-radius:0.5rem;
+      }
+      a.nav-link.active {
+        background-color: #fdf3d1 !important;
+      }
     }
-    div.tab-content{
-        // margin-top: -1px;
-        padding: 0.8em;
-        padding-bottom: 0.2em;
-        border:1px solid #cccecf;
-        // border-top-right-radius: 0.5rem;
-        border-bottom-right-radius:0.5rem;
-        border-bottom-left-radius: 0.5rem;
-    }
+  }
+  div.tab-content {
+    // margin-top: -1px;
+    padding: 0.8em;
+    padding-bottom: 0.2em;
+    border: 1px solid #cccecf;
+    // border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
 }
 
-div.callout{
-    border-radius: 5px 5px 5px 5px / 25px 25px 25px 5px;
+div.callout {
+  border-radius: 5px 5px 5px 5px / 25px 25px 25px 5px;
+  border-top-left-radius: 5px 25px;
+  border-top-right-radius: 5px 25px;
+  border-bottom-right-radius: 5px 25px;
+  border-bottom-left-radius: 5px;
+  div.callout-header {
     border-top-left-radius: 5px 25px;
     border-top-right-radius: 5px 25px;
-    border-bottom-right-radius: 5px 25px;
-    border-bottom-left-radius: 5px;
-    div.callout-header{
-        border-top-left-radius: 5px 25px;
-        border-top-right-radius: 5px 25px; 
-        font-family: "Cabin Sketch";
-    }
-    div.callout-body{
-        padding-top: 0.3em;
-        padding-bottom: 0.2em;
-        font-size: 1rem !important;
-        font-family: "pangolin";
-        color: #5e5e5e;
-    }
+    font-family: "Cabin Sketch";
+  }
+  div.callout-body {
+    padding-top: 0.3em;
+    padding-bottom: 0.2em;
+    font-size: 1rem !important;
+    font-family: "pangolin";
+    color: #5e5e5e;
+  }
 }
 
-
-#quarto-sidebar{
-    border-right: 1px solid #f5f5f5;
+#quarto-sidebar {
+  border-right: 1px solid #f5f5f5;
 }
-
+h1,h2,h3,h4,h5{
+    font-family:"Cabin Sketch", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+  "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 h2 {
-    font-size: 1.8625em !important;
-    font-weight: bold !important;
-    color: #4fa0b5;
-    // color: #ff79c6;
+  font-size: 1.8625em !important;
+  font-weight: bold !important;
+  color: #4fa0b5;
+  // color: #ff79c6;
+  
 }
 h3 {
-    font-size: 1.5625em !important;
-    font-weight: bold !important;
-    color: #56a451;
+  font-size: 1.5625em !important;
+  font-weight: bold !important;
+  color: #56a451;
 }
 h4 {
-    font-size: 1.1625em !important;
-    font-weight: bold !important;
-    // color: #3270eb;
-    color: orange;
+  font-size: 1.1625em !important;
+  font-weight: bold !important;
+  // color: #3270eb;
+  color: orange;
 }
 h5 {
-    font-size: 1.1625em !important;
-    font-weight: bold !important;
-    color: #9be51c;
+  font-size: 1.1625em !important;
+  font-weight: bold !important;
+  color: #9be51c;
 }
-#quarto-document-content li a , p>a{
-    color:#3270eb;
+#quarto-document-content li a,
+p > a {
+  color: #3270eb;
 }
 
-
-.txt-highlight{
-    background-color: #fdf188;
+.txt-highlight {
+  background-color: #fdf188;
 }
 .txt-underline {
-    text-decoration: underline  #f2d8db ;
-    text-decoration-thickness: 0.2em;
+  text-decoration: underline #f2d8db;
+  text-decoration-thickness: 0.2em;
 }
 // 点击navbar后,显示的页面里的
 .link-cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-family: "pangolin";
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: "pangolin";
 }
-div.code-annotation-gutter-bg{
-    background-color: #f5f5f5;
-    // 代码有 #<1> 这种情况 右边的标号所在的窗口会在
-    // 代码的div上方,这样会将代码给截断,这里设置它靠后
-    z-index:-100;
+div.code-annotation-gutter-bg {
+  background-color: #f5f5f5;
+  // 代码有 #<1> 这种情况 右边的标号所在的窗口会在
+  // 代码的div上方,这样会将代码给截断,这里设置它靠后
+  z-index: -100;
 }
-div.code-annotation-gutter{
-    background-color: #f5f5f5;
-    z-index:-100;
+div.code-annotation-gutter {
+  background-color: #f5f5f5;
+  z-index: -100;
 }
-a.code-annotation-anchor{
-    background-color: #9be51c !important;
+a.code-annotation-anchor {
+  background-color: #9be51c !important;
 }
-button.code-annotation-anchor{
-    background-color: #9be51c !important;
+button.code-annotation-anchor {
+  background-color: #9be51c !important;
 }
 dl.code-annotation-container-grid {
-    background-color: #f2f7f1 ;
-    
-    dd{
-        // vertical-align: middle;
-        margin-bottom: 0;
-        span{
-            margin-top: 0.5rem;
-        }
+  background-color: #f2f7f1;
+
+  dd {
+    // vertical-align: middle;
+    margin-bottom: 0;
+    span {
+      margin-top: 0.5rem;
     }
-    dt{
-        background-color: #94c644;
-        height:19px;
-        width: 19px;
-        line-height: 19px;
-        margin-bottom: 0.2rem;
-    }
-    dt.code-annotation-active{
-        color: black !important;
-        border: solid #aaa 1px;
-        background-color: yellow !important;
-    }
+  }
+  dt {
+    background-color: #94c644;
+    height: 19px;
+    width: 19px;
+    line-height: 19px;
+    margin-bottom: 0.2rem;
+  }
+  dt.code-annotation-active {
+    color: black !important;
+    border: solid #aaa 1px;
+    background-color: yellow !important;
+  }
 }
 
-
-div#code-annotation-line-highlight{
-    background-color: #fdf188 ;
+div#code-annotation-line-highlight {
+  background-color: #fdf188;
 }
 // #code-annotation-line-highlight-gutter{
 // }
 
-#quarto-margin-sidebar, #quarto-sidebar{
-    // font-family: "pangolin";
-    // font-family: "Cabin Sketch";
-    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-weight: normal;
+#quarto-margin-sidebar,
+#quarto-sidebar {
+  // font-family: "pangolin";
+  // font-family: "Cabin Sketch";
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: normal;
+}
+
+// 下面是暂时用的
+.features {
+  padding-bottom: 2em;
+}
+
+.feature {
+  margin-top: 20px;
+}
+
+@media (min-width: 800px) {
+  .features {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0 0 -30px;
+    width: calc(100% + 30px);
+  }
+  .feature {
+    width: calc(33% - 30px);
+    margin: 20px 0 0 30px;
+  }
+}
+
+.feature h3 {
+  margin-top: 0;
+}
+
+.feature p:first-of-type {
+  margin-bottom: 0.2rem;
+  color: rgb(84, 85, 85);
 }

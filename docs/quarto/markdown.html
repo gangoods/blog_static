@@ -138,11 +138,11 @@ div.csl-indent {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../docs/rust/index.html"> 
-<span class="menu-text">rust</span></a>
+<span class="menu-text">Rust</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -562,8 +562,7 @@ Tip
 </section>
 <section id="d22" class="level4">
 <h4 class="anchored" data-anchor-id="d22">d2<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h4>
-<p>生成的svg 太大了, 暂时不知道怎么解决,先不用了,有空研究</p>
-<p>https://github.com/svg/svgo svg压缩</p>
+<p>生成的svg 太大了,可以使用<a href="https://github.com/svg/svgo">svgo</a>进行压缩,我已经修改了<code>_extension</code>扩展下相关文件,增加了压缩svg的代码</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">npm</span> install <span class="at">-g</span> svgo</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="ex">svgo</span> one.svg two.svg <span class="at">-o</span> one.min.svg two.min.svg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>我发现 不要用302主题, 会变小多了, 然后 sketch: true 不要用,再变小</p>
