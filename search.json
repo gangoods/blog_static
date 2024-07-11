@@ -167,11 +167,11 @@
     ]
   },
   {
-    "objectID": "docs/quarto/markdown.html#panel-tabset",
-    "href": "docs/quarto/markdown.html#panel-tabset",
+    "objectID": "docs/quarto/markdown.html#icon",
+    "href": "docs/quarto/markdown.html#icon",
     "title": "斯巴拉稀",
-    "section": "panel-tabset",
-    "text": "panel-tabset\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\ncode结果\n\n\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\n\n\nPythonrust\n\n\nabc\n\n\nefg",
+    "section": "icon",
+    "text": "icon\nhttps://icons.getbootstrap.com/ ## panel-tabset\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\ncode结果\n\n\n::: {.panel-tabset}\n## Python\nabc\n\n## rust\nefg\n:::\n\n\n\nPythonrust\n\n\nabc\n\n\nefg",
     "crumbs": [
       "markdown"
     ]
