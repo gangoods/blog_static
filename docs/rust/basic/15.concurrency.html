@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,16 +319,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#实现模型" id="toc-实现模型" class="nav-link active" data-scroll-target="#实现模型">实现模型</a></li>
-  <li><a href="#使用线程" id="toc-使用线程" class="nav-link" data-scroll-target="#使用线程">使用线程</a></li>
-  <li><a href="#move-闭包" id="toc-move-闭包" class="nav-link" data-scroll-target="#move-闭包">move 闭包</a></li>
-  <li><a href="#channel-使用消息传递" id="toc-channel-使用消息传递" class="nav-link" data-scroll-target="#channel-使用消息传递">channel 使用消息传递</a></li>
-  <li><a href="#共享状态的并发" id="toc-共享状态的并发" class="nav-link" data-scroll-target="#共享状态的并发">共享状态的并发</a>
+  <li><a href="#实现模型" id="toc-实现模型" class="nav-link active" data-scroll-target="#实现模型"><span class="header-section-number">1</span> 实现模型</a></li>
+  <li><a href="#使用线程" id="toc-使用线程" class="nav-link" data-scroll-target="#使用线程"><span class="header-section-number">2</span> 使用线程</a></li>
+  <li><a href="#move-闭包" id="toc-move-闭包" class="nav-link" data-scroll-target="#move-闭包"><span class="header-section-number">3</span> move 闭包</a></li>
+  <li><a href="#channel-使用消息传递" id="toc-channel-使用消息传递" class="nav-link" data-scroll-target="#channel-使用消息传递"><span class="header-section-number">4</span> channel 使用消息传递</a></li>
+  <li><a href="#共享状态的并发" id="toc-共享状态的并发" class="nav-link" data-scroll-target="#共享状态的并发"><span class="header-section-number">5</span> 共享状态的并发</a>
   <ul>
-  <li><a href="#rc-多个线程send" id="toc-rc-多个线程send" class="nav-link" data-scroll-target="#rc-多个线程send">Rc? 多个线程send</a></li>
-  <li><a href="#arc" id="toc-arc" class="nav-link" data-scroll-target="#arc">Arc<t></t></a></li>
+  <li><a href="#rc-多个线程send" id="toc-rc-多个线程send" class="nav-link" data-scroll-target="#rc-多个线程send"><span class="header-section-number">5.1</span> Rc? 多个线程send</a></li>
+  <li><a href="#arc" id="toc-arc" class="nav-link" data-scroll-target="#arc"><span class="header-section-number">5.2</span> Arc<t></t></a></li>
   </ul></li>
-  <li><a href="#send-sync-trait" id="toc-send-sync-trait" class="nav-link" data-scroll-target="#send-sync-trait">Send Sync trait</a></li>
+  <li><a href="#send-sync-trait" id="toc-send-sync-trait" class="nav-link" data-scroll-target="#send-sync-trait"><span class="header-section-number">6</span> Send Sync trait</a></li>
   </ul>
 </nav>
     </div>
@@ -312,12 +338,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="实现模型" class="level2">
-<h2 class="anchored" data-anchor-id="实现模型">实现模型</h2>
+<section id="实现模型" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="实现模型"><span class="header-section-number">1</span> 实现模型</h2>
 <p>rust 标准库就提供1:1 模型的实现, 第三方crate 有m:n模型的实现</p>
 </section>
-<section id="使用线程" class="level2">
-<h2 class="anchored" data-anchor-id="使用线程">使用线程</h2>
+<section id="使用线程" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="使用线程"><span class="header-section-number">2</span> 使用线程</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">use</span> <span class="pp">std::</span>thread<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">use</span> <span class="pp">std::time::</span>Duration<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -357,8 +383,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18"></a>    handle<span class="op">.</span>join()<span class="op">.</span>unwrap()<span class="op">;</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="move-闭包" class="level2">
-<h2 class="anchored" data-anchor-id="move-闭包">move 闭包</h2>
+<section id="move-闭包" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="move-闭包"><span class="header-section-number">3</span> move 闭包</h2>
 <p>报错</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">use</span> <span class="pp">std::</span>thread<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
@@ -385,8 +411,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10"></a>    handle<span class="op">.</span>join()<span class="op">.</span>unwrap()<span class="op">;</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="channel-使用消息传递" class="level2">
-<h2 class="anchored" data-anchor-id="channel-使用消息传递">channel 使用消息传递</h2>
+<section id="channel-使用消息传递" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="channel-使用消息传递"><span class="header-section-number">4</span> channel 使用消息传递</h2>
 <p>类似go的channel, 线程之间通过发送消息来通信</p>
 <p>mpsc : multiple producer, single consumer</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">use</span> <span class="pp">std::sync::</span>mpsc<span class="op">;</span></span>
@@ -476,8 +502,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-41"><a href="#cb7-41"></a>    <span class="op">}</span></span>
 <span id="cb7-42"><a href="#cb7-42"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="共享状态的并发" class="level2">
-<h2 class="anchored" data-anchor-id="共享状态的并发">共享状态的并发</h2>
+<section id="共享状态的并发" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="共享状态的并发"><span class="header-section-number">5</span> 共享状态的并发</h2>
 <p>Shared-State Concurrency</p>
 <p>多所有权, 多个线程同时访问一块内存 ### Mutex</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">use</span> <span class="pp">std::sync::</span>Mutex<span class="op">;</span></span>
@@ -499,8 +525,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-17"><a href="#cb8-17"></a></span>
 <span id="cb8-18"><a href="#cb8-18"></a>    <span class="pp">println!</span>(<span class="st">"m = {:?}"</span><span class="op">,</span> m)<span class="op">;</span></span>
 <span id="cb8-19"><a href="#cb8-19"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="rc-多个线程send" class="level3">
-<h3 class="anchored" data-anchor-id="rc-多个线程send">Rc? 多个线程send</h3>
+<section id="rc-多个线程send" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="rc-多个线程send"><span class="header-section-number">5.1</span> Rc? 多个线程send</h3>
 <p>报错了, rc 是不能在线程间安全发送,因为没有实现 Send trait</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">use</span> <span class="pp">std::rc::</span>Rc<span class="op">;</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="kw">use</span> <span class="pp">std::sync::</span>Mutex<span class="op">;</span></span>
@@ -527,8 +553,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-23"><a href="#cb9-23"></a>    <span class="pp">println!</span>(<span class="st">"Result: {}"</span><span class="op">,</span> <span class="op">*</span>counter<span class="op">.</span>lock()<span class="op">.</span>unwrap())<span class="op">;</span></span>
 <span id="cb9-24"><a href="#cb9-24"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="arc" class="level3">
-<h3 class="anchored" data-anchor-id="arc">Arc<t></t></h3>
+<section id="arc" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="arc"><span class="header-section-number">5.2</span> Arc<t></t></h3>
 <p>Arc= atomic rc</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">use</span> <span class="pp">std::sync::</span><span class="op">{</span>Arc<span class="op">,</span> Mutex<span class="op">};</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">use</span> <span class="pp">std::</span>thread<span class="op">;</span></span>
@@ -555,8 +581,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-23"><a href="#cb10-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="send-sync-trait" class="level2">
-<h2 class="anchored" data-anchor-id="send-sync-trait">Send Sync trait</h2>
+<section id="send-sync-trait" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="send-sync-trait"><span class="header-section-number">6</span> Send Sync trait</h2>
 <ul>
 <li>Send
 <ul>
@@ -598,6 +624,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

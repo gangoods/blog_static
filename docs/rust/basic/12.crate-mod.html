@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,17 +319,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#crate" id="toc-crate" class="nav-link active" data-scroll-target="#crate">crate</a></li>
-  <li><a href="#module" id="toc-module" class="nav-link" data-scroll-target="#module">module</a></li>
-  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path">path</a></li>
-  <li><a href="#use" id="toc-use" class="nav-link" data-scroll-target="#use">use</a>
+  <li><a href="#crate" id="toc-crate" class="nav-link active" data-scroll-target="#crate"><span class="header-section-number">1</span> crate</a></li>
+  <li><a href="#module" id="toc-module" class="nav-link" data-scroll-target="#module"><span class="header-section-number">2</span> module</a></li>
+  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="header-section-number">3</span> path</a></li>
+  <li><a href="#use" id="toc-use" class="nav-link" data-scroll-target="#use"><span class="header-section-number">4</span> use</a>
   <ul>
-  <li><a href="#mod" id="toc-mod" class="nav-link" data-scroll-target="#mod">mod</a></li>
-  <li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package">package</a></li>
-  <li><a href="#use-其他语法" id="toc-use-其他语法" class="nav-link" data-scroll-target="#use-其他语法">use 其他语法</a></li>
+  <li><a href="#mod" id="toc-mod" class="nav-link" data-scroll-target="#mod"><span class="header-section-number">4.1</span> mod</a></li>
+  <li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package"><span class="header-section-number">4.2</span> package</a></li>
+  <li><a href="#use-其他语法" id="toc-use-其他语法" class="nav-link" data-scroll-target="#use-其他语法"><span class="header-section-number">4.3</span> use 其他语法</a></li>
   </ul></li>
-  <li><a href="#模块拆分" id="toc-模块拆分" class="nav-link" data-scroll-target="#模块拆分">模块拆分</a></li>
-  <li><a href="#参考链接" id="toc-参考链接" class="nav-link" data-scroll-target="#参考链接">参考链接</a></li>
+  <li><a href="#模块拆分" id="toc-模块拆分" class="nav-link" data-scroll-target="#模块拆分"><span class="header-section-number">5</span> 模块拆分</a></li>
+  <li><a href="#参考链接" id="toc-参考链接" class="nav-link" data-scroll-target="#参考链接"><span class="header-section-number">6</span> 参考链接</a></li>
   </ul>
 </nav>
     </div>
@@ -314,8 +340,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <embed src="../../../.diagram/80f0447b87650d618fdfd10da7febbb4.svg">
-<section id="crate" class="level2">
-<h2 class="anchored" data-anchor-id="crate">crate</h2>
+<section id="crate" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="crate"><span class="header-section-number">1</span> crate</h2>
 <p>Rust 程序由 crate组成. 每个 crate 都是既完整又内聚的单元,包括单个库(library)或可执行程序的所有源代码,以及任何相关的测试、示例、工具、配置和其他杂项</p>
 <p>crate root 是源代码文件,编译器会从这里开始组成你的crate的根module</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">cargo</span> new hello</span>
@@ -332,8 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12"></a><span class="fu">touch</span> src/lib.rs <span class="co"># 这个文件默认就是 library crate 的crate root</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cargo.toml 没有指定上面2个文件名是 crate root ,因为这个是一种默认约定, 就像go里的main.go, cargo 会把crate root 文件给 rustc来构建</p>
 </section>
-<section id="module" class="level2">
-<h2 class="anchored" data-anchor-id="module">module</h2>
+<section id="module" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="module"><span class="header-section-number">2</span> module</h2>
 <p>模块是组织代码的一种方式,它允许你将代码分割到不同的文件中,并让每个文件只包含相关的代码. 模块可以嵌套,并且可以被任意数量的模块使用</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">mod</span> front_of_house <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">mod</span> hosting <span class="op">{</span></span>
@@ -359,8 +385,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9"></a>         <span class="ex">└──</span> take_payment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>就像目录一样, 这样我们是不是就可以像目录一样的访问方式去找到我们的模块</p>
 </section>
-<section id="path" class="level2">
-<h2 class="anchored" data-anchor-id="path">path</h2>
+<section id="path" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="path"><span class="header-section-number">3</span> path</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">.</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="ex">├──</span> Cargo.toml</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="ex">└──</span> src</span>
@@ -442,8 +468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-70"><a href="#cb5-70"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="use" class="level2">
-<h2 class="anchored" data-anchor-id="use">use</h2>
+<section id="use" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="use"><span class="header-section-number">4</span> use</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -457,8 +483,8 @@ Tip
 <p>use 语句将路径引入到当前作用域,从而允许你使用路径中指定的名称</p>
 </div>
 </div>
-<section id="mod" class="level3">
-<h3 class="anchored" data-anchor-id="mod">mod</h3>
+<section id="mod" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="mod"><span class="header-section-number">4.1</span> mod</h3>
 <div class="sourceCode" id="annotated-cell-6"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a><span class="kw">mod</span> front_of_house <span class="op">{</span></span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2"></a>    <span class="kw">pub</span> <span class="kw">mod</span> hosting <span class="op">{</span></span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a>        <span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{}</span></span>
@@ -506,8 +532,8 @@ Tip
 </dd>
 </dl>
 </section>
-<section id="package" class="level3">
-<h3 class="anchored" data-anchor-id="package">package</h3>
+<section id="package" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="package"><span class="header-section-number">4.2</span> package</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="使用外部package">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -538,8 +564,8 @@ Tip
 <span id="cb8-2"><a href="#cb8-2"></a><span class="kw">use</span> <span class="pp">std::collections::</span>HashMap<span class="op">;</span> <span class="co">// 引入标准库</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="use-其他语法" class="level3">
-<h3 class="anchored" data-anchor-id="use-其他语法">use 其他语法</h3>
+<section id="use-其他语法" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="use-其他语法"><span class="header-section-number">4.3</span> use 其他语法</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">use</span> <span class="pp">std::cmp::</span>Ordering<span class="op">;</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>使用{} 来简写</p>
@@ -552,8 +578,8 @@ Tip
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">use</span> <span class="pp">std::collections::</span><span class="op">*;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="模块拆分" class="level2">
-<h2 class="anchored" data-anchor-id="模块拆分">模块拆分</h2>
+<section id="模块拆分" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="模块拆分"><span class="header-section-number">5</span> 模块拆分</h2>
 <div class="sourceCode" id="annotated-cell-15"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1">1</button><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1"></a><span class="kw">mod</span> front_of_house<span class="op">;</span></span>
 <span id="annotated-cell-15-2"><a href="#annotated-cell-15-2"></a></span>
 <span id="annotated-cell-15-3"><a href="#annotated-cell-15-3"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
@@ -596,8 +622,8 @@ Tip
 <span id="cb17-3"><a href="#cb17-3"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="参考链接" class="level2">
-<h2 class="anchored" data-anchor-id="参考链接">参考链接</h2>
+<section id="参考链接" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="参考链接"><span class="header-section-number">6</span> 参考链接</h2>
 <p><a href="https://github.com/rust-lang/crates.io">crates.io github</a> <a href="https://crates.io/">crates.io</a></p>
 
 
@@ -624,6 +650,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,17 +319,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#先看个例子" id="toc-先看个例子" class="nav-link active" data-scroll-target="#先看个例子">先看个例子</a></li>
-  <li><a href="#借用检查器" id="toc-借用检查器" class="nav-link" data-scroll-target="#借用检查器">借用检查器</a></li>
-  <li><a href="#函数参数的生命周期" id="toc-函数参数的生命周期" class="nav-link" data-scroll-target="#函数参数的生命周期">函数参数的生命周期</a></li>
-  <li><a href="#生命周期的标注" id="toc-生命周期的标注" class="nav-link" data-scroll-target="#生命周期的标注">生命周期的标注</a></li>
-  <li><a href="#结构体中的生命周期" id="toc-结构体中的生命周期" class="nav-link" data-scroll-target="#结构体中的生命周期">结构体中的生命周期</a></li>
-  <li><a href="#生命周期的省略" id="toc-生命周期的省略" class="nav-link" data-scroll-target="#生命周期的省略">生命周期的省略</a>
+  <li><a href="#先看个例子" id="toc-先看个例子" class="nav-link active" data-scroll-target="#先看个例子"><span class="header-section-number">1</span> 先看个例子</a></li>
+  <li><a href="#借用检查器" id="toc-借用检查器" class="nav-link" data-scroll-target="#借用检查器"><span class="header-section-number">2</span> 借用检查器</a></li>
+  <li><a href="#函数参数的生命周期" id="toc-函数参数的生命周期" class="nav-link" data-scroll-target="#函数参数的生命周期"><span class="header-section-number">3</span> 函数参数的生命周期</a></li>
+  <li><a href="#生命周期的标注" id="toc-生命周期的标注" class="nav-link" data-scroll-target="#生命周期的标注"><span class="header-section-number">4</span> 生命周期的标注</a></li>
+  <li><a href="#结构体中的生命周期" id="toc-结构体中的生命周期" class="nav-link" data-scroll-target="#结构体中的生命周期"><span class="header-section-number">5</span> 结构体中的生命周期</a></li>
+  <li><a href="#生命周期的省略" id="toc-生命周期的省略" class="nav-link" data-scroll-target="#生命周期的省略"><span class="header-section-number">6</span> 生命周期的省略</a>
   <ul>
-  <li><a href="#三个规则" id="toc-三个规则" class="nav-link" data-scroll-target="#三个规则">三个规则</a></li>
+  <li><a href="#三个规则" id="toc-三个规则" class="nav-link" data-scroll-target="#三个规则"><span class="header-section-number">6.1</span> 三个规则</a></li>
   </ul></li>
-  <li><a href="#静态生命周期" id="toc-静态生命周期" class="nav-link" data-scroll-target="#静态生命周期">静态生命周期</a></li>
-  <li><a href="#泛型trait约束中使用" id="toc-泛型trait约束中使用" class="nav-link" data-scroll-target="#泛型trait约束中使用">泛型,trait约束中使用</a></li>
+  <li><a href="#静态生命周期" id="toc-静态生命周期" class="nav-link" data-scroll-target="#静态生命周期"><span class="header-section-number">7</span> 静态生命周期</a></li>
+  <li><a href="#泛型trait约束中使用" id="toc-泛型trait约束中使用" class="nav-link" data-scroll-target="#泛型trait约束中使用"><span class="header-section-number">8</span> 泛型,trait约束中使用</a></li>
   </ul>
 </nav>
     </div>
@@ -313,8 +339,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="先看个例子" class="level2">
-<h2 class="anchored" data-anchor-id="先看个例子">先看个例子</h2>
+<section id="先看个例子" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="先看个例子"><span class="header-section-number">1</span> 先看个例子</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">let</span> r<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -339,8 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11"></a>  |                       - borrow later used here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>rust编译器 如何发现问题的呢?</p>
 </section>
-<section id="借用检查器" class="level2">
-<h2 class="anchored" data-anchor-id="借用检查器">借用检查器</h2>
+<section id="借用检查器" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="借用检查器"><span class="header-section-number">2</span> 借用检查器</h2>
 <p>The Borrow Checker</p>
 <p>rust编译器 有一个 borrow checker 它会比较作用域来判断所有借用是否合法</p>
 <p>标注上变量的生命周期,我们看看</p>
@@ -365,8 +391,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7"></a>                          <span class="co">// --+       |</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="op">}</span>                         <span class="co">// ----------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="函数参数的生命周期" class="level2">
-<h2 class="anchored" data-anchor-id="函数参数的生命周期">函数参数的生命周期</h2>
+<section id="函数参数的生命周期" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="函数参数的生命周期"><span class="header-section-number">3</span> 函数参数的生命周期</h2>
 <p>每个引用都有生命周期, 就是他的有效的作用域. 标注生命周期不会改变原来变量的生命周期,因为有些时候 编译器在运行时会发生什么事, 标注只是为了帮助编译器理解其中的生命周期(借用之间的相互关系),如果违反实际生命周期，编译器也是会拒绝编译的.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">// 编译器无法通过观察静态代码分析出返回的到底是x, 还是y</span></span>
@@ -385,8 +411,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-15"><a href="#cb6-15"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
 <span id="cb6-16"><a href="#cb6-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="生命周期的标注" class="level2">
-<h2 class="anchored" data-anchor-id="生命周期的标注">生命周期的标注</h2>
+<section id="生命周期的标注" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="生命周期的标注"><span class="header-section-number">4</span> 生命周期的标注</h2>
 <p>使用 ’a ’b 这种 单个简单字母, 放在 &amp;后面</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">&amp;</span><span class="dt">i32</span>        <span class="co">// 一个借用</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">i32</span>     <span class="co">// 一个带有显式生命周期的借用</span></span>
@@ -459,8 +485,8 @@ Tip
 <span id="cb11-2"><a href="#cb11-2"></a>    x</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="结构体中的生命周期" class="level2">
-<h2 class="anchored" data-anchor-id="结构体中的生命周期">结构体中的生命周期</h2>
+<section id="结构体中的生命周期" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="结构体中的生命周期"><span class="header-section-number">5</span> 结构体中的生命周期</h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">struct</span> Book<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    title<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>    author<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span></span>
@@ -477,8 +503,8 @@ Tip
 <p>生命周期标注 ’a 表明这两个字段的生命周期是相同的，并且它们至少活得和 Book 实例一样久</p>
 <p>如果没有生命周期标注，Rust 编译器就无法确定 title 和 author 引用的数据是否会在 Book 实例之前被释放。生命周期标注提供了一种方式，让编译器能够检查引用是否在有效范围内，从而确保内存安全</p>
 </section>
-<section id="生命周期的省略" class="level2">
-<h2 class="anchored" data-anchor-id="生命周期的省略">生命周期的省略</h2>
+<section id="生命周期的省略" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="生命周期的省略"><span class="header-section-number">6</span> 生命周期的省略</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">// 早期像这样的,都是需要 进行生命周期标注的</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co">// fn first_word(s: &amp;str) -&gt; &amp;str {</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="kw">fn</span> first_word<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(s<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
@@ -491,8 +517,8 @@ Tip
 <span id="cb13-10"><a href="#cb13-10"></a>    <span class="op">}</span></span>
 <span id="cb13-11"><a href="#cb13-11"></a>    <span class="op">&amp;</span>s[<span class="op">..</span>]</span>
 <span id="cb13-12"><a href="#cb13-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="三个规则" class="level3">
-<h3 class="anchored" data-anchor-id="三个规则">三个规则</h3>
+<section id="三个规则" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="三个规则"><span class="header-section-number">6.1</span> 三个规则</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -554,8 +580,8 @@ Note
 <span id="cb15-19"><a href="#cb15-19"></a>    <span class="kw">fn</span> announce_and_return_part<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(<span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">self</span><span class="op">,</span> announcement<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="静态生命周期" class="level2">
-<h2 class="anchored" data-anchor-id="静态生命周期">静态生命周期</h2>
+<section id="静态生命周期" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="静态生命周期"><span class="header-section-number">7</span> 静态生命周期</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -571,8 +597,8 @@ Tip
 </div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">let</span> s<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span> <span class="op">=</span> <span class="st">"I have a static lifetime."</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="泛型trait约束中使用" class="level2">
-<h2 class="anchored" data-anchor-id="泛型trait约束中使用">泛型,trait约束中使用</h2>
+<section id="泛型trait约束中使用" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="泛型trait约束中使用"><span class="header-section-number">8</span> 泛型,trait约束中使用</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -628,6 +654,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,13 +319,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#三种形式" id="toc-三种形式" class="nav-link active" data-scroll-target="#三种形式">三种形式</a>
+  <li><a href="#三种形式" id="toc-三种形式" class="nav-link active" data-scroll-target="#三种形式"><span class="header-section-number">1</span> 三种形式</a>
   <ul>
-  <li><a href="#常规结构体" id="toc-常规结构体" class="nav-link" data-scroll-target="#常规结构体">常规结构体</a></li>
-  <li><a href="#元祖结构体" id="toc-元祖结构体" class="nav-link" data-scroll-target="#元祖结构体">元祖结构体</a></li>
-  <li><a href="#单元结构体" id="toc-单元结构体" class="nav-link" data-scroll-target="#单元结构体">单元结构体</a></li>
+  <li><a href="#常规结构体" id="toc-常规结构体" class="nav-link" data-scroll-target="#常规结构体"><span class="header-section-number">1.1</span> 常规结构体</a></li>
+  <li><a href="#元祖结构体" id="toc-元祖结构体" class="nav-link" data-scroll-target="#元祖结构体"><span class="header-section-number">1.2</span> 元祖结构体</a></li>
+  <li><a href="#单元结构体" id="toc-单元结构体" class="nav-link" data-scroll-target="#单元结构体"><span class="header-section-number">1.3</span> 单元结构体</a></li>
   </ul></li>
-  <li><a href="#方法和关联函数" id="toc-方法和关联函数" class="nav-link" data-scroll-target="#方法和关联函数">方法和关联函数</a></li>
+  <li><a href="#方法和关联函数" id="toc-方法和关联函数" class="nav-link" data-scroll-target="#方法和关联函数"><span class="header-section-number">2</span> 方法和关联函数</a></li>
   </ul>
 </nav>
     </div>
@@ -309,10 +335,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="三种形式" class="level2">
-<h2 class="anchored" data-anchor-id="三种形式">三种形式</h2>
-<section id="常规结构体" class="level3">
-<h3 class="anchored" data-anchor-id="常规结构体">常规结构体</h3>
+<section id="三种形式" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="三种形式"><span class="header-section-number">1</span> 三种形式</h2>
+<section id="常规结构体" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="常规结构体"><span class="header-section-number">1.1</span> 常规结构体</h3>
 <div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="at">)]</span></span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="kw">struct</span> User <span class="op">{</span></span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a>    active<span class="op">:</span> <span class="dt">bool</span><span class="op">,</span></span>
@@ -377,8 +403,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 </section>
-<section id="元祖结构体" class="level3">
-<h3 class="anchored" data-anchor-id="元祖结构体">元祖结构体</h3>
+<section id="元祖结构体" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="元祖结构体"><span class="header-section-number">1.2</span> 元祖结构体</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -406,8 +432,8 @@ Tip
 <span id="cb1-9"><a href="#cb1-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> black<span class="op">.</span><span class="dv">0</span>)<span class="op">;</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="单元结构体" class="level3">
-<h3 class="anchored" data-anchor-id="单元结构体">单元结构体</h3>
+<section id="单元结构体" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="单元结构体"><span class="header-section-number">1.3</span> 单元结构体</h3>
 <p>unit-like structs, 没有字段的结构体</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">struct</span> AlwaysEqual<span class="op">;</span></span>
@@ -418,8 +444,8 @@ Tip
 <span id="cb2-7"><a href="#cb2-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="方法和关联函数" class="level2">
-<h2 class="anchored" data-anchor-id="方法和关联函数">方法和关联函数</h2>
+<section id="方法和关联函数" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="方法和关联函数"><span class="header-section-number">2</span> 方法和关联函数</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="at">)]</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">struct</span> Rectangle <span class="op">{</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>    width<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
@@ -542,6 +568,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

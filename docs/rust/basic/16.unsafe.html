@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,13 +319,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#解引用原始指针" id="toc-解引用原始指针" class="nav-link active" data-scroll-target="#解引用原始指针">解引用原始指针</a></li>
-  <li><a href="#调用unsafe函数或方法" id="toc-调用unsafe函数或方法" class="nav-link" data-scroll-target="#调用unsafe函数或方法">调用unsafe函数或方法</a>
+  <li><a href="#解引用原始指针" id="toc-解引用原始指针" class="nav-link active" data-scroll-target="#解引用原始指针"><span class="header-section-number">1</span> 解引用原始指针</a></li>
+  <li><a href="#调用unsafe函数或方法" id="toc-调用unsafe函数或方法" class="nav-link" data-scroll-target="#调用unsafe函数或方法"><span class="header-section-number">2</span> 调用unsafe函数或方法</a>
   <ul>
-  <li><a href="#extern-调用外部函数ffi" id="toc-extern-调用外部函数ffi" class="nav-link" data-scroll-target="#extern-调用外部函数ffi">extern 调用外部函数(FFI)</a></li>
+  <li><a href="#extern-调用外部函数ffi" id="toc-extern-调用外部函数ffi" class="nav-link" data-scroll-target="#extern-调用外部函数ffi"><span class="header-section-number">2.1</span> extern 调用外部函数(FFI)</a></li>
   </ul></li>
-  <li><a href="#读写可变的静态变量" id="toc-读写可变的静态变量" class="nav-link" data-scroll-target="#读写可变的静态变量">读写可变的静态变量</a></li>
-  <li><a href="#实现unsafe-trait" id="toc-实现unsafe-trait" class="nav-link" data-scroll-target="#实现unsafe-trait">实现unsafe trait</a></li>
+  <li><a href="#读写可变的静态变量" id="toc-读写可变的静态变量" class="nav-link" data-scroll-target="#读写可变的静态变量"><span class="header-section-number">3</span> 读写可变的静态变量</a></li>
+  <li><a href="#实现unsafe-trait" id="toc-实现unsafe-trait" class="nav-link" data-scroll-target="#实现unsafe-trait"><span class="header-section-number">4</span> 实现unsafe trait</a></li>
   </ul>
 </nav>
     </div>
@@ -315,8 +341,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>可以使用unsafe去与操作系统交流.</li>
 <li><strong>在unsafe代码块中, 还是会做借用检查等的检测</strong></li>
 </ul>
-<section id="解引用原始指针" class="level2">
-<h2 class="anchored" data-anchor-id="解引用原始指针">解引用原始指针</h2>
+<section id="解引用原始指针" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="解引用原始指针"><span class="header-section-number">1</span> 解引用原始指针</h2>
 <embed src="../../../.diagram/e6f925262a8d81d94870d050d746644c.svg">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">struct</span> Two <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    first<span class="op">:</span> <span class="dt">i8</span><span class="op">,</span></span>
@@ -346,8 +372,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-26"><a href="#cb1-26"></a>    <span class="kw">let</span> r <span class="op">=</span> address <span class="kw">as</span> <span class="op">*</span><span class="kw">const</span> <span class="dt">i32</span><span class="op">;</span></span>
 <span id="cb1-27"><a href="#cb1-27"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="调用unsafe函数或方法" class="level2">
-<h2 class="anchored" data-anchor-id="调用unsafe函数或方法">调用unsafe函数或方法</h2>
+<section id="调用unsafe函数或方法" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="调用unsafe函数或方法"><span class="header-section-number">2</span> 调用unsafe函数或方法</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -403,8 +429,8 @@ Tip
 <span id="cb5-6"><a href="#cb5-6"></a>    <span class="kw">let</span> values<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">i32</span>] <span class="op">=</span> <span class="kw">unsafe</span> <span class="op">{</span> <span class="pp">slice::</span>from_raw_parts_mut(r<span class="op">,</span> <span class="dv">2</span>) <span class="op">};</span></span>
 <span id="cb5-7"><a href="#cb5-7"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> values)<span class="op">;</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="extern-调用外部函数ffi" class="level3">
-<h3 class="anchored" data-anchor-id="extern-调用外部函数ffi">extern 调用外部函数(FFI)</h3>
+<section id="extern-调用外部函数ffi" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="extern-调用外部函数ffi"><span class="header-section-number">2.1</span> extern 调用外部函数(FFI)</h3>
 <p>FFI: 外部函数接口, 可以让一种编程语言定义函数,然后其他语言可以调用</p>
 <p>rust 调用C</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">extern</span> <span class="st">"C"</span> <span class="op">{</span></span>
@@ -424,8 +450,8 @@ Tip
 <span id="cb7-4"><a href="#cb7-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="读写可变的静态变量" class="level2">
-<h2 class="anchored" data-anchor-id="读写可变的静态变量">读写可变的静态变量</h2>
+<section id="读写可变的静态变量" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="读写可变的静态变量"><span class="header-section-number">3</span> 读写可变的静态变量</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">// 类型要指定</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="kw">static</span> HELLO_WORLD<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">=</span> <span class="st">"Hello, world!"</span><span class="op">;</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -482,8 +508,8 @@ Tip
 <span id="cb9-36"><a href="#cb9-36"></a>    <span class="co">// println!("{}", &amp;COUNTER3);</span></span>
 <span id="cb9-37"><a href="#cb9-37"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="实现unsafe-trait" class="level2">
-<h2 class="anchored" data-anchor-id="实现unsafe-trait">实现unsafe trait</h2>
+<section id="实现unsafe-trait" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="实现unsafe-trait"><span class="header-section-number">4</span> 实现unsafe trait</h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">unsafe</span> <span class="kw">trait</span> Foo <span class="op">{</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="co">// methods go here</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="op">}</span></span>
@@ -518,6 +544,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

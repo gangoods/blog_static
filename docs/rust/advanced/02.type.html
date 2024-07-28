@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,15 +319,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#dst" id="toc-dst" class="nav-link active" data-scroll-target="#dst">DST</a></li>
-  <li><a href="#zst" id="toc-zst" class="nav-link" data-scroll-target="#zst">ZST</a></li>
-  <li><a href="#空类型" id="toc-空类型" class="nav-link" data-scroll-target="#空类型">空类型</a></li>
-  <li><a href="#repr" id="toc-repr" class="nav-link" data-scroll-target="#repr">repr</a>
+  <li><a href="#dst" id="toc-dst" class="nav-link active" data-scroll-target="#dst"><span class="header-section-number">1</span> DST</a></li>
+  <li><a href="#zst" id="toc-zst" class="nav-link" data-scroll-target="#zst"><span class="header-section-number">2</span> ZST</a></li>
+  <li><a href="#空类型" id="toc-空类型" class="nav-link" data-scroll-target="#空类型"><span class="header-section-number">3</span> 空类型</a></li>
+  <li><a href="#repr" id="toc-repr" class="nav-link" data-scroll-target="#repr"><span class="header-section-number">4</span> repr</a>
   <ul>
-  <li><a href="#reprc" id="toc-reprc" class="nav-link" data-scroll-target="#reprc">repr(C)</a></li>
-  <li><a href="#reprtransparent" id="toc-reprtransparent" class="nav-link" data-scroll-target="#reprtransparent">repr(transparent)</a></li>
-  <li><a href="#repru-repri" id="toc-repru-repri" class="nav-link" data-scroll-target="#repru-repri">repr(u<em>) repr(i</em>)</a></li>
-  <li><a href="#reprpacked" id="toc-reprpacked" class="nav-link" data-scroll-target="#reprpacked">repr(packed)</a></li>
+  <li><a href="#reprc" id="toc-reprc" class="nav-link" data-scroll-target="#reprc"><span class="header-section-number">4.1</span> repr(C)</a></li>
+  <li><a href="#reprtransparent" id="toc-reprtransparent" class="nav-link" data-scroll-target="#reprtransparent"><span class="header-section-number">4.2</span> repr(transparent)</a></li>
+  <li><a href="#repru-repri" id="toc-repru-repri" class="nav-link" data-scroll-target="#repru-repri"><span class="header-section-number">4.3</span> repr(u<em>) repr(i</em>)</a></li>
+  <li><a href="#reprpacked" id="toc-reprpacked" class="nav-link" data-scroll-target="#reprpacked"><span class="header-section-number">4.4</span> repr(packed)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -313,8 +339,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <embed src="../../../.diagram/de8bd16be0c74fe64926a1e35c6f2cf2.svg">
-<section id="dst" class="level2">
-<h2 class="anchored" data-anchor-id="dst">DST</h2>
+<section id="dst" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="dst"><span class="header-section-number">1</span> DST</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">trait</span> Summary <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">fn</span> summarize(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
@@ -327,8 +353,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::size_of::</span><span class="op">&lt;</span>Summary<span class="op">&gt;</span>())<span class="op">;</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="zst" class="level2">
-<h2 class="anchored" data-anchor-id="zst">ZST</h2>
+<section id="zst" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="zst"><span class="header-section-number">2</span> ZST</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">struct</span> Nothing<span class="op">;</span> <span class="co">// No fields = no size</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>                <span class="co">// All fields have no size = no size</span></span>
@@ -349,8 +375,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::</span>size_of_val(<span class="op">&amp;</span>b))<span class="op">;</span> <span class="co">// 8</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="空类型" class="level2">
-<h2 class="anchored" data-anchor-id="空类型">空类型</h2>
+<section id="空类型" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="空类型"><span class="header-section-number">3</span> 空类型</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">enum</span> NoVariants <span class="op">{}</span> <span class="co">// No variants = no size</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
@@ -359,10 +385,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::size_of::</span><span class="op">&lt;</span>NoVariants<span class="op">&gt;</span>())<span class="op">;</span></span>
 <span id="cb3-7"><a href="#cb3-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="repr" class="level2">
-<h2 class="anchored" data-anchor-id="repr">repr</h2>
-<section id="reprc" class="level3">
-<h3 class="anchored" data-anchor-id="reprc">repr(C)</h3>
+<section id="repr" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="repr"><span class="header-section-number">4</span> repr</h2>
+<section id="reprc" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="reprc"><span class="header-section-number">4.1</span> repr(C)</h3>
 <p>它的目的很简单, 就是和 <code>C</code> 保持一致. 数据的顺序,大小,对齐方式都和你在<code>C</code> 或<code>C++</code>中见到的一摸一样.</p>
 <p>我们前面在<a href="01.mem.html#内存对齐">内存对齐</a>看对<code>Struct A</code>的对齐方式和它的大小,这里我们使用<code>repr(C)</code>来定义<code>Struct A</code></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="at">#[</span>repr<span class="at">(</span>C<span class="at">)]</span></span>
@@ -385,14 +411,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>…</li>
 </ul>
 </section>
-<section id="reprtransparent" class="level3">
-<h3 class="anchored" data-anchor-id="reprtransparent">repr(transparent)</h3>
+<section id="reprtransparent" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="reprtransparent"><span class="header-section-number">4.2</span> repr(transparent)</h3>
 </section>
-<section id="repru-repri" class="level3">
-<h3 class="anchored" data-anchor-id="repru-repri">repr(u<em>) repr(i</em>)</h3>
+<section id="repru-repri" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="repru-repri"><span class="header-section-number">4.3</span> repr(u<em>) repr(i</em>)</h3>
 </section>
-<section id="reprpacked" class="level3">
-<h3 class="anchored" data-anchor-id="reprpacked">repr(packed)</h3>
+<section id="reprpacked" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="reprpacked"><span class="header-section-number">4.4</span> repr(packed)</h3>
 
 
 </section>
@@ -419,6 +445,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

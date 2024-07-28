@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,27 +319,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#配置文件" id="toc-配置文件" class="nav-link active" data-scroll-target="#配置文件">配置文件</a></li>
-  <li><a href="#文档" id="toc-文档" class="nav-link" data-scroll-target="#文档">文档</a>
+  <li><a href="#配置文件" id="toc-配置文件" class="nav-link active" data-scroll-target="#配置文件"><span class="header-section-number">1</span> 配置文件</a></li>
+  <li><a href="#文档" id="toc-文档" class="nav-link" data-scroll-target="#文档"><span class="header-section-number">2</span> 文档</a>
   <ul>
-  <li><a href="#注释" id="toc-注释" class="nav-link" data-scroll-target="#注释">注释</a></li>
-  <li><a href="#pub-use" id="toc-pub-use" class="nav-link" data-scroll-target="#pub-use">pub use</a></li>
+  <li><a href="#注释" id="toc-注释" class="nav-link" data-scroll-target="#注释"><span class="header-section-number">2.1</span> 注释</a></li>
+  <li><a href="#pub-use" id="toc-pub-use" class="nav-link" data-scroll-target="#pub-use"><span class="header-section-number">2.2</span> pub use</a></li>
   </ul></li>
-  <li><a href="#发布crate到crate.io" id="toc-发布crate到crate.io" class="nav-link" data-scroll-target="#发布crate到crate.io">发布crate到crate.io</a>
+  <li><a href="#发布crate到crate.io" id="toc-发布crate到crate.io" class="nav-link" data-scroll-target="#发布crate到crate.io"><span class="header-section-number">3</span> 发布crate到crate.io</a>
   <ul>
-  <li><a href="#登录crate.io获取token" id="toc-登录crate.io获取token" class="nav-link" data-scroll-target="#登录crate.io获取token">登录crate.io获取token</a></li>
-  <li><a href="#修改cargo.toml" id="toc-修改cargo.toml" class="nav-link" data-scroll-target="#修改cargo.toml">修改Cargo.toml</a></li>
-  <li><a href="#发布" id="toc-发布" class="nav-link" data-scroll-target="#发布">发布</a></li>
-  <li><a href="#cargo-yank-撤回" id="toc-cargo-yank-撤回" class="nav-link" data-scroll-target="#cargo-yank-撤回">cargo yank 撤回</a></li>
+  <li><a href="#登录crate.io获取token" id="toc-登录crate.io获取token" class="nav-link" data-scroll-target="#登录crate.io获取token"><span class="header-section-number">3.1</span> 登录crate.io获取token</a></li>
+  <li><a href="#修改cargo.toml" id="toc-修改cargo.toml" class="nav-link" data-scroll-target="#修改cargo.toml"><span class="header-section-number">3.2</span> 修改Cargo.toml</a></li>
+  <li><a href="#发布" id="toc-发布" class="nav-link" data-scroll-target="#发布"><span class="header-section-number">3.3</span> 发布</a></li>
+  <li><a href="#cargo-yank-撤回" id="toc-cargo-yank-撤回" class="nav-link" data-scroll-target="#cargo-yank-撤回"><span class="header-section-number">3.4</span> cargo yank 撤回</a></li>
   </ul></li>
-  <li><a href="#工作空间" id="toc-工作空间" class="nav-link" data-scroll-target="#工作空间">工作空间</a>
+  <li><a href="#工作空间" id="toc-工作空间" class="nav-link" data-scroll-target="#工作空间"><span class="header-section-number">4</span> 工作空间</a>
   <ul>
-  <li><a href="#创建" id="toc-创建" class="nav-link" data-scroll-target="#创建">创建</a></li>
-  <li><a href="#使用外部crate" id="toc-使用外部crate" class="nav-link" data-scroll-target="#使用外部crate">使用外部crate</a></li>
-  <li><a href="#测试" id="toc-测试" class="nav-link" data-scroll-target="#测试">测试</a></li>
+  <li><a href="#创建" id="toc-创建" class="nav-link" data-scroll-target="#创建"><span class="header-section-number">4.1</span> 创建</a></li>
+  <li><a href="#使用外部crate" id="toc-使用外部crate" class="nav-link" data-scroll-target="#使用外部crate"><span class="header-section-number">4.2</span> 使用外部crate</a></li>
+  <li><a href="#测试" id="toc-测试" class="nav-link" data-scroll-target="#测试"><span class="header-section-number">4.3</span> 测试</a></li>
   </ul></li>
-  <li><a href="#安装二进制crate" id="toc-安装二进制crate" class="nav-link" data-scroll-target="#安装二进制crate">安装二进制crate</a></li>
-  <li><a href="#自定义命令扩展" id="toc-自定义命令扩展" class="nav-link" data-scroll-target="#自定义命令扩展">自定义命令扩展</a></li>
+  <li><a href="#安装二进制crate" id="toc-安装二进制crate" class="nav-link" data-scroll-target="#安装二进制crate"><span class="header-section-number">5</span> 安装二进制crate</a></li>
+  <li><a href="#自定义命令扩展" id="toc-自定义命令扩展" class="nav-link" data-scroll-target="#自定义命令扩展"><span class="header-section-number">6</span> 自定义命令扩展</a></li>
   </ul>
 </nav>
     </div>
@@ -323,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="配置文件" class="level2">
-<h2 class="anchored" data-anchor-id="配置文件">配置文件</h2>
+<section id="配置文件" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="配置文件"><span class="header-section-number">1</span> 配置文件</h2>
 <p>发布的配置信息, 是预定义好的,可自定义</p>
 <embed src="../../../.diagram/91bd265a3416ee181305eb7ee94177f3.svg">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">cargo</span> build</span>
@@ -364,10 +390,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-3"><a href="#cb5-3"></a><span class="dt">rand</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">"https://github.com/rust-lang-nursery/rand"</span><span class="op"> }</span> <span class="co"># from online repo</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="dt">bar</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">path</span><span class="op"> =</span> <span class="st">"../bar"</span><span class="op"> }</span> <span class="co"># from a path in the local filesystem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="文档" class="level2">
-<h2 class="anchored" data-anchor-id="文档">文档</h2>
-<section id="注释" class="level3">
-<h3 class="anchored" data-anchor-id="注释">注释</h3>
+<section id="文档" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="文档"><span class="header-section-number">2</span> 文档</h2>
+<section id="注释" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="注释"><span class="header-section-number">2.1</span> 注释</h3>
 <p>生成HTML文档,显示如何使用API</p>
 <p>我们 在<code>src/lib.rs</code>中添加一些文档注释</p>
 <div class="code-with-filename">
@@ -413,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2"></a><span class="ex">cargo</span> test</span>
 <span id="cb7-3"><a href="#cb7-3"></a>   <span class="ex">Doc-tests</span> ....</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="pub-use" class="level3">
-<h3 class="anchored" data-anchor-id="pub-use">pub use</h3>
+<section id="pub-use" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="pub-use"><span class="header-section-number">2.2</span> pub use</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">src/lib.rs</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">src/main.rs</a></li></ul>
 <div class="tab-content">
@@ -480,16 +506,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">cargo</span> doc <span class="at">--open</span> <span class="co"># 查看一下</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="发布crate到crate.io" class="level2">
-<h2 class="anchored" data-anchor-id="发布crate到crate.io">发布crate到crate.io</h2>
-<section id="登录crate.io获取token" class="level3">
-<h3 class="anchored" data-anchor-id="登录crate.io获取token">登录crate.io获取token</h3>
+<section id="发布crate到crate.io" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="发布crate到crate.io"><span class="header-section-number">3</span> 发布crate到crate.io</h2>
+<section id="登录crate.io获取token" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="登录crate.io获取token"><span class="header-section-number">3.1</span> 登录crate.io获取token</h3>
 <p>登录<a href="https://crates.io/">crate.io</a>后,进入<a href="https://crates.io/me">settings</a>页面, 生成一个token</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 该命令会将token 存储在 ~/.cargo/credentials</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="ex">cargo</span> login abcdefghijklmnopqrstuvwxyz012345</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="修改cargo.toml" class="level3">
-<h3 class="anchored" data-anchor-id="修改cargo.toml">修改Cargo.toml</h3>
+<section id="修改cargo.toml" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="修改cargo.toml"><span class="header-section-number">3.2</span> 修改Cargo.toml</h3>
 <div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode numberSource toml code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode toml"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a><span class="kw">[package]</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"guessing_game"</span></span>
 <span id="annotated-cell-11-3"><a href="#annotated-cell-11-3"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
@@ -512,13 +538,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 </section>
-<section id="发布" class="level3">
-<h3 class="anchored" data-anchor-id="发布">发布</h3>
+<section id="发布" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="发布"><span class="header-section-number">3.3</span> 发布</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">cargo</span> publish</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>发布已存在crate的新版本, 需要修改 toml文件中的 <code>version</code> 参考 <a href="http://semver.org/">http://semver.org/</a>, 再执行<code>cargo publish</code> 即可</p>
 </section>
-<section id="cargo-yank-撤回" class="level3">
-<h3 class="anchored" data-anchor-id="cargo-yank-撤回">cargo yank 撤回</h3>
+<section id="cargo-yank-撤回" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="cargo-yank-撤回"><span class="header-section-number">3.4</span> cargo yank 撤回</h3>
 <ol type="1">
 <li>首先 <code>crate.io</code> 是不能让你删除已经发布的版本的,因为如果已经有人用了怎么办</li>
 <li>但是可以让你撤回,它的意思是, 防止新的用户使用这个可能不太好的版本,<code>cargo add xxxx</code> 后不会使用到这个撤回的版本, 如果是已经使用了这个版本的人(Cargo.lock里指定了版本了), 还是可以下载使用的</li>
@@ -532,10 +558,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7"></a>      <span class="ex">Unyank</span> guessing_game@1.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="工作空间" class="level2">
-<h2 class="anchored" data-anchor-id="工作空间">工作空间</h2>
-<section id="创建" class="level3">
-<h3 class="anchored" data-anchor-id="创建">创建</h3>
+<section id="工作空间" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="工作空间"><span class="header-section-number">4</span> 工作空间</h2>
+<section id="创建" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="创建"><span class="header-section-number">4.1</span> 创建</h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">mkdir</span> add</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="bu">cd</span> add </span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="fu">touch</span> Cargo.toml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -619,12 +645,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># 运行指定 binary crate</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="ex">cargo</span> run  <span class="at">-p</span> adder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="使用外部crate" class="level3">
-<h3 class="anchored" data-anchor-id="使用外部crate">使用外部crate</h3>
+<section id="使用外部crate" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="使用外部crate"><span class="header-section-number">4.2</span> 使用外部crate</h3>
 <p><code>adder/Cargo.toml[dependencies]</code>中添加<code>rand = "0.8.1"</code>,然后在<code>add_one/Cargo.toml[dependencies]</code>中添加<code>rand = "0.8.5"</code>后, <code>cargo build</code> 只会在外层<code>Cargo.lock</code>中生成一个rand版本.这样工作空间中的crate 都会使用同一个版本的rand</p>
 </section>
-<section id="测试" class="level3">
-<h3 class="anchored" data-anchor-id="测试">测试</h3>
+<section id="测试" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="测试"><span class="header-section-number">4.3</span> 测试</h3>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># 在add目录下</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="co"># 会test 工作空间中所有的crate</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="ex">cargo</span> test</span>
@@ -632,14 +658,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-5"><a href="#cb20-5"></a><span class="ex">cargo</span> test <span class="at">-p</span> adder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="安装二进制crate" class="level2">
-<h2 class="anchored" data-anchor-id="安装二进制crate">安装二进制crate</h2>
+<section id="安装二进制crate" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="安装二进制crate"><span class="header-section-number">5</span> 安装二进制crate</h2>
 <p>只能安装具有 binary target的 crate (binary crate)</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># 会安装到 $HOME/.cargo/bin 目录</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="ex">cargo</span> install ripgrep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="自定义命令扩展" class="level2">
-<h2 class="anchored" data-anchor-id="自定义命令扩展">自定义命令扩展</h2>
+<section id="自定义命令扩展" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="自定义命令扩展"><span class="header-section-number">6</span> 自定义命令扩展</h2>
 <p>在系统中你可以直接运行的一个命令 名字是<code>cargo-xxxx</code>,那么你就可以运行<code>cargo xxxx</code> 这样来替代运行它, <code>cargo --list</code> 可以查看到.</p>
 <p>我们在安装rust后, 可以在<code>~/.cargo/bin</code> 看到一些可执行文件, <code>cargo-fmt</code> 就是其中的一个, 我们可以发现有<code>cargo fmt</code>这个命令,就像cargo 的内置命令一样</p>
 
@@ -667,6 +693,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,28 +319,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#所有权规则" id="toc-所有权规则" class="nav-link active" data-scroll-target="#所有权规则">所有权规则</a></li>
-  <li><a href="#变量作用域" id="toc-变量作用域" class="nav-link" data-scroll-target="#变量作用域">变量作用域</a></li>
-  <li><a href="#move-copy" id="toc-move-copy" class="nav-link" data-scroll-target="#move-copy">Move &amp; Copy</a>
+  <li><a href="#所有权规则" id="toc-所有权规则" class="nav-link active" data-scroll-target="#所有权规则"><span class="header-section-number">1</span> 所有权规则</a></li>
+  <li><a href="#变量作用域" id="toc-变量作用域" class="nav-link" data-scroll-target="#变量作用域"><span class="header-section-number">2</span> 变量作用域</a></li>
+  <li><a href="#move-copy" id="toc-move-copy" class="nav-link" data-scroll-target="#move-copy"><span class="header-section-number">3</span> Move &amp; Copy</a>
   <ul>
-  <li><a href="#copy" id="toc-copy" class="nav-link" data-scroll-target="#copy">copy</a></li>
-  <li><a href="#move" id="toc-move" class="nav-link" data-scroll-target="#move">move</a></li>
-  <li><a href="#move-还是-copy" id="toc-move-还是-copy" class="nav-link" data-scroll-target="#move-还是-copy">move 还是 copy</a></li>
+  <li><a href="#copy" id="toc-copy" class="nav-link" data-scroll-target="#copy"><span class="header-section-number">3.1</span> copy</a></li>
+  <li><a href="#move" id="toc-move" class="nav-link" data-scroll-target="#move"><span class="header-section-number">3.2</span> move</a></li>
+  <li><a href="#move-还是-copy" id="toc-move-还是-copy" class="nav-link" data-scroll-target="#move-还是-copy"><span class="header-section-number">3.3</span> move 还是 copy</a></li>
   </ul></li>
-  <li><a href="#函数传参所有权问题" id="toc-函数传参所有权问题" class="nav-link" data-scroll-target="#函数传参所有权问题">函数传参所有权问题</a>
+  <li><a href="#函数传参所有权问题" id="toc-函数传参所有权问题" class="nav-link" data-scroll-target="#函数传参所有权问题"><span class="header-section-number">4</span> 函数传参所有权问题</a>
   <ul>
-  <li><a href="#官方例子" id="toc-官方例子" class="nav-link" data-scroll-target="#官方例子">官方例子</a></li>
+  <li><a href="#官方例子" id="toc-官方例子" class="nav-link" data-scroll-target="#官方例子"><span class="header-section-number">4.1</span> 官方例子</a></li>
   </ul></li>
-  <li><a href="#函数返回值所有权" id="toc-函数返回值所有权" class="nav-link" data-scroll-target="#函数返回值所有权">函数返回值所有权</a></li>
-  <li><a href="#借用-borrow" id="toc-借用-borrow" class="nav-link" data-scroll-target="#借用-borrow">借用 borrow</a>
+  <li><a href="#函数返回值所有权" id="toc-函数返回值所有权" class="nav-link" data-scroll-target="#函数返回值所有权"><span class="header-section-number">5</span> 函数返回值所有权</a></li>
+  <li><a href="#借用-borrow" id="toc-借用-borrow" class="nav-link" data-scroll-target="#借用-borrow"><span class="header-section-number">6</span> 借用 borrow</a>
   <ul>
-  <li><a href="#不可变和可变" id="toc-不可变和可变" class="nav-link" data-scroll-target="#不可变和可变">不可变和可变</a></li>
-  <li><a href="#编译是否成功的判断方法" id="toc-编译是否成功的判断方法" class="nav-link" data-scroll-target="#编译是否成功的判断方法">编译是否成功的判断方法</a></li>
-  <li><a href="#悬挂引用" id="toc-悬挂引用" class="nav-link" data-scroll-target="#悬挂引用">悬挂引用</a></li>
-  <li><a href="#reborrow-好好看看" id="toc-reborrow-好好看看" class="nav-link" data-scroll-target="#reborrow-好好看看">reborrow (好好看看)</a>
+  <li><a href="#不可变和可变" id="toc-不可变和可变" class="nav-link" data-scroll-target="#不可变和可变"><span class="header-section-number">6.1</span> 不可变和可变</a></li>
+  <li><a href="#编译是否成功的判断方法" id="toc-编译是否成功的判断方法" class="nav-link" data-scroll-target="#编译是否成功的判断方法"><span class="header-section-number">6.2</span> 编译是否成功的判断方法</a></li>
+  <li><a href="#悬挂引用" id="toc-悬挂引用" class="nav-link" data-scroll-target="#悬挂引用"><span class="header-section-number">6.3</span> 悬挂引用</a></li>
+  <li><a href="#reborrow-好好看看" id="toc-reborrow-好好看看" class="nav-link" data-scroll-target="#reborrow-好好看看"><span class="header-section-number">6.4</span> reborrow (好好看看)</a>
   <ul class="collapse">
-  <li><a href="#可变借用直接赋值" id="toc-可变借用直接赋值" class="nav-link" data-scroll-target="#可变借用直接赋值">可变借用直接赋值</a></li>
-  <li><a href="#可变借用函数传参" id="toc-可变借用函数传参" class="nav-link" data-scroll-target="#可变借用函数传参">可变借用函数传参</a></li>
+  <li><a href="#可变借用直接赋值" id="toc-可变借用直接赋值" class="nav-link" data-scroll-target="#可变借用直接赋值"><span class="header-section-number">6.4.1</span> 可变借用直接赋值</a></li>
+  <li><a href="#可变借用函数传参" id="toc-可变借用函数传参" class="nav-link" data-scroll-target="#可变借用函数传参"><span class="header-section-number">6.4.2</span> 可变借用函数传参</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -326,14 +352,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="所有权规则" class="level2">
-<h2 class="anchored" data-anchor-id="所有权规则">所有权规则</h2>
+<section id="所有权规则" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="所有权规则"><span class="header-section-number">1</span> 所有权规则</h2>
 <p>所有权是rust用来管理内存的一系列规则</p>
 <embed src="../../../.diagram/a6892174dd4fbc7af0bf229c96c0ad9a.svg">
 <embed src="../../../.diagram/748af850bd9c0a4f7e288ddd737816fa.svg">
 </section>
-<section id="变量作用域" class="level2">
-<h2 class="anchored" data-anchor-id="变量作用域">变量作用域</h2>
+<section id="变量作用域" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="变量作用域"><span class="header-section-number">2</span> 变量作用域</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="op">{</span><span class="co">// 这一行时  s 变量 还没申明, 不可用</span></span>
@@ -357,17 +383,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>当变量离开作用域, Rust 会调用一个名为{==<code>drop</code>==}的特殊函数</p>
+<p>当变量离开作用域, Rust 会调用一个名为<code>drop</code>的特殊函数</p>
 <p>设计string类型的作者可以在该drop函数中写一些释放内存的代码,以此实现自动释放内存的功能</p>
 <p>不同类型变量的drop的实现可能不一样</p>
 <p>Rust 在结尾的 <code>}</code> 处会自动调用 drop</p>
 </div>
 </div>
 </section>
-<section id="move-copy" class="level2">
-<h2 class="anchored" data-anchor-id="move-copy">Move &amp; Copy</h2>
-<section id="copy" class="level3">
-<h3 class="anchored" data-anchor-id="copy">copy</h3>
+<section id="move-copy" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="move-copy"><span class="header-section-number">3</span> Move &amp; Copy</h2>
+<section id="copy" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="copy"><span class="header-section-number">3.1</span> copy</h3>
 <p>类型实现了 Copy trait 则会被copy</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
@@ -388,8 +414,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7"></a>    <span class="pp">println!</span>(<span class="st">"{c}"</span>)<span class="op">;</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="move" class="level3">
-<h3 class="anchored" data-anchor-id="move">move</h3>
+<section id="move" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="move"><span class="header-section-number">3.2</span> move</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">// s1 拥有这个hello字符串的所有权</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">let</span> s1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
@@ -448,16 +474,16 @@ Important
 <span id="cb7-4"><a href="#cb7-4"></a></span>
 <span id="cb7-5"><a href="#cb7-5"></a>    <span class="pp">println!</span>(<span class="st">"s1 = {}, s2 = {}"</span><span class="op">,</span> s1<span class="op">,</span> s2)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="move-还是-copy" class="level3">
-<h3 class="anchored" data-anchor-id="move-还是-copy">move 还是 copy</h3>
+<section id="move-还是-copy" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="move-还是-copy"><span class="header-section-number">3.3</span> move 还是 copy</h3>
 <embed src="../../../.diagram/ce15ebe88dfc1bdc97f845f145b1ffbd.svg">
 </section>
 </section>
-<section id="函数传参所有权问题" class="level2">
-<h2 class="anchored" data-anchor-id="函数传参所有权问题">函数传参所有权问题</h2>
+<section id="函数传参所有权问题" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="函数传参所有权问题"><span class="header-section-number">4</span> 函数传参所有权问题</h2>
 <embed src="../../../.diagram/52b5cb390f330a9a9d4a9ce366d307af.svg">
-<section id="官方例子" class="level3">
-<h3 class="anchored" data-anchor-id="官方例子">官方例子</h3>
+<section id="官方例子" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="官方例子"><span class="header-section-number">4.1</span> 官方例子</h3>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>    <span class="co">// s move into 函数</span></span>
@@ -486,8 +512,8 @@ Important
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="函数返回值所有权" class="level2">
-<h2 class="anchored" data-anchor-id="函数返回值所有权">函数返回值所有权</h2>
+<section id="函数返回值所有权" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="函数返回值所有权"><span class="header-section-number">5</span> 函数返回值所有权</h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="kw">let</span> s1 <span class="op">=</span> gives_ownership()<span class="op">;</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
@@ -515,8 +541,8 @@ Important
 <span id="cb10-25"><a href="#cb10-25"></a>    a_string <span class="co">// a_string is returned and moves out to the calling function</span></span>
 <span id="cb10-26"><a href="#cb10-26"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="借用-borrow" class="level2">
-<h2 class="anchored" data-anchor-id="借用-borrow">借用 borrow</h2>
+<section id="借用-borrow" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="借用-borrow"><span class="header-section-number">6</span> 借用 borrow</h2>
 <p>前面调用函数我们发现,每次调用函数,都会有 taking ownership 和 returning ownership,很烦, 有没有 可以直接使用某个值,而不需要 转移所有权的呢? –&gt; 引用</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -543,8 +569,8 @@ Tip
 <span id="cb11-9"><a href="#cb11-9"></a><span class="kw">fn</span> calculate_length(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">String</span>) <span class="op">-&gt;</span> <span class="dt">usize</span> <span class="op">{</span></span>
 <span id="cb11-10"><a href="#cb11-10"></a>    s<span class="op">.</span>len()</span>
 <span id="cb11-11"><a href="#cb11-11"></a><span class="op">}</span><span class="co">//s 并不拥有 s1变量指向的值的所有权, 所以当 drop 后, s1变量指向的值不会free</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="不可变和可变" class="level3">
-<h3 class="anchored" data-anchor-id="不可变和可变">不可变和可变</h3>
+<section id="不可变和可变" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="不可变和可变"><span class="header-section-number">6.1</span> 不可变和可变</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"hello"</span>)<span class="op">;</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a></span>
@@ -567,8 +593,8 @@ Tip
 <span id="cb12-20"><a href="#cb12-20"></a>    some_string<span class="op">.</span>pop()<span class="op">;</span></span>
 <span id="cb12-21"><a href="#cb12-21"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="编译是否成功的判断方法" class="level3">
-<h3 class="anchored" data-anchor-id="编译是否成功的判断方法">编译是否成功的判断方法</h3>
+<section id="编译是否成功的判断方法" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="编译是否成功的判断方法"><span class="header-section-number">6.2</span> 编译是否成功的判断方法</h3>
 <div class="callout callout-style-default callout-important callout-titled" title="含引用的代码,编译是否成功的判断逻辑">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -679,8 +705,8 @@ Tip
 <span id="cb20-7"><a href="#cb20-7"></a>    <span class="pp">println!</span>(<span class="st">"{}-{}"</span><span class="op">,</span> a1<span class="op">,</span> a2)<span class="op">;</span></span>
 <span id="cb20-8"><a href="#cb20-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="悬挂引用" class="level3">
-<h3 class="anchored" data-anchor-id="悬挂引用">悬挂引用</h3>
+<section id="悬挂引用" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="悬挂引用"><span class="header-section-number">6.3</span> 悬挂引用</h3>
 <p>rust 编译器会直接报错</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a>    <span class="kw">let</span> reference_to_nothing <span class="op">=</span> dangle()<span class="op">;</span></span>
@@ -692,10 +718,10 @@ Tip
 <span id="cb21-8"><a href="#cb21-8"></a>    <span class="op">&amp;</span>s</span>
 <span id="cb21-9"><a href="#cb21-9"></a><span class="op">}</span> <span class="co">// s drop 掉了, 所在内存被释放了. &amp;s 引用了一个不可控的内存</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="reborrow-好好看看" class="level3">
-<h3 class="anchored" data-anchor-id="reborrow-好好看看">reborrow (好好看看)</h3>
-<section id="可变借用直接赋值" class="level4">
-<h4 class="anchored" data-anchor-id="可变借用直接赋值">可变借用直接赋值</h4>
+<section id="reborrow-好好看看" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="reborrow-好好看看"><span class="header-section-number">6.4</span> reborrow (好好看看)</h3>
+<section id="可变借用直接赋值" class="level4" data-number="6.4.1">
+<h4 data-number="6.4.1" class="anchored" data-anchor-id="可变借用直接赋值"><span class="header-section-number">6.4.1</span> 可变借用直接赋值</h4>
 <p>报错的</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
@@ -766,8 +792,8 @@ Tip
 <span id="cb28-9"><a href="#cb28-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
 <span id="cb28-10"><a href="#cb28-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="可变借用函数传参" class="level4">
-<h4 class="anchored" data-anchor-id="可变借用函数传参">可变借用函数传参</h4>
+<section id="可变借用函数传参" class="level4" data-number="6.4.2">
+<h4 data-number="6.4.2" class="anchored" data-anchor-id="可变借用函数传参"><span class="header-section-number">6.4.2</span> 可变借用函数传参</h4>
 <p>我是最先测试函数传可变借用时,发现奇怪现象的</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
@@ -808,6 +834,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

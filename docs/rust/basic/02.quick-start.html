@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,45 +319,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#main.rs" id="toc-main.rs" class="nav-link active" data-scroll-target="#main.rs">main.rs</a></li>
-  <li><a href="#immutable" id="toc-immutable" class="nav-link" data-scroll-target="#immutable">immutable</a></li>
-  <li><a href="#shadowing" id="toc-shadowing" class="nav-link" data-scroll-target="#shadowing">shadowing</a></li>
-  <li><a href="#常量" id="toc-常量" class="nav-link" data-scroll-target="#常量">常量</a></li>
-  <li><a href="#数据类型" id="toc-数据类型" class="nav-link" data-scroll-target="#数据类型">数据类型</a>
+  <li><a href="#main.rs" id="toc-main.rs" class="nav-link active" data-scroll-target="#main.rs"><span class="header-section-number">1</span> main.rs</a></li>
+  <li><a href="#immutable" id="toc-immutable" class="nav-link" data-scroll-target="#immutable"><span class="header-section-number">2</span> immutable</a></li>
+  <li><a href="#shadowing" id="toc-shadowing" class="nav-link" data-scroll-target="#shadowing"><span class="header-section-number">3</span> shadowing</a></li>
+  <li><a href="#常量" id="toc-常量" class="nav-link" data-scroll-target="#常量"><span class="header-section-number">4</span> 常量</a></li>
+  <li><a href="#数据类型" id="toc-数据类型" class="nav-link" data-scroll-target="#数据类型"><span class="header-section-number">5</span> 数据类型</a>
   <ul>
-  <li><a href="#整型" id="toc-整型" class="nav-link" data-scroll-target="#整型">整型</a></li>
-  <li><a href="#浮点数" id="toc-浮点数" class="nav-link" data-scroll-target="#浮点数">浮点数</a></li>
-  <li><a href="#bool" id="toc-bool" class="nav-link" data-scroll-target="#bool">bool</a></li>
-  <li><a href="#char" id="toc-char" class="nav-link" data-scroll-target="#char">char</a></li>
-  <li><a href="#tuple" id="toc-tuple" class="nav-link" data-scroll-target="#tuple">tuple</a></li>
-  <li><a href="#数组" id="toc-数组" class="nav-link" data-scroll-target="#数组">数组</a></li>
-  <li><a href="#切片" id="toc-切片" class="nav-link" data-scroll-target="#切片">切片</a></li>
+  <li><a href="#整型" id="toc-整型" class="nav-link" data-scroll-target="#整型"><span class="header-section-number">5.1</span> 整型</a></li>
+  <li><a href="#浮点数" id="toc-浮点数" class="nav-link" data-scroll-target="#浮点数"><span class="header-section-number">5.2</span> 浮点数</a></li>
+  <li><a href="#bool" id="toc-bool" class="nav-link" data-scroll-target="#bool"><span class="header-section-number">5.3</span> bool</a></li>
+  <li><a href="#char" id="toc-char" class="nav-link" data-scroll-target="#char"><span class="header-section-number">5.4</span> char</a></li>
+  <li><a href="#tuple" id="toc-tuple" class="nav-link" data-scroll-target="#tuple"><span class="header-section-number">5.5</span> tuple</a></li>
+  <li><a href="#数组" id="toc-数组" class="nav-link" data-scroll-target="#数组"><span class="header-section-number">5.6</span> 数组</a></li>
+  <li><a href="#切片" id="toc-切片" class="nav-link" data-scroll-target="#切片"><span class="header-section-number">5.7</span> 切片</a></li>
   </ul></li>
-  <li><a href="#类型转换" id="toc-类型转换" class="nav-link" data-scroll-target="#类型转换">类型转换</a></li>
-  <li><a href="#函数" id="toc-函数" class="nav-link" data-scroll-target="#函数">函数</a>
+  <li><a href="#类型转换" id="toc-类型转换" class="nav-link" data-scroll-target="#类型转换"><span class="header-section-number">6</span> 类型转换</a></li>
+  <li><a href="#函数" id="toc-函数" class="nav-link" data-scroll-target="#函数"><span class="header-section-number">7</span> 函数</a>
   <ul>
-  <li><a href="#语句" id="toc-语句" class="nav-link" data-scroll-target="#语句">语句</a></li>
-  <li><a href="#表达式" id="toc-表达式" class="nav-link" data-scroll-target="#表达式">表达式</a></li>
-  <li><a href="#返回值" id="toc-返回值" class="nav-link" data-scroll-target="#返回值">返回值</a></li>
-  <li><a href="#函数内部创建函数" id="toc-函数内部创建函数" class="nav-link" data-scroll-target="#函数内部创建函数">函数内部创建函数</a></li>
-  <li><a href="#函数的类型" id="toc-函数的类型" class="nav-link" data-scroll-target="#函数的类型">函数的类型</a></li>
-  <li><a href="#发散函数" id="toc-发散函数" class="nav-link" data-scroll-target="#发散函数">发散函数 !</a></li>
+  <li><a href="#语句" id="toc-语句" class="nav-link" data-scroll-target="#语句"><span class="header-section-number">7.1</span> 语句</a></li>
+  <li><a href="#表达式" id="toc-表达式" class="nav-link" data-scroll-target="#表达式"><span class="header-section-number">7.2</span> 表达式</a></li>
+  <li><a href="#返回值" id="toc-返回值" class="nav-link" data-scroll-target="#返回值"><span class="header-section-number">7.3</span> 返回值</a></li>
+  <li><a href="#函数内部创建函数" id="toc-函数内部创建函数" class="nav-link" data-scroll-target="#函数内部创建函数"><span class="header-section-number">7.4</span> 函数内部创建函数</a></li>
+  <li><a href="#函数的类型" id="toc-函数的类型" class="nav-link" data-scroll-target="#函数的类型"><span class="header-section-number">7.5</span> 函数的类型</a></li>
+  <li><a href="#发散函数" id="toc-发散函数" class="nav-link" data-scroll-target="#发散函数"><span class="header-section-number">7.6</span> 发散函数 !</a></li>
   </ul></li>
-  <li><a href="#控制流程" id="toc-控制流程" class="nav-link" data-scroll-target="#控制流程">控制流程</a>
+  <li><a href="#控制流程" id="toc-控制流程" class="nav-link" data-scroll-target="#控制流程"><span class="header-section-number">8</span> 控制流程</a>
   <ul>
-  <li><a href="#if" id="toc-if" class="nav-link" data-scroll-target="#if">if</a></li>
-  <li><a href="#loop" id="toc-loop" class="nav-link" data-scroll-target="#loop">loop</a></li>
-  <li><a href="#for-and-range" id="toc-for-and-range" class="nav-link" data-scroll-target="#for-and-range">for (and range)</a></li>
-  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while">while</a></li>
+  <li><a href="#if" id="toc-if" class="nav-link" data-scroll-target="#if"><span class="header-section-number">8.1</span> if</a></li>
+  <li><a href="#loop" id="toc-loop" class="nav-link" data-scroll-target="#loop"><span class="header-section-number">8.2</span> loop</a></li>
+  <li><a href="#for-and-range" id="toc-for-and-range" class="nav-link" data-scroll-target="#for-and-range"><span class="header-section-number">8.3</span> for (and range)</a></li>
+  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while"><span class="header-section-number">8.4</span> while</a></li>
   </ul></li>
-  <li><a href="#测试" id="toc-测试" class="nav-link" data-scroll-target="#测试">测试</a></li>
-  <li><a href="#查看汇编" id="toc-查看汇编" class="nav-link" data-scroll-target="#查看汇编">查看汇编</a></li>
-  <li><a href="#打印信息" id="toc-打印信息" class="nav-link" data-scroll-target="#打印信息">打印信息</a>
+  <li><a href="#测试" id="toc-测试" class="nav-link" data-scroll-target="#测试"><span class="header-section-number">9</span> 测试</a></li>
+  <li><a href="#查看汇编" id="toc-查看汇编" class="nav-link" data-scroll-target="#查看汇编"><span class="header-section-number">10</span> 查看汇编</a></li>
+  <li><a href="#打印信息" id="toc-打印信息" class="nav-link" data-scroll-target="#打印信息"><span class="header-section-number">11</span> 打印信息</a>
   <ul>
-  <li><a href="#打印变量类型名" id="toc-打印变量类型名" class="nav-link" data-scroll-target="#打印变量类型名">打印变量类型名</a></li>
-  <li><a href="#常用打印" id="toc-常用打印" class="nav-link" data-scroll-target="#常用打印">常用打印</a></li>
-  <li><a href="#debug" id="toc-debug" class="nav-link" data-scroll-target="#debug">Debug</a></li>
-  <li><a href="#display" id="toc-display" class="nav-link" data-scroll-target="#display">Display</a></li>
+  <li><a href="#打印变量类型名" id="toc-打印变量类型名" class="nav-link" data-scroll-target="#打印变量类型名"><span class="header-section-number">11.1</span> 打印变量类型名</a></li>
+  <li><a href="#常用打印" id="toc-常用打印" class="nav-link" data-scroll-target="#常用打印"><span class="header-section-number">11.2</span> 常用打印</a></li>
+  <li><a href="#debug" id="toc-debug" class="nav-link" data-scroll-target="#debug"><span class="header-section-number">11.3</span> Debug</a></li>
+  <li><a href="#display" id="toc-display" class="nav-link" data-scroll-target="#display"><span class="header-section-number">11.4</span> Display</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -342,8 +368,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="main.rs" class="level2">
-<h2 class="anchored" data-anchor-id="main.rs">main.rs</h2>
+<section id="main.rs" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="main.rs"><span class="header-section-number">1</span> main.rs</h2>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>hello.rs</strong></pre>
@@ -374,8 +400,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># -o 输出的名字, 没有则默认文件名</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="ex">rustc</span> hello.rs <span class="at">-o</span> main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="immutable" class="level2">
-<h2 class="anchored" data-anchor-id="immutable">immutable</h2>
+<section id="immutable" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="immutable"><span class="header-section-number">2</span> immutable</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">// 变量默认不可变</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">let</span> a<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
@@ -388,8 +414,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10"></a>    <span class="pp">println!</span>(<span class="st">"{c}"</span>)<span class="op">;</span></span>
 <span id="cb2-11"><a href="#cb2-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="shadowing" class="level2">
-<h2 class="anchored" data-anchor-id="shadowing">shadowing</h2>
+<section id="shadowing" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="shadowing"><span class="header-section-number">3</span> shadowing</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">let</span> a<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>    <span class="co">// a=2;  会直接报错,提示不能修改 不可变的变量</span></span>
@@ -414,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-22"><a href="#cb3-22"></a>    <span class="pp">println!</span>(<span class="st">"{b}"</span>)<span class="op">;</span></span>
 <span id="cb3-23"><a href="#cb3-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="常量" class="level2">
-<h2 class="anchored" data-anchor-id="常量">常量</h2>
+<section id="常量" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="常量"><span class="header-section-number">4</span> 常量</h2>
 <p>常量是在编译期就进行求值的. 所以常量 = 的右边是可以使用表达式的</p>
 <p>unsafe章节里有关于static定义的方式</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">const</span> A<span class="op">:</span> <span class="dt">u32</span> <span class="op">=</span> <span class="dv">60</span> <span class="op">*</span> <span class="dv">60</span> <span class="op">*</span> <span class="dv">3</span><span class="op">;</span></span>
@@ -429,8 +455,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> THREE_HOURS_IN_SECONDS)<span class="op">;</span></span>
 <span id="cb4-10"><a href="#cb4-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="数据类型" class="level2">
-<h2 class="anchored" data-anchor-id="数据类型">数据类型</h2>
+<section id="数据类型" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="数据类型"><span class="header-section-number">5</span> 数据类型</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -444,8 +470,8 @@ Tip
 <p>标量类型是指那些不可再分的、基本的、单个值的数据类型。 标量类型通常用于存储单一的数据项，如一个数字、一个字符或一个布尔值。 与标量类型相对的是复合数据类型，如数组、列表、对象和结构体，这些类型可以包含多个值</p>
 </div>
 </div>
-<section id="整型" class="level3">
-<h3 class="anchored" data-anchor-id="整型">整型</h3>
+<section id="整型" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="整型"><span class="header-section-number">5.1</span> 整型</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">介绍</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">一些方法</a></li></ul>
 <div class="tab-content">
@@ -527,8 +553,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="浮点数" class="level3">
-<h3 class="anchored" data-anchor-id="浮点数">浮点数</h3>
+<section id="浮点数" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="浮点数"><span class="header-section-number">5.2</span> 浮点数</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">介绍</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">一些方法</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">提供的一些常量</a></li></ul>
 <div class="tab-content">
@@ -566,8 +592,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="bool" class="level3">
-<h3 class="anchored" data-anchor-id="bool">bool</h3>
+<section id="bool" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="bool"><span class="header-section-number">5.3</span> bool</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="kw">let</span> t <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>    <span class="pp">println!</span>(<span class="st">"{t}"</span>)<span class="op">;</span></span>
@@ -581,8 +607,8 @@ Tip
 <span id="cb10-11"><a href="#cb10-11"></a>    <span class="co">//    let c = 1i8 as bool;</span></span>
 <span id="cb10-12"><a href="#cb10-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="char" class="level3">
-<h3 class="anchored" data-anchor-id="char">char</h3>
+<section id="char" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="char"><span class="header-section-number">5.4</span> char</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
@@ -604,8 +630,8 @@ Tip
 <span id="cb11-19"><a href="#cb11-19"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> hex_char)<span class="op">;</span></span>
 <span id="cb11-20"><a href="#cb11-20"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tuple" class="level3">
-<h3 class="anchored" data-anchor-id="tuple">tuple</h3>
+<section id="tuple" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="tuple"><span class="header-section-number">5.5</span> tuple</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="co">// 元素可以是多种类型</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">let</span> tup<span class="op">:</span> (<span class="dt">i32</span><span class="op">,</span> <span class="dt">f64</span><span class="op">,</span> <span class="dt">u8</span>) <span class="op">=</span> (<span class="dv">100</span><span class="op">,</span> <span class="dv">3.14</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
@@ -614,8 +640,8 @@ Tip
 <span id="cb12-6"><a href="#cb12-6"></a>    <span class="pp">println!</span>(<span class="st">"{},{},{}"</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> z)<span class="op">;</span></span>
 <span id="cb12-7"><a href="#cb12-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="数组" class="level3">
-<h3 class="anchored" data-anchor-id="数组">数组</h3>
+<section id="数组" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="数组"><span class="header-section-number">5.6</span> 数组</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -646,8 +672,8 @@ Tip
 <span id="cb13-10"><a href="#cb13-10"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> x[<span class="dv">2</span>])<span class="op">;</span></span>
 <span id="cb13-11"><a href="#cb13-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="切片" class="level3">
-<h3 class="anchored" data-anchor-id="切片">切片</h3>
+<section id="切片" class="level3" data-number="5.7">
+<h3 data-number="5.7" class="anchored" data-anchor-id="切片"><span class="header-section-number">5.7</span> 切片</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -701,8 +727,8 @@ Note
 <span id="cb15-17"><a href="#cb15-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="类型转换" class="level2">
-<h2 class="anchored" data-anchor-id="类型转换">类型转换</h2>
+<section id="类型转换" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="类型转换"><span class="header-section-number">6</span> 类型转换</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a>    <span class="kw">let</span> a<span class="op">:</span> <span class="dt">i8</span> <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a>    <span class="co">// 需要加上 as 否则报错</span></span>
@@ -710,8 +736,8 @@ Note
 <span id="cb16-5"><a href="#cb16-5"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span>b)<span class="op">;</span></span>
 <span id="cb16-6"><a href="#cb16-6"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="函数" class="level2">
-<h2 class="anchored" data-anchor-id="函数">函数</h2>
+<section id="函数" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="函数"><span class="header-section-number">7</span> 函数</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -730,15 +756,15 @@ Tip
 </ul>
 </div>
 </div>
-<section id="语句" class="level3">
-<h3 class="anchored" data-anchor-id="语句">语句</h3>
+<section id="语句" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="语句"><span class="header-section-number">7.1</span> 语句</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>    <span class="co">// 直接报错, 右边是个语句,没有返回值</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a>    <span class="kw">let</span> x <span class="op">=</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">6</span>)<span class="op">;</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="表达式" class="level3">
-<h3 class="anchored" data-anchor-id="表达式">表达式</h3>
+<section id="表达式" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="表达式"><span class="header-section-number">7.2</span> 表达式</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>    <span class="kw">let</span> y <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a>        <span class="kw">let</span> x <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
@@ -750,8 +776,8 @@ Tip
 <span id="cb18-9"><a href="#cb18-9"></a>    <span class="pp">println!</span>(<span class="st">"The value of y is: {y}"</span>)<span class="op">;</span></span>
 <span id="cb18-10"><a href="#cb18-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="返回值" class="level3">
-<h3 class="anchored" data-anchor-id="返回值">返回值</h3>
+<section id="返回值" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="返回值"><span class="header-section-number">7.3</span> 返回值</h3>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">fn</span> five() <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a>    <span class="co">// 表达式 ,值为5</span></span>
 <span id="cb19-3"><a href="#cb19-3"></a>    <span class="dv">5</span></span>
@@ -788,8 +814,8 @@ Tip
 <span id="cb23-3"><a href="#cb23-3"></a>    <span class="dv">5</span></span>
 <span id="cb23-4"><a href="#cb23-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="函数内部创建函数" class="level3">
-<h3 class="anchored" data-anchor-id="函数内部创建函数">函数内部创建函数</h3>
+<section id="函数内部创建函数" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="函数内部创建函数"><span class="header-section-number">7.4</span> 函数内部创建函数</h3>
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>    <span class="co">// 函数内部可以定义函数</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a>    <span class="kw">fn</span> add(t1<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> t2<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
@@ -799,8 +825,8 @@ Tip
 <span id="cb24-7"><a href="#cb24-7"></a>    <span class="pp">print!</span>(<span class="st">"{}"</span><span class="op">,</span> r)<span class="op">;</span></span>
 <span id="cb24-8"><a href="#cb24-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="函数的类型" class="level3">
-<h3 class="anchored" data-anchor-id="函数的类型">函数的类型</h3>
+<section id="函数的类型" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="函数的类型"><span class="header-section-number">7.5</span> 函数的类型</h3>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">fn</span> add1(t<span class="op">:</span> (<span class="dt">i32</span><span class="op">,</span> <span class="dt">i32</span>)) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>    t<span class="op">.</span><span class="dv">0</span> <span class="op">+</span> t<span class="op">.</span><span class="dv">1</span></span>
 <span id="cb25-3"><a href="#cb25-3"></a><span class="op">}</span></span>
@@ -831,8 +857,8 @@ Tip
 <span id="cb25-28"><a href="#cb25-28"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> f1((a<span class="op">,</span> b)))<span class="op">;</span></span>
 <span id="cb25-29"><a href="#cb25-29"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="发散函数" class="level3">
-<h3 class="anchored" data-anchor-id="发散函数">发散函数 !</h3>
+<section id="发散函数" class="level3" data-number="7.6">
+<h3 data-number="7.6" class="anchored" data-anchor-id="发散函数"><span class="header-section-number">7.6</span> 发散函数 !</h3>
 <p>diverging functions, ! 被称为 The Never Type</p>
 <p>我们知道前面提到的函数其实都是有返回值, 即使是没有返回值的函数, 也会返回一个 () 单元类型的值</p>
 <p>那么一个 永远不会返回的函数它有返回值吗? 还有 panic 这种函数呢?</p>
@@ -874,10 +900,10 @@ Tip
 <span id="cb28-12"><a href="#cb28-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="控制流程" class="level2">
-<h2 class="anchored" data-anchor-id="控制流程">控制流程</h2>
-<section id="if" class="level3">
-<h3 class="anchored" data-anchor-id="if">if</h3>
+<section id="控制流程" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="控制流程"><span class="header-section-number">8</span> 控制流程</h2>
+<section id="if" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="if"><span class="header-section-number">8.1</span> if</h3>
 <div class="sourceCode" id="cb29"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a>    <span class="kw">let</span> number <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
 <span id="cb29-3"><a href="#cb29-3"></a>    <span class="co">// 报错的, 需要bool类型</span></span>
@@ -902,8 +928,8 @@ Tip
 <span id="cb29-22"><a href="#cb29-22"></a>    <span class="kw">let</span> number3 <span class="op">=</span> <span class="cf">if</span> condition <span class="op">{</span> <span class="dv">5</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="st">"six"</span> <span class="op">};</span></span>
 <span id="cb29-23"><a href="#cb29-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="loop" class="level3">
-<h3 class="anchored" data-anchor-id="loop">loop</h3>
+<section id="loop" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="loop"><span class="header-section-number">8.2</span> loop</h3>
 <div class="sourceCode" id="cb30"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb30-2"><a href="#cb30-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb30-3"><a href="#cb30-3"></a>    <span class="kw">let</span> ret <span class="op">=</span> <span class="cf">loop</span> <span class="op">{</span></span>
@@ -941,8 +967,8 @@ Tip
 <span id="cb31-15"><a href="#cb31-15"></a>    <span class="pp">println!</span>(<span class="st">"Exited the outer loop"</span>)<span class="op">;</span></span>
 <span id="cb31-16"><a href="#cb31-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="for-and-range" class="level3">
-<h3 class="anchored" data-anchor-id="for-and-range">for (and range)</h3>
+<section id="for-and-range" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="for-and-range"><span class="header-section-number">8.3</span> for (and range)</h3>
 <p>标签 label loop使用也一样</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb32-2"><a href="#cb32-2"></a>    <span class="co">// label 前面有个 ' 单引号</span></span>
@@ -1017,8 +1043,8 @@ Tip
 <span id="cb33-19"><a href="#cb33-19"></a>    <span class="op">}</span></span>
 <span id="cb33-20"><a href="#cb33-20"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="while" class="level3">
-<h3 class="anchored" data-anchor-id="while">while</h3>
+<section id="while" class="level3" data-number="8.4">
+<h3 data-number="8.4" class="anchored" data-anchor-id="while"><span class="header-section-number">8.4</span> while</h3>
 <div class="sourceCode" id="cb34"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb34-2"><a href="#cb34-2"></a>    <span class="kw">let</span> z<span class="op">:</span> <span class="dt">i32</span><span class="op">;</span></span>
 <span id="cb34-3"><a href="#cb34-3"></a>    <span class="cf">while</span> <span class="cn">true</span> <span class="op">{</span></span>
@@ -1033,8 +1059,8 @@ Tip
 <span id="cb34-12"><a href="#cb34-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="测试" class="level2">
-<h2 class="anchored" data-anchor-id="测试">测试</h2>
+<section id="测试" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="测试"><span class="header-section-number">9</span> 测试</h2>
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb35-1"><a href="#cb35-1"></a><span class="at">#[</span>cfg<span class="at">(</span>test<span class="at">)]</span>  <span class="co">//配置测试模块</span></span>
 <span id="cb35-2"><a href="#cb35-2"></a><span class="kw">mod</span> tests <span class="op">{</span></span>
 <span id="cb35-3"><a href="#cb35-3"></a>    <span class="at">#[</span>test<span class="at">]</span>  <span class="co">//单元测试用例</span></span>
@@ -1051,14 +1077,14 @@ Tip
 <span id="cb35-14"><a href="#cb35-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1"></a><span class="ex">cargo</span> test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="查看汇编" class="level2">
-<h2 class="anchored" data-anchor-id="查看汇编">查看汇编</h2>
+<section id="查看汇编" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="查看汇编"><span class="header-section-number">10</span> 查看汇编</h2>
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1"></a><span class="ex">rustc</span> <span class="at">--emit</span><span class="op">=</span>asm main.rs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="打印信息" class="level2">
-<h2 class="anchored" data-anchor-id="打印信息">打印信息</h2>
-<section id="打印变量类型名" class="level3">
-<h3 class="anchored" data-anchor-id="打印变量类型名">打印变量类型名</h3>
+<section id="打印信息" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="打印信息"><span class="header-section-number">11</span> 打印信息</h2>
+<section id="打印变量类型名" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="打印变量类型名"><span class="header-section-number">11.1</span> 打印变量类型名</h3>
 <div class="sourceCode" id="cb38"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">use</span> <span class="pp">std::any::</span>type_name<span class="op">;</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a></span>
 <span id="cb38-3"><a href="#cb38-3"></a><span class="kw">fn</span> print_type_of<span class="op">&lt;</span>T<span class="op">&gt;</span>(_<span class="op">:</span> <span class="op">&amp;</span>T) <span class="op">{</span></span>
@@ -1076,8 +1102,8 @@ Tip
 <span id="cb38-15"><a href="#cb38-15"></a>    print_type_of(<span class="op">&amp;</span>z)<span class="op">;</span> <span class="co">// 输出: &amp;str</span></span>
 <span id="cb38-16"><a href="#cb38-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="常用打印" class="level3">
-<h3 class="anchored" data-anchor-id="常用打印">常用打印</h3>
+<section id="常用打印" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="常用打印"><span class="header-section-number">11.2</span> 常用打印</h3>
 <ul>
 <li>format!: 格式化文本到 String</li>
 <li>print!: 同format! 只不过输出到 (io::stdout).</li>
@@ -1109,8 +1135,8 @@ Tip
 <span id="cb39-22"><a href="#cb39-22"></a>    <span class="pp">println!</span>(<span class="st">"{number:&gt;width$}"</span>)<span class="op">;</span></span>
 <span id="cb39-23"><a href="#cb39-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="debug" class="level3">
-<h3 class="anchored" data-anchor-id="debug">Debug</h3>
+<section id="debug" class="level3" data-number="11.3">
+<h3 data-number="11.3" class="anchored" data-anchor-id="debug"><span class="header-section-number">11.3</span> Debug</h3>
 <p>所有实现了<code>fmt::Debug</code>这个trait(暂时不用管这个概念)的类型,才能使用<code>println!("{:?}")</code>中<code>{:?}或{:#?}</code>这种打印方式</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">struct</span> Cat(<span class="dt">i32</span>)<span class="op">;</span></span>
 <span id="cb40-2"><a href="#cb40-2"></a></span>
@@ -1121,8 +1147,8 @@ Tip
 <span id="cb40-7"><a href="#cb40-7"></a>    <span class="pp">println!</span>(<span class="st">"Dog: {:?} "</span><span class="op">,</span> Dog(<span class="dv">5</span>))<span class="op">;</span> <span class="co">// ok</span></span>
 <span id="cb40-8"><a href="#cb40-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="display" class="level3">
-<h3 class="anchored" data-anchor-id="display">Display</h3>
+<section id="display" class="level3" data-number="11.4">
+<h3 data-number="11.4" class="anchored" data-anchor-id="display"><span class="header-section-number">11.4</span> Display</h3>
 <p>所有实现了<code>fmt::Display</code>这个trait(暂时不用管这个概念)的类型,才能使用<code>println!("{}")</code>中<code>{}</code>这种打印方式</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">use</span> <span class="pp">std::</span>fmt<span class="op">;</span></span>
 <span id="cb41-2"><a href="#cb41-2"></a><span class="kw">struct</span> Point2D <span class="op">{</span></span>
@@ -1169,6 +1195,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

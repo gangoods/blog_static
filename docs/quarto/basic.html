@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -169,13 +195,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#安装quarto1" id="toc-安装quarto1" class="nav-link active" data-scroll-target="#安装quarto1">安装quarto</a></li>
-  <li><a href="#website-book" id="toc-website-book" class="nav-link" data-scroll-target="#website-book">website book</a></li>
-  <li><a href="#静态目录配置" id="toc-静态目录配置" class="nav-link" data-scroll-target="#静态目录配置">静态目录配置</a></li>
-  <li><a href="#siderbar" id="toc-siderbar" class="nav-link" data-scroll-target="#siderbar">siderbar</a></li>
-  <li><a href="#发布部署" id="toc-发布部署" class="nav-link" data-scroll-target="#发布部署">发布部署</a></li>
-  <li><a href="#页面format设置" id="toc-页面format设置" class="nav-link" data-scroll-target="#页面format设置">页面format设置</a></li>
-  <li><a href="#配置评论" id="toc-配置评论" class="nav-link" data-scroll-target="#配置评论">配置评论</a></li>
+  <li><a href="#安装quarto1" id="toc-安装quarto1" class="nav-link active" data-scroll-target="#安装quarto1"><span class="header-section-number">1</span> 安装quarto</a></li>
+  <li><a href="#website-book" id="toc-website-book" class="nav-link" data-scroll-target="#website-book"><span class="header-section-number">2</span> website book</a></li>
+  <li><a href="#静态目录配置" id="toc-静态目录配置" class="nav-link" data-scroll-target="#静态目录配置"><span class="header-section-number">3</span> 静态目录配置</a></li>
+  <li><a href="#siderbar" id="toc-siderbar" class="nav-link" data-scroll-target="#siderbar"><span class="header-section-number">4</span> siderbar</a></li>
+  <li><a href="#发布部署" id="toc-发布部署" class="nav-link" data-scroll-target="#发布部署"><span class="header-section-number">5</span> 发布部署</a></li>
+  <li><a href="#页面format设置" id="toc-页面format设置" class="nav-link" data-scroll-target="#页面format设置"><span class="header-section-number">6</span> 页面format设置</a></li>
+  <li><a href="#配置评论" id="toc-配置评论" class="nav-link" data-scroll-target="#配置评论"><span class="header-section-number">7</span> 配置评论</a></li>
   </ul>
 </nav>
     </div>
@@ -185,8 +211,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="安装quarto1" class="level2">
-<h2 class="anchored" data-anchor-id="安装quarto1">安装quarto<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
+<section id="安装quarto1" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="安装quarto1"><span class="header-section-number">1</span> 安装quarto<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone <span class="at">--depth</span><span class="op">=</span>1 https://github.com/quarto-dev/quarto-web.git</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> quarto-web</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co"># 查看官方文档的本地离线版本</span></span>
@@ -197,8 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8"></a><span class="co"># 使用这个 生成静态文件, 然后直接打开那个 index.html 也可以</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="website-book" class="level2">
-<h2 class="anchored" data-anchor-id="website-book">website book</h2>
+<section id="website-book" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="website-book"><span class="header-section-number">2</span> website book</h2>
 <p>vscode <code>command+shift+p</code> create project -&gt; website 或者book</p>
 <p>或者使用命令来创建</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">quarto</span> create project</span>
@@ -217,8 +243,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8"></a><span class="at">  </span><span class="fu">epub</span><span class="kw">:</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a><span class="at">    </span><span class="fu">cover-image</span><span class="kw">:</span><span class="at"> cover.png</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="静态目录配置" class="level2">
-<h2 class="anchored" data-anchor-id="静态目录配置">静态目录配置</h2>
+<section id="静态目录配置" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="静态目录配置"><span class="header-section-number">3</span> 静态目录配置</h2>
 <p>_quarto.yml</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
@@ -231,11 +257,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>我们可以统一将图片放到这里,然后 markdown中 这样插入图片</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="al">![](/.diagram/xxx.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="siderbar" class="level2">
-<h2 class="anchored" data-anchor-id="siderbar">siderbar</h2>
+<section id="siderbar" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="siderbar"><span class="header-section-number">4</span> siderbar</h2>
 </section>
-<section id="发布部署" class="level2">
-<h2 class="anchored" data-anchor-id="发布部署">发布部署</h2>
+<section id="发布部署" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="发布部署"><span class="header-section-number">5</span> 发布部署</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># 预览, 开发阶段 这样看</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="ex">quarto</span> preview</span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co"># 生成</span></span>
@@ -246,8 +272,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     rust.pdf
     rust.epub</code></pre>
 </section>
-<section id="页面format设置" class="level2">
-<h2 class="anchored" data-anchor-id="页面format设置">页面format设置</h2>
+<section id="页面format设置" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="页面format设置"><span class="header-section-number">6</span> 页面format设置</h2>
 <p>我们在某个页面这样设置, 然后 <code>quarto preview</code> 执行后,打开的网页里, 你点击该页面会看到实际打开的是一个pdf了, 不是web 页面了</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1"></a>---</span>
 <span id="cb9-2"><a href="#cb9-2"></a>title: "Hello Typst!"</span>
@@ -258,8 +284,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7"></a>    columns: 2</span>
 <span id="cb9-8"><a href="#cb9-8"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="配置评论" class="level2">
-<h2 class="anchored" data-anchor-id="配置评论">配置评论</h2>
+<section id="配置评论" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="配置评论"><span class="header-section-number">7</span> 配置评论</h2>
 <ul>
 <li><a href="https://giscus.app/">giscus</a></li>
 <li><a href="https://quarto.org/docs/projects/quarto-projects.html">文档</a></li>
@@ -299,6 +325,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

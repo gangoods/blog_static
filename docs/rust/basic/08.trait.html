@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,12 +123,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -293,45 +319,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#定义一个trait" id="toc-定义一个trait" class="nav-link active" data-scroll-target="#定义一个trait">定义一个trait</a>
+  <li><a href="#定义一个trait" id="toc-定义一个trait" class="nav-link active" data-scroll-target="#定义一个trait"><span class="header-section-number">1</span> 定义一个trait</a>
   <ul>
-  <li><a href="#简单例子" id="toc-简单例子" class="nav-link" data-scroll-target="#简单例子">简单例子</a></li>
-  <li><a href="#带类型参数" id="toc-带类型参数" class="nav-link" data-scroll-target="#带类型参数">带类型参数</a></li>
-  <li><a href="#类型参数的默认值" id="toc-类型参数的默认值" class="nav-link" data-scroll-target="#类型参数的默认值">类型参数的默认值</a></li>
+  <li><a href="#简单例子" id="toc-简单例子" class="nav-link" data-scroll-target="#简单例子"><span class="header-section-number">1.1</span> 简单例子</a></li>
+  <li><a href="#带类型参数" id="toc-带类型参数" class="nav-link" data-scroll-target="#带类型参数"><span class="header-section-number">1.2</span> 带类型参数</a></li>
+  <li><a href="#类型参数的默认值" id="toc-类型参数的默认值" class="nav-link" data-scroll-target="#类型参数的默认值"><span class="header-section-number">1.3</span> 类型参数的默认值</a></li>
   </ul></li>
-  <li><a href="#参数指定trait" id="toc-参数指定trait" class="nav-link" data-scroll-target="#参数指定trait">参数指定trait</a>
+  <li><a href="#参数指定trait" id="toc-参数指定trait" class="nav-link" data-scroll-target="#参数指定trait"><span class="header-section-number">2</span> 参数指定trait</a>
   <ul>
-  <li><a href="#指定单个trait" id="toc-指定单个trait" class="nav-link" data-scroll-target="#指定单个trait">指定单个trait</a></li>
-  <li><a href="#指定多个trait" id="toc-指定多个trait" class="nav-link" data-scroll-target="#指定多个trait">指定多个trait</a></li>
-  <li><a href="#where" id="toc-where" class="nav-link" data-scroll-target="#where">where</a></li>
+  <li><a href="#指定单个trait" id="toc-指定单个trait" class="nav-link" data-scroll-target="#指定单个trait"><span class="header-section-number">2.1</span> 指定单个trait</a></li>
+  <li><a href="#指定多个trait" id="toc-指定多个trait" class="nav-link" data-scroll-target="#指定多个trait"><span class="header-section-number">2.2</span> 指定多个trait</a></li>
+  <li><a href="#where" id="toc-where" class="nav-link" data-scroll-target="#where"><span class="header-section-number">2.3</span> where</a></li>
   </ul></li>
-  <li><a href="#返回值指定trait" id="toc-返回值指定trait" class="nav-link" data-scroll-target="#返回值指定trait">返回值指定trait</a></li>
-  <li><a href="#关联类型associated-types" id="toc-关联类型associated-types" class="nav-link" data-scroll-target="#关联类型associated-types">关联类型(Associated types)</a>
+  <li><a href="#返回值指定trait" id="toc-返回值指定trait" class="nav-link" data-scroll-target="#返回值指定trait"><span class="header-section-number">3</span> 返回值指定trait</a></li>
+  <li><a href="#关联类型associated-types" id="toc-关联类型associated-types" class="nav-link" data-scroll-target="#关联类型associated-types"><span class="header-section-number">4</span> 关联类型(Associated types)</a>
   <ul>
-  <li><a href="#产生的原因" id="toc-产生的原因" class="nav-link" data-scroll-target="#产生的原因">产生的原因</a></li>
-  <li><a href="#泛型上使用-关联类型" id="toc-泛型上使用-关联类型" class="nav-link" data-scroll-target="#泛型上使用-关联类型">泛型上使用 关联类型</a></li>
-  <li><a href="#直接指定具体类型来约束关联类型" id="toc-直接指定具体类型来约束关联类型" class="nav-link" data-scroll-target="#直接指定具体类型来约束关联类型">直接指定具体类型来约束关联类型</a></li>
-  <li><a href="#使用trait-约束关联类型" id="toc-使用trait-约束关联类型" class="nav-link" data-scroll-target="#使用trait-约束关联类型">使用trait 约束关联类型</a></li>
+  <li><a href="#产生的原因" id="toc-产生的原因" class="nav-link" data-scroll-target="#产生的原因"><span class="header-section-number">4.1</span> 产生的原因</a></li>
+  <li><a href="#泛型上使用-关联类型" id="toc-泛型上使用-关联类型" class="nav-link" data-scroll-target="#泛型上使用-关联类型"><span class="header-section-number">4.2</span> 泛型上使用 关联类型</a></li>
+  <li><a href="#直接指定具体类型来约束关联类型" id="toc-直接指定具体类型来约束关联类型" class="nav-link" data-scroll-target="#直接指定具体类型来约束关联类型"><span class="header-section-number">4.3</span> 直接指定具体类型来约束关联类型</a></li>
+  <li><a href="#使用trait-约束关联类型" id="toc-使用trait-约束关联类型" class="nav-link" data-scroll-target="#使用trait-约束关联类型"><span class="header-section-number">4.4</span> 使用trait 约束关联类型</a></li>
   </ul></li>
-  <li><a href="#关联常量" id="toc-关联常量" class="nav-link" data-scroll-target="#关联常量">关联常量</a></li>
-  <li><a href="#trait的依赖" id="toc-trait的依赖" class="nav-link" data-scroll-target="#trait的依赖">trait的依赖</a></li>
-  <li><a href="#孤儿规则orphan-rule" id="toc-孤儿规则orphan-rule" class="nav-link" data-scroll-target="#孤儿规则orphan-rule">孤儿规则(orphan rule)</a></li>
-  <li><a href="#newtype-实现外部trait" id="toc-newtype-实现外部trait" class="nav-link" data-scroll-target="#newtype-实现外部trait">newtype 实现外部trait</a></li>
-  <li><a href="#运算符重载" id="toc-运算符重载" class="nav-link" data-scroll-target="#运算符重载">运算符重载</a></li>
-  <li><a href="#类型别名" id="toc-类型别名" class="nav-link" data-scroll-target="#类型别名">类型别名</a></li>
-  <li><a href="#trait-object" id="toc-trait-object" class="nav-link" data-scroll-target="#trait-object">trait object</a>
+  <li><a href="#关联常量" id="toc-关联常量" class="nav-link" data-scroll-target="#关联常量"><span class="header-section-number">5</span> 关联常量</a></li>
+  <li><a href="#trait的依赖" id="toc-trait的依赖" class="nav-link" data-scroll-target="#trait的依赖"><span class="header-section-number">6</span> trait的依赖</a></li>
+  <li><a href="#孤儿规则orphan-rule" id="toc-孤儿规则orphan-rule" class="nav-link" data-scroll-target="#孤儿规则orphan-rule"><span class="header-section-number">7</span> 孤儿规则(orphan rule)</a></li>
+  <li><a href="#newtype-实现外部trait" id="toc-newtype-实现外部trait" class="nav-link" data-scroll-target="#newtype-实现外部trait"><span class="header-section-number">8</span> newtype 实现外部trait</a></li>
+  <li><a href="#运算符重载" id="toc-运算符重载" class="nav-link" data-scroll-target="#运算符重载"><span class="header-section-number">9</span> 运算符重载</a></li>
+  <li><a href="#类型别名" id="toc-类型别名" class="nav-link" data-scroll-target="#类型别名"><span class="header-section-number">10</span> 类型别名</a></li>
+  <li><a href="#trait-object" id="toc-trait-object" class="nav-link" data-scroll-target="#trait-object"><span class="header-section-number">11</span> trait object</a>
   <ul>
-  <li><a href="#使用" id="toc-使用" class="nav-link" data-scroll-target="#使用">使用</a></li>
-  <li><a href="#动态派发" id="toc-动态派发" class="nav-link" data-scroll-target="#动态派发">动态派发</a></li>
-  <li><a href="#对象安全" id="toc-对象安全" class="nav-link" data-scroll-target="#对象安全">对象安全</a></li>
+  <li><a href="#使用" id="toc-使用" class="nav-link" data-scroll-target="#使用"><span class="header-section-number">11.1</span> 使用</a></li>
+  <li><a href="#动态派发" id="toc-动态派发" class="nav-link" data-scroll-target="#动态派发"><span class="header-section-number">11.2</span> 动态派发</a></li>
+  <li><a href="#对象安全" id="toc-对象安全" class="nav-link" data-scroll-target="#对象安全"><span class="header-section-number">11.3</span> 对象安全</a></li>
   </ul></li>
-  <li><a href="#sized-trait" id="toc-sized-trait" class="nav-link" data-scroll-target="#sized-trait">Sized Trait</a></li>
-  <li><a href="#常用trait" id="toc-常用trait" class="nav-link" data-scroll-target="#常用trait">常用trait</a>
+  <li><a href="#sized-trait" id="toc-sized-trait" class="nav-link" data-scroll-target="#sized-trait"><span class="header-section-number">12</span> Sized Trait</a></li>
+  <li><a href="#常用trait" id="toc-常用trait" class="nav-link" data-scroll-target="#常用trait"><span class="header-section-number">13</span> 常用trait</a>
   <ul>
-  <li><a href="#from-into" id="toc-from-into" class="nav-link" data-scroll-target="#from-into">From &amp; Into</a></li>
-  <li><a href="#tryfrom-and-tryinto" id="toc-tryfrom-and-tryinto" class="nav-link" data-scroll-target="#tryfrom-and-tryinto">TryFrom and TryInto</a></li>
-  <li><a href="#display-to_string方法" id="toc-display-to_string方法" class="nav-link" data-scroll-target="#display-to_string方法">Display (to_string方法)</a></li>
-  <li><a href="#fromstr" id="toc-fromstr" class="nav-link" data-scroll-target="#fromstr">FromStr</a></li>
+  <li><a href="#from-into" id="toc-from-into" class="nav-link" data-scroll-target="#from-into"><span class="header-section-number">13.1</span> From &amp; Into</a></li>
+  <li><a href="#tryfrom-and-tryinto" id="toc-tryfrom-and-tryinto" class="nav-link" data-scroll-target="#tryfrom-and-tryinto"><span class="header-section-number">13.2</span> TryFrom and TryInto</a></li>
+  <li><a href="#display-to_string方法" id="toc-display-to_string方法" class="nav-link" data-scroll-target="#display-to_string方法"><span class="header-section-number">13.3</span> Display (to_string方法)</a></li>
+  <li><a href="#fromstr" id="toc-fromstr" class="nav-link" data-scroll-target="#fromstr"><span class="header-section-number">13.4</span> FromStr</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -342,10 +368,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="定义一个trait" class="level2">
-<h2 class="anchored" data-anchor-id="定义一个trait">定义一个trait</h2>
-<section id="简单例子" class="level3">
-<h3 class="anchored" data-anchor-id="简单例子">简单例子</h3>
+<section id="定义一个trait" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="定义一个trait"><span class="header-section-number">1</span> 定义一个trait</h2>
+<section id="简单例子" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="简单例子"><span class="header-section-number">1.1</span> 简单例子</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -421,8 +447,8 @@ Tip
 <span id="cb1-52"><a href="#cb1-52"></a>    article<span class="op">.</span>hello()<span class="op">;</span></span>
 <span id="cb1-53"><a href="#cb1-53"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="带类型参数" class="level3">
-<h3 class="anchored" data-anchor-id="带类型参数">带类型参数</h3>
+<section id="带类型参数" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="带类型参数"><span class="header-section-number">1.2</span> 带类型参数</h3>
 <div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy"><code class="sourceCode rust"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="kw">use</span> <span class="pp">std::fmt::</span><span class="bu">Display</span><span class="op">;</span></span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a></span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a><span class="kw">trait</span> Animal<span class="op">&lt;</span>T<span class="op">&gt;</span></span>
@@ -459,8 +485,8 @@ Tip
 <span id="annotated-cell-2-34"><a href="#annotated-cell-2-34"></a>    a<span class="op">.</span>shout(<span class="st">"wang wang"</span>)<span class="op">;</span> </span>
 <span id="annotated-cell-2-35"><a href="#annotated-cell-2-35"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="类型参数的默认值" class="level3">
-<h3 class="anchored" data-anchor-id="类型参数的默认值">类型参数的默认值</h3>
+<section id="类型参数的默认值" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="类型参数的默认值"><span class="header-section-number">1.3</span> 类型参数的默认值</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">use</span> <span class="pp">std::fmt::</span><span class="bu">Display</span><span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">trait</span> Animal<span class="op">&lt;</span>T <span class="op">=</span> <span class="dt">String</span><span class="op">&gt;</span></span>
@@ -494,10 +520,10 @@ Tip
 <span id="cb2-31"><a href="#cb2-31"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="参数指定trait" class="level2">
-<h2 class="anchored" data-anchor-id="参数指定trait">参数指定trait</h2>
-<section id="指定单个trait" class="level3">
-<h3 class="anchored" data-anchor-id="指定单个trait">指定单个trait</h3>
+<section id="参数指定trait" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="参数指定trait"><span class="header-section-number">2</span> 参数指定trait</h2>
+<section id="指定单个trait" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="指定单个trait"><span class="header-section-number">2.1</span> 指定单个trait</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">// 参数item ,必须是实现了Summary这个trait的类型</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">pub</span> <span class="kw">fn</span> notify(item<span class="op">:</span> <span class="op">&amp;</span><span class="kw">impl</span> Summary) <span class="op">{</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>    <span class="pp">println!</span>(<span class="st">"Breaking news! {}"</span><span class="op">,</span> item<span class="op">.</span>summarize())<span class="op">;</span></span>
@@ -511,14 +537,14 @@ Tip
 <span id="cb4-6"><a href="#cb4-6"></a><span class="co">//这样写就比上面的简洁</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a><span class="kw">pub</span> <span class="kw">fn</span> notify<span class="op">&lt;</span>T<span class="op">:</span> Summary<span class="op">&gt;</span>(item1<span class="op">:</span> <span class="op">&amp;</span>T<span class="op">,</span> item2<span class="op">:</span> <span class="op">&amp;</span>T) <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="指定多个trait" class="level3">
-<h3 class="anchored" data-anchor-id="指定多个trait">指定多个trait</h3>
+<section id="指定多个trait" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="指定多个trait"><span class="header-section-number">2.2</span> 指定多个trait</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">pub</span> <span class="kw">fn</span> notify(item<span class="op">:</span> <span class="op">&amp;</span>(<span class="kw">impl</span> Summary <span class="op">+</span> <span class="bu">Display</span>)) <span class="op">{}</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="kw">pub</span> <span class="kw">fn</span> notify<span class="op">&lt;</span>T<span class="op">:</span> Summary <span class="op">+</span> <span class="bu">Display</span><span class="op">&gt;</span>(item<span class="op">:</span> <span class="op">&amp;</span>T) <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="where" class="level3">
-<h3 class="anchored" data-anchor-id="where">where</h3>
+<section id="where" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="where"><span class="header-section-number">2.3</span> where</h3>
 <p>当我们在指定多个参数 然后每个参数要实现多个trait时, 写起来可能不是那么清晰, 这时我们可以使用where来简化</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">fn</span> some_function<span class="op">&lt;</span>T<span class="op">:</span> <span class="bu">Display</span> <span class="op">+</span> <span class="bu">Clone</span><span class="op">,</span> U<span class="op">:</span> <span class="bu">Clone</span> <span class="op">+</span> <span class="bu">Debug</span><span class="op">&gt;</span>(t<span class="op">:</span> <span class="op">&amp;</span>T<span class="op">,</span> u<span class="op">:</span> <span class="op">&amp;</span>U) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>使用where的写法</p>
@@ -530,8 +556,8 @@ Tip
 <span id="cb7-6"><a href="#cb7-6"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="返回值指定trait" class="level2">
-<h2 class="anchored" data-anchor-id="返回值指定trait">返回值指定trait</h2>
+<section id="返回值指定trait" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="返回值指定trait"><span class="header-section-number">3</span> 返回值指定trait</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">fn</span> returns_summarizable() <span class="op">-&gt;</span> <span class="kw">impl</span> Summary <span class="op">{</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>    Tweet <span class="op">{</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>        username<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"horse_ebooks"</span>)<span class="op">,</span></span>
@@ -568,11 +594,11 @@ Tip
 <span id="cb9-23"><a href="#cb9-23"></a>    <span class="op">}</span></span>
 <span id="cb9-24"><a href="#cb9-24"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="关联类型associated-types" class="level2">
-<h2 class="anchored" data-anchor-id="关联类型associated-types">关联类型(Associated types)</h2>
+<section id="关联类型associated-types" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="关联类型associated-types"><span class="header-section-number">4</span> 关联类型(Associated types)</h2>
 <p>关联类型起到一种类型占位功能,定义trait时声明,在把trait实现到类型上的时候为其指定具体的类型</p>
-<section id="产生的原因" class="level3">
-<h3 class="anchored" data-anchor-id="产生的原因">产生的原因</h3>
+<section id="产生的原因" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="产生的原因"><span class="header-section-number">4.1</span> 产生的原因</h3>
 <p>trait上使用泛型的情况</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">struct</span> Container(<span class="dt">i32</span><span class="op">,</span> <span class="dt">i32</span>)<span class="op">;</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a></span>
@@ -678,8 +704,8 @@ Tip
 <span id="cb11-49"><a href="#cb11-49"></a>    <span class="pp">println!</span>(<span class="st">"The difference is: {}"</span><span class="op">,</span> difference(<span class="op">&amp;</span>container))<span class="op">;</span></span>
 <span id="cb11-50"><a href="#cb11-50"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="泛型上使用-关联类型" class="level3">
-<h3 class="anchored" data-anchor-id="泛型上使用-关联类型">泛型上使用 关联类型</h3>
+<section id="泛型上使用-关联类型" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="泛型上使用-关联类型"><span class="header-section-number">4.2</span> 泛型上使用 关联类型</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">trait</span> Person <span class="op">{</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="kw">type</span> AAA<span class="op">;</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">fn</span> shout(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> msg<span class="op">:</span> <span class="dt">Self</span><span class="pp">::</span>AAA)<span class="op">;</span></span>
@@ -711,8 +737,8 @@ Tip
 <span id="cb12-29"><a href="#cb12-29"></a>    s<span class="op">.</span>homeowner<span class="op">.</span>shout(<span class="st">"啊啊啊"</span><span class="op">.</span>to_string())<span class="op">;</span></span>
 <span id="cb12-30"><a href="#cb12-30"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="直接指定具体类型来约束关联类型" class="level3">
-<h3 class="anchored" data-anchor-id="直接指定具体类型来约束关联类型">直接指定具体类型来约束关联类型</h3>
+<section id="直接指定具体类型来约束关联类型" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="直接指定具体类型来约束关联类型"><span class="header-section-number">4.3</span> 直接指定具体类型来约束关联类型</h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">trait</span> Person <span class="op">{</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>    <span class="kw">type</span> AAA<span class="op">;</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">fn</span> shout(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> msg<span class="op">:</span> <span class="dt">Self</span><span class="pp">::</span>AAA)<span class="op">;</span></span>
@@ -743,8 +769,8 @@ Tip
 <span id="cb13-28"><a href="#cb13-28"></a>    s<span class="op">.</span>homeowner<span class="op">.</span>shout(<span class="st">"啊啊啊"</span><span class="op">.</span>to_string())<span class="op">;</span></span>
 <span id="cb13-29"><a href="#cb13-29"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="使用trait-约束关联类型" class="level3">
-<h3 class="anchored" data-anchor-id="使用trait-约束关联类型">使用trait 约束关联类型</h3>
+<section id="使用trait-约束关联类型" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="使用trait-约束关联类型"><span class="header-section-number">4.4</span> 使用trait 约束关联类型</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">use</span> <span class="pp">std::fmt::</span><span class="bu">Display</span><span class="op">;</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="kw">trait</span> Person <span class="op">{</span></span>
@@ -774,8 +800,8 @@ Tip
 <span id="cb14-27"><a href="#cb14-27"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="关联常量" class="level2">
-<h2 class="anchored" data-anchor-id="关联常量">关联常量</h2>
+<section id="关联常量" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="关联常量"><span class="header-section-number">5</span> 关联常量</h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">trait</span> Country <span class="op">{</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>    <span class="kw">const</span> HISTORY<span class="op">:</span> <span class="dt">u32</span> <span class="op">=</span> <span class="dv">5000</span><span class="op">;</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a>    <span class="kw">const</span> INDEPENDENT<span class="op">:</span> <span class="dt">bool</span> <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
@@ -793,8 +819,8 @@ Tip
 <span id="cb15-15"><a href="#cb15-15"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> <span class="op">&lt;</span>China <span class="kw">as</span> Country<span class="op">&gt;</span><span class="pp">::</span>INDEPENDENT)<span class="op">;</span></span>
 <span id="cb15-16"><a href="#cb15-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="trait的依赖" class="level2">
-<h2 class="anchored" data-anchor-id="trait的依赖">trait的依赖</h2>
+<section id="trait的依赖" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="trait的依赖"><span class="header-section-number">6</span> trait的依赖</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">trait</span> Animal <span class="op">{</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a>    <span class="kw">fn</span> shout(<span class="op">&amp;</span><span class="kw">self</span>)<span class="op">;</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a><span class="op">}</span></span>
@@ -839,8 +865,8 @@ Tip
 <span id="cb16-42"><a href="#cb16-42"></a>    <span class="pp">Animal::</span>shout(d)<span class="op">;</span> <span class="co">// animal...</span></span>
 <span id="cb16-43"><a href="#cb16-43"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="孤儿规则orphan-rule" class="level2">
-<h2 class="anchored" data-anchor-id="孤儿规则orphan-rule">孤儿规则(orphan rule)</h2>
+<section id="孤儿规则orphan-rule" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="孤儿规则orphan-rule"><span class="header-section-number">7</span> 孤儿规则(orphan rule)</h2>
 <ul>
 <li>如果你想要为类型A实现trait B,那么至少有一个是本地crate（即你当前的crate）所拥有的</li>
 <li>换句话说,要么类型A是在当前的crate中定义的,要么trait B是在当前的crate中定义的</li>
@@ -853,8 +879,8 @@ Tip
 <li>外部是指不是由自己,而是由外部定义的,包括标准库</li>
 </ul>
 </section>
-<section id="newtype-实现外部trait" class="level2">
-<h2 class="anchored" data-anchor-id="newtype-实现外部trait">newtype 实现外部trait</h2>
+<section id="newtype-实现外部trait" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="newtype-实现外部trait"><span class="header-section-number">8</span> newtype 实现外部trait</h2>
 <p>孤儿规则: 只有当 trait或类型定义在本地crate的时候,才能为类型实现trait</p>
 <p>我们可以用newtype 模式来绕过这个</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">use</span> <span class="pp">std::</span>fmt<span class="op">;</span></span>
@@ -881,8 +907,8 @@ Tip
 <span id="cb17-22"><a href="#cb17-22"></a><span class="op">}</span></span>
 <span id="cb17-23"><a href="#cb17-23"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="运算符重载" class="level2">
-<h2 class="anchored" data-anchor-id="运算符重载">运算符重载</h2>
+<section id="运算符重载" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="运算符重载"><span class="header-section-number">9</span> 运算符重载</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">use</span> <span class="pp">std::ops::</span><span class="bu">Add</span><span class="op">;</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Copy</span><span class="op">,</span> <span class="bu">Clone</span><span class="op">,</span> <span class="bu">PartialEq</span><span class="at">)]</span></span>
@@ -937,8 +963,8 @@ Tip
 <span id="cb20-22"><a href="#cb20-22"></a>    <span class="co">// let sum2 = m + mm;</span></span>
 <span id="cb20-23"><a href="#cb20-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="类型别名" class="level2">
-<h2 class="anchored" data-anchor-id="类型别名">类型别名</h2>
+<section id="类型别名" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="类型别名"><span class="header-section-number">10</span> 类型别名</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a>    <span class="co">// 类型别名</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a>    <span class="co">// 让类型含义更加的有意义</span></span>
@@ -990,10 +1016,10 @@ Tip
 <span id="cb24-14"><a href="#cb24-14"></a><span class="op">}</span></span>
 <span id="cb24-15"><a href="#cb24-15"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="trait-object" class="level2">
-<h2 class="anchored" data-anchor-id="trait-object">trait object</h2>
-<section id="使用" class="level3">
-<h3 class="anchored" data-anchor-id="使用">使用</h3>
+<section id="trait-object" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="trait-object"><span class="header-section-number">11</span> trait object</h2>
+<section id="使用" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="使用"><span class="header-section-number">11.1</span> 使用</h3>
 <p>我们有这样一个需求, 创建一个GUI 工具, 会遍历一个列表, 调用每个元素的draw方法</p>
 <p>我们很快就能想到使用泛型,试试看</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">pub</span> <span class="kw">trait</span> Draw <span class="op">{</span></span>
@@ -1080,8 +1106,8 @@ Tip
 <span id="cb26-39"><a href="#cb26-39"></a><span class="op">}</span></span>
 <span id="cb26-40"><a href="#cb26-40"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="动态派发" class="level3">
-<h3 class="anchored" data-anchor-id="动态派发">动态派发</h3>
+<section id="动态派发" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="动态派发"><span class="header-section-number">11.2</span> 动态派发</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1116,8 +1142,8 @@ Tip
 <p>动态派发 ,使用dyn trait会用动态派发, 无法在编译期确定你调用的是哪个方法,会在运行时确定</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="对象安全" class="level3">
-<h3 class="anchored" data-anchor-id="对象安全">对象安全</h3>
+<section id="对象安全" class="level3" data-number="11.3">
+<h3 data-number="11.3" class="anchored" data-anchor-id="对象安全"><span class="header-section-number">11.3</span> 对象安全</h3>
 <p>只能把满足对象安全的trait 转为 trait object</p>
 <ul>
 <li>安全的标准
@@ -1128,8 +1154,8 @@ Tip
 </ul>
 </section>
 </section>
-<section id="sized-trait" class="level2">
-<h2 class="anchored" data-anchor-id="sized-trait">Sized Trait</h2>
+<section id="sized-trait" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="sized-trait"><span class="header-section-number">12</span> Sized Trait</h2>
 <p>动态大小的类型 DST (Dynamically Sized Types)</p>
 <p>类型可以说是规定了你如何去使用一块内存: 占用多少空间, 怎么读写,比如给你弄了写方法, 方便读写</p>
 <p><code>在数组里, [1i32,2] 占用了8字节 [1i32,2,3] 12个字节, 这2个是不同的类型, 虽然我们都说他们是数组</code></p>
@@ -1157,10 +1183,10 @@ Tip
 <span id="cb32-3"><a href="#cb32-3"></a>    <span class="co">// --snip--</span></span>
 <span id="cb32-4"><a href="#cb32-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="常用trait" class="level2">
-<h2 class="anchored" data-anchor-id="常用trait">常用trait</h2>
-<section id="from-into" class="level3">
-<h3 class="anchored" data-anchor-id="from-into">From &amp; Into</h3>
+<section id="常用trait" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="常用trait"><span class="header-section-number">13</span> 常用trait</h2>
+<section id="from-into" class="level3" data-number="13.1">
+<h3 data-number="13.1" class="anchored" data-anchor-id="from-into"><span class="header-section-number">13.1</span> From &amp; Into</h3>
 <p>From trait 让你可以从另外一个B类型的数据,创建一个A类型的数据</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">use</span> <span class="pp">std::convert::</span><span class="bu">From</span><span class="op">;</span></span>
 <span id="cb33-2"><a href="#cb33-2"></a></span>
@@ -1199,8 +1225,8 @@ Tip
 <span id="cb34-18"><a href="#cb34-18"></a>    <span class="pp">println!</span>(<span class="st">"My number is {:?}"</span><span class="op">,</span> num)<span class="op">;</span></span>
 <span id="cb34-19"><a href="#cb34-19"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tryfrom-and-tryinto" class="level3">
-<h3 class="anchored" data-anchor-id="tryfrom-and-tryinto">TryFrom and TryInto</h3>
+<section id="tryfrom-and-tryinto" class="level3" data-number="13.2">
+<h3 data-number="13.2" class="anchored" data-anchor-id="tryfrom-and-tryinto"><span class="header-section-number">13.2</span> TryFrom and TryInto</h3>
 <p>会报错的情况 使用</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">use</span> <span class="pp">std::convert::</span><span class="bu">TryFrom</span><span class="op">;</span></span>
 <span id="cb35-2"><a href="#cb35-2"></a><span class="kw">use</span> <span class="pp">std::convert::</span><span class="bu">TryInto</span><span class="op">;</span></span>
@@ -1234,8 +1260,8 @@ Tip
 <span id="cb35-30"><a href="#cb35-30"></a>    <span class="pp">assert_eq!</span>(result<span class="op">,</span> <span class="cn">Err</span>(()))<span class="op">;</span></span>
 <span id="cb35-31"><a href="#cb35-31"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="display-to_string方法" class="level3">
-<h3 class="anchored" data-anchor-id="display-to_string方法">Display (to_string方法)</h3>
+<section id="display-to_string方法" class="level3" data-number="13.3">
+<h3 data-number="13.3" class="anchored" data-anchor-id="display-to_string方法"><span class="header-section-number">13.3</span> Display (to_string方法)</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">use</span> <span class="pp">std::</span>fmt<span class="op">;</span></span>
 <span id="cb36-2"><a href="#cb36-2"></a></span>
 <span id="cb36-3"><a href="#cb36-3"></a><span class="kw">struct</span> Circle <span class="op">{</span></span>
@@ -1254,8 +1280,8 @@ Tip
 <span id="cb36-16"><a href="#cb36-16"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> c)<span class="op">;</span></span>
 <span id="cb36-17"><a href="#cb36-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fromstr" class="level3">
-<h3 class="anchored" data-anchor-id="fromstr">FromStr</h3>
+<section id="fromstr" class="level3" data-number="13.4">
+<h3 data-number="13.4" class="anchored" data-anchor-id="fromstr"><span class="header-section-number">13.4</span> FromStr</h3>
 <p>定义一个类型如何从字符串转换而来</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="dt">str</span><span class="pp">::</span><span class="bu">FromStr</span><span class="op">;</span></span>
 <span id="cb37-2"><a href="#cb37-2"></a></span>
@@ -1322,6 +1348,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

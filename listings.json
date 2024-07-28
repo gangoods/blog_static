@@ -4,6 +4,22 @@
     "items": []
   },
   {
+    "listing": "/docs/devops/docker/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/devops/linux/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/go/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/netprog/index.html",
+    "items": []
+  },
+  {
     "listing": "/docs/quarto/index.html",
     "items": []
   }

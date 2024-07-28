@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../../site_libs/quarto-contrib/rust-playground-0.1.0/run-rust-code-button.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -122,12 +124,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../../docs/rust/index.html"> 
 <span class="menu-text">Rust</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -294,33 +320,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#枚举" id="toc-枚举" class="nav-link active" data-scroll-target="#枚举">枚举</a>
+  <li><a href="#枚举" id="toc-枚举" class="nav-link active" data-scroll-target="#枚举"><span class="header-section-number">1</span> 枚举</a>
   <ul>
-  <li><a href="#携带数据" id="toc-携带数据" class="nav-link" data-scroll-target="#携带数据">携带数据</a></li>
-  <li><a href="#设置方法" id="toc-设置方法" class="nav-link" data-scroll-target="#设置方法">设置方法</a></li>
-  <li><a href="#option-枚举" id="toc-option-枚举" class="nav-link" data-scroll-target="#option-枚举">Option 枚举</a></li>
-  <li><a href="#类c枚举" id="toc-类c枚举" class="nav-link" data-scroll-target="#类c枚举">类C枚举</a></li>
-  <li><a href="#use" id="toc-use" class="nav-link" data-scroll-target="#use">use</a></li>
+  <li><a href="#携带数据" id="toc-携带数据" class="nav-link" data-scroll-target="#携带数据"><span class="header-section-number">1.1</span> 携带数据</a></li>
+  <li><a href="#设置方法" id="toc-设置方法" class="nav-link" data-scroll-target="#设置方法"><span class="header-section-number">1.2</span> 设置方法</a></li>
+  <li><a href="#option-枚举" id="toc-option-枚举" class="nav-link" data-scroll-target="#option-枚举"><span class="header-section-number">1.3</span> Option 枚举</a></li>
+  <li><a href="#类c枚举" id="toc-类c枚举" class="nav-link" data-scroll-target="#类c枚举"><span class="header-section-number">1.4</span> 类C枚举</a></li>
+  <li><a href="#use" id="toc-use" class="nav-link" data-scroll-target="#use"><span class="header-section-number">1.5</span> use</a></li>
   </ul></li>
-  <li><a href="#模式匹配pattern-match" id="toc-模式匹配pattern-match" class="nav-link" data-scroll-target="#模式匹配pattern-match">模式匹配(pattern match)</a>
+  <li><a href="#模式匹配pattern-match" id="toc-模式匹配pattern-match" class="nav-link" data-scroll-target="#模式匹配pattern-match"><span class="header-section-number">2</span> 模式匹配(pattern match)</a>
   <ul>
-  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match">match</a>
+  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match"><span class="header-section-number">2.1</span> match</a>
   <ul class="collapse">
-  <li><a href="#枚举-1" id="toc-枚举-1" class="nav-link" data-scroll-target="#枚举-1">枚举</a></li>
-  <li><a href="#结构体" id="toc-结构体" class="nav-link" data-scroll-target="#结构体">结构体</a></li>
+  <li><a href="#枚举-1" id="toc-枚举-1" class="nav-link" data-scroll-target="#枚举-1"><span class="header-section-number">2.1.1</span> 枚举</a></li>
+  <li><a href="#结构体" id="toc-结构体" class="nav-link" data-scroll-target="#结构体"><span class="header-section-number">2.1.2</span> 结构体</a></li>
   </ul></li>
-  <li><a href="#if-let" id="toc-if-let" class="nav-link" data-scroll-target="#if-let">if let</a></li>
-  <li><a href="#while-let" id="toc-while-let" class="nav-link" data-scroll-target="#while-let">while let</a></li>
-  <li><a href="#let-本身" id="toc-let-本身" class="nav-link" data-scroll-target="#let-本身">let 本身</a></li>
-  <li><a href="#ref" id="toc-ref" class="nav-link" data-scroll-target="#ref">ref</a></li>
-  <li><a href="#pattern-syntax" id="toc-pattern-syntax" class="nav-link" data-scroll-target="#pattern-syntax">Pattern Syntax</a>
+  <li><a href="#if-let" id="toc-if-let" class="nav-link" data-scroll-target="#if-let"><span class="header-section-number">2.2</span> if let</a></li>
+  <li><a href="#while-let" id="toc-while-let" class="nav-link" data-scroll-target="#while-let"><span class="header-section-number">2.3</span> while let</a></li>
+  <li><a href="#let-本身" id="toc-let-本身" class="nav-link" data-scroll-target="#let-本身"><span class="header-section-number">2.4</span> let 本身</a></li>
+  <li><a href="#ref" id="toc-ref" class="nav-link" data-scroll-target="#ref"><span class="header-section-number">2.5</span> ref</a></li>
+  <li><a href="#pattern-syntax" id="toc-pattern-syntax" class="nav-link" data-scroll-target="#pattern-syntax"><span class="header-section-number">2.6</span> Pattern Syntax</a>
   <ul class="collapse">
-  <li><a href="#剩余" id="toc-剩余" class="nav-link" data-scroll-target="#剩余">.. 剩余</a></li>
-  <li><a href="#忽略绑定" id="toc-忽略绑定" class="nav-link" data-scroll-target="#忽略绑定">_ 忽略绑定</a></li>
-  <li><a href="#剩余部分" id="toc-剩余部分" class="nav-link" data-scroll-target="#剩余部分">_ 剩余部分</a></li>
-  <li><a href="#和-if" id="toc-和-if" class="nav-link" data-scroll-target="#和-if">| 和 if</a></li>
-  <li><a href="#范围" id="toc-范围" class="nav-link" data-scroll-target="#范围">..= 范围</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">@</a></li>
+  <li><a href="#剩余" id="toc-剩余" class="nav-link" data-scroll-target="#剩余"><span class="header-section-number">2.6.1</span> .. 剩余</a></li>
+  <li><a href="#忽略绑定" id="toc-忽略绑定" class="nav-link" data-scroll-target="#忽略绑定"><span class="header-section-number">2.6.2</span> _ 忽略绑定</a></li>
+  <li><a href="#剩余部分" id="toc-剩余部分" class="nav-link" data-scroll-target="#剩余部分"><span class="header-section-number">2.6.3</span> _ 剩余部分</a></li>
+  <li><a href="#和-if" id="toc-和-if" class="nav-link" data-scroll-target="#和-if"><span class="header-section-number">2.6.4</span> | 和 if</a></li>
+  <li><a href="#范围" id="toc-范围" class="nav-link" data-scroll-target="#范围"><span class="header-section-number">2.6.5</span> ..= 范围</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.6.6</span> @</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -332,8 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="枚举" class="level2">
-<h2 class="anchored" data-anchor-id="枚举">枚举</h2>
+<section id="枚举" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="枚举"><span class="header-section-number">1</span> 枚举</h2>
 <p>枚举是这样一种类型,允许你通过列举可能的成员(variants:变体)来定义一个类型</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">enum</span> IpAddrKind <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    V4<span class="op">,</span></span>
@@ -366,8 +392,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-29"><a href="#cb1-29"></a><span class="op">}</span></span>
 <span id="cb1-30"><a href="#cb1-30"></a></span>
 <span id="cb1-31"><a href="#cb1-31"></a><span class="kw">fn</span> route(ip_kind<span class="op">:</span> IpAddrKind) <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="携带数据" class="level3">
-<h3 class="anchored" data-anchor-id="携带数据">携带数据</h3>
+<section id="携带数据" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="携带数据"><span class="header-section-number">1.1</span> 携带数据</h3>
 <p>上面的例子中, 我们可能会问, 枚举的成员本身要是能携带数据岂不是更好?</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">enum</span> IpAddr <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">// 可以设置携带不同类型的数据</span></span>
@@ -400,8 +426,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6"></a><span class="kw">struct</span> WriteMessage(<span class="dt">String</span>)<span class="op">;</span> <span class="co">// tuple struct</span></span>
 <span id="cb3-7"><a href="#cb3-7"></a><span class="kw">struct</span> ChangeColorMessage(<span class="dt">i32</span><span class="op">,</span> <span class="dt">i32</span><span class="op">,</span> <span class="dt">i32</span>)<span class="op">;</span> <span class="co">// tuple struct</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="设置方法" class="level3">
-<h3 class="anchored" data-anchor-id="设置方法">设置方法</h3>
+<section id="设置方法" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="设置方法"><span class="header-section-number">1.2</span> 设置方法</h3>
 <p>可以像 struct 一样 设置方法</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">enum</span> Message <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>    Quit<span class="op">,</span></span>
@@ -428,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-23"><a href="#cb4-23"></a>    <span class="kw">let</span> f <span class="op">=</span> <span class="pp">Message::</span>hello()<span class="op">;</span></span>
 <span id="cb4-24"><a href="#cb4-24"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="option-枚举" class="level3">
-<h3 class="anchored" data-anchor-id="option-枚举">Option 枚举</h3>
+<section id="option-枚举" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="option-枚举"><span class="header-section-number">1.3</span> Option 枚举</h3>
 <p>rust 标准库里有一个 Option 枚举, 后面我们再讨论</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">// 在rust 中用 Option 枚举来表示一个值是存在的还是缺失的</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw">enum</span> <span class="dt">Option</span><span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
@@ -438,8 +464,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5"></a>    <span class="cn">Some</span>(T)<span class="op">,</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="类c枚举" class="level3">
-<h3 class="anchored" data-anchor-id="类c枚举">类C枚举</h3>
+<section id="类c枚举" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="类c枚举"><span class="header-section-number">1.4</span> 类C枚举</h3>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">// An attribute to hide warnings for unused code.</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="at">#![</span>allow<span class="at">(</span>dead_code<span class="at">)]</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -474,8 +500,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-32"><a href="#cb6-32"></a>    <span class="pp">println!</span>(<span class="st">"violets are #{:06x}"</span><span class="op">,</span> <span class="pp">Color::</span>Blue <span class="kw">as</span> <span class="dt">i32</span>)<span class="op">;</span></span>
 <span id="cb6-33"><a href="#cb6-33"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="use" class="level3">
-<h3 class="anchored" data-anchor-id="use">use</h3>
+<section id="use" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="use"><span class="header-section-number">1.5</span> use</h3>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a><span class="at">#![</span>allow<span class="at">(</span>dead_code<span class="at">)]</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="kw">enum</span> Status <span class="op">{</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>    Rich<span class="op">,</span></span>
@@ -491,12 +517,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-13"><a href="#cb7-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="模式匹配pattern-match" class="level2">
-<h2 class="anchored" data-anchor-id="模式匹配pattern-match">模式匹配(pattern match)</h2>
-<section id="match" class="level3">
-<h3 class="anchored" data-anchor-id="match">match</h3>
-<section id="枚举-1" class="level4">
-<h4 class="anchored" data-anchor-id="枚举-1">枚举</h4>
+<section id="模式匹配pattern-match" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="模式匹配pattern-match"><span class="header-section-number">2</span> 模式匹配(pattern match)</h2>
+<section id="match" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="match"><span class="header-section-number">2.1</span> match</h3>
+<section id="枚举-1" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="枚举-1"><span class="header-section-number">2.1.1</span> 枚举</h4>
 <p>判断是枚举的哪个成员(变体)</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">enum</span> Coin <span class="op">{</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>    Penny<span class="op">,</span></span>
@@ -524,8 +550,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-24"><a href="#cb8-24"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> r)<span class="op">;</span></span>
 <span id="cb8-25"><a href="#cb8-25"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="结构体" class="level4">
-<h4 class="anchored" data-anchor-id="结构体">结构体</h4>
+<section id="结构体" class="level4" data-number="2.1.2">
+<h4 data-number="2.1.2" class="anchored" data-anchor-id="结构体"><span class="header-section-number">2.1.2</span> 结构体</h4>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">struct</span> Point <span class="op">{</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>    x<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>    y<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
@@ -543,8 +569,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-15"><a href="#cb9-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="if-let" class="level3">
-<h3 class="anchored" data-anchor-id="if-let">if let</h3>
+<section id="if-let" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="if-let"><span class="header-section-number">2.2</span> if let</h3>
 <p>相当于 使用 <code>match</code> ,然后只匹配一个成员,然后执行代码块, 更加简洁</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a>    <span class="kw">let</span> config_max <span class="op">=</span> <span class="cn">Some</span>(<span class="dv">3u8</span>)<span class="op">;</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="cf">match</span> config_max <span class="op">{</span></span>
@@ -573,8 +599,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-20"><a href="#cb11-20"></a>    <span class="op">}</span></span>
 <span id="cb11-21"><a href="#cb11-21"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="while-let" class="level3">
-<h3 class="anchored" data-anchor-id="while-let">while let</h3>
+<section id="while-let" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="while-let"><span class="header-section-number">2.3</span> while let</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> optional <span class="op">=</span> <span class="cn">Some</span>(<span class="dv">0</span>)<span class="op">;</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a></span>
@@ -589,8 +615,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-12"><a href="#cb12-12"></a>    <span class="op">}</span></span>
 <span id="cb12-13"><a href="#cb12-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="let-本身" class="level3">
-<h3 class="anchored" data-anchor-id="let-本身">let 本身</h3>
+<section id="let-本身" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="let-本身"><span class="header-section-number">2.4</span> let 本身</h3>
 <p><code>let PATTERN = EXPRESSION;</code></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">struct</span> Person <span class="op">{</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
@@ -630,8 +656,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-7"><a href="#cb14-7"></a>    print_coordinates(<span class="op">&amp;</span>point)<span class="op">;</span></span>
 <span id="cb14-8"><a href="#cb14-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="ref" class="level3">
-<h3 class="anchored" data-anchor-id="ref">ref</h3>
+<section id="ref" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="ref"><span class="header-section-number">2.5</span> ref</h3>
 <p>ref 是模式的一部分, 而 &amp; 是借用运算符,是表达式的一部分</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>    <span class="kw">let</span> ref_c2 <span class="op">=</span> <span class="op">&amp;</span><span class="dv">1</span><span class="op">;</span></span>
@@ -698,10 +724,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-10"><a href="#cb19-10"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> x)<span class="op">;</span></span>
 <span id="cb19-11"><a href="#cb19-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="pattern-syntax" class="level3">
-<h3 class="anchored" data-anchor-id="pattern-syntax">Pattern Syntax</h3>
-<section id="剩余" class="level4">
-<h4 class="anchored" data-anchor-id="剩余">.. 剩余</h4>
+<section id="pattern-syntax" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="pattern-syntax"><span class="header-section-number">2.6</span> Pattern Syntax</h3>
+<section id="剩余" class="level4" data-number="2.6.1">
+<h4 data-number="2.6.1" class="anchored" data-anchor-id="剩余"><span class="header-section-number">2.6.1</span> .. 剩余</h4>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">struct</span> Point <span class="op">{</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>    x<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a>    y<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
@@ -722,8 +748,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-18"><a href="#cb20-18"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> x1)<span class="op">;</span> <span class="co">// 1</span></span>
 <span id="cb20-19"><a href="#cb20-19"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="忽略绑定" class="level4">
-<h4 class="anchored" data-anchor-id="忽略绑定">_ 忽略绑定</h4>
+<section id="忽略绑定" class="level4" data-number="2.6.2">
+<h4 data-number="2.6.2" class="anchored" data-anchor-id="忽略绑定"><span class="header-section-number">2.6.2</span> _ 忽略绑定</h4>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a>    <span class="kw">let</span> (_<span class="op">,</span> x<span class="op">,</span> _) <span class="op">=</span> (<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> x)<span class="op">;</span></span>
@@ -736,8 +762,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-10"><a href="#cb21-10"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> y)<span class="op">;</span></span>
 <span id="cb21-11"><a href="#cb21-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="剩余部分" class="level4">
-<h4 class="anchored" data-anchor-id="剩余部分">_ 剩余部分</h4>
+<section id="剩余部分" class="level4" data-number="2.6.3">
+<h4 data-number="2.6.3" class="anchored" data-anchor-id="剩余部分"><span class="header-section-number">2.6.3</span> _ 剩余部分</h4>
 <p>成员不用全部写上的方式</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">enum</span> Coin <span class="op">{</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a>    Penny<span class="op">,</span></span>
@@ -770,8 +796,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-8"><a href="#cb23-8"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> r)<span class="op">;</span></span>
 <span id="cb23-9"><a href="#cb23-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="和-if" class="level4">
-<h4 class="anchored" data-anchor-id="和-if">| 和 if</h4>
+<section id="和-if" class="level4" data-number="2.6.4">
+<h4 data-number="2.6.4" class="anchored" data-anchor-id="和-if"><span class="header-section-number">2.6.4</span> | 和 if</h4>
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a>    <span class="kw">let</span> y <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
@@ -798,8 +824,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-13"><a href="#cb25-13"></a>    <span class="op">}</span></span>
 <span id="cb25-14"><a href="#cb25-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="范围" class="level4">
-<h4 class="anchored" data-anchor-id="范围">..= 范围</h4>
+<section id="范围" class="level4" data-number="2.6.5">
+<h4 data-number="2.6.5" class="anchored" data-anchor-id="范围"><span class="header-section-number">2.6.5</span> ..= 范围</h4>
 <p><code>&gt;=xx &lt;=yy</code></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb26-2"><a href="#cb26-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5i32</span><span class="op">;</span></span>
@@ -817,8 +843,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-14"><a href="#cb26-14"></a>    <span class="op">};</span></span>
 <span id="cb26-15"><a href="#cb26-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section">@</h4>
+<section id="section" class="level4" data-number="2.6.6">
+<h4 data-number="2.6.6" class="anchored" data-anchor-id="section"><span class="header-section-number">2.6.6</span> @</h4>
 <div class="sourceCode" id="cb27"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">enum</span> Student <span class="op">{</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a>    primary <span class="op">{</span> age<span class="op">:</span> <span class="dt">i32</span> <span class="op">},</span></span>
 <span id="cb27-3"><a href="#cb27-3"></a>    junior <span class="op">{</span> age<span class="op">:</span> <span class="dt">i32</span> <span class="op">},</span></span>
@@ -877,6 +903,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
