@@ -281,8 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#改-s" id="toc-改-s" class="nav-link" data-scroll-target="#改-s"><span class="header-section-number">4.2.4</span> 改 (s)</a></li>
   <li><a href="#nn" id="toc-nn" class="nav-link" data-scroll-target="#nn"><span class="header-section-number">4.2.5</span> n/N</a></li>
   <li><a href="#和" id="toc-和" class="nav-link" data-scroll-target="#和"><span class="header-section-number">4.2.6</span> ; 和 {;}</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">4.2.7</span> ;</a></li>
-  <li><a href="#使用变量" id="toc-使用变量" class="nav-link" data-scroll-target="#使用变量"><span class="header-section-number">4.2.8</span> 使用变量</a></li>
+  <li><a href="#使用变量" id="toc-使用变量" class="nav-link" data-scroll-target="#使用变量"><span class="header-section-number">4.2.7</span> 使用变量</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -457,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="a-行后插入操作分析" class="level4" data-number="1.2.3">
 <h4 data-number="1.2.3" class="anchored" data-anchor-id="a-行后插入操作分析"><span class="header-section-number">1.2.3</span> a 行后插入操作分析</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">执行命令</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">执行命令</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">debug分析</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/world/a python'</span> example.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,7 +466,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode" id="cb11" data-filename="执行结果"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>python</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>从执行结果看, a操作默认会打印你插入的内容</strong> #### debug分析</p>
+<p><strong>从执行结果看, a操作默认会打印你插入的内容</strong></p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 我们debug 一下不带 -n 参数的 流程.</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="fu">sed</span> <span class="at">--debug</span> <span class="st">'/world/a python'</span> example.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-with-filename">
@@ -982,7 +983,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="addr-匹配行" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="addr-匹配行"><span class="header-section-number">4.1</span> [addr] 匹配行</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><iconify-icon inline="true" role="img" icon="icon-park-outline:text" aria-label="Icon text from icon-park-outline Iconify.design set." title="Icon text from icon-park-outline Iconify.design set."></iconify-icon> example.txt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><iconify-icon inline="true" role="img" icon="majesticons:menu-line" aria-label="Icon menu-line from majesticons Iconify.design set." title="Icon menu-line from majesticons Iconify.design set."></iconify-icon> 所有行</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false"><iconify-icon inline="true" role="img" icon="icon-park-outline:one-one" aria-label="Icon one-one from icon-park-outline Iconify.design set." title="Icon one-one from icon-park-outline Iconify.design set."></iconify-icon>: 指定行号”</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-4" role="tab" aria-controls="tabset-9-4" aria-selected="false"><font color="red"> <iconify-icon inline="true" role="img" icon="arcticons:regex" aria-label="Icon regex from arcticons Iconify.design set." title="Icon regex from arcticons Iconify.design set."></iconify-icon>: 正则</font></a><font color="red"><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></font></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-5" role="tab" aria-controls="tabset-9-5" aria-selected="false"><font color="red"><iconify-icon inline="true" role="img" icon="material-symbols:align-justify-space-between" aria-label="Icon align-justify-space-between from material-symbols Iconify.design set." title="Icon align-justify-space-between from material-symbols Iconify.design set."></iconify-icon> 区间</font></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-6" role="tab" aria-controls="tabset-9-6" aria-selected="false"><iconify-icon inline="true" role="img" icon="humbleicons:exclamation" aria-label="Icon exclamation from humbleicons Iconify.design set." title="Icon exclamation from humbleicons Iconify.design set."></iconify-icon> 取反</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-7" role="tab" aria-controls="tabset-9-7" aria-selected="false"><iconify-icon inline="true" role="img" icon="mdi:dollar" aria-label="Icon dollar from mdi Iconify.design set." title="Icon dollar from mdi Iconify.design set."></iconify-icon> 最后一行</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><iconify-icon inline="true" role="img" icon="icon-park-outline:text" aria-label="Icon text from icon-park-outline Iconify.design set." title="Icon text from icon-park-outline Iconify.design set."></iconify-icon> example.txt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><iconify-icon inline="true" role="img" icon="majesticons:menu-line" aria-label="Icon menu-line from majesticons Iconify.design set." title="Icon menu-line from majesticons Iconify.design set."></iconify-icon> 所有行</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false"><iconify-icon inline="true" role="img" icon="icon-park-outline:one-one" aria-label="Icon one-one from icon-park-outline Iconify.design set." title="Icon one-one from icon-park-outline Iconify.design set."></iconify-icon>: 指定行号</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-4" role="tab" aria-controls="tabset-9-4" aria-selected="false"><font color="red"> <iconify-icon inline="true" role="img" icon="arcticons:regex" aria-label="Icon regex from arcticons Iconify.design set." title="Icon regex from arcticons Iconify.design set."></iconify-icon>: 正则</font></a><font color="red"><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></font></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-5" role="tab" aria-controls="tabset-9-5" aria-selected="false"><font color="red"><iconify-icon inline="true" role="img" icon="material-symbols:align-justify-space-between" aria-label="Icon align-justify-space-between from material-symbols Iconify.design set." title="Icon align-justify-space-between from material-symbols Iconify.design set."></iconify-icon> 区间</font></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-6" role="tab" aria-controls="tabset-9-6" aria-selected="false"><iconify-icon inline="true" role="img" icon="humbleicons:exclamation" aria-label="Icon exclamation from humbleicons Iconify.design set." title="Icon exclamation from humbleicons Iconify.design set."></iconify-icon> 取反</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-7" role="tab" aria-controls="tabset-9-7" aria-selected="false"><iconify-icon inline="true" role="img" icon="mdi:dollar" aria-label="Icon dollar from mdi Iconify.design set." title="Icon dollar from mdi Iconify.design set."></iconify-icon> 最后一行</a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="sourceCode" id="cb42"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb42-1"><a href="#cb42-1"></a>hello one</span>
@@ -1266,7 +1267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">example.txt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">例子”</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false">反向引用 &amp;与</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-4" role="tab" aria-controls="tabset-10-4" aria-selected="false">&amp;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-5" role="tab" aria-controls="tabset-10-5" aria-selected="false"></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">example.txt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">例子</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false">反向引用 &amp;与</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-4" role="tab" aria-controls="tabset-10-4" aria-selected="false">&amp;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-5" role="tab" aria-controls="tabset-10-5" aria-selected="false">\n</a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="sourceCode" id="cb63"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb63-1"><a href="#cb63-1"></a>HEllo cat</span>
@@ -1375,7 +1376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">n”</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">N</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">n</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">N</a></li></ul>
 <div class="tab-content">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <div class="sourceCode" id="cb71"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">seq</span> 1 3 <span class="kw">|</span> <span class="fu">sed</span>  <span class="st">'n;p'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1464,10 +1465,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="和" class="level4" data-number="4.2.6">
 <h4 data-number="4.2.6" class="anchored" data-anchor-id="和"><span class="header-section-number">4.2.6</span> ; 和 {;}</h4>
 <p><span class="txt-highlight">;可以有多个</span></p>
-<p>=={}里还可以有{}== ::: {.panel-tabset}</p>
-</section>
-<section id="section-2" class="level4" data-number="4.2.7">
-<h4 data-number="4.2.7" class="anchored" data-anchor-id="section-2"><span class="header-section-number">4.2.7</span> ;</h4>
+<p><span class="txt-highlight">{}里还可以有{}</span></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">{;}</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <div class="sourceCode" id="cb78"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># = 表示打印匹配的行的行号</span></span>
 <span id="cb78-2"><a href="#cb78-2"></a><span class="fu">sed</span> <span class="at">-n</span>  <span class="st">'/hello/=;p'</span> <span class="op">&lt;&lt;EOF</span></span>
 <span id="cb78-3"><a href="#cb78-3"></a><span class="st">hello cat</span></span>
@@ -1484,7 +1486,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb79-4"><a href="#cb79-4"></a>3</span>
 <span id="cb79-5"><a href="#cb79-5"></a>world hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>/hello/=;p</code> 对与匹配到hello的行执行=指令, p与前面的无关, 它会重新看该行是否匹配它自己的规则. #### {;}”</p>
+<p><code>/hello/=;p</code> 对与匹配到hello的行执行=指令, p与前面的无关, 它会重新看该行是否匹配它自己的规则.</p>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
 <div class="sourceCode" id="cb80"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1"></a><span class="fu">sed</span> <span class="at">-n</span>  <span class="st">'/hello/{=;p}'</span> <span class="op">&lt;&lt;EOF</span></span>
 <span id="cb80-2"><a href="#cb80-2"></a><span class="st">hello cat</span></span>
 <span id="cb80-3"><a href="#cb80-3"></a><span class="st">hot dog</span></span>
@@ -1509,10 +1513,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb82-7"><a href="#cb82-7"></a><span class="st">hello world</span></span>
 <span id="cb82-8"><a href="#cb82-8"></a><span class="st">golang</span></span>
 <span id="cb82-9"><a href="#cb82-9"></a><span class="op">EOF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
-<section id="使用变量" class="level4" data-number="4.2.8">
-<h4 data-number="4.2.8" class="anchored" data-anchor-id="使用变量"><span class="header-section-number">4.2.8</span> 使用变量</h4>
+<section id="使用变量" class="level4" data-number="4.2.7">
+<h4 data-number="4.2.7" class="anchored" data-anchor-id="使用变量"><span class="header-section-number">4.2.7</span> 使用变量</h4>
 <div class="sourceCode" id="cb83"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1"></a><span class="va">pattern</span><span class="op">=</span><span class="st">"he..o"</span></span>
 <span id="cb83-2"><a href="#cb83-2"></a><span class="co"># 这样. pattern里的. 在下面还是表示 任意字符哦.</span></span>
 <span id="cb83-3"><a href="#cb83-3"></a><span class="co"># 使用双引号</span></span>
