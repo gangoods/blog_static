@@ -149,6 +149,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/middleware/index.html"> 
+<span class="menu-text">中间件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -400,17 +408,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>src/lib.rs</strong></pre>
 </div>
-<div class="sourceCode" id="annotated-cell-6" data-filename="src/lib.rs"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1"></a><span class="co">//! # My Crate</span></span>
+<div class="sourceCode" id="annotated-cell-6" data-filename="src/lib.rs"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1"></a><span class="co">//! # My Crate</span></span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2"></a><span class="co">//!</span></span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a><span class="co">//! `my_crate` is a collection of utilities to make performing certain</span></span>
 <span id="annotated-cell-6-4"><a href="#annotated-cell-6-4"></a><span class="co">//! calculations more convenient.</span></span>
 <span id="annotated-cell-6-5"><a href="#annotated-cell-6-5"></a></span>
 <span id="annotated-cell-6-6"><a href="#annotated-cell-6-6"></a><span class="co">/// Adds one to the number given.</span></span>
 <span id="annotated-cell-6-7"><a href="#annotated-cell-6-7"></a><span class="co">///</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-8" class="code-annotation-target"><a href="#annotated-cell-6-8"></a><span class="co">/// # Examples</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-8" class="code-annotation-target"><a href="#annotated-cell-6-8"></a><span class="co">/// # Examples</span></span>
 <span id="annotated-cell-6-9"><a href="#annotated-cell-6-9"></a><span class="co">///</span></span>
 <span id="annotated-cell-6-10"><a href="#annotated-cell-6-10"></a><span class="co">/// ```</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-11" class="code-annotation-target"><a href="#annotated-cell-6-11"></a><span class="co">/// let arg = 5;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-11" class="code-annotation-target"><a href="#annotated-cell-6-11"></a><span class="co">/// let arg = 5;</span></span>
 <span id="annotated-cell-6-12"><a href="#annotated-cell-6-12"></a><span class="co">/// let answer = my_crate::add_one(arg);</span></span>
 <span id="annotated-cell-6-13"><a href="#annotated-cell-6-13"></a><span class="co">///</span></span>
 <span id="annotated-cell-6-14"><a href="#annotated-cell-6-14"></a><span class="co">/// assert_eq!(6, answer);</span></span>
@@ -419,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-6-17"><a href="#annotated-cell-6-17"></a>    x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="annotated-cell-6-18"><a href="#annotated-cell-6-18"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-6" data-code-lines="1,3,4" data-code-annotation="1">描述 我们要发布的 整个crate, 使用 <code>//!</code></span>
@@ -450,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-23-3"><a href="#annotated-cell-23-3"></a><span class="co">//! A library for modeling artistic concepts.</span></span>
 <span id="annotated-cell-23-4"><a href="#annotated-cell-23-4"></a></span>
 <span id="annotated-cell-23-5"><a href="#annotated-cell-23-5"></a><span class="co">// --加上这些--</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="1">1</button><span id="annotated-cell-23-6" class="code-annotation-target"><a href="#annotated-cell-23-6"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>PrimaryColor<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-23-6" class="code-annotation-target"><a href="#annotated-cell-23-6"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>PrimaryColor<span class="op">;</span></span>
 <span id="annotated-cell-23-7"><a href="#annotated-cell-23-7"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>SecondaryColor<span class="op">;</span></span>
 <span id="annotated-cell-23-8"><a href="#annotated-cell-23-8"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::utils::</span>mix<span class="op">;</span></span>
 <span id="annotated-cell-23-9"><a href="#annotated-cell-23-9"></a><span class="co">//  -----</span></span>
@@ -480,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-23-33"><a href="#annotated-cell-23-33"></a>        <span class="pp">SecondaryColor::</span>Orange</span>
 <span id="annotated-cell-23-34"><a href="#annotated-cell-23-34"></a>    <span class="op">}</span></span>
 <span id="annotated-cell-23-35"><a href="#annotated-cell-23-35"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-23" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-23" data-code-lines="6,7,8" data-code-annotation="1">这样生成的文档方便用户查看,不需要点击多次才能看到</span>
@@ -517,13 +525,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="修改cargo.toml" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="修改cargo.toml"><span class="header-section-number">3.2</span> 修改Cargo.toml</h3>
 <div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode numberSource toml code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode toml"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a><span class="kw">[package]</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"guessing_game"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"guessing_game"</span></span>
 <span id="annotated-cell-11-3"><a href="#annotated-cell-11-3"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
 <span id="annotated-cell-11-4"><a href="#annotated-cell-11-4"></a><span class="dt">edition</span> <span class="op">=</span> <span class="st">"2021"</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2">2</button><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"该描述会显示在crate.io的搜索结果里"</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3">3</button><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6"></a><span class="dt">license</span> <span class="op">=</span> <span class="st">"MIT OR Apache-2.0"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"该描述会显示在crate.io的搜索结果里"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6"></a><span class="dt">license</span> <span class="op">=</span> <span class="st">"MIT OR Apache-2.0"</span></span>
 <span id="annotated-cell-11-7"><a href="#annotated-cell-11-7"></a><span class="kw">[dependencies]</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="1">名字在crate.io中必须是独一无二的</span>
@@ -1172,64 +1180,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
             unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
             }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

@@ -149,6 +149,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/middleware/index.html"> 
+<span class="menu-text">中间件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -493,7 +501,7 @@ Tip
 <span id="annotated-cell-6-6"><a href="#annotated-cell-6-6"></a><span class="op">}</span></span>
 <span id="annotated-cell-6-7"><a href="#annotated-cell-6-7"></a><span class="co">// 将hosting 引入当前作用域, 这样 就能直接使用 这个hosting模块</span></span>
 <span id="annotated-cell-6-8"><a href="#annotated-cell-6-8"></a><span class="co">// 相当于在 crate 根模块中 定义了 hosting 模块</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-9" class="code-annotation-target"><a href="#annotated-cell-6-9"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-9" class="code-annotation-target"><a href="#annotated-cell-6-9"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
 <span id="annotated-cell-6-10"><a href="#annotated-cell-6-10"></a><span class="co">// 使用相对路径, as 别名</span></span>
 <span id="annotated-cell-6-11"><a href="#annotated-cell-6-11"></a><span class="kw">use</span> <span class="pp">front_of_house::</span>hosting <span class="kw">as</span> hosting2<span class="op">;</span></span>
 <span id="annotated-cell-6-12"><a href="#annotated-cell-6-12"></a><span class="co">// 引入函数一般是引入到父级模块</span></span>
@@ -525,7 +533,7 @@ Tip
 <span id="annotated-cell-6-38"><a href="#annotated-cell-6-38"></a>        <span class="kw">super</span><span class="pp">::hosting::</span>add_to_waitlist()<span class="op">;</span></span>
 <span id="annotated-cell-6-39"><a href="#annotated-cell-6-39"></a>    <span class="op">}</span></span>
 <span id="annotated-cell-6-40"><a href="#annotated-cell-6-40"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-6" data-code-lines="9" data-code-annotation="1">将hosting 引入当前作用域, 这样 就能直接使用 这个hosting模块 相当于在 crate 根模块中 定义了 hosting 模块</span>
@@ -580,14 +588,14 @@ Tip
 </section>
 <section id="模块拆分" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="模块拆分"><span class="header-section-number">5</span> 模块拆分</h2>
-<div class="sourceCode" id="annotated-cell-15"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1">1</button><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1"></a><span class="kw">mod</span> front_of_house<span class="op">;</span></span>
+<div class="sourceCode" id="annotated-cell-15"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1"></a><span class="kw">mod</span> front_of_house<span class="op">;</span></span>
 <span id="annotated-cell-15-2"><a href="#annotated-cell-15-2"></a></span>
 <span id="annotated-cell-15-3"><a href="#annotated-cell-15-3"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
 <span id="annotated-cell-15-4"><a href="#annotated-cell-15-4"></a></span>
 <span id="annotated-cell-15-5"><a href="#annotated-cell-15-5"></a><span class="kw">pub</span> <span class="kw">fn</span> eat_at_restaurant() <span class="op">{</span></span>
 <span id="annotated-cell-15-6"><a href="#annotated-cell-15-6"></a>    <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
 <span id="annotated-cell-15-7"><a href="#annotated-cell-15-7"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">如果我们在定义mod 时, 模块名后面跟着 <code>;</code> 号,那么rust会从<code>src</code>目录下找与模块同名的文件,里面的内容就是这个模块的定义</span>
@@ -1129,64 +1137,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
             unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
             }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

@@ -149,6 +149,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/middleware/index.html"> 
+<span class="menu-text">中间件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -247,7 +255,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#循环" id="toc-循环" class="nav-link active" data-scroll-target="#循环"><span class="header-section-number">1</span> 循环</a></li>
+  <li><a href="#循环" id="toc-循环" class="nav-link active" data-scroll-target="#循环"><span class="header-section-number">1</span> 循环</a>
+  <ul>
+  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while"><span class="header-section-number">1.1</span> while</a></li>
+  <li><a href="#for" id="toc-for" class="nav-link" data-scroll-target="#for"><span class="header-section-number">1.2</span> for</a></li>
+  </ul></li>
   <li><a href="#函数" id="toc-函数" class="nav-link" data-scroll-target="#函数"><span class="header-section-number">2</span> 函数</a>
   <ul>
   <li><a href="#获取函数名称" id="toc-获取函数名称" class="nav-link" data-scroll-target="#获取函数名称"><span class="header-section-number">2.1</span> 获取函数名称</a></li>
@@ -255,6 +267,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3</span> ()</a></li>
   <li><a href="#和" id="toc-和" class="nav-link" data-scroll-target="#和"><span class="header-section-number">4</span> `` 和 $()</a></li>
   <li><a href="#shift" id="toc-shift" class="nav-link" data-scroll-target="#shift"><span class="header-section-number">5</span> shift</a></li>
+  <li><a href="#getops" id="toc-getops" class="nav-link" data-scroll-target="#getops"><span class="header-section-number">6</span> getops</a></li>
+  <li><a href="#expect" id="toc-expect" class="nav-link" data-scroll-target="#expect"><span class="header-section-number">7</span> expect</a></li>
   </ul>
 </nav>
     </div>
@@ -266,6 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="循环" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="循环"><span class="header-section-number">1</span> 循环</h2>
+<section id="while" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="while"><span class="header-section-number">1.1</span> while</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="fu">true</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="cf">do</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">echo</span> 1</span>
@@ -277,6 +293,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9"></a>    <span class="bu">echo</span> 1</span>
 <span id="cb1-10"><a href="#cb1-10"></a>    <span class="fu">sleep</span> 3</span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="for" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="for"><span class="header-section-number">1.2</span> for</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="va">i</span><span class="op">=</span>0</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="bu">[</span> <span class="va">$i</span> <span class="ot">-lt</span> 20 <span class="bu">]</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="cf">do</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="st">'-'</span> <span class="st">'\'</span> <span class="st">'|'</span> <span class="st">'/'</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">do</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>        <span class="bu">printf</span> <span class="st">"intel testing : %s\r"</span> <span class="va">$j</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>        <span class="fu">sleep</span> 0.1</span>
+<span id="cb2-8"><a href="#cb2-8"></a>        <span class="kw">((</span><span class="va">i</span><span class="op">++</span><span class="kw">))</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="cf">done</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">a</span><span class="op">=</span><span class="va">(</span><span class="st">"a b"</span> <span class="st">"c d"</span> <span class="st">"e"</span><span class="va">)</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="cf">for</span> <span class="kw">((</span><span class="va">i</span><span class="op">=</span><span class="dv">0</span><span class="kw">;</span><span class="va">i</span><span class="op">&lt;</span><span class="va">${</span><span class="op">#</span><span class="va">a</span><span class="op">[*]</span><span class="va">}</span><span class="kw">;</span><span class="va">i</span><span class="op">++</span><span class="kw">))</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="cf">do</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="bu">echo</span> <span class="va">$i</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="bu">echo</span> <span class="va">${a</span><span class="op">[</span><span class="va">$i</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="函数" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="函数"><span class="header-section-number">2</span> 函数</h2>
@@ -299,22 +335,22 @@ Warning
 <div class="code-with-filename-file">
 <pre><strong>fun.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-filename="fun.sh"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">show()</span><span class="kw">{</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="co"># FUNCNAME 实际是一个数组,包含了当前调用栈上所有函数的名称,先进后出</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="bu">echo</span> <span class="va">$FUNCNAME</span> <span class="co"># 首个元素是当前函数名</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="co"># 可以发现实际有个main 函数, 先main,再调用了show2, 最后show</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="bu">echo</span> <span class="va">${FUNCNAME</span><span class="op">[@]</span><span class="va">}</span> <span class="co"># show show2 main.</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">}</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="fu">show2()</span><span class="kw">{</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="ex">show</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="kw">}</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="ex">show2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-filename="fun.sh"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">show()</span><span class="kw">{</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="co"># FUNCNAME 实际是一个数组,包含了当前调用栈上所有函数的名称,先进后出</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="bu">echo</span> <span class="va">$FUNCNAME</span> <span class="co"># 首个元素是当前函数名</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co"># 可以发现实际有个main 函数, 先main,再调用了show2, 最后show</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="bu">echo</span> <span class="va">${FUNCNAME</span><span class="op">[@]</span><span class="va">}</span> <span class="co"># show show2 main.</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">}</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">show2()</span><span class="kw">{</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="ex">show</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">}</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="ex">show2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">bash</span> fun.sh</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># 或者</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">chmod</span> +x fun.sh</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">./fun.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">bash</span> fun.sh</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># 或者</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">chmod</span> +x fun.sh</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">./fun.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="section" class="level2" data-number="3">
@@ -340,17 +376,17 @@ Caution
 <div class="code-with-filename-file">
 <pre><strong>错的版本</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="错的版本"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">test</span> <span class="at">-z</span> <span class="va">$1</span> <span class="kw">&amp;&amp;</span> <span class="kw">(</span> <span class="bu">echo</span> <span class="st">"need arg"</span><span class="kw">;</span><span class="bu">exit</span><span class="kw">;</span> <span class="kw">)</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="bu">echo</span> ok</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-filename="错的版本"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">test</span> <span class="at">-z</span> <span class="va">$1</span> <span class="kw">&amp;&amp;</span> <span class="kw">(</span> <span class="bu">echo</span> <span class="st">"need arg"</span><span class="kw">;</span><span class="bu">exit</span><span class="kw">;</span> <span class="kw">)</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="bu">echo</span> ok</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>对的版本</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="对的版本"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">test</span> <span class="at">-z</span> <span class="va">$1</span> <span class="kw">&amp;&amp;</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"need arg"</span><span class="kw">;</span><span class="bu">exit</span><span class="kw">;</span> <span class="kw">}</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="bu">echo</span> ok</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-filename="对的版本"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">test</span> <span class="at">-z</span> <span class="va">$1</span> <span class="kw">&amp;&amp;</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"need arg"</span><span class="kw">;</span><span class="bu">exit</span><span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="bu">echo</span> ok</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -381,8 +417,8 @@ Note
 <p>将命令执行的结果赋值给变量</p>
 </div>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="va">t</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%Y<span class="va">)</span> <span class="co"># t=`date +%Y`</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">echo</span> <span class="va">$t</span> <span class="co"># 2023</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="va">t</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%Y<span class="va">)</span> <span class="co"># t=`date +%Y`</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="bu">echo</span> <span class="va">$t</span> <span class="co"># 2023</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="shift" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="shift"><span class="header-section-number">5</span> shift</h2>
@@ -390,16 +426,83 @@ Note
 <div class="code-with-filename-file">
 <pre><strong>shift.sh</strong></pre>
 </div>
-<div class="sourceCode" id="cb7" data-filename="shift.sh"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">echo</span> <span class="va">$*</span>   <span class="co"># sh shift.sh a b c d e f</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="bu">shift</span>  <span class="co"># 参数左移一位</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">echo</span> <span class="va">$1</span> <span class="co"># 这个时候 第一个参数就是 b</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">shift</span> 1 <span class="co"># 同 shift</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="bu">echo</span> <span class="va">$1</span> <span class="co">#  c</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="bu">shift</span> 3 <span class="co"># 参数左移3 位</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="bu">echo</span> <span class="va">$1</span> <span class="co"># 这个时候 $1 是f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-filename="shift.sh"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">echo</span> <span class="va">$*</span>   <span class="co"># sh shift.sh a b c d e f</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">shift</span>  <span class="co"># 参数左移一位</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="bu">echo</span> <span class="va">$1</span> <span class="co"># 这个时候 第一个参数就是 b</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="bu">shift</span> 1 <span class="co"># 同 shift</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="bu">echo</span> <span class="va">$1</span> <span class="co">#  c</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="bu">shift</span> 3 <span class="co"># 参数左移3 位</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="bu">echo</span> <span class="va">$1</span> <span class="co"># 这个时候 $1 是f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">sh</span> shift.sh a b c d e f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">sh</span> shift.sh a b c d e f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="getops" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="getops"><span class="header-section-number">6</span> getops</h2>
+<p>getopts 是一个内置命令,用于解析脚本的命令行参数</p>
+<div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode numberSource bash code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode bash"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2"></a><span class="cf">while</span> <span class="bu">getopts</span> <span class="st">":a:b:"</span> <span class="va">opt</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3"></a>  <span class="cf">case</span> <span class="va">$opt</span> <span class="kw">in</span></span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4"></a>    <span class="ss">a</span><span class="kw">)</span></span>
+<span id="annotated-cell-11-5"><a href="#annotated-cell-11-5"></a>      <span class="bu">echo</span> <span class="st">"选项 -a 被设置为: </span><span class="va">$OPTARG</span><span class="st">"</span></span>
+<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6"></a>      <span class="cf">;;</span></span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7"></a>    <span class="ss">b</span><span class="kw">)</span></span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8"></a>      <span class="bu">echo</span> <span class="st">"选项 -b 被设置为: </span><span class="va">$OPTARG</span><span class="st">"</span></span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9"></a>      <span class="cf">;;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-10" class="code-annotation-target"><a href="#annotated-cell-11-10"></a>    <span class="dt">\?</span><span class="kw">)</span></span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11"></a>      <span class="bu">echo</span> <span class="st">"无效选项: -</span><span class="va">$OPTARG</span><span class="st">"</span> <span class="op">&gt;&amp;</span><span class="dv">2</span></span>
+<span id="annotated-cell-11-12"><a href="#annotated-cell-11-12"></a>      <span class="bu">exit</span> 1</span>
+<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13"></a>      <span class="cf">;;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-14" class="code-annotation-target"><a href="#annotated-cell-11-14"></a>    <span class="ss">:</span><span class="kw">)</span></span>
+<span id="annotated-cell-11-15"><a href="#annotated-cell-11-15"></a>      <span class="bu">echo</span> <span class="st">"选项 -</span><span class="va">$OPTARG</span><span class="st"> 需要一个参数。"</span> <span class="op">&gt;&amp;</span><span class="dv">2</span></span>
+<span id="annotated-cell-11-16"><a href="#annotated-cell-11-16"></a>      <span class="bu">exit</span> 1</span>
+<span id="annotated-cell-11-17"><a href="#annotated-cell-11-17"></a>      <span class="cf">;;</span></span>
+<span id="annotated-cell-11-18"><a href="#annotated-cell-11-18"></a>  <span class="cf">esac</span></span>
+<span id="annotated-cell-11-19"><a href="#annotated-cell-11-19"></a><span class="cf">done</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="10" data-code-annotation="1">无效的命令行参数的情况</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="14" data-code-annotation="2">命令行参数值没有指定的情况</span>
+</dd>
+</dl>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行无效的参数测试一下</strong></pre>
+</div>
+<div class="sourceCode" id="cb11" data-filename="执行无效的参数测试一下"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">sh</span> a.sh <span class="at">-a</span> aa <span class="at">-b</span> bb <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行结果</strong></pre>
+</div>
+<div class="sourceCode" id="cb12" data-filename="执行结果"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>选项 -a 被设置为: aa</span>
+<span id="cb12-2"><a href="#cb12-2"></a>选项 -b 被设置为: bb</span>
+<span id="cb12-3"><a href="#cb12-3"></a>无效选项: -c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>参数没有指定值测试一下</strong></pre>
+</div>
+<div class="sourceCode" id="cb13" data-filename="参数没有指定值测试一下"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">sh</span> a.sh <span class="at">-a</span> aa <span class="at">-b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行结果</strong></pre>
+</div>
+<div class="sourceCode" id="cb14" data-filename="执行结果"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>选项 -a 被设置为: aa</span>
+<span id="cb14-2"><a href="#cb14-2"></a>选项 -b 需要一个参数。</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="expect" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="expect"><span class="header-section-number">7</span> expect</h2>
 
 
 </section>
@@ -904,64 +1007,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
             unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
             }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

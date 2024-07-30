@@ -149,6 +149,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/middleware/index.html"> 
+<span class="menu-text">中间件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -339,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1" class="anchored" data-anchor-id="三种形式"><span class="header-section-number">1</span> 三种形式</h2>
 <section id="常规结构体" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="常规结构体"><span class="header-section-number">1.1</span> 常规结构体</h3>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="at">)]</span></span>
+<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="at">)]</span></span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="kw">struct</span> User <span class="op">{</span></span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a>    active<span class="op">:</span> <span class="dt">bool</span><span class="op">,</span></span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>    username<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
@@ -348,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a><span class="op">}</span></span>
 <span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a></span>
 <span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10"></a>    <span class="kw">let</span> <span class="kw">mut</span> u <span class="op">=</span> build_user(<span class="st">"username123"</span><span class="op">.</span>to_string()<span class="op">,</span> <span class="st">"someone@example.com"</span><span class="op">.</span>to_string())<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10"></a>    <span class="kw">let</span> <span class="kw">mut</span> u <span class="op">=</span> build_user(<span class="st">"username123"</span><span class="op">.</span>to_string()<span class="op">,</span> <span class="st">"someone@example.com"</span><span class="op">.</span>to_string())<span class="op">;</span></span>
 <span id="annotated-cell-1-11"><a href="#annotated-cell-1-11"></a></span>
 <span id="annotated-cell-1-12"><a href="#annotated-cell-1-12"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> u<span class="op">.</span>email)<span class="op">;</span></span>
 <span id="annotated-cell-1-13"><a href="#annotated-cell-1-13"></a>    u<span class="op">.</span>active <span class="op">=</span> <span class="cn">false</span><span class="op">;</span></span>
@@ -359,24 +367,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-1-18"><a href="#annotated-cell-1-18"></a>        <span class="co">// 覆盖 base struct的对应字段, 或者说 base struct会 指定剩余没设置值的字段</span></span>
 <span id="annotated-cell-1-19"><a href="#annotated-cell-1-19"></a>        email<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"u2@hotmail"</span>)<span class="op">,</span></span>
 <span id="annotated-cell-1-20"><a href="#annotated-cell-1-20"></a></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-21" class="code-annotation-target"><a href="#annotated-cell-1-21"></a>        <span class="op">..</span>u1</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-21" class="code-annotation-target"><a href="#annotated-cell-1-21"></a>        <span class="op">..</span>u1</span>
 <span id="annotated-cell-1-22"><a href="#annotated-cell-1-22"></a>    <span class="op">};</span></span>
 <span id="annotated-cell-1-23"><a href="#annotated-cell-1-23"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> u2)<span class="op">;</span></span>
 <span id="annotated-cell-1-24"><a href="#annotated-cell-1-24"></a>    <span class="pp">println!</span>(<span class="st">"{:#?}"</span><span class="op">,</span> u2)<span class="op">;</span> <span class="co">// 更加直观的打印</span></span>
 <span id="annotated-cell-1-25"><a href="#annotated-cell-1-25"></a></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-26" class="code-annotation-target"><a href="#annotated-cell-1-26"></a>    <span class="co">// println!("{:?}", u1);</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-27" class="code-annotation-target"><a href="#annotated-cell-1-27"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> u1<span class="op">.</span>email)<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-26" class="code-annotation-target"><a href="#annotated-cell-1-26"></a>    <span class="co">// println!("{:?}", u1);</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-27" class="code-annotation-target"><a href="#annotated-cell-1-27"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> u1<span class="op">.</span>email)<span class="op">;</span></span>
 <span id="annotated-cell-1-28"><a href="#annotated-cell-1-28"></a></span>
 <span id="annotated-cell-1-29"><a href="#annotated-cell-1-29"></a><span class="op">}</span></span>
 <span id="annotated-cell-1-30"><a href="#annotated-cell-1-30"></a><span class="kw">fn</span> build_user(email<span class="op">:</span> <span class="dt">String</span><span class="op">,</span> username<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> User <span class="op">{</span></span>
 <span id="annotated-cell-1-31"><a href="#annotated-cell-1-31"></a>    User <span class="op">{</span></span>
 <span id="annotated-cell-1-32"><a href="#annotated-cell-1-32"></a>        active<span class="op">:</span> <span class="cn">true</span><span class="op">,</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6">6</button><span id="annotated-cell-1-33" class="code-annotation-target"><a href="#annotated-cell-1-33"></a>        username<span class="op">,</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-1-33" class="code-annotation-target"><a href="#annotated-cell-1-33"></a>        username<span class="op">,</span></span>
 <span id="annotated-cell-1-34"><a href="#annotated-cell-1-34"></a>        email<span class="op">,</span></span>
 <span id="annotated-cell-1-35"><a href="#annotated-cell-1-35"></a>        sign_in_count<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
 <span id="annotated-cell-1-36"><a href="#annotated-cell-1-36"></a>    <span class="op">}</span></span>
 <span id="annotated-cell-1-37"><a href="#annotated-cell-1-37"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">需要实现 <code>std::fmt::Debug trait</code>才能 <code>println!</code></span>
@@ -1047,64 +1055,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
             unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
             }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

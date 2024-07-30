@@ -39,3 +39,8 @@ a.sidebar-link.active {
   background-color: #5c37c0;
   opacity: 55%;
 }
+div.code-result{
+  div.sourceCode:first-child{
+    margin-bottom: 0;
+  }
+}
