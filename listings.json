@@ -8,6 +8,10 @@
     "items": []
   },
   {
+    "listing": "/docs/devops/k8s/index.html",
+    "items": []
+  },
+  {
     "listing": "/docs/developer/index.html",
     "items": []
   },
@@ -17,6 +21,10 @@
   },
   {
     "listing": "/docs/devops/docker/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/devops/cicd/index.html",
     "items": []
   },
   {

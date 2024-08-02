@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>config – 斯巴拉稀</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/go/index.html"> 
+<span class="menu-text">GO</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/rust/index.html"> 
+<span class="menu-text">Rust</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/cicd/index.html">
+ <span class="dropdown-text">cicd</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/k8s/index.html">
+ <span class="dropdown-text">k8s</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/middleware/index.html"> 
+<span class="menu-text">中间件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/devops/k8s/core/pod.html">核心概念与实战</a></li><li class="breadcrumb-item"><a href="../../../../docs/devops/k8s/core/config.html">配置管理</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">基础</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/basics/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">架构总览</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/basics/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境安装</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/basics/harbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">镜像仓库</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">核心概念与实战</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/pod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pod</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/controller.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">控制器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/scheduler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">调度器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/persistence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">存储管理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/config.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">配置管理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">服务</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/service/service.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">service</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/service/ingress.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ingress</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/service/traefik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">traefik</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/api-resource.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API资源</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">组件</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/kubectl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">kubectl</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/apiserver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apiserver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/controller-manager.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">controller-manager</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/etcd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">etcd</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">二次开发</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">介绍</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">client-go</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/client-go/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">介绍</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/client-go/client-go.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">client-go</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">operator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/operator/crd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">自定义资源</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/operator/sample-controller.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">sample-controller</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/operator/kubebuilder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">kubebuilder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">生态</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/ecosystem/helm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">helm</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#configmap" id="toc-configmap" class="nav-link active" data-scroll-target="#configmap"><span class="header-section-number">1</span> configmap</a>
+  <ul>
+  <li><a href="#创建" id="toc-创建" class="nav-link" data-scroll-target="#创建"><span class="header-section-number">1.1</span> 创建</a>
+  <ul class="collapse">
+  <li><a href="#基于目录或文件" id="toc-基于目录或文件" class="nav-link" data-scroll-target="#基于目录或文件"><span class="header-section-number">1.1.1</span> 基于目录或文件</a></li>
+  <li><a href="#基于文件以env形式" id="toc-基于文件以env形式" class="nav-link" data-scroll-target="#基于文件以env形式"><span class="header-section-number">1.1.2</span> 基于文件以env形式</a></li>
+  <li><a href="#基于字面值" id="toc-基于字面值" class="nav-link" data-scroll-target="#基于字面值"><span class="header-section-number">1.1.3</span> 基于字面值</a></li>
+  <li><a href="#基于yaml文件" id="toc-基于yaml文件" class="nav-link" data-scroll-target="#基于yaml文件"><span class="header-section-number">1.1.4</span> 基于yaml文件</a></li>
+  </ul></li>
+  <li><a href="#使用" id="toc-使用" class="nav-link" data-scroll-target="#使用"><span class="header-section-number">1.2</span> 使用</a>
+  <ul class="collapse">
+  <li><a href="#valuefrom" id="toc-valuefrom" class="nav-link" data-scroll-target="#valuefrom"><span class="header-section-number">1.2.1</span> valueFrom</a></li>
+  <li><a href="#envfrom" id="toc-envfrom" class="nav-link" data-scroll-target="#envfrom"><span class="header-section-number">1.2.2</span> envFrom</a></li>
+  <li><a href="#文件挂载" id="toc-文件挂载" class="nav-link" data-scroll-target="#文件挂载"><span class="header-section-number">1.2.3</span> 文件挂载</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#secret" id="toc-secret" class="nav-link" data-scroll-target="#secret"><span class="header-section-number">2</span> secret</a></li>
+  <li><a href="#注意" id="toc-注意" class="nav-link" data-scroll-target="#注意"><span class="header-section-number">3</span> 注意</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="configmap" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="configmap"><span class="header-section-number">1</span> configmap</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>就是为了配置与代码分离</li>
+<li>不同的pod 里某些东西可能使用相同的配置, 这样只要写一次, pod里直接用就行</li>
+<li>secret &amp;&amp; configmap 可以理解为2中特殊类型的存储卷</li>
+<li><span class="txt-highlight">configmap存放的时候明文数据</span></li>
+<li>简称 cm</li>
+</ul>
+</div>
+</div>
+<p><a href="https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-pod-configmap/">configmap</a></p>
+<div class="sourceCode" id="cb1" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">k</span> explain cm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="创建" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="创建"><span class="header-section-number">1.1</span> 创建</h3>
+<section id="基于目录或文件" class="level4" data-number="1.1.1">
+<h4 data-number="1.1.1" class="anchored" data-anchor-id="基于目录或文件"><span class="header-section-number">1.1.1</span> 基于目录或文件</h4>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>环境准备</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="环境准备" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">cat</span> <span class="op">&gt;</span>game.properties <span class="op">&lt;&lt;EOF</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">enemies=aliens</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">lives=3</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">enemies.cheat=true</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">enemies.cheat.level=noGoodRotten</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">secret.code.passphrase=UUDDLRLRBABAS</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="st">secret.code.allowed=true</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="st">secret.code.lives=30</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="op">EOF</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">cat</span> <span class="op">&gt;</span>ui.properties<span class="op">&lt;&lt;EOF</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="st">color.good=purple</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="st">color.bad=yellow</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="st">allow.textmode=true</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="st">how.nice.to.look=fairlyNice</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="op">EOF</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="ex">tree</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="bu">.</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="ex">└──</span> cfg</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="ex">├──</span> game.properties</span>
+<span id="cb2-21"><a href="#cb2-21"></a>    <span class="ex">└──</span> ui.properties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>创建</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="创建" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 基于目录,就是目录下的所有文件</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">k</span> create cm game-all-config <span class="at">--from-file</span><span class="op">=</span>./cfg/</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># 基于文件 ,默认是default 命名空间, -n 指定</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">k</span> create cm ui-config <span class="at">--from-file</span><span class="op">=</span>./cfg/ui.properties <span class="at">-n</span> test</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># 默认是用文件名作为key, 可以指定</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="ex">k</span> create cm ui-config-with-key <span class="at">--from-file</span><span class="op">=</span>ui=./cfg/ui.properties</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># 基于多个文件</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="ex">k</span> create cm game-all-config-with-multi <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">--from-file</span><span class="op">=</span>./cfg/ui.properties <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="at">--from-file</span><span class="op">=</span>./cfg/game.properties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="查看" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">k</span> get cm <span class="co">#(1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行结果</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="执行结果" data-code-line-numbers=""><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>NAME                  DATA    AGE</span>
+<span id="cb5-2"><a href="#cb5-2"></a>game-all-config        2      113s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看某歌配置</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="查看某歌配置" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">k</span> describe cm game-all-config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-result">
+<div class="sourceCode" id="cb7" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">k</span> get cm game-all-config  <span class="at">-o</span> yaml <span class="co"># 查看(2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行结果</strong></pre>
+</div>
+<div class="sourceCode" id="cb8" data-filename="执行结果" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">  game.properties</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    enemies=aliens</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    lives=3</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    enemies.cheat=true</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    enemies.cheat.level=noGoodRotten</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    secret.code.passphrase=UUDDLRLRBABAS</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    secret.code.allowed=true</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    secret.code.lives=30</span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="fu">  ui.properties</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>    color.good=purple</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    color.bad=yellow</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    allow.textmode=true</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    how.nice.to.look=fairlyNice</span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> ConfigMap</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="at">  </span><span class="fu">creationTimestamp</span><span class="kw">:</span><span class="at"> </span><span class="st">"2023-07-17T08:16:36Z"</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> game-config</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="at">  </span><span class="fu">resourceVersion</span><span class="kw">:</span><span class="at"> </span><span class="st">"906578"</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a><span class="at">  </span><span class="fu">uid</span><span class="kw">:</span><span class="at"> a8341d85-c916-40cd-bb5e-0ef334cc31f6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="基于文件以env形式" class="level4" data-number="1.1.2">
+<h4 data-number="1.1.2" class="anchored" data-anchor-id="基于文件以env形式"><span class="header-section-number">1.1.2</span> 基于文件以env形式</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Env 文件包含环境变量列表
+<ul>
+<li>Env 文件中的每一行必须为 VAR=VAL 格式。</li>
+<li>以＃开头的行（即注释）将被忽略。</li>
+<li>空行将被忽略。</li>
+<li>引号不会被特殊处理（即它们将成为 ConfigMap 值的一部分）</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>环境准备</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="环境准备" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">cat</span> <span class="op">&gt;</span>game-env-file.properties<span class="op">&lt;&lt;EOF</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">enemies=aliens</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="st">lives=3</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="st">allowed="true"</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="op">EOF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>创建</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="创建" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#从 k8s 1.23 版本开始，kubectl 支持多次指定 --from-env-file 参数来从多个数据源创建</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="ex">k</span> create cm game-env-file <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="at">--from-env-file</span><span class="op">=</span>./cfg/game-env-file.properties</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看</strong></pre>
+</div>
+<div class="sourceCode" id="cb11" data-filename="查看" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">k</span> get cm game-env-file <span class="at">-o</span> yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行结果</strong></pre>
+</div>
+<div class="sourceCode" id="cb12" data-filename="执行结果" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="at">  </span><span class="fu">allowed</span><span class="kw">:</span><span class="at"> </span><span class="st">'"true"'</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="at">  </span><span class="fu">enemies</span><span class="kw">:</span><span class="at"> aliens</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="at">  </span><span class="fu">lives</span><span class="kw">:</span><span class="at"> </span><span class="st">"3"</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> ConfigMap</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="at">  </span><span class="fu">creationTimestamp</span><span class="kw">:</span><span class="at"> </span><span class="st">"2023-07-17T08:43:55Z"</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> game-env-file</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="at">  </span><span class="fu">resourceVersion</span><span class="kw">:</span><span class="at"> </span><span class="st">"908873"</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="at">  </span><span class="fu">uid</span><span class="kw">:</span><span class="at"> 5f8c87a6-9af0-4b7b-8ed3-9018667c338f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>注意 allowed: ‘“true”’ 的true<br> 数字会用双引号</p>
+</div>
+</section>
+<section id="基于字面值" class="level4" data-number="1.1.3">
+<h4 data-number="1.1.3" class="anchored" data-anchor-id="基于字面值"><span class="header-section-number">1.1.3</span> 基于字面值</h4>
+<div class="sourceCode" id="cb13" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">k</span> create cm mysql-config <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="at">--from-literal</span><span class="op">=</span>mysql.user=root <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">--from-literal</span><span class="op">=</span>mysql.port=3306</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="基于yaml文件" class="level4" data-number="1.1.4">
+<h4 data-number="1.1.4" class="anchored" data-anchor-id="基于yaml文件"><span class="header-section-number">1.1.4</span> 基于yaml文件</h4>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>mysql-cm.yaml</strong></pre>
+</div>
+<div class="sourceCode" id="cb14" data-filename="mysql-cm.yaml" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> ConfigMap</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">immutable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mysql-config2</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="fu">data</span><span class="kw">:</span><span class="co"> #同命令创建的 --from-literal=database=test --from-literal=port=3306</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="at">  </span><span class="fu">database</span><span class="kw">:</span><span class="at"> </span><span class="st">"test"</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="at">  </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="st">"3306"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li><code>immutable: true</code> 设置成不可变</li>
+</ol>
+<div class="sourceCode" id="cb15" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">这样你无法通过</span><span class="kw">`</span><span class="ex">k</span> edit cm<span class="kw">`</span> 修改</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="ex">无法通过修改yaml文件,然后apply</span> <span class="at">-f</span> 或 k replace <span class="at">-f</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="ex">可以用</span><span class="kw">`</span><span class="ex">k</span> replace <span class="at">--force</span> <span class="at">-f</span><span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><strong><font color="red">数字必须用引号括起来!!!</font></strong></li>
+</ol>
+<div class="sourceCode" id="cb16" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">k</span> create <span class="at">-f</span> mysql-cm.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="使用" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="使用"><span class="header-section-number">1.2</span> 使用</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ConfigMap 位于确定的命名空间中. 每个 ConfigMap 只能被同一命名空间中的 Pod 引用</p>
+</div>
+</div>
+<section id="valuefrom" class="level4" data-number="1.2.1">
+<h4 data-number="1.2.1" class="anchored" data-anchor-id="valuefrom"><span class="header-section-number">1.2.1</span> valueFrom</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>适用于使用几个环境变量, 直接注入,如果你后续修改了configmap, 是不会同步到pod里的</p>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>pod-cm-valuefrom.yaml</strong></pre>
+</div>
+<div class="sourceCode" id="cb17" data-filename="pod-cm-valuefrom.yaml" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> ConfigMap</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> special-config</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="at">  </span><span class="fu">hello</span><span class="kw">:</span><span class="at"> world</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="at">  </span><span class="fu">python</span><span class="kw">:</span><span class="at"> good</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="pp">---</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> ConfigMap</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> cm-mysql</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="at">  </span><span class="fu">mysql_port</span><span class="kw">:</span><span class="at"> </span><span class="st">"3306"</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a><span class="pp">---</span></span>
+<span id="cb17-18"><a href="#cb17-18"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb17-20"><a href="#cb17-20"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> pod-cm-valuefrom</span></span>
+<span id="cb17-22"><a href="#cb17-22"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb17-23"><a href="#cb17-23"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb17-24"><a href="#cb17-24"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> test-container</span></span>
+<span id="cb17-25"><a href="#cb17-25"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> busybox</span></span>
+<span id="cb17-26"><a href="#cb17-26"></a><span class="at">      </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="cb17-27"><a href="#cb17-27"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"/bin/sh"</span><span class="kw">,</span><span class="at"> </span><span class="st">"-c"</span><span class="kw">,</span><span class="at"> </span><span class="st">"env"</span><span class="at"> </span><span class="kw">]</span></span>
+<span id="cb17-28"><a href="#cb17-28"></a><span class="at">      </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb17-29"><a href="#cb17-29"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> tom</span></span>
+<span id="cb17-30"><a href="#cb17-30"></a><span class="at">          </span><span class="fu">value</span><span class="kw">:</span><span class="at"> cat</span><span class="co"> # env环境变量,我们当然可以直接赋值</span></span>
+<span id="cb17-31"><a href="#cb17-31"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> WELCOME</span></span>
+<span id="cb17-32"><a href="#cb17-32"></a><span class="at">          </span><span class="fu">valueFrom</span><span class="kw">:</span><span class="co"> # 使用来自cm的key</span></span>
+<span id="cb17-33"><a href="#cb17-33"></a><span class="at">            </span><span class="fu">configMapKeyRef</span><span class="kw">:</span></span>
+<span id="cb17-34"><a href="#cb17-34"></a><span class="co">              # 指定 包含你要赋给 WELCOME 值 的ConfigMap</span></span>
+<span id="cb17-35"><a href="#cb17-35"></a><span class="at">              </span><span class="fu">name</span><span class="kw">:</span><span class="at"> special-config</span></span>
+<span id="cb17-36"><a href="#cb17-36"></a><span class="co">              # 指定与取值相关的键名</span></span>
+<span id="cb17-37"><a href="#cb17-37"></a><span class="at">              </span><span class="fu">key</span><span class="kw">:</span><span class="at"> hello</span></span>
+<span id="cb17-38"><a href="#cb17-38"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> MYSQL_PORT</span></span>
+<span id="cb17-39"><a href="#cb17-39"></a><span class="at">          </span><span class="fu">valueFrom</span><span class="kw">:</span></span>
+<span id="cb17-40"><a href="#cb17-40"></a><span class="at">            </span><span class="fu">configMapKeyRef</span><span class="kw">:</span></span>
+<span id="cb17-41"><a href="#cb17-41"></a><span class="at">              </span><span class="fu">name</span><span class="kw">:</span><span class="at"> cm-mysql</span></span>
+<span id="cb17-42"><a href="#cb17-42"></a><span class="at">              </span><span class="fu">key</span><span class="kw">:</span><span class="at"> mysql-port</span></span>
+<span id="cb17-43"><a href="#cb17-43"></a><span class="at">              </span><span class="fu">optional</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">  #(1)</span></span>
+<span id="cb17-44"><a href="#cb17-44"></a><span class="at">  </span><span class="fu">restartPolicy</span><span class="kw">:</span><span class="at"> Never</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li><code>optional: false</code> 默认是false
+<ul>
+<li>false:
+<ul>
+<li>指定的configmap不存在,则pod无法启动</li>
+<li>指定的key不存在, pod 也无法启动</li>
+</ul></li>
+<li>true: 表示如果指定的configmap或key 不存在, 可以启动pod,只不过就是没有用到,key无效</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb18" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">k</span> create <span class="at">-f</span> pod-cm-valuefrom.yaml</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co"># 打印 env 环境变量 ,可以看到 WELCOME = world, MYSQL_PORT等</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="ex">k</span> logs pod-cm-valuefrom</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="envfrom" class="level4" data-number="1.2.2">
+<h4 data-number="1.2.2" class="anchored" data-anchor-id="envfrom"><span class="header-section-number">1.2.2</span> envFrom</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>将configmap里所有的作为环境变量,也是注入的方式, 修改configmap,同样不会同步到pod里</p>
+</div>
+</div>
+<div class="sourceCode" id="annotated-cell-13" data-code-line-numbers=""><pre class="sourceCode numberSource yaml code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="annotated-cell-13-2"><a href="#annotated-cell-13-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> ConfigMap</span></span>
+<span id="annotated-cell-13-3"><a href="#annotated-cell-13-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="annotated-cell-13-4"><a href="#annotated-cell-13-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> special-config</span></span>
+<span id="annotated-cell-13-5"><a href="#annotated-cell-13-5"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="annotated-cell-13-6"><a href="#annotated-cell-13-6"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="annotated-cell-13-7"><a href="#annotated-cell-13-7"></a><span class="at">  </span><span class="fu">hello</span><span class="kw">:</span><span class="at"> world</span></span>
+<span id="annotated-cell-13-8"><a href="#annotated-cell-13-8"></a><span class="at">  </span><span class="fu">python</span><span class="kw">:</span><span class="at"> good</span></span>
+<span id="annotated-cell-13-9"><a href="#annotated-cell-13-9"></a><span class="pp">---</span></span>
+<span id="annotated-cell-13-10"><a href="#annotated-cell-13-10"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="annotated-cell-13-11"><a href="#annotated-cell-13-11"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="annotated-cell-13-12"><a href="#annotated-cell-13-12"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="annotated-cell-13-13"><a href="#annotated-cell-13-13"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> pod-cm-envfrom</span></span>
+<span id="annotated-cell-13-14"><a href="#annotated-cell-13-14"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="annotated-cell-13-15"><a href="#annotated-cell-13-15"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="annotated-cell-13-16"><a href="#annotated-cell-13-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> test-container</span></span>
+<span id="annotated-cell-13-17"><a href="#annotated-cell-13-17"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> busybox</span></span>
+<span id="annotated-cell-13-18"><a href="#annotated-cell-13-18"></a><span class="at">      </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="annotated-cell-13-19"><a href="#annotated-cell-13-19"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"/bin/sh"</span><span class="kw">,</span><span class="at"> </span><span class="st">"-c"</span><span class="kw">,</span><span class="at"> </span><span class="st">"env"</span><span class="at"> </span><span class="kw">]</span></span>
+<span id="annotated-cell-13-20"><a href="#annotated-cell-13-20"></a><span class="at">      </span><span class="fu">envFrom</span><span class="kw">:</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-21" class="code-annotation-target"><a href="#annotated-cell-13-21"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">prefix</span><span class="kw">:</span><span class="at"> TEST_</span></span>
+<span id="annotated-cell-13-22"><a href="#annotated-cell-13-22"></a><span class="at">          </span><span class="fu">configMapRef</span><span class="kw">:</span></span>
+<span id="annotated-cell-13-23"><a href="#annotated-cell-13-23"></a><span class="at">            </span><span class="fu">name</span><span class="kw">:</span><span class="at"> special-config</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-13-24" class="code-annotation-target"><a href="#annotated-cell-13-24"></a><span class="at">            </span><span class="fu">optional</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="annotated-cell-13-25"><a href="#annotated-cell-13-25"></a><span class="at">  </span><span class="fu">restartPolicy</span><span class="kw">:</span><span class="at"> Never</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="21" data-code-annotation="1">环境变量加上前缀</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="24" data-code-annotation="2">默认是false <br> false: 如果指定的configmap不存在,则pod无法启动<br>true: 表示如果指定的cm 不存在, 可以启动pod,只不过就是没有用到cm</span>
+</dd>
+</dl>
+</section>
+<section id="文件挂载" class="level4" data-number="1.2.3">
+<h4 data-number="1.2.3" class="anchored" data-anchor-id="文件挂载"><span class="header-section-number">1.2.3</span> 文件挂载</h4>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>my.conf</strong></pre>
+</div>
+<div class="sourceCode" id="cb19" data-filename="my.conf" data-code-line-numbers=""><pre class="sourceCode numberSource conf number-lines code-with-copy"><code class="sourceCode toml"><span id="cb19-1"><a href="#cb19-1"></a><span class="dt">server</span> <span class="er">{</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>    <span class="dt">listen</span>       <span class="dt">8099</span><span class="er">;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="dt">listen</span>       <span class="kw">[</span><span class="er">::]:</span><span class="dt">8099</span><span class="er">;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="dt">server_name</span>  <span class="dt">_</span><span class="er">;</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="dt">root</span>         <span class="er">/</span><span class="dt">usr</span><span class="er">/</span><span class="dt">share</span><span class="er">/</span><span class="dt">nginx</span><span class="er">/</span><span class="dt">html</span><span class="er">;</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>    <span class="dt">include</span> <span class="er">/</span><span class="dt">etc</span><span class="er">/</span><span class="dt">nginx</span><span class="er">/</span><span class="dt">default.d</span><span class="er">/*</span><span class="dt">.conf</span><span class="er">;</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>    <span class="dt">error_page</span> <span class="dt">404</span> <span class="er">/</span><span class="dt">404.html</span><span class="er">;</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>    <span class="dt">location</span> <span class="op">=</span> <span class="er">/</span><span class="dt">404.html</span> <span class="er">{</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>    <span class="er">}</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>    <span class="dt">error_page</span> <span class="dt">500</span> <span class="dt">502</span> <span class="dt">503</span> <span class="dt">504</span> <span class="er">/</span><span class="dt">50x.html</span><span class="er">;</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>    <span class="dt">location</span> <span class="op">=</span> <span class="er">/</span><span class="dt">50x.html</span> <span class="er">{</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>    <span class="er">}</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb20" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># 混合 来创建一个cm</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="ex">k</span> create cm cm-nginx-8099 <span class="at">--from-file</span><span class="op">=</span>my.conf  <span class="at">--from-literal</span><span class="op">=</span>mysql.port=3306</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> cm-vol-1</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx:alpine</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> web-server</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="at">    </span><span class="fu">volumeMounts</span><span class="kw">:</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> vol-cm-nginx-8099</span><span class="co"> #使用的volume的名称</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="at">      </span><span class="fu">mountPath</span><span class="kw">:</span><span class="at"> /etc/nginx/conf.d/</span><span class="co">  #挂载到容器里的哪个目录, 挂载后这个目录下原来的所有文件将被删除</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="at">      </span><span class="fu">readOnly</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> vol-cm-nginx-8099</span><span class="co"> #可以挂载到多个目录 ,没有的话,会自动创建目录</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a><span class="at">      </span><span class="fu">mountPath</span><span class="kw">:</span><span class="at"> /etc/nginx/abc/</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a><span class="at">      </span><span class="fu">readOnly</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a><span class="at">  </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb21-18"><a href="#cb21-18"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> vol-cm-nginx-8099</span><span class="co">  #volume的名称</span></span>
+<span id="cb21-19"><a href="#cb21-19"></a><span class="at">    </span><span class="fu">configMap</span><span class="kw">:</span><span class="co"> # 存储卷类型</span></span>
+<span id="cb21-20"><a href="#cb21-20"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> cm-nginx-8099</span><span class="co"> #cm名字</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a><span class="at">      </span><span class="fu">items</span><span class="kw">:</span><span class="co"> #修改挂载到容器里的名称,默认是key名, 有多个key 就有多个文件 (看下面说道的 2个文件软连接 )</span></span>
+<span id="cb21-22"><a href="#cb21-22"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> my.conf</span><span class="co"> #cm里的key名</span></span>
+<span id="cb21-23"><a href="#cb21-23"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> my2.conf</span><span class="co">    # 挂载到容器里的名称 最终是在 上面设置的mountPath /etc/nginx/conf.d/my2.conf</span></span>
+<span id="cb21-24"><a href="#cb21-24"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> mysql.port</span></span>
+<span id="cb21-25"><a href="#cb21-25"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> mysql_port</span></span>
+<span id="cb21-26"><a href="#cb21-26"></a><span class="at">          </span><span class="fu">mode</span><span class="kw">:</span><span class="at"> </span><span class="dv">0666</span><span class="co"> # 单独设置权限</span></span>
+<span id="cb21-27"><a href="#cb21-27"></a><span class="at">      </span><span class="fu">defaultMode</span><span class="kw">:</span><span class="at"> </span><span class="dv">0666</span><span class="co">  #8进制   挂载到容器里的文件的权限  记得去看软连接的原始文件的权限来验证</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="ex">k</span> exec <span class="at">-it</span> configmap-volume-demo <span class="at">--</span> ls <span class="at">-l</span> /etc/nginx/conf.d</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="ex">lrwxrwxrwx</span>    1 root     root  15 Jul 17 14:27 my2.conf <span class="at">-</span><span class="op">&gt;</span> ..data/my2.conf  内容就是my.conf文件内容</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="ex">lrwxrwxrwx</span>    1 root     root  17 Jul 17 14:27 mysql_port <span class="at">-</span><span class="op">&gt;</span> ..data/mysql_port 内容是3306</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>这种文件挂载的方式, 如果你的configmap修改了,pod里看到的配置也会是修改后的</li>
+<li><span class="txt-highlight"><strong>不过 这还不行, 你的pod里的程序必须也能够 热加载才行, (就是能监控配置文件的变化,自动重启)</strong></span></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="secret" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="secret"><span class="header-section-number">2</span> secret</h2>
+<p><a href="https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret">官方文档</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>由于configmap 是明文, 因此与configmap 有着同样功能的 secret 就相应的设计出来了</li>
+<li>使用方法与 configmap 类似,在yaml文件上把configmap 改成 secret,大部分就ok了</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="secret 的类型">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+secret 的类型
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Opaque</td>
+<td>通用型Secret,用户自定义，默认类型</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kubernetes.io/service-account-token</td>
+<td>作用于ServiceAccount，包含一个令牌，用于标识API服务账户</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kubernetes.io/dockercfg</td>
+<td>serialized ~/.dockercfg file</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kubernetes.io/dockerconfigjson</td>
+<td>下载私有仓库镜像使用的Secret, 和宿主机的 ~/.docker/config.json一致 ,宿主机docker login后即可产生该文件</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kubernetes.io/basic-auth</td>
+<td>用于使用基本认证(账号密码)的Secret，可以使用<strong>Opaque</strong>取代</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kubernetes.io/ssh-auth</td>
+<td>用于存储ssh密钥的Secret</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kubernetes.io/tls</td>
+<td>用于存储HTTPS域名证书文件的Secret，可以被Ingress使用</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bootstrap.kubernetes.io/token</td>
+<td>一种简单的 bearer token,用于创建新集群或将新节点添加到现有集群,在集群安装时可用于自动颁发集群的证书</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb23" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">kubectl</span> create secret generic mysql-root-password <span class="dt">\</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>    <span class="at">--from-literal</span><span class="op">=</span>password=123456  <span class="dt">\</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="at">--from-literal</span><span class="op">=</span>username=root</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-result">
+<div class="sourceCode" id="cb24" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="ex">k</span> get secret</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>我们可以看到这个 secret 的类型是 Opaque</strong></pre>
+</div>
+<div class="sourceCode" id="cb25" data-filename="我们可以看到这个 secret 的类型是 Opaque" data-code-line-numbers=""><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1"></a>NAME                  TYPE    DATA   AGE</span>
+<span id="cb25-2"><a href="#cb25-2"></a>mysql-root-password   Opaque  2      12s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="code-result">
+<div class="sourceCode" id="cb26" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="ex">k</span> describe secrets  mysql-root-password</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Data 里只显示几个字节!</strong></pre>
+</div>
+<div class="sourceCode" id="cb27" data-filename="Data 里只显示几个字节!" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">Name</span><span class="kw">:</span><span class="at">         mysql-root-password</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">Namespace</span><span class="kw">:</span><span class="at">    default</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">Labels</span><span class="kw">:</span><span class="at">       &lt;none&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="fu">Annotations</span><span class="kw">:</span><span class="at">  &lt;none&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="fu">Type</span><span class="kw">:</span><span class="at">  Opaque</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a></span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="at">Data</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="at">====</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="fu">password</span><span class="kw">:</span><span class="at">  6 bytes</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a><span class="fu">username</span><span class="kw">:</span><span class="at">  4 bytes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="code-result">
+<div class="sourceCode" id="cb28" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="ex">k</span> get secrets mysql-root-password  <span class="at">-o</span> yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Data 显示的是加密的</strong></pre>
+</div>
+<div class="sourceCode" id="cb29" data-filename="Data 显示的是加密的" data-code-line-numbers=""><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="at">  </span><span class="fu">password</span><span class="kw">:</span><span class="at"> MTIzNDU2</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="at">  </span><span class="fu">username</span><span class="kw">:</span><span class="at"> cm9vdA==</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Secret</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="at">  </span><span class="fu">creationTimestamp</span><span class="kw">:</span><span class="at"> </span><span class="st">"2023-07-18T01:56:16Z"</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mysql-root-password</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="at">  </span><span class="fu">namespace</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="at">  </span><span class="fu">resourceVersion</span><span class="kw">:</span><span class="at"> </span><span class="st">"941954"</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="at">  </span><span class="fu">uid</span><span class="kw">:</span><span class="at"> 51b42a5f-02c8-4cc1-a482-2c6c0eceb3eb</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> Opaque</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb30" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># 然而那这个加密仅仅是base64 可以解密</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="co"># 能够得到 密码 123456</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="bu">echo</span> MTIzNDU2 <span class="kw">|</span><span class="fu">base64</span> <span class="at">-d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb31" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#文件形式创建</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">cat</span> user.txt</span>
+<span id="cb31-3"><a href="#cb31-3"></a>    <span class="ex">root</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="fu">cat</span> pass.txt</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="ex">123456</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="ex">kubectl</span> create secret generic mysql-root-password2 <span class="at">--from-file</span><span class="op">=</span>user.txt <span class="at">--from-file</span><span class="op">=</span>pass.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="注意" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="注意"><span class="header-section-number">3</span> 注意</h2>
+<ul>
+<li>我们一般是用配置文件来创建configmap</li>
+<li><span class="txt-highlight">前面提到过,真正的热更新,还需要程序检测自动重启的支持</span></li>
+<li><span class="txt-highlight">使用envFrom和valueFrom是无法更新环境变量的</span>, 环境变量是启动容器就定了的.需要重启容器</li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+
+
+
+
+<script src="../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+</body></html>
