@@ -3,10 +3,15 @@
   --md-code--highlight-bg-color: #323d48;
   --text-title-h2: #ff79c6;
   --text-title-h3: orange;
-  --text-title-h4: #3270eb;
+  --text-title-h4: #9be51c;
   /* #f0fd57; */
-  --text-title-h5: #9be51c;
+  --text-title-h5: #3270eb;
   --title-block-banner-index-color: #6847ba;
+  --sidebar-section-hr: #6847ba;
+  --table-has-border-color: #6847ba;
+}
+div.panel-tabset ul.nav.nav-tabs li.nav-item a.nav-link[aria-selected=false]{
+  color: #815889 !important;
 }
 h2 {
   color: var(--text-title-h2);

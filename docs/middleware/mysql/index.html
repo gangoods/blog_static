@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,6 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../docs/middleware/mysql/sql.html" rel="next">
+<link href="../../../docs/middleware/mysql/backup-recovery.html" rel="prev">
 <link href="../../../favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -107,17 +75,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../favicon.png" alt="" class="navbar-logo">
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -129,13 +92,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/go/index.html"> 
-<span class="menu-text">GO</span></a>
+    <a class="nav-link" href="../../../docs/quarto/index.html"> 
+<span class="menu-text">Quarto</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/rust/index.html"> 
-<span class="menu-text">Rust</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">后端</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/go/index.html">
+ <span class="dropdown-text">Go</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
@@ -163,10 +141,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/middleware/index.html"> 
-<span class="menu-text">中间件</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
@@ -182,17 +171,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/middleware/mysql/index.html">索引底层</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/backup-recovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">备份与恢复</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">索引底层</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SQL语句</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/binlog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">二进制日志</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#红黑树-red-black-trees" id="toc-红黑树-red-black-trees" class="nav-link active" data-scroll-target="#红黑树-red-black-trees"><span class="header-section-number">0.1</span> 红黑树 Red-Black Trees</a></li>
+  <li><a href="#红黑树-red-black-trees" id="toc-红黑树-red-black-trees" class="nav-link active" data-scroll-target="#红黑树-red-black-trees"><span class="header-section-number">1</span> 红黑树 Red-Black Trees</a></li>
   </ul>
 </nav>
     </div>
@@ -202,17 +238,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>!!! warning 未完待续</p>
-<p>!!! note “啥是索引?” 一本新华字典,如果没有前面的目录,你查个字 是不是遭老罪了!<br> app上选择你的城市时,如果没有右边的那个滑动,是不是也挺麻烦的.<br> 这些让你找起来方便的东西就是索引. mysql 数据库同样如此,都是在一堆数据里找你要的东西.</p>
-<section id="红黑树-red-black-trees" class="level3" data-number="0.1">
-<h3 data-number="0.1" class="anchored" data-anchor-id="红黑树-red-black-trees"><span class="header-section-number">0.1</span> 红黑树 Red-Black Trees</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource x-excalidraw number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>{"type":"excalidraw/clipboard","elements":[{"type":"ellipse","version":160,"versionNonce":1377479028,"isDeleted":false,"id":"tDarS2aVj9lEgsv74_ImZ","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":65.62709417757645,"y":389.8372919021449,"strokeColor":"#000000","backgroundColor":"transparent","width":59,"height":57,"seed":1967366773,"groupIds":[],"roundness":null,"boundElements":[{"type":"text","id":"fA5A6nts"},{"id":"eQ5tdrmwrn_bPIK9ZPHlE","type":"arrow"},{"id":"_4xIeilj-ALEQ6lTShAwv","type":"arrow"}],"updated":1681307695885,"link":null,"locked":false},{"type":"text","version":285,"versionNonce":1901451212,"isDeleted":false,"id":"fA5A6nts","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":86.12709417757645,"y":402.3372919021449,"strokeColor":"#000000","backgroundColor":"transparent","width":18,"height":32,"seed":1928322043,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307695885,"link":null,"locked":false,"fontSize":28,"fontFamily":2,"text":"2","rawText":"2","baseline":26,"textAlign":"center","verticalAlign":"middle","containerId":"tDarS2aVj9lEgsv74_ImZ","originalText":"2"},{"type":"ellipse","version":209,"versionNonce":1041803852,"isDeleted":false,"id":"uUeDh4PPeZhk_b7RDP20M","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":-9.347832126650864,"y":454.2642811524588,"strokeColor":"#000000","backgroundColor":"transparent","width":59,"height":57,"seed":986375509,"groupIds":[],"roundness":null,"boundElements":[{"type":"text","id":"FiUflUdG"},{"id":"eQ5tdrmwrn_bPIK9ZPHlE","type":"arrow"}],"updated":1681307713469,"link":null,"locked":false},{"type":"text","version":334,"versionNonce":1289154676,"isDeleted":false,"id":"FiUflUdG","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":11.152167873349136,"y":466.7642811524588,"strokeColor":"#000000","backgroundColor":"transparent","width":18,"height":32,"seed":1472235131,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307713469,"link":null,"locked":false,"fontSize":28,"fontFamily":2,"text":"1","rawText":"1","baseline":26,"textAlign":"center","verticalAlign":"middle","containerId":"uUeDh4PPeZhk_b7RDP20M","originalText":"1"},{"type":"ellipse","version":364,"versionNonce":1661518324,"isDeleted":false,"id":"nsCEO28NBX7KmwGKP6Ts8","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":150.43115215211924,"y":457.1362715456045,"strokeColor":"#000000","backgroundColor":"transparent","width":59,"height":57,"seed":217975029,"groupIds":[],"roundness":null,"boundElements":[{"type":"text","id":"tpaU5Ksz"},{"id":"_4xIeilj-ALEQ6lTShAwv","type":"arrow"},{"id":"o0ytcCNiFVR4lR6t4EMTb","type":"arrow"},{"id":"VlafbYbSDnzhiS2V5r48j","type":"arrow"},{"id":"b-mxZnBVanh7E0wXkURS0","type":"arrow"}],"updated":1681307716338,"link":null,"locked":false},{"type":"text","version":490,"versionNonce":1079215948,"isDeleted":false,"id":"tpaU5Ksz","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":170.93115215211924,"y":469.6362715456045,"strokeColor":"#000000","backgroundColor":"transparent","width":18,"height":32,"seed":1350233307,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307716338,"link":null,"locked":false,"fontSize":28,"fontFamily":2,"text":"4","rawText":"4","baseline":26,"textAlign":"center","verticalAlign":"middle","containerId":"nsCEO28NBX7KmwGKP6Ts8","originalText":"4"},{"type":"ellipse","version":293,"versionNonce":2135440500,"isDeleted":false,"id":"xEnajgMU8WVoZ6sdd82nX","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":95.34481310621743,"y":523.1131807240708,"strokeColor":"#c92a2a","backgroundColor":"#82c91e","width":59,"height":57,"seed":1727606299,"groupIds":[],"roundness":null,"boundElements":[{"type":"text","id":"e1SwqkBb"},{"id":"o0ytcCNiFVR4lR6t4EMTb","type":"arrow"}],"updated":1681307736959,"link":null,"locked":false},{"type":"text","version":421,"versionNonce":633271500,"isDeleted":false,"id":"e1SwqkBb","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":115.84481310621743,"y":535.6131807240708,"strokeColor":"#c92a2a","backgroundColor":"transparent","width":18,"height":32,"seed":51156245,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307736959,"link":null,"locked":false,"fontSize":28,"fontFamily":2,"text":"3","rawText":"3","baseline":26,"textAlign":"center","verticalAlign":"middle","containerId":"xEnajgMU8WVoZ6sdd82nX","originalText":"3"},{"type":"ellipse","version":377,"versionNonce":764587892,"isDeleted":false,"id":"-nwAvyLm8OKdS84HsRslX","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":212.52794687274462,"y":524.5872193645484,"strokeColor":"#c92a2a","backgroundColor":"transparent","width":59,"height":57,"seed":109425653,"groupIds":[],"roundness":null,"boundElements":[{"type":"text","id":"Kh6HrZJb"},{"id":"VlafbYbSDnzhiS2V5r48j","type":"arrow"},{"id":"3xs2MCwZw4rInCUR2FBLi","type":"arrow"}],"updated":1681307741111,"link":null,"locked":false},{"type":"text","version":503,"versionNonce":768160204,"isDeleted":false,"id":"Kh6HrZJb","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":233.02794687274462,"y":537.0872193645484,"strokeColor":"#c92a2a","backgroundColor":"transparent","width":18,"height":32,"seed":1423405531,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307741111,"link":null,"locked":false,"fontSize":28,"fontFamily":2,"text":"5","rawText":"5","baseline":26,"textAlign":"center","verticalAlign":"middle","containerId":"-nwAvyLm8OKdS84HsRslX","originalText":"5"},{"type":"arrow","version":500,"versionNonce":376298612,"isDeleted":false,"id":"eQ5tdrmwrn_bPIK9ZPHlE","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":73.41451383586653,"y":442.2619592303233,"strokeColor":"#000000","backgroundColor":"transparent","width":26.577218878572936,"height":21.724721691249044,"seed":1298564853,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307699935,"link":null,"locked":false,"startBinding":{"elementId":"tDarS2aVj9lEgsv74_ImZ","gap":3.368098350953183,"focus":-0.16594297887732323},"endBinding":{"elementId":"uUeDh4PPeZhk_b7RDP20M","gap":3.7860712261319818,"focus":0.08236692169221677},"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[-26.577218878572936,21.724721691249044]]},{"type":"arrow","version":674,"versionNonce":102161228,"isDeleted":false,"id":"_4xIeilj-ALEQ6lTShAwv","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":126.59749718881213,"y":438.7588988334911,"strokeColor":"#000000","backgroundColor":"transparent","width":26.663416458374257,"height":31.868925730325373,"seed":1157282011,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307703602,"link":null,"locked":false,"startBinding":{"elementId":"tDarS2aVj9lEgsv74_ImZ","gap":8.320478941010293,"focus":-0.3800124405735868},"endBinding":{"elementId":"nsCEO28NBX7KmwGKP6Ts8","gap":1.6448974064772952,"focus":-0.3762943596662026},"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[26.663416458374257,31.868925730325373]]},{"type":"arrow","version":710,"versionNonce":221979724,"isDeleted":false,"id":"o0ytcCNiFVR4lR6t4EMTb","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":160.57613849008237,"y":513.4049373099566,"strokeColor":"#000000","backgroundColor":"transparent","width":17.68426185358328,"height":14.260629953400553,"seed":1506070645,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307725045,"link":null,"locked":false,"startBinding":{"elementId":"nsCEO28NBX7KmwGKP6Ts8","gap":5.031062580404316,"focus":-0.329456311351532},"endBinding":{"elementId":"xEnajgMU8WVoZ6sdd82nX","gap":1.1356053521386467,"focus":-0.2530580053840911},"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[-17.68426185358328,14.260629953400553]]},{"type":"arrow","version":804,"versionNonce":917383156,"isDeleted":false,"id":"VlafbYbSDnzhiS2V5r48j","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"solid","roughness":1,"opacity":100,"angle":0,"x":203.17499957237902,"y":507.17679964672953,"strokeColor":"#000000","backgroundColor":"transparent","width":19.13337315683077,"height":23.843113767222633,"seed":2055289211,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307728713,"link":null,"locked":false,"startBinding":{"elementId":"nsCEO28NBX7KmwGKP6Ts8","gap":2.6640496111305465,"focus":-0.1600608742297699},"endBinding":{"elementId":"-nwAvyLm8OKdS84HsRslX","gap":1.0340720006128248,"focus":-0.054483555790327404},"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[19.13337315683077,23.843113767222633]]},{"type":"rectangle","version":654,"versionNonce":88504181,"isDeleted":false,"id":"J6mQdtFMO2k7u7rl28qES","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":-18.657470703125,"y":366.9269485473633,"strokeColor":"#087f5b","backgroundColor":"transparent","width":757.5244140625,"height":235.68900606809956,"seed":253989787,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681220978202,"link":null,"locked":false},{"type":"arrow","version":134,"versionNonce":112889164,"isDeleted":false,"id":"AsXPgo0L4KvywpJEWP8cv","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":141.40716552734375,"y":412.8319778442383,"strokeColor":"#000000","backgroundColor":"#82c91e","width":58.220703125,"height":1.707611083984375,"seed":701329691,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307710105,"link":null,"locked":false,"startBinding":null,"endBinding":null,"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[58.220703125,-1.707611083984375]]},{"type":"text","version":92,"versionNonce":1106820468,"isDeleted":false,"id":"SpWUiVqj","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":221.10980224609375,"y":394.88794708251953,"strokeColor":"#000000","backgroundColor":"#82c91e","width":146,"height":28,"seed":445449525,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307710105,"link":null,"locked":false,"fontSize":20,"fontFamily":2,"text":"第1层  2⁰ 条记录","rawText":"第1层  2⁰ 条记录","baseline":21,"textAlign":"left","verticalAlign":"top","containerId":null,"originalText":"第1层  2⁰ 条记录"},{"type":"text","version":192,"versionNonce":532610805,"isDeleted":false,"id":"du7L5D6B","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":264.170654296875,"y":469.12992095947266,"strokeColor":"#19be76","backgroundColor":"transparent","width":148,"height":28,"seed":921039541,"groupIds":[],"roundness":null,"boundElements":[{"id":"b-mxZnBVanh7E0wXkURS0","type":"arrow"}],"updated":1681221089246,"link":null,"locked":false,"fontSize":20,"fontFamily":2,"text":"第2层 2¹ 条记录 ","rawText":"第2层 2¹ 条记录 ","baseline":21,"textAlign":"left","verticalAlign":"top","containerId":null,"originalText":"第2层 2¹ 条记录 "},{"type":"arrow","version":58,"versionNonce":1183441100,"isDeleted":false,"id":"b-mxZnBVanh7E0wXkURS0","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":250.8531628244516,"y":484.91794505522995,"strokeColor":"#19be76","backgroundColor":"transparent","width":31.548932001396537,"height":3.2631355927985624,"seed":1025859989,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307687823,"link":null,"locked":false,"startBinding":{"elementId":"du7L5D6B","gap":13.317491472423395,"focus":0.318616741177629},"endBinding":{"elementId":"nsCEO28NBX7KmwGKP6Ts8","gap":10.188506457485916,"focus":0.23473917889493692},"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[-31.548932001396537,3.2631355927985624]]},{"type":"arrow","version":24,"versionNonce":1867616884,"isDeleted":false,"id":"3xs2MCwZw4rInCUR2FBLi","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":318.60736083984375,"y":554.4035415649414,"strokeColor":"#c92a2a","backgroundColor":"transparent","width":37.66117714875497,"height":0.28503615715180786,"seed":1439597563,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307747254,"link":null,"locked":false,"startBinding":null,"endBinding":{"elementId":"-nwAvyLm8OKdS84HsRslX","gap":9.681215853717573,"focus":0.06764478679491556},"lastCommittedPoint":null,"startArrowhead":null,"endArrowhead":"triangle","points":[[0,0],[-37.66117714875497,0.28503615715180786]]},{"type":"text","version":18,"versionNonce":371064524,"isDeleted":false,"id":"YAlPUsNq","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":330.07366943359375,"y":545.0906753540039,"strokeColor":"#c92a2a","backgroundColor":"transparent","width":188,"height":28,"seed":1167546453,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681307747254,"link":null,"locked":false,"fontSize":20,"fontFamily":2,"text":"第3层  最多2² 条记录","rawText":"第3层  最多2² 条记录","baseline":21,"textAlign":"left","verticalAlign":"top","containerId":null,"originalText":"第3层  最多2² 条记录"},{"type":"freedraw","version":110,"versionNonce":1762863125,"isDeleted":false,"id":"XSfIsOaDGudj4i0TOhTbd","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":543.4905395507812,"y":408.2271499633789,"strokeColor":"#0b7285","backgroundColor":"transparent","width":20.549072265625,"height":158.6148681640625,"seed":367665877,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681219518861,"link":null,"locked":false,"points":[[0,0],[1.2464599609375,0],[2.4930419921875,0],[3.7393798828125,0],[5.5076904296875,0.8841552734375],[6.855712890625,1.8951416015625],[8.6494140625,3.40252685546875],[10.33447265625,4.07647705078125],[12.6171875,6.359344482421875],[13.5521240234375,7.294189453125],[15.0594482421875,9.087799072265625],[15.6319580078125,9.94659423828125],[16.7769775390625,11.664154052734375],[17.349609375,12.52294921875],[18.233642578125,14.628204345703125],[18.5452880859375,15.87469482421875],[19.404052734375,17.592254638671875],[19.6903076171875,18.451019287109375],[20.262939453125,20.168609619140625],[20.549072265625,21.02740478515625],[20.549072265625,22.40802001953125],[20.549072265625,23.266845703125],[20.549072265625,24.6474609375],[20.549072265625,25.506256103515625],[20.549072265625,26.028106689453125],[20.549072265625,27.74566650390625],[19.9765625,28.604461669921875],[19.378662109375,30.709716796875],[18.75537109375,31.956207275390625],[17.871337890625,34.06146240234375],[17.2481689453125,35.30792236328125],[16.287841796875,38.2393798828125],[15.6646728515625,39.485870361328125],[14.316650390625,42.855804443359375],[14.005126953125,44.102294921875],[13.0194091796875,47.033721923828125],[12.6824951171875,48.718719482421875],[12.370849609375,51.211669921875],[12.370849609375,52.4581298828125],[12.370849609375,54.95111083984375],[12.370849609375,56.19757080078125],[12.6824951171875,58.690521240234375],[13.3056640625,59.93701171875],[14.6029052734375,62.86846923828125],[15.6138916015625,64.2164306640625],[16.7589111328125,65.93402099609375],[17.045166015625,66.79278564453125],[17.878662109375,68.1734619140625],[18.1396484375,68.6953125],[18.7120361328125,69.5540771484375],[19.2086181640625,70.31155395507812],[19.4443359375,70.54718017578125],[19.6798095703125,71.01837158203125],[19.9154052734375,71.25399780273438],[19.9154052734375,71.4896240234375],[19.9154052734375,71.7252197265625],[19.6798095703125,71.7252197265625],[19.4443359375,71.96084594726562],[19.2086181640625,72.19647216796875],[18.9730224609375,72.43209838867188],[18.5018310546875,72.90328979492188],[17.97998046875,73.42514038085938],[17.12109375,75.14273071289062],[16.5487060546875,76.00149536132812],[15.6644287109375,78.10678100585938],[15.3529052734375,79.35324096679688],[14.4180908203125,81.84625244140625],[14.0810546875,83.53118896484375],[13.7694091796875,86.462646484375],[13.7694091796875,87.3214111328125],[13.432373046875,89.86517333984375],[13.095458984375,92.796630859375],[13.095458984375,95.72808837890625],[13.095458984375,98.65951538085938],[13.095458984375,99.90597534179688],[13.095458984375,103.27597045898438],[13.095458984375,104.52243041992188],[13.095458984375,106.20736694335938],[13.095458984375,109.57736206054688],[13.095458984375,111.2623291015625],[13.095458984375,114.63226318359375],[13.095458984375,115.87875366210938],[13.744140625,118.81015014648438],[14.0556640625,120.05667114257812],[14.704345703125,122.98812866210938],[14.704345703125,124.67306518554688],[15.3782958984375,128.04302978515625],[15.7152099609375,129.72802734375],[15.7152099609375,132.220947265625],[15.7152099609375,133.90594482421875],[15.7152099609375,136.39886474609375],[15.7152099609375,137.6453857421875],[15.7152099609375,139.7506103515625],[15.7152099609375,140.60943603515625],[15.7152099609375,142.71466064453125],[15.7152099609375,143.96112060546875],[15.428955078125,145.6787109375],[15.117431640625,146.9251708984375],[14.5447998046875,148.64276123046875],[14.233154296875,149.88922119140625],[13.947021484375,150.748046875],[13.0374755859375,152.853271484375],[12.7764892578125,153.3751220703125],[11.479248046875,155.5819091796875],[10.46826171875,156.92987060546875],[9.457275390625,158.6148681640625],[9.457275390625,158.6148681640625]],"lastCommittedPoint":null,"simulatePressure":true,"pressures":[]},{"type":"text","version":70,"versionNonce":1126354875,"isDeleted":false,"id":"r9vf6a0Q","fillStyle":"hachure","strokeWidth":1,"strokeStyle":"dashed","roughness":1,"opacity":100,"angle":0,"x":582.1553344726562,"y":456.71070098876953,"strokeColor":"#0b7285","backgroundColor":"transparent","width":153,"height":56,"seed":1733517589,"groupIds":[],"roundness":null,"boundElements":[],"updated":1681219518861,"link":null,"locked":false,"fontSize":20,"fontFamily":2,"text":"三层的话\n最多能放7条数据","rawText":"三层的话\n最多能放7条数据","baseline":49,"textAlign":"left","verticalAlign":"top","containerId":null,"originalText":"三层的话\n最多能放7条数据"}],"files":{}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>!!! note “说明” 红黑树解决了二叉树插入有序数据导致所有的节点都会在根节点的右侧或左侧,变成了链表的问题, 插入一条数据后,会自动调整 <br> ==那么能不能用这个结构来存储mysql数据呢?== <br></p>
-<pre><code>n层的话, 总共能放 total = 2⁰ + 2¹ +2² +...  2ⁿ⁻¹ &lt;br&gt;
-==2total== =  2¹ +2² +...  2ⁿ &lt;br&gt;= ==2⁰ + 2¹ +2² +...  2ⁿ⁻¹==+ __2ⁿ - 2⁰__ &lt;br&gt;
-  = total + 2ⁿ - 2⁰ &lt;br&gt;
-2total = total + 2ⁿ - 2⁰ &lt;br&gt;
-结果: ==__^^total = 2ⁿ-1^^__==&lt;br&gt;</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>未完待续</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="啥是索引?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+啥是索引?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>一本新华字典,如果没有前面的目录,你查个字是不是遭老罪了!</li>
+<li>app上选择你的城市时,如果没有右边的那个滑动,是不是也挺麻烦的.</li>
+<li>粗糙的讲,这些让你找起来方便的东西就是索引. mysql 数据库同样如此,都是在一堆数据里找你要的东西.</li>
+</ul>
+</div>
+</div>
+<section id="红黑树-red-black-trees" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="红黑树-red-black-trees"><span class="header-section-number">1</span> 红黑树 Red-Black Trees</h2>
+<img src="../../../.diagram/f535dc45867098c709a65c760f93a2d0.svg" class="img-fluid" alt="Diagram">
+<div class="callout callout-style-default callout-note callout-titled" title="n层最多能存放多少数据?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+n层最多能存放多少数据?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>红黑树解决了二叉树插入有序数据导致所有的节点都会在根节点的右侧或左侧,变成了链表的问题, 插入一条数据后,会自动调整</li>
+<li><span class="txt-highlight">那么能不能用这个结构来存储mysql数据呢?</span></li>
+<li>n层的话, 总共能放 total = 2⁰ + 2¹ +2² +… 2ⁿ⁻¹</li>
+<li><span class="txt-highlight">2total</span> = 2¹ +2² +… 2ⁿ = <span class="txt-highlight">2⁰ + 2¹ +2² +… 2ⁿ⁻¹</span>+ <strong>2ⁿ - 2⁰</strong> = total + 2ⁿ - 2⁰</li>
+<li>2total = total + 2ⁿ - 2⁰</li>
+<li>结果: <span class="txt-highlight"><strong>total = 2ⁿ-1</strong></span></li>
+</ul>
+</div>
+</div>
 
 
 </section>
@@ -791,6 +869,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/middleware/mysql/backup-recovery.html" class="pagination-link" aria-label="备份与恢复">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">备份与恢复</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/middleware/mysql/sql.html" class="pagination-link" aria-label="SQL语句">
+        <span class="nav-page-text">SQL语句</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

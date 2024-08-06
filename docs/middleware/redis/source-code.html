@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../docs/middleware/redis/data-type.html" rel="prev">
 <link href="../../../favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -104,49 +105,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="../../../js/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../favicon.png" alt="" class="navbar-logo">
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -158,13 +125,28 @@ window.Quarto = {
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/go/index.html"> 
-<span class="menu-text">GO</span></a>
+    <a class="nav-link" href="../../../docs/quarto/index.html"> 
+<span class="menu-text">Quarto</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/rust/index.html"> 
-<span class="menu-text">Rust</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">后端</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/go/index.html">
+ <span class="dropdown-text">Go</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
@@ -192,10 +174,21 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/middleware/index.html"> 
-<span class="menu-text">中间件</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
@@ -211,20 +204,85 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/middleware/redis/source-code.html">源码分析</a></li><li class="breadcrumb-item"><a href="../../../docs/middleware/redis/source-code.html">环境准备</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">基础</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/persistence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数据持久化</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/data-type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数据类型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">源码分析</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/source-code.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#vscode-debug-环境搭建" id="toc-vscode-debug-环境搭建" class="nav-link active" data-scroll-target="#vscode-debug-环境搭建"><span class="header-section-number">1</span> vscode debug 环境搭建</a>
+  <li><a href="#vscode-debug-环境搭建" id="toc-vscode-debug-环境搭建" class="nav-link active" data-scroll-target="#vscode-debug-环境搭建"><span class="header-section-number">1</span> vscode debug 环境搭建</a></li>
+  <li><a href="#总体流程" id="toc-总体流程" class="nav-link" data-scroll-target="#总体流程"><span class="header-section-number">2</span> 总体流程</a>
   <ul>
-  <li><a href="#set-age-11-的过程doing" id="toc-set-age-11-的过程doing" class="nav-link" data-scroll-target="#set-age-11-的过程doing"><span class="header-section-number">1.1</span> set age 11 的过程(doing)</a></li>
+  <li><a href="#服务启动" id="toc-服务启动" class="nav-link" data-scroll-target="#服务启动"><span class="header-section-number">2.1</span> 服务启动</a></li>
   </ul></li>
+  <li><a href="#set-age-11-的过程doing" id="toc-set-age-11-的过程doing" class="nav-link" data-scroll-target="#set-age-11-的过程doing"><span class="header-section-number">3</span> set age 11 的过程(doing)</a></li>
   </ul>
 </nav>
     </div>
@@ -234,7 +292,19 @@ window.Quarto = {
 
 
 
-<p>!!! warning 未完待续</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>未完待续</p>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 10%">
@@ -258,224 +328,146 @@ window.Quarto = {
 <ol type="1">
 <li>添加配置</li>
 </ol>
-<p><img src="source-code/2023-04-26-13-22-38.png" class="img-fluid"></p>
-<p>mac 环境选择lldb, 然后修改部分配置,如下 ```json title=“launch.json” { “version”: “0.2.0”, “configurations”: [ { “name”: “(lldb) 启动”, “type”: “cppdbg”, “request”: “launch”, “program”: “<span class="math inline">\({workspaceFolder}/src/redis-server",
-            "args": [
-                "./redis.conf"
-            ],
-            "stopAtEntry": false,
-            "cwd": "\)</span>{workspaceFolder}”, “environment”: [], “externalConsole”: false, “MIMode”: “lldb” }</p>
-<pre><code>]</code></pre>
-<p>}</p>
-<pre><code>2. 编译
-```bash
-# 编译
-# -O0 参数表示告诉编译器不要优化代码, 防止你在 Debug 的时候,IDE 里面的 Redis 源码与实际运行的代码对应不上.
-# MALLOC=jemalloc,指定在 Mac OS 系统上 Redis 使用 jemalloc 内存分配器,
-# Linux 默认使用该分配器，如果是 Linux 系统,无需指定该参数
-make CFLAGS="-g -O0" MALLOC=jemalloc</code></pre>
-<ol start="3" type="1">
-<li>开始调试 (快捷键F5) <code>c title="src/server.c main()主函数 打个断点 " int main(int argc, char **argv) {     struct timeval tv;     int j;     char config_from_stdin = 0;     ...     ... }</code> ## 总体流程 ### 服务启动</li>
+<p><img src="diagram/2023-04-26-13-22-38.png" class="img-fluid"></p>
+<p>mac 环境选择lldb, 然后修改部分配置,如下</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>launch.json</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="launch.json"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"0.2.0"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="dt">"configurations"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="fu">{</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>            <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"(lldb) 启动"</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>            <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"cppdbg"</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>            <span class="dt">"request"</span><span class="fu">:</span> <span class="st">"launch"</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>            <span class="dt">"program"</span><span class="fu">:</span> <span class="st">"${workspaceFolder}/src/redis-server"</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>            <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>                <span class="st">"./redis.conf"</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>            <span class="dt">"stopAtEntry"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>            <span class="dt">"cwd"</span><span class="fu">:</span> <span class="st">"${workspaceFolder}"</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>            <span class="dt">"environment"</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>            <span class="dt">"externalConsole"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>            <span class="dt">"MIMode"</span><span class="fu">:</span> <span class="st">"lldb"</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="fu">}</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="ot">]</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>编译</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource x-plantuml number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>!theme sketchy</span>
-<span id="cb3-4"><a href="#cb3-4"></a>skinparam ranksep 20</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>skinparam packageTitleAlignment left</span>
-<span id="cb3-7"><a href="#cb3-7"></a>skinparam defaultFontName ""</span>
-<span id="cb3-8"><a href="#cb3-8"></a>&lt;style&gt;</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a>document {</span>
-<span id="cb3-11"><a href="#cb3-11"></a>   BackgroundColor white</span>
-<span id="cb3-12"><a href="#cb3-12"></a>}</span>
-<span id="cb3-13"><a href="#cb3-13"></a>activityDiagram {</span>
-<span id="cb3-14"><a href="#cb3-14"></a>    FontSize 16</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    ' FontName   OperatorMonoSSm-Medium</span>
-<span id="cb3-16"><a href="#cb3-16"></a>    partition {</span>
-<span id="cb3-17"><a href="#cb3-17"></a>        RoundCorner 10</span>
-<span id="cb3-18"><a href="#cb3-18"></a>    }</span>
-<span id="cb3-19"><a href="#cb3-19"></a>    note {</span>
-<span id="cb3-20"><a href="#cb3-20"></a>        ' FontColor Black</span>
-<span id="cb3-21"><a href="#cb3-21"></a>        ' LineColor Navy</span>
-<span id="cb3-22"><a href="#cb3-22"></a>        ' BackgroundColor yellow</span>
-<span id="cb3-23"><a href="#cb3-23"></a>    }</span>
-<span id="cb3-24"><a href="#cb3-24"></a>}</span>
-<span id="cb3-25"><a href="#cb3-25"></a>&lt;/style&gt;</span>
-<span id="cb3-26"><a href="#cb3-26"></a>start</span>
-<span id="cb3-27"><a href="#cb3-27"></a>partition server.c{</span>
-<span id="cb3-28"><a href="#cb3-28"></a>    :main();</span>
-<span id="cb3-29"><a href="#cb3-29"></a>    :initServerConfig();</span>
-<span id="cb3-30"><a href="#cb3-30"></a>    partition #lemonchiffon &lt;color:orangered&gt; **initServerConfig()** {</span>
-<span id="cb3-31"><a href="#cb3-31"></a>        :初始化server.commands;</span>
-<span id="cb3-32"><a href="#cb3-32"></a>        :populateCommandTable()</span>
-<span id="cb3-33"><a href="#cb3-33"></a>        把redisCommandTable</span>
-<span id="cb3-34"><a href="#cb3-34"></a>        填充到server.commands;</span>
-<span id="cb3-35"><a href="#cb3-35"></a>        note right</span>
-<span id="cb3-36"><a href="#cb3-36"></a>        redisCommandTable里面是命令对应的处理函数</span>
-<span id="cb3-37"><a href="#cb3-37"></a>        将来解析客户端传来的命令,执行的对应函数就在这里定义</span>
-<span id="cb3-38"><a href="#cb3-38"></a>        end note</span>
-<span id="cb3-39"><a href="#cb3-39"></a>    }</span>
-<span id="cb3-40"><a href="#cb3-40"></a>    :initServer();</span>
-<span id="cb3-41"><a href="#cb3-41"></a>    partition #khaki &lt;color:orangered&gt; **initServer()**{</span>
-<span id="cb3-42"><a href="#cb3-42"></a>        :给server.db分配内存,并初始化;</span>
-<span id="cb3-43"><a href="#cb3-43"></a>        note right</span>
-<span id="cb3-44"><a href="#cb3-44"></a>        我们select 0 ,选择redis数据库, 一共16个</span>
-<span id="cb3-45"><a href="#cb3-45"></a>        0号数据库对应的是server.db[0]</span>
-<span id="cb3-46"><a href="#cb3-46"></a>        你在这个数据库里添加的所有数据都会写入这里</span>
-<span id="cb3-47"><a href="#cb3-47"></a>        end note</span>
-<span id="cb3-48"><a href="#cb3-48"></a>    }</span>
-<span id="cb3-49"><a href="#cb3-49"></a>}</span>
-<span id="cb3-50"><a href="#cb3-50"></a>stop</span>
-<span id="cb3-51"><a href="#cb3-51"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>=== “server.c入口”</p>
-<pre><code>```c title="server.c"
-// 入口
-int main(int argc, char **argv) {
-    // ...
-    initServerConfig();
-    // ...
-    initServer();
-    // ...
-}
-```</code></pre>
-<p>=== “redisCommandTable”</p>
-<pre><code>```c
-struct redisCommand redisCommandTable[] = {
-    {"module",moduleCommand,-2,
-    "admin no-script",
-    0,NULL,0,0,0,0,0,0},
-
-    {"get",getCommand,2,
-    "read-only fast @string",
-    0,NULL,1,1,1,0,0,0},
-    ...
-}
-```</code></pre>
-<p>=== “initServer()”</p>
-<pre><code>```c
-void initServer(void) {
-    // ...
-    server.db = zmalloc(sizeof(redisDb)*server.dbnum);
-    // ...
-    
-    /* 创建并初始化数据库结构 dbnum=16  我们select 0 选择数据库*/
-    for (j = 0; j &lt; server.dbnum; j++) {
-        server.db[j].dict = dictCreate(&amp;dbDictType,NULL);
-        server.db[j].expires = dictCreate(&amp;dbExpiresDictType,NULL);
-        server.db[j].expires_cursor = 0;
-        server.db[j].blocking_keys = dictCreate(&amp;keylistDictType,NULL);
-        server.db[j].ready_keys = dictCreate(&amp;objectKeyPointerValueDictType,NULL);
-        server.db[j].watched_keys = dictCreate(&amp;keylistDictType,NULL);
-        server.db[j].id = j;
-        server.db[j].avg_ttl = 0;
-        server.db[j].defrag_later = listCreate();
-        listSetFreeMethod(server.db[j].defrag_later,(void (*)(void*))sdsfree);
-    }
-
-}
-```</code></pre>
-<section id="set-age-11-的过程doing" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="set-age-11-的过程doing"><span class="header-section-number">1.1</span> set age 11 的过程(doing)</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource x-plantuml number-lines code-with-copy"><code class="sourceCode"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>开到key-value的这种结构,数据是如何存储的呢? 我们应该很容易想到哈希表吧, 去看<a href="../../../go/basis/map/#map">go中map的图书馆例子</a>.</p>
-<p>这里我再举个例子, 新华字典, 我们可以说字典有2种哈希函数, 一种是按照拼音来查,另外一种是按偏旁部首.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> redisDb <span class="op">{</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>    <span class="co">/* The keyspace for this DB */</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    dict <span class="op">*</span>dict<span class="op">;</span>                 </span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="co">/* Timeout of keys with a timeout set */</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>    dict <span class="op">*</span>expires<span class="op">;</span>           </span>
-<span id="cb8-6"><a href="#cb8-6"></a>    <span class="co">/* Keys with clients waiting for data (BLPOP)*/</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>    dict <span class="op">*</span>blocking_keys<span class="op">;</span>   </span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="co">/* Blocked keys that received a PUSH */</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>    dict <span class="op">*</span>ready_keys<span class="op">;</span>          </span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="co">/* WATCHED keys for MULTI/EXEC CAS */</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>    dict <span class="op">*</span>watched_keys<span class="op">;</span>         </span>
-<span id="cb8-12"><a href="#cb8-12"></a>    <span class="co">/* Database ID */</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>    <span class="dt">int</span> id<span class="op">;</span>                     </span>
-<span id="cb8-14"><a href="#cb8-14"></a>    <span class="co">/* Average TTL, just for stats */</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a>    <span class="dt">long</span> <span class="dt">long</span> avg_ttl<span class="op">;</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a>    <span class="co">/* Cursor of the active expire cycle. */</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> expires_cursor<span class="op">;</span> </span>
-<span id="cb8-18"><a href="#cb8-18"></a>    <span class="co">/* List of key names to attempt to defrag one by one, gradually. */</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a>    list <span class="op">*</span>defrag_later<span class="op">;</span>         </span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="op">}</span> redisDb<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource x-plantuml number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>!theme sketchy-outline</span>
-<span id="cb9-2"><a href="#cb9-2"></a>skinparam defaultFontSize 14</span>
-<span id="cb9-3"><a href="#cb9-3"></a>' skinparam class {</span>
-<span id="cb9-4"><a href="#cb9-4"></a>'     FontSize 32</span>
-<span id="cb9-5"><a href="#cb9-5"></a>'     note {</span>
-<span id="cb9-6"><a href="#cb9-6"></a>'         FontSize 32</span>
-<span id="cb9-7"><a href="#cb9-7"></a>'     }</span>
-<span id="cb9-8"><a href="#cb9-8"></a>' }</span>
-<span id="cb9-9"><a href="#cb9-9"></a></span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a>struct redisDb {</span>
-<span id="cb9-12"><a href="#cb9-12"></a>    dict *dict</span>
-<span id="cb9-13"><a href="#cb9-13"></a>    ..</span>
-<span id="cb9-14"><a href="#cb9-14"></a>    dict *expires</span>
-<span id="cb9-15"><a href="#cb9-15"></a>    ..</span>
-<span id="cb9-16"><a href="#cb9-16"></a>    dict *blocking_keys</span>
-<span id="cb9-17"><a href="#cb9-17"></a>    ..</span>
-<span id="cb9-18"><a href="#cb9-18"></a>    dict *ready_keys</span>
-<span id="cb9-19"><a href="#cb9-19"></a>    ..</span>
-<span id="cb9-20"><a href="#cb9-20"></a>    dict *watched_keys</span>
-<span id="cb9-21"><a href="#cb9-21"></a>    ..</span>
-<span id="cb9-22"><a href="#cb9-22"></a>    int id</span>
-<span id="cb9-23"><a href="#cb9-23"></a>}</span>
-<span id="cb9-24"><a href="#cb9-24"></a>struct dict {</span>
-<span id="cb9-25"><a href="#cb9-25"></a>    dictType *type</span>
-<span id="cb9-26"><a href="#cb9-26"></a>    ..</span>
-<span id="cb9-27"><a href="#cb9-27"></a>    void *privdata</span>
-<span id="cb9-28"><a href="#cb9-28"></a>    ..</span>
-<span id="cb9-29"><a href="#cb9-29"></a>    dictht ht[2]</span>
-<span id="cb9-30"><a href="#cb9-30"></a>    ..</span>
-<span id="cb9-31"><a href="#cb9-31"></a>    long rehashidx</span>
-<span id="cb9-32"><a href="#cb9-32"></a>    ..</span>
-<span id="cb9-33"><a href="#cb9-33"></a>    int16_t pauserehash</span>
-<span id="cb9-34"><a href="#cb9-34"></a>}</span>
-<span id="cb9-35"><a href="#cb9-35"></a>note left of dict::ht[2]</span>
-<span id="cb9-36"><a href="#cb9-36"></a>哈希表,0号表示正在使用的哈希表</span>
-<span id="cb9-37"><a href="#cb9-37"></a>1号表示rehash的哈希表</span>
-<span id="cb9-38"><a href="#cb9-38"></a>end note</span>
-<span id="cb9-39"><a href="#cb9-39"></a>struct dictht {</span>
-<span id="cb9-40"><a href="#cb9-40"></a>    dictEntry **table</span>
-<span id="cb9-41"><a href="#cb9-41"></a>    ..</span>
-<span id="cb9-42"><a href="#cb9-42"></a>    unsigned long size</span>
-<span id="cb9-43"><a href="#cb9-43"></a>    ..</span>
-<span id="cb9-44"><a href="#cb9-44"></a>    unsigned long sizemask</span>
-<span id="cb9-45"><a href="#cb9-45"></a>    ..</span>
-<span id="cb9-46"><a href="#cb9-46"></a>    unsigned long used</span>
-<span id="cb9-47"><a href="#cb9-47"></a>}</span>
-<span id="cb9-48"><a href="#cb9-48"></a>struct v &lt;&lt; (U,orchid) &gt;&gt; {</span>
-<span id="cb9-49"><a href="#cb9-49"></a>        void *val</span>
-<span id="cb9-50"><a href="#cb9-50"></a>        ..</span>
-<span id="cb9-51"><a href="#cb9-51"></a>        uint64_t u64</span>
-<span id="cb9-52"><a href="#cb9-52"></a>        ..</span>
-<span id="cb9-53"><a href="#cb9-53"></a>        int64_t s64</span>
-<span id="cb9-54"><a href="#cb9-54"></a>        ..</span>
-<span id="cb9-55"><a href="#cb9-55"></a>        double d</span>
-<span id="cb9-56"><a href="#cb9-56"></a>}</span>
-<span id="cb9-57"><a href="#cb9-57"></a>note top of v</span>
-<span id="cb9-58"><a href="#cb9-58"></a>这是一个联合体 union</span>
-<span id="cb9-59"><a href="#cb9-59"></a>end note</span>
-<span id="cb9-60"><a href="#cb9-60"></a>struct dictEntry {</span>
-<span id="cb9-61"><a href="#cb9-61"></a>    void *key</span>
-<span id="cb9-62"><a href="#cb9-62"></a>    ..</span>
-<span id="cb9-63"><a href="#cb9-63"></a>    union v</span>
-<span id="cb9-64"><a href="#cb9-64"></a>    ..</span>
-<span id="cb9-65"><a href="#cb9-65"></a>    struct dictEntry *next</span>
-<span id="cb9-66"><a href="#cb9-66"></a>}</span>
-<span id="cb9-67"><a href="#cb9-67"></a>redisDb o-- dict</span>
-<span id="cb9-68"><a href="#cb9-68"></a>dict o-- dictht</span>
-<span id="cb9-69"><a href="#cb9-69"></a>dictht o-- dictEntry</span>
-<span id="cb9-70"><a href="#cb9-70"></a>dictEntry o-- v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- ## 服务启动 初始化 -->
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 编译</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># -O0 参数表示告诉编译器不要优化代码, 防止你在 Debug 的时候,IDE 里面的 Redis 源码与实际运行的代码对应不上.</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># MALLOC=jemalloc,指定在 Mac OS 系统上 Redis 使用 jemalloc 内存分配器,</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Linux 默认使用该分配器，如果是 Linux 系统,无需指定该参数</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">make</span> CFLAGS=<span class="st">"-g -O0"</span> MALLOC=jemalloc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>开始调试 (快捷键F5)</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/server.c main()主函数 打个断点 </strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="src/server.c main()主函数 打个断点 "><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">struct</span> timeval tv<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">int</span> j<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="dt">char</span> config_from_stdin <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="op">...</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="op">...</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="总体流程" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="总体流程"><span class="header-section-number">2</span> 总体流程</h2>
+<section id="服务启动" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="服务启动"><span class="header-section-number">2.1</span> 服务启动</h3>
+<embed src="../../../.diagram/fcfde7c3e3582ae2962027b99af57b02.svg">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">server.c入口</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">redisCommandTable</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">initServer()</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>server.c</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="server.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">// 入口</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="co">// ...</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    initServerConfig<span class="op">();</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co">// ...</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    initServer<span class="op">();</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="co">// ...</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">struct</span> redisCommand redisCommandTable<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="op">{</span><span class="st">"module"</span><span class="op">,</span>moduleCommand<span class="op">,-</span><span class="dv">2</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="st">"admin no-script"</span><span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="dv">0</span><span class="op">,</span>NULL<span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">},</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="op">{</span><span class="st">"get"</span><span class="op">,</span>getCommand<span class="op">,</span><span class="dv">2</span><span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="st">"read-only fast @string"</span><span class="op">,</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="dv">0</span><span class="op">,</span>NULL<span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">},</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="op">...</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">void</span> initServer<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="co">// ...</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    server<span class="op">.</span>db <span class="op">=</span> zmalloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>redisDb<span class="op">)*</span>server<span class="op">.</span>dbnum<span class="op">);</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="co">// ...</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    </span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="co">/* 创建并初始化数据库结构 dbnum=16  我们select 0 选择数据库*/</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> server<span class="op">.</span>dbnum<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>dict <span class="op">=</span> dictCreate<span class="op">(&amp;</span>dbDictType<span class="op">,</span>NULL<span class="op">);</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>expires <span class="op">=</span> dictCreate<span class="op">(&amp;</span>dbExpiresDictType<span class="op">,</span>NULL<span class="op">);</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>expires_cursor <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>blocking_keys <span class="op">=</span> dictCreate<span class="op">(&amp;</span>keylistDictType<span class="op">,</span>NULL<span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>ready_keys <span class="op">=</span> dictCreate<span class="op">(&amp;</span>objectKeyPointerValueDictType<span class="op">,</span>NULL<span class="op">);</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>watched_keys <span class="op">=</span> dictCreate<span class="op">(&amp;</span>keylistDictType<span class="op">,</span>NULL<span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>id <span class="op">=</span> j<span class="op">;</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>avg_ttl <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>        server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>defrag_later <span class="op">=</span> listCreate<span class="op">();</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>        listSetFreeMethod<span class="op">(</span>server<span class="op">.</span>db<span class="op">[</span>j<span class="op">].</span>defrag_later<span class="op">,(</span><span class="dt">void</span> <span class="op">(*)(</span><span class="dt">void</span><span class="op">*))</span>sdsfree<span class="op">);</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="op">}</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="set-age-11-的过程doing" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="set-age-11-的过程doing"><span class="header-section-number">3</span> set age 11 的过程(doing)</h2>
+<p>开到key-value的这种结构,数据是如何存储的呢? 我们应该很容易想到哈希表吧, 去看<a href="../../../docs/go/basic/map.qmd#map">go中map的图书馆例子</a>.</p>
+<p>这里我再举个例子, 新华字典, 我们可以说字典有2种哈希函数, 一种是按照拼音来查,另外一种是按偏旁部首.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> redisDb <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="co">/* The keyspace for this DB */</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    dict <span class="op">*</span>dict<span class="op">;</span>                 </span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="co">/* Timeout of keys with a timeout set */</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    dict <span class="op">*</span>expires<span class="op">;</span>           </span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="co">/* Keys with clients waiting for data (BLPOP)*/</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    dict <span class="op">*</span>blocking_keys<span class="op">;</span>   </span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="co">/* Blocked keys that received a PUSH */</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>    dict <span class="op">*</span>ready_keys<span class="op">;</span>          </span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="co">/* WATCHED keys for MULTI/EXEC CAS */</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    dict <span class="op">*</span>watched_keys<span class="op">;</span>         </span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="co">/* Database ID */</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="dt">int</span> id<span class="op">;</span>                     </span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="co">/* Average TTL, just for stats */</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="dt">long</span> <span class="dt">long</span> avg_ttl<span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>    <span class="co">/* Cursor of the active expire cycle. */</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> expires_cursor<span class="op">;</span> </span>
+<span id="cb7-18"><a href="#cb7-18"></a>    <span class="co">/* List of key names to attempt to defrag one by one, gradually. */</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>    list <span class="op">*</span>defrag_later<span class="op">;</span>         </span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="op">}</span> redisDb<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<embed src="../../../.diagram/3f0cc30273f50e4fd7b1122e76d033fc.svg">
+<!-- ## 服务启动 初始化 -->
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1052,6 +1044,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/middleware/redis/data-type.html" class="pagination-link" aria-label="数据类型">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">数据类型</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

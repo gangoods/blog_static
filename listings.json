@@ -1,13 +1,21 @@
 [
   {
+    "listing": "/docs/back-end/rust/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/back-end/go/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/quarto/index.html",
+    "items": []
+  },
+  {
     "listing": "/docs/blog/index.html",
     "items": [
       "/docs/blog/posts/2024-08-04-hello.html"
     ]
-  },
-  {
-    "listing": "/docs/rust/index.html",
-    "items": []
   },
   {
     "listing": "/docs/devops/linux/index.html",
@@ -22,7 +30,11 @@
     "items": []
   },
   {
-    "listing": "/docs/middleware/index.html",
+    "listing": "/docs/middleware/redis/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/middleware/mysql/index_.html",
     "items": []
   },
   {
@@ -34,15 +46,15 @@
     "items": []
   },
   {
-    "listing": "/docs/go/index.html",
-    "items": []
-  },
-  {
     "listing": "/docs/netprog/index.html",
     "items": []
   },
   {
-    "listing": "/docs/quarto/index.html",
+    "listing": "/docs/front-end/css/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/back-end/python/index.html",
     "items": []
   }
 ]

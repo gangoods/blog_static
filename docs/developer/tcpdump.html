@@ -113,11 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../favicon.png" alt="" class="navbar-logo">
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -129,13 +124,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/go/index.html"> 
-<span class="menu-text">GO</span></a>
+    <a class="nav-link" href="../../docs/quarto/index.html"> 
+<span class="menu-text">Quarto</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../docs/rust/index.html"> 
-<span class="menu-text">Rust</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">后端</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../docs/back-end/go/index.html">
+ <span class="dropdown-text">Go</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/back-end/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/back-end/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
@@ -163,10 +173,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../docs/middleware/index.html"> 
-<span class="menu-text">中间件</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
@@ -192,10 +213,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#指定端口" id="toc-指定端口" class="nav-link active" data-scroll-target="#指定端口"><span class="header-section-number">0.1</span> 指定端口</a></li>
-  <li><a href="#指定网站" id="toc-指定网站" class="nav-link" data-scroll-target="#指定网站"><span class="header-section-number">0.2</span> 指定网站</a></li>
-  <li><a href="#参数" id="toc-参数" class="nav-link" data-scroll-target="#参数"><span class="header-section-number">0.3</span> 参数</a></li>
-  <li><a href="#本地web服务的抓包" id="toc-本地web服务的抓包" class="nav-link" data-scroll-target="#本地web服务的抓包"><span class="header-section-number">0.4</span> 本地web服务的抓包</a></li>
+  <li><a href="#监听一个网卡" id="toc-监听一个网卡" class="nav-link active" data-scroll-target="#监听一个网卡"><span class="header-section-number">0.1</span> 监听一个网卡</a></li>
+  <li><a href="#指定端口" id="toc-指定端口" class="nav-link" data-scroll-target="#指定端口"><span class="header-section-number">0.2</span> 指定端口</a></li>
+  <li><a href="#指定网站" id="toc-指定网站" class="nav-link" data-scroll-target="#指定网站"><span class="header-section-number">0.3</span> 指定网站</a></li>
+  <li><a href="#参数" id="toc-参数" class="nav-link" data-scroll-target="#参数"><span class="header-section-number">0.4</span> 参数</a></li>
+  <li><a href="#本地web服务的抓包" id="toc-本地web服务的抓包" class="nav-link" data-scroll-target="#本地web服务的抓包"><span class="header-section-number">0.5</span> 本地web服务的抓包</a></li>
+  <li><a href="#tcpxtract" id="toc-tcpxtract" class="nav-link" data-scroll-target="#tcpxtract"><span class="header-section-number">1</span> tcpxtract</a></li>
+  <li><a href="#wiresharktshark-抓包分析" id="toc-wiresharktshark-抓包分析" class="nav-link" data-scroll-target="#wiresharktshark-抓包分析"><span class="header-section-number">2</span> wireshark(tshark) 抓包分析</a></li>
   </ul>
 </nav>
     </div>
@@ -205,16 +229,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>!!! note todo… ### 监听一个网卡</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>todo…</p>
+</div>
+</div>
+<section id="监听一个网卡" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="监听一个网卡"><span class="header-section-number">0.1</span> 监听一个网卡</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">tcpdump</span> <span class="at">-v</span> <span class="at">-i</span> eth1</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co"># 将数据保存</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="ex">tcpdump</span> <span class="at">-v</span> <span class="at">-i</span> eth1 <span class="at">-w</span> tt.pcap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="指定端口" class="level3" data-number="0.1">
-<h3 data-number="0.1" class="anchored" data-anchor-id="指定端口"><span class="header-section-number">0.1</span> 指定端口</h3>
+</section>
+<section id="指定端口" class="level3" data-number="0.2">
+<h3 data-number="0.2" class="anchored" data-anchor-id="指定端口"><span class="header-section-number">0.2</span> 指定端口</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">tcpdump</span> <span class="at">-i</span> en1 tcp port  80</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="指定网站" class="level3" data-number="0.2">
-<h3 data-number="0.2" class="anchored" data-anchor-id="指定网站"><span class="header-section-number">0.2</span> 指定网站</h3>
+<section id="指定网站" class="level3" data-number="0.3">
+<h3 data-number="0.3" class="anchored" data-anchor-id="指定网站"><span class="header-section-number">0.3</span> 指定网站</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 打开一个终端窗口</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="ex">tcpdump</span> <span class="at">-S</span> <span class="at">-i</span> en1  host www.baidu.com and tcp port  80</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co"># 打开另外一个窗口</span></span>
@@ -226,19 +265,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9"></a><span class="co"># ● p 数据包</span></span>
 <span id="cb3-10"><a href="#cb3-10"></a><span class="co"># ● F  : finish</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="参数" class="level3" data-number="0.3">
-<h3 data-number="0.3" class="anchored" data-anchor-id="参数"><span class="header-section-number">0.3</span> 参数</h3>
+<section id="参数" class="level3" data-number="0.4">
+<h3 data-number="0.4" class="anchored" data-anchor-id="参数"><span class="header-section-number">0.4</span> 参数</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># -XX  显示16进制与ascii </span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">tcpdump</span> <span class="at">-D</span> <span class="co"># 查看当前有多少端口可以看的</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">tcpdump</span> <span class="at">-L</span> <span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># 列出来的 是 可以用 tcpdump -i 指定的</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># 查看当前有多少端口可以看的</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">tcpdump</span> <span class="at">-D</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="ex">tcpdump</span> <span class="at">-L</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="本地web服务的抓包" class="level3" data-number="0.4">
-<h3 data-number="0.4" class="anchored" data-anchor-id="本地web服务的抓包"><span class="header-section-number">0.4</span> 本地web服务的抓包</h3>
+<section id="本地web服务的抓包" class="level3" data-number="0.5">
+<h3 data-number="0.5" class="anchored" data-anchor-id="本地web服务的抓包"><span class="header-section-number">0.5</span> 本地web服务的抓包</h3>
 <ul>
 <li>注意是lo0 (mac 机器上的) 这个是local 本地主机或说回环接口 ,不是以太坊</li>
 <li>eth0: ethernet的简写，一般用于以太网接口</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">tcpdump</span> <span class="at">-XX</span> <span class="at">-e</span>  <span class="at">-S</span> <span class="at">-n</span> <span class="at">-i</span> lo0  host 127.0.0.1  and tcp port  8080</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 推荐这个最详细的信息输出</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># -XX 输出包的头部信息</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># -e输出的每行中包括数据链路层头部信息,比如源MAC和目标MAC</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># -S 会将 ack的值 显示为绝对值, 否则你会看到 握手的第三条数据的ack=1 是相对值</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#-n：对地址以数字方式显式，否则显式为主机名，也就是说-n选项不做主机名解析 ? 要加吗?</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">tcpdump</span> <span class="at">-XX</span> <span class="at">-e</span> <span class="at">-vvv</span> <span class="at">-S</span> <span class="at">-n</span> <span class="at">-i</span> lo0  host 127.0.0.1  and tcp port  8080</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 这个本地curl 访问百度 才能抓到..</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">tcpdump</span> <span class="at">-S</span> <span class="at">-i</span> en1  host www.baidu.com and tcp port  80 <span class="at">-w</span> a.pcap</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># 本地我们开发的服务.在服务器上 运行</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">tcpdump</span> <span class="at">-S</span> <span class="at">-i</span> lo0 tcp port  8080 <span class="at">-w</span> a.pcap</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># 过滤出pcap文件中 某端口的数据包</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="ex">tcpdump</span>  <span class="at">-r</span> src.pcap <span class="st">"tcp port 22"</span> <span class="at">-w</span> dst.pcap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tcpxtract" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="tcpxtract"><span class="header-section-number">1</span> tcpxtract</h2>
+<p><a href="http://tcpxtract.sourceforge.net/">tcpxtract (sourceforge.net)</a></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">apt-get</span> install tcpxtract</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">yum</span> install tcpxtract</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># 只有这个pcap里是传输文件的时候才会显示东西. 或者导出文件到本地</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">tcpxtract</span> <span class="at">-f</span> xx.pcap </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="wiresharktshark-抓包分析" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="wiresharktshark-抓包分析"><span class="header-section-number">2</span> wireshark(tshark) 抓包分析</h2>
+<p>安装wireshark 后 无需安装它的gui ,就能使用tshark 命令行工具, 之前一直用以为命令是wireshark ,实际不是</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">yum</span> install wireshark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">tshark</span> <span class="at">-r</span> xxx.pcap</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#-s 512 :只抓取前512个字节数据</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#-i eth0 :监听eth0网卡</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#-n :禁止域名解析</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#-f ‘tcp dst port 3306’ :只捕捉协议为tcp,目的端口为3306的数据包</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#-R ‘mysql.query’ :过滤出mysql.query查询语句的报文</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#-T fields -e mysql.query :打印mysql查询语句</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="ex">tshark</span> <span class="at">-s</span> 512 <span class="at">-i</span> eth1 <span class="at">-n</span> <span class="at">-f</span> <span class="st">'tcp dst port 3306'</span> <span class="at">-R</span> <span class="st">'mysql.query'</span> <span class="at">-T</span> fields <span class="at">-e</span> mysql.query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 在服务器上, 运行, host表示 来访问服务器的 客户端的ip,我们要过滤出这样的数据</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># 这个也是可以在客户端上用, 会抓取到 你客户端访问 目标9999 端口的 数据的</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="ex">tcpdump</span> <span class="at">-XX</span> <span class="at">-e</span> <span class="at">-vvv</span> <span class="at">-S</span> <span class="at">-n</span> <span class="at">-i</span> eno1  host 172.16.1.14 and tcp port   9999 <span class="at">-w</span> aaaa.pcap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

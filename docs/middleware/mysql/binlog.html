@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../docs/middleware/mysql/sql.html" rel="prev">
 <link href="../../../favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -107,17 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../favicon.png" alt="" class="navbar-logo">
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -129,13 +125,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/go/index.html"> 
-<span class="menu-text">GO</span></a>
+    <a class="nav-link" href="../../../docs/quarto/index.html"> 
+<span class="menu-text">Quarto</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/rust/index.html"> 
-<span class="menu-text">Rust</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">后端</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/go/index.html">
+ <span class="dropdown-text">Go</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
@@ -163,10 +174,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/middleware/index.html"> 
-<span class="menu-text">中间件</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
@@ -182,21 +204,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/middleware/mysql/binlog.html">二进制日志</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/backup-recovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">备份与恢复</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">索引底层</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SQL语句</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/binlog.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">二进制日志</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#配置" id="toc-配置" class="nav-link active" data-scroll-target="#配置"><span class="header-section-number">1</span> 配置</a>
-  <ul>
-  <li><a href="#binlog_format" id="toc-binlog_format" class="nav-link" data-scroll-target="#binlog_format"><span class="header-section-number">1.1</span> binlog_format</a></li>
-  </ul></li>
-  <li><a href="#查看binlog文件里的sql语句" id="toc-查看binlog文件里的sql语句" class="nav-link" data-scroll-target="#查看binlog文件里的sql语句"><span class="header-section-number">2</span> 查看binlog文件里的sql语句</a></li>
+  <li><a href="#配置信息" id="toc-配置信息" class="nav-link active" data-scroll-target="#配置信息"><span class="header-section-number">1</span> 配置信息</a></li>
+  <li><a href="#binlog_format" id="toc-binlog_format" class="nav-link" data-scroll-target="#binlog_format"><span class="header-section-number">2</span> binlog_format</a></li>
+  <li><a href="#查看binlog文件里的sql语句" id="toc-查看binlog文件里的sql语句" class="nav-link" data-scroll-target="#查看binlog文件里的sql语句"><span class="header-section-number">3</span> 查看binlog文件里的sql语句</a></li>
   </ul>
 </nav>
     </div>
@@ -206,10 +273,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="配置" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="配置"><span class="header-section-number">1</span> 配置</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource title=&quot;my.cnf&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>server-id               = 1</span>
-<span id="cb1-2"><a href="#cb1-2"></a>log_bin                 = mysql-bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>todo…</p>
+</div>
+</div>
+<section id="配置信息" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="配置信息"><span class="header-section-number">1</span> 配置信息</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>my.cnf</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="my.cnf"><pre class="sourceCode numberSource conf number-lines code-with-copy"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">server-id</span>               <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">log_bin</span>                 <span class="op">=</span> <span class="dt">mysql-bin</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource title=&quot;查看变量&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>+-----------------------------------------+---------------------+</span>
 <span id="cb2-2"><a href="#cb2-2"></a>| Variable_name               | Value                           |</span>
 <span id="cb2-3"><a href="#cb2-3"></a>+-----------------------------------------+---------------------+</span>
@@ -219,21 +304,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7"></a>| max_binlog_size             | 104857600                       |  -- binlog文件的最大值,达到最大值,则重新生成一个新的</span>
 <span id="cb2-8"><a href="#cb2-8"></a>| binlog_format               | ROW                             |  -- 有三种 statement(记录sql语句), row(每一行数据) , mixed</span>
 <span id="cb2-9"><a href="#cb2-9"></a>+-----------------------------------------+---------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-result">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1"></a>show <span class="kw">master</span> status;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource title=&quot;结果&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>+------------------+----------+</span>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>执行结果</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="执行结果"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>+------------------+----------+</span>
 <span id="cb4-2"><a href="#cb4-2"></a>| File             | Position |</span>
 <span id="cb4-3"><a href="#cb4-3"></a>+------------------+----------+</span>
 <span id="cb4-4"><a href="#cb4-4"></a>| mysql-bin.000001 |      154 |</span>
 <span id="cb4-5"><a href="#cb4-5"></a>+------------------+----------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>==我们发现 mysql-bin.000001的文件大小 字节数 就是 上面的position==</p>
+</div>
+</div>
+<p><span class="txt-highlight">我们发现 mysql-bin.000001的文件大小 154 字节数就是上面的position</span></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">ll</span> mysql-bin<span class="pp">*</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="ex">-rw-r-----</span> 1 mysql mysql 154 Sep  3 14:36 mysql-bin.000001</span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="ex">-rw-r-----</span> 1 mysql mysql  19 Sep  3 14:36 mysql-bin.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>查看binlog更具体的内容</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1"></a>show binlog <span class="kw">events</span> <span class="kw">in</span> <span class="st">'mysql-bin.000001'</span>\G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource title=&quot;结果&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>*************************** 1. row ***************************</span>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看binlog更具体的内容</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="查看binlog更具体的内容"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1"></a>show binlog <span class="kw">events</span> <span class="kw">in</span> <span class="st">'mysql-bin.000001'</span>\G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="点击查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+点击查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>*************************** 1. row ***************************</span>
 <span id="cb7-2"><a href="#cb7-2"></a>   Log_name: mysql-bin.000001</span>
 <span id="cb7-3"><a href="#cb7-3"></a>        Pos: 4</span>
 <span id="cb7-4"><a href="#cb7-4"></a> Event_type: Format_desc</span>
@@ -247,18 +354,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-12"><a href="#cb7-12"></a>  Server_id: 1</span>
 <span id="cb7-13"><a href="#cb7-13"></a>End_log_pos: 154</span>
 <span id="cb7-14"><a href="#cb7-14"></a>       Info:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>刷新日志,会重新生成一个二进制文件</li>
-</ul>
-<pre><code>flush binary logs;
-show master status;
-+------------------+----------+
-| File             | Position |
-+------------------+----------+
-| mysql-bin.000002 |      154 |
-+------------------+----------+</code></pre>
-<section id="binlog_format" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="binlog_format"><span class="header-section-number">1.1</span> binlog_format</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>刷新日志,会重新生成一个二进制文件</strong></pre>
+</div>
+<div class="sourceCode" id="cb8" data-filename="刷新日志,会重新生成一个二进制文件"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">flush</span> binary logs<span class="kw">;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">show</span> master status<span class="kw">;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">+------------------+----------+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">|</span> <span class="ex">File</span>             <span class="kw">|</span> <span class="ex">Position</span> <span class="kw">|</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="ex">+------------------+----------+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="kw">|</span> <span class="ex">mysql-bin.000002</span> <span class="kw">|</span>      <span class="ex">154</span> <span class="kw">|</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="ex">+------------------+----------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="binlog_format" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="binlog_format"><span class="header-section-number">2</span> binlog_format</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 10%">
@@ -273,7 +387,7 @@ show master status;
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">statement</td>
-<td>记录操作的sql文 <br> ==不支持不确定的sql语句,<code>比如update ....  limit 3</code>==</td>
+<td>记录操作的sql文 <br> <span class="txt-highlight">不支持不确定的sql语句,<code>比如update ....  limit 3</code></span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">row</td>
@@ -286,9 +400,8 @@ show master status;
 </tbody>
 </table>
 </section>
-</section>
-<section id="查看binlog文件里的sql语句" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="查看binlog文件里的sql语句"><span class="header-section-number">2</span> 查看binlog文件里的sql语句</h2>
+<section id="查看binlog文件里的sql语句" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="查看binlog文件里的sql语句"><span class="header-section-number">3</span> 查看binlog文件里的sql语句</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#这个可以看到具体的sql文件</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="ex">mysqlbinlog</span> mysql-bin.000001 <span class="at">-vv</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co">#-----------------------------------------------------</span></span>
@@ -879,6 +992,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/middleware/mysql/sql.html" class="pagination-link" aria-label="SQL语句">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SQL语句</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

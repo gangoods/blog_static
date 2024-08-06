@@ -64,6 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../docs/middleware/mysql/binlog.html" rel="next">
+<link href="../../../docs/middleware/mysql/index.html" rel="prev">
 <link href="../../../favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -107,17 +109,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../favicon.png" alt="" class="navbar-logo">
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -129,13 +126,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/go/index.html"> 
-<span class="menu-text">GO</span></a>
+    <a class="nav-link" href="../../../docs/quarto/index.html"> 
+<span class="menu-text">Quarto</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/rust/index.html"> 
-<span class="menu-text">Rust</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">后端</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/go/index.html">
+ <span class="dropdown-text">Go</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/back-end/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
@@ -163,10 +175,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/middleware/index.html"> 
-<span class="menu-text">中间件</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
@@ -182,21 +205,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/middleware/mysql/sql.html">SQL语句</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/backup-recovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">备份与恢复</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">索引底层</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/sql.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">SQL语句</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/mysql/binlog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">二进制日志</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#常用函数" id="toc-常用函数" class="nav-link active" data-scroll-target="#常用函数"><span class="header-section-number">1</span> 常用函数</a>
-  <ul>
-  <li><a href="#字符串处理" id="toc-字符串处理" class="nav-link" data-scroll-target="#字符串处理"><span class="header-section-number">1.1</span> 字符串处理</a></li>
-  </ul></li>
-  <li><a href="#mysql-配置相关" id="toc-mysql-配置相关" class="nav-link" data-scroll-target="#mysql-配置相关"><span class="header-section-number">2</span> mysql 配置相关</a>
+  <li><a href="#常用函数" id="toc-常用函数" class="nav-link active" data-scroll-target="#常用函数"><span class="header-section-number">1</span> 常用函数</a></li>
+  <li><a href="#配置相关" id="toc-配置相关" class="nav-link" data-scroll-target="#配置相关"><span class="header-section-number">2</span> 配置相关</a>
   <ul>
   <li><a href="#查看mysql相关信息" id="toc-查看mysql相关信息" class="nav-link" data-scroll-target="#查看mysql相关信息"><span class="header-section-number">2.1</span> 查看mysql相关信息</a></li>
   <li><a href="#查看会话与全局变量" id="toc-查看会话与全局变量" class="nav-link" data-scroll-target="#查看会话与全局变量"><span class="header-section-number">2.2</span> 查看会话与全局变量</a></li>
@@ -215,7 +282,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#改" id="toc-改" class="nav-link" data-scroll-target="#改"><span class="header-section-number">5.6</span> 改</a></li>
   <li><a href="#查" id="toc-查" class="nav-link" data-scroll-target="#查"><span class="header-section-number">5.7</span> 查</a></li>
   </ul></li>
-  <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null"><span class="header-section-number">6</span> null</a></li>
+  <li><a href="#奇技" id="toc-奇技" class="nav-link" data-scroll-target="#奇技"><span class="header-section-number">6</span> 奇技</a>
+  <ul>
+  <li><a href="#导出csv带字段名" id="toc-导出csv带字段名" class="nav-link" data-scroll-target="#导出csv带字段名"><span class="header-section-number">6.1</span> 导出csv,带字段名</a></li>
+  </ul></li>
+  <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null"><span class="header-section-number">7</span> null</a></li>
   </ul>
 </nav>
     </div>
@@ -225,24 +296,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>!!! note sql语句后面都可以加上=(;分号前面)==,这样会显示一行一行,而不是表格.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>todo…</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>终端中sql语句后面都可以加上\G (<span class="txt-highlight">在;分号前面</span>),这样会显示一行一行,而不是表格.</p>
+</div>
+</div>
 <section id="常用函数" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="常用函数"><span class="header-section-number">1</span> 常用函数</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">-- 获取一个uuid</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> uuid();</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">-- 当前时间</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="kw">select</span> now();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="字符串处理" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="字符串处理"><span class="header-section-number">1.1</span> 字符串处理</h3>
 </section>
-</section>
-<section id="mysql-配置相关" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="mysql-配置相关"><span class="header-section-number">2</span> mysql 配置相关</h2>
+<section id="配置相关" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="配置相关"><span class="header-section-number">2</span> 配置相关</h2>
 <section id="查看mysql相关信息" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="查看mysql相关信息"><span class="header-section-number">2.1</span> 查看mysql相关信息</h3>
+<div class="code-result">
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">-- 进入mysql控制台后 (mysql -uroot .. 命令连接后的界面) 输入 \s 后回车</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>\s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource title=&quot;执行结果&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>--------------</span>
+<div class="callout callout-style-default callout-important callout-titled" title="点击查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+点击查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>--------------</span>
 <span id="cb3-2"><a href="#cb3-2"></a>mysql  Ver 5.7.41-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a>Connection id:      3</span>
@@ -261,6 +367,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-17"><a href="#cb3-17"></a>Binary data as:     Hexadecimal</span>
 <span id="cb3-18"><a href="#cb3-18"></a>Uptime:         43 min 23 sec</span>
 <span id="cb3-19"><a href="#cb3-19"></a>--------------</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="查看会话与全局变量" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="查看会话与全局变量"><span class="header-section-number">2.2</span> 查看会话与全局变量</h3>
@@ -280,8 +390,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="查看字符集" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="查看字符集"><span class="header-section-number">2.3</span> 查看字符集</h3>
+<div class="code-result">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1"></a>show <span class="dt">character</span> <span class="kw">set</span> <span class="kw">like</span> <span class="st">'%utf%'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource title=&quot;执行结果&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>+---------+------------------+--------------------+--------+</span>
+<div class="callout callout-style-default callout-important callout-titled" title="点击查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+点击查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>+---------+------------------+--------------------+--------+</span>
 <span id="cb6-2"><a href="#cb6-2"></a>| Charset | Description      | Default collation  | Maxlen |</span>
 <span id="cb6-3"><a href="#cb6-3"></a>+---------+------------------+--------------------+--------+</span>
 <span id="cb6-4"><a href="#cb6-4"></a>| utf8    | UTF-8 Unicode    | utf8_general_ci    |      3 |</span>
@@ -290,6 +413,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7"></a>| utf16le | UTF-16LE Unicode | utf16le_general_ci |      4 |</span>
 <span id="cb6-8"><a href="#cb6-8"></a>| utf32   | UTF-32 Unicode   | utf32_general_ci   |      4 |</span>
 <span id="cb6-9"><a href="#cb6-9"></a>+---------+------------------+--------------------+--------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="隔离级别" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="隔离级别"><span class="header-section-number">2.4</span> 隔离级别</h3>
@@ -327,7 +454,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-11"><a href="#cb9-11"></a><span class="co">-- 每一个数据库对应data dir目录里的是一个文件夹.但是information_schema 不在里面</span></span>
 <span id="cb9-12"><a href="#cb9-12"></a><span class="kw">use</span> information_schema;</span>
 <span id="cb9-13"><a href="#cb9-13"></a><span class="co">-- 我们发现这些个表的引擎都是memory,所以..没有</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a>show <span class="kw">table</span> status; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-14"><a href="#cb9-14"></a>show <span class="kw">table</span> status;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="table" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="table"><span class="header-section-number">5</span> table</h2>
@@ -349,59 +476,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="临时表" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="临时表"><span class="header-section-number">5.3</span> 临时表</h3>
-<p>!!! warning “注意” 1. 创建的临时表是基于会话的,你另外开一个会话,你看不到你创建的临时表 2. 临时表可以与实体表重名 3. 在有重名的情况下, 你<code>select * from a</code>实际查询的是临时表,而不是实体表</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>创建的临时表是基于会话的,你另外开一个会话,你看不到你创建的临时表</li>
+<li>临时表可以与实体表重名</li>
+<li>在有重名的情况下, 你<code>select * from a</code>实际查询的是临时表,而不是实体表</li>
+</ol>
+</div>
+</div>
 <ul>
 <li>创建临时表</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">create</span> <span class="kw">temporary</span> <span class="kw">table</span>  tmp_a (<span class="kw">id</span> <span class="dt">int</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>查看临时表的默认存储引擎</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1"></a>show variables <span class="kw">like</span> <span class="st">'%default_tmp%'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource title=&quot;结果&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>+----------------------------+--------+</span>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看临时表的默认存储引擎</strong></pre>
+</div>
+<div class="sourceCode" id="cb13" data-filename="查看临时表的默认存储引擎"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1"></a>show variables <span class="kw">like</span> <span class="st">'%default_tmp%'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="点击查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+点击查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>+----------------------------+--------+</span>
 <span id="cb14-2"><a href="#cb14-2"></a>| Variable_name              | Value  |</span>
 <span id="cb14-3"><a href="#cb14-3"></a>+----------------------------+--------+</span>
 <span id="cb14-4"><a href="#cb14-4"></a>| default_tmp_storage_engine | InnoDB |</span>
 <span id="cb14-5"><a href="#cb14-5"></a>+----------------------------+--------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>查看 临时表的状态</li>
-</ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">-- 可以看到系统里有创建了多少个临时表</span></span>
+</div>
+</div>
+</div>
+</div>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看 临时表的状态</strong></pre>
+</div>
+<div class="sourceCode" id="cb15" data-filename="查看 临时表的状态"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">-- 可以看到系统里有创建了多少个临时表</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>show <span class="kw">global</span> status <span class="kw">like</span> <span class="st">'%tmp_tables%'</span>;</span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="co">-- 当前会话里的情况</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a>show status <span class="kw">like</span> <span class="st">'%tmp_tables%'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource title=&quot;结果&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a>+--------------------+-------+</span>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="点击查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+点击查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a>+--------------------+-------+</span>
 <span id="cb16-2"><a href="#cb16-2"></a>| Variable_name      | Value |</span>
 <span id="cb16-3"><a href="#cb16-3"></a>+--------------------+-------+</span>
 <span id="cb16-4"><a href="#cb16-4"></a>| Created_tmp_tables | 6     |</span>
 <span id="cb16-5"><a href="#cb16-5"></a>+--------------------+-------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>表结构存放目录</li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1"></a>show variables <span class="kw">like</span> <span class="st">'tmpdir'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>表结构存放目录</strong></pre>
+</div>
+<div class="sourceCode" id="cb17" data-filename="表结构存放目录"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1"></a>show variables <span class="kw">like</span> <span class="st">'tmpdir'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">-- 如果你是在mysql所在服务器 用的mysql命令连接可以直接使用如下命令查看</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="co">-- 可以看到.frm的文件</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="co">-- 退出当前mysql 会话, 这个表空间文件会删除的.</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a><span class="kw">system</span> ls <span class="op">/</span>tmp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource title=&quot;临时表表结构文件命名方式&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1"></a>临时表的表结构文件.frm 命名方式是 #sql{进程id}_{线程id}_序列号&lt;br&gt;</span>
-<span id="cb19-2"><a href="#cb19-2"></a>线程id 通过 `show processlist` 的ID列获得.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="临时表表结构文件命名方式">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+临时表表结构文件命名方式
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>表空间的存放目录</li>
+<li>临时表的表结构文件.frm 命名方式是 #sql{进程id}_{线程id}_序列号</li>
+<li>线程id 通过 <code>show processlist</code> 的ID列获得.</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1"></a>show variables <span class="kw">like</span> <span class="ot">"%data%"</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource title=&quot;这里显示几个我们关心的&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>+---------------------------------------+------------------------+</span>
-<span id="cb21-2"><a href="#cb21-2"></a>| Variable_name                         | Value                  |</span>
-<span id="cb21-3"><a href="#cb21-3"></a>+---------------------------------------+------------------------+</span>
-<span id="cb21-4"><a href="#cb21-4"></a>| datadir                               | /var/lib/mysql/        |</span>
-<span id="cb21-5"><a href="#cb21-5"></a>| innodb_data_file_path                 | ibdata1:12M:autoextend |</span>
-<span id="cb21-6"><a href="#cb21-6"></a>| innodb_data_home_dir                  |                        |</span>
-<span id="cb21-7"><a href="#cb21-7"></a>| innodb_temp_data_file_path            | ibtmp1:12M:autoextend  |</span>
-<span id="cb21-8"><a href="#cb21-8"></a>+---------------------------------------+------------------------+</span>
-<span id="cb21-9"><a href="#cb21-9"></a></span>
-<span id="cb21-10"><a href="#cb21-10"></a>1. 创建的文件名是 ibtmp1,放在 innodb_data_home_dir 目录下</span>
-<span id="cb21-11"><a href="#cb21-11"></a>2. 如果 innodb_data_home_dir 是空的, 就放到datadir 下</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">-- 可以看到</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">system</span> ls <span class="op">/</span>var<span class="op">/</span>lib<span class="op">/</span>mysql<span class="op">/</span>ibtmp1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>表空间的存放目录</strong></pre>
+</div>
+<div class="sourceCode" id="cb19" data-filename="表空间的存放目录"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1"></a>show variables <span class="kw">like</span> <span class="ot">"%data%"</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="点击查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+点击查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="annotated-cell-26"><pre class="sourceCode numberSource text code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode"><span id="annotated-cell-26-1"><a href="#annotated-cell-26-1"></a>+---------------------------------------+------------------------+</span>
+<span id="annotated-cell-26-2"><a href="#annotated-cell-26-2"></a>| Variable_name                         | Value                  |</span>
+<span id="annotated-cell-26-3"><a href="#annotated-cell-26-3"></a>+---------------------------------------+------------------------+</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-26" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-26-4" class="code-annotation-target"><a href="#annotated-cell-26-4"></a>| datadir                               | /var/lib/mysql/        |</span>
+<span id="annotated-cell-26-5"><a href="#annotated-cell-26-5"></a>| innodb_data_file_path                 | ibdata1:12M:autoextend |</span>
+<span id="annotated-cell-26-6"><a href="#annotated-cell-26-6"></a>| innodb_data_home_dir                  |                        |</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-26" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-26-7" class="code-annotation-target"><a href="#annotated-cell-26-7"></a>| innodb_temp_data_file_path            | ibtmp1:12M:autoextend  |</span>
+<span id="annotated-cell-26-8"><a href="#annotated-cell-26-8"></a>+---------------------------------------+------------------------+</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-26" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-26" data-code-lines="7" data-code-annotation="1">创建的文件名是 ibtmp1,放在 innodb_data_home_dir 目录下</span>
+</dd>
+<dt data-target-cell="annotated-cell-26" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-26" data-code-lines="4" data-code-annotation="2">如果 innodb_data_home_dir 是空的, 就放到datadir 下</span>
+</dd>
+</dl>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">-- 可以看到</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">system</span> ls <span class="op">/</span>var<span class="op">/</span>lib<span class="op">/</span>mysql<span class="op">/</span>ibtmp1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="增" class="level3" data-number="5.4">
 <h3 data-number="5.4" class="anchored" data-anchor-id="增"><span class="header-section-number">5.4</span> 增</h3>
@@ -416,12 +639,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="5.7" class="anchored" data-anchor-id="查"><span class="header-section-number">5.7</span> 查</h3>
 </section>
 </section>
-<section id="null" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="null"><span class="header-section-number">6</span> null</h2>
-<p>!!! warning “注意” 1. 任何值与null进行=比较,得到的都是null 2. 用is 来判断</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">select</span> <span class="kw">null</span><span class="op">=</span><span class="dv">1</span>;</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">select</span> <span class="dv">1</span><span class="op">=</span><span class="kw">null</span>;</span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">select</span> <span class="kw">null</span> <span class="kw">in</span> (<span class="dv">1</span>,<span class="kw">null</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="奇技" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="奇技"><span class="header-section-number">6</span> 奇技</h2>
+<section id="导出csv带字段名" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="导出csv带字段名"><span class="header-section-number">6.1</span> 导出csv,带字段名</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># 默认导出没有标题. 所以用union 来完成效果</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="ex">mysql</span> <span class="at">-uroot</span> <span class="at">-proot</span> test <span class="at">-e</span> <span class="st">"select 'a','b','c' from dual union select a,b,c from test  into outfile '/tmp/x.csv' CHARACTER SET gbk fields terminated by ',' optionally enclosed by '</span><span class="dt">\"</span><span class="st">' lines terminated by '\r\n'; "</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>optionally enclosed by ‘"’ 这样 字段内容有, 号的 就不会被分成2个了.</li>
+<li>secure_file_priv=/tmp/ 这个参数影响 导出文件的位置,以及是否可导出</li>
+<li>如果 上面的参数为空, 去 /tmp/xxxxx-mariadb/tmp 看看</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="null" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="null"><span class="header-section-number">7</span> null</h2>
+<div class="callout callout-style-default callout-warning callout-titled" title="注意">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+注意
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>任何值与null进行=比较,得到的都是null</li>
+<li>用is 来判断</li>
+</ol>
+</div>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">select</span> <span class="kw">null</span><span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">select</span> <span class="dv">1</span><span class="op">=</span><span class="kw">null</span>;</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="kw">select</span> <span class="kw">null</span> <span class="kw">in</span> (<span class="dv">1</span>,<span class="kw">null</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -1000,6 +1263,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/middleware/mysql/index.html" class="pagination-link" aria-label="索引底层">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">索引底层</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/middleware/mysql/binlog.html" class="pagination-link" aria-label="二进制日志">
+        <span class="nav-page-text">二进制日志</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

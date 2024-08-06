@@ -28,8 +28,32 @@
   --md-code--highlight-bg-color:  #fbf196;
   --title-block-banner-index-color: #353a40;
   // --title-block-banner-color: #353a40;
+  --sidebar-section-hr: #6ca25b;
+  --table-has-border-color: #d4d8dc;
 }
-
+hr.sidebar-divider.hi {
+  // color: #6ca25b;
+  border-top: 2px dashed var(--sidebar-section-hr);
+}
+table.caption-top.table{
+  border: 1px solid var(--table-has-border-color) !important;
+  border-collapse: collapse;
+  th,
+  td {
+      border: 1px solid var(--table-has-border-color);
+  }
+}
+// div.has-tbl-border{
+//   table {
+//     // margin: 0 auto;
+//     border: 1px solid var(--table-has-border-color);
+//     border-collapse: collapse;
+//   }
+//   th,
+//   td {
+//       border: 1px solid var(--table-has-border-color);
+//   }
+// }
 div.code-result{
   div.sourceCode:first-child{
     margin-bottom: 0;
