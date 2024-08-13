@@ -2,14 +2,16 @@
 :root {
   --md-code--highlight-bg-color: #323d48;
   --text-title-h2: #ff79c6;
-  --text-title-h3: orange;
+  --text-title-h3:  orange  ;
   --text-title-h4: #9be51c;
   /* #f0fd57; */
   --text-title-h5: #3270eb;
   --title-block-banner-index-color: #6847ba;
   --sidebar-section-hr: #6847ba;
   --table-has-border-color: #6847ba;
+  --panel-tabset-active-bg: #e4a787;
 }
+
 div.panel-tabset ul.nav.nav-tabs li.nav-item a.nav-link[aria-selected=false]{
   color: #815889 !important;
 }
@@ -18,24 +20,28 @@ h2 {
   .header-section-number {
     color: var(--text-title-h2);
   }
+  text-shadow: 0 0 0.5em var(--text-title-h2);
 }
 h3 {
   color: var(--text-title-h3);
   .header-section-number {
     color: var(--text-title-h3);
   }
+  text-shadow: 0 0 0.5em var(--text-title-h3);
 }
 h4 {
   color: var(--text-title-h4);
   .header-section-number {
     color: var(--text-title-h4);
   }
+  text-shadow: 0 0 0.5em var(--text-title-h4);
 }
 h5 {
   color: var(--text-title-h5);
   .header-section-number {
     color: var(--text-title-h5);
   }
+  text-shadow: 0 0 0.5em var(--text-title-h5);
 }
 
 // div#code-annotation-line {
@@ -120,3 +126,17 @@ div.code-result {
 div.callout div.callout-body {
   color: #cdcdcd;
 }
+// #TOC > ul{
+//   color: #a29eac;
+//   .header-section-number{
+//   color: #a29eac;
+//   }
+//   .nav-link.active .header-section-number{
+//     color: #f0a481;
+//   }
+// }
+/*-- scss:defaults --*/
+$code-bg: black;
+$toc-color: #f0a481;
+$body-color: #cfb8d6;
+$link-color: #ec82c3;

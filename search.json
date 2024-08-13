@@ -88,29 +88,18 @@
     "href": "docs/back-end/rust/basic/01.env.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "配置国内源1然后查看官方安装教程2\n# 添加, 让下面的安装快点\necho 'export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup' &gt;&gt; ~/.zshrc\necho 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.zshrc\n# 安装\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n安装过程我们可以看到 info: installing component 'rust-docs' 这类信息,说明安装了不少组件\n所有的组件到安装到 ~/.cargo/bin 这个目录\ntree ~/.cargo/bin\n~/.cargo/bin\n├── cargo\n├── cargo-clippy\n├── cargo-fmt\n├── cargo-miri\n├── clippy-driver\n├── rls\n├── rust-analyzer\n├── rust-gdb\n├── rust-gdbgui\n├── rust-lldb\n├── rustc\n├── rustdoc\n├── rustfmt\n└── rustup\n\n\n\n\n\n\nTip\n\n\n\nrustup 是专门管理rust安装的工具, 相当于 node 的nvm\n\n\n配置\n# zsh\necho 'source \"$HOME/.cargo/env\"' &gt;&gt; ~/.zshrc\n# path环境变量的设置\n#  $HOME/.cargo/bin:$PATH\n# fish shell 的配置\n# vim ~/.config/fish/config.fish 添加如下. 然后 source一下即可\n# set -x  PATH ~/.cargo/bin $PATH\n验证安装\nrustc --version\ncargo --version\n\n\n\n\n\n\nTip\n\n\n\ncargo: Rust 的编译工具,包管理器,可以帮助你编译代码,运行,测试,下载代码所依赖的外部库等等\n\n\n安装库\n# RLS的全称是:'Rust Language Server',是一个守护进程\n# 用于和开发时使用的IDE进行IPC通信,完成代码提示、跳转到定义、显示变量类型等功能\n# 这2个库,前面安装的时候已经自动安装了.\nrustup component add rls           --toolchain stable    # RLS\nrustup component add rust-analysis --toolchain stable    # 分析工具\n#std是Rust的标准库. 默认情况下,Rust安装的是标准库的二进制码,而添加源码后容易方便我们查询部分标准库的实现\nrustup component add rust-src      --toolchain stable    # std源码",
+    "text": "Caution\n\n\n\ntodo…",
     "crumbs": [
       "基础篇",
       "环境准备"
     ]
   },
   {
-    "objectID": "docs/back-end/rust/basic/01.env.html#安装",
-    "href": "docs/back-end/rust/basic/01.env.html#安装",
+    "objectID": "docs/back-end/rust/basic/01.env.html#工具安装",
+    "href": "docs/back-end/rust/basic/01.env.html#工具安装",
     "title": "斯巴拉稀",
-    "section": "",
-    "text": "配置国内源1然后查看官方安装教程2\n# 添加, 让下面的安装快点\necho 'export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup' &gt;&gt; ~/.zshrc\necho 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.zshrc\n# 安装\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n安装过程我们可以看到 info: installing component 'rust-docs' 这类信息,说明安装了不少组件\n所有的组件到安装到 ~/.cargo/bin 这个目录\ntree ~/.cargo/bin\n~/.cargo/bin\n├── cargo\n├── cargo-clippy\n├── cargo-fmt\n├── cargo-miri\n├── clippy-driver\n├── rls\n├── rust-analyzer\n├── rust-gdb\n├── rust-gdbgui\n├── rust-lldb\n├── rustc\n├── rustdoc\n├── rustfmt\n└── rustup\n\n\n\n\n\n\nTip\n\n\n\nrustup 是专门管理rust安装的工具, 相当于 node 的nvm\n\n\n配置\n# zsh\necho 'source \"$HOME/.cargo/env\"' &gt;&gt; ~/.zshrc\n# path环境变量的设置\n#  $HOME/.cargo/bin:$PATH\n# fish shell 的配置\n# vim ~/.config/fish/config.fish 添加如下. 然后 source一下即可\n# set -x  PATH ~/.cargo/bin $PATH\n验证安装\nrustc --version\ncargo --version\n\n\n\n\n\n\nTip\n\n\n\ncargo: Rust 的编译工具,包管理器,可以帮助你编译代码,运行,测试,下载代码所依赖的外部库等等\n\n\n安装库\n# RLS的全称是:'Rust Language Server',是一个守护进程\n# 用于和开发时使用的IDE进行IPC通信,完成代码提示、跳转到定义、显示变量类型等功能\n# 这2个库,前面安装的时候已经自动安装了.\nrustup component add rls           --toolchain stable    # RLS\nrustup component add rust-analysis --toolchain stable    # 分析工具\n#std是Rust的标准库. 默认情况下,Rust安装的是标准库的二进制码,而添加源码后容易方便我们查询部分标准库的实现\nrustup component add rust-src      --toolchain stable    # std源码",
-    "crumbs": [
-      "基础篇",
-      "环境准备"
-    ]
-  },
-  {
-    "objectID": "docs/back-end/rust/basic/01.env.html#rustup",
-    "href": "docs/back-end/rust/basic/01.env.html#rustup",
-    "title": "斯巴拉稀",
-    "section": "2 rustup",
-    "text": "2 rustup\n更新\nrustup update\n安装指定版本\nrustup install  1.20.0\n查看已经安装的版本\nrustup toolchain list\n卸载\n# 会删除所有的工具链,\n# 包括rustup, rustc, cargo, rls, rust-analysis, rust-src等等\n# 注意, 卸载后, 需要重新安装\nrustup self uninstall\n切换版本\n# 全局切换\nrustup default stable/nightly/beta\n# 工作目录切换版本\ncd rust代码目录\nrustup override set 1.20.0\n# 取消当前目录的版本 ,重新设置为默认的全局版本\nrustup override unset",
+    "section": "1 工具安装",
+    "text": "1 工具安装\n\n1.1 rustup\n配置国内源1然后查看官方安装教程2\n# 添加, 让下面的安装快点\necho 'export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup' &gt;&gt; ~/.zshrc\necho 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.zshrc\n# 安装\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n安装过程我们可以看到 info: installing component 'rust-docs' 这类信息,说明安装了不少组件\n所有的组件到安装到 ~/.cargo/bin 这个目录\ntree ~/.cargo/bin\n~/.cargo/bin\n├── cargo\n├── cargo-clippy\n├── cargo-fmt\n├── cargo-miri\n├── clippy-driver\n├── rls\n├── rust-analyzer\n├── rust-gdb\n├── rust-gdbgui\n├── rust-lldb\n├── rustc\n├── rustdoc\n├── rustfmt\n└── rustup\n\n\n\n\n\n\nTip\n\n\n\nrustup 是专门管理rust安装的工具, 相当于 node 的nvm\n\n\n配置\n# zsh\necho 'source \"$HOME/.cargo/env\"' &gt;&gt; ~/.zshrc\n# path环境变量的设置\n#  $HOME/.cargo/bin:$PATH\n# fish shell 的配置\n# vim ~/.config/fish/config.fish 添加如下. 然后 source一下即可\n# set -x  PATH ~/.cargo/bin $PATH\n验证安装\n# 查看rust 编译器的版本\nrustc --version\n# Rust 的编译工具,包管理器,可以帮助你编译代码,运行,测试,下载代码所依赖的外部库等等\ncargo --version\nrustup 常用命令\n\n更新安装rust指定版本查看已经安装的版本卸载切换版本\n\n\nrustup update\n\n\nrustup install  1.20.0\n\n\nrustup toolchain list\nrustup show\n\n\n# 会删除所有的工具链,\n# 包括rustup, rustc, cargo, rls, rust-analysis, rust-src等等\n# 注意, 卸载后, 需要重新安装\nrustup self uninstall\n\n\n# 全局切换  stable/nightly/beta\nrustup default stable\n# 工作目录切换版本\ncd rust项目代码目录\nrustup override set 1.20.0\n# 取消当前目录的版本 ,重新设置为默认的全局版本\nrustup override unset\n\n\n\n\n\n1.2 安装组件\n# RLS的全称是:'Rust Language Server',是一个守护进程\n# 用于和开发时使用的IDE进行IPC通信,完成代码提示、跳转到定义、显示变量类型等功能\n# 这2个库,前面安装的时候已经自动安装了.\nrustup component add rls           --toolchain stable    # RLS\nrustup component add rust-analysis --toolchain stable    # 分析工具\n#std是Rust的标准库. 默认情况下,Rust安装的是标准库的二进制码,而添加源码后容易方便我们查询部分标准库的实现\nrustup component add rust-src      --toolchain stable    # std源码\n\n\n1.3 cargo generate3\n# 用于根据模板生成代码\n# 安装后,可以这样 cargo generate xxx/yyy (github 模板仓库 url)  创建项目\ncargo install cargo-generate\n\n\n1.4 cargo deny4\n# 安装 Cargo deny 用于检查依赖的安全性\n# 替代 cargo-audit 这个同类型工具\ncargo install --locked cargo-deny\n\n\n1.5 typos5\n# 拼写检查工具\ncargo install typos-cli\n\n\n1.6 cargo-nextest6\n# 安装 rust test 增强工具\ncargo install cargo-nextest --locked\n\n\n1.7 pre-commit 配置\npip install pre-commit\n\n\n代码仓库中添加 .pre-commit-config.yaml\n\nfail_fast: false\nrepos:\n1  - repo: https://github.com/pre-commit/pre-commit-hooks\n    rev: v4.3.0\n    hooks:\n      - id: check-byte-order-marker\n      - id: check-case-conflict\n      - id: check-merge-conflict\n      - id: check-symlinks\n      - id: check-yaml\n      - id: end-of-file-fixer\n      - id: mixed-line-ending\n      - id: trailing-whitespace\n  - repo: https://github.com/psf/black\n    rev: 22.10.0\n    hooks:\n      - id: black\n  - repo: https://github.com/crate-ci/typos  \n    rev: v1.8.1\n    hooks:\n      - id: typos\n2  - repo: local\n    hooks:\n      - id: cargo-fmt\n        name: cargo fmt\n        description: Format files with rustfmt.\n        entry: bash -c 'cargo fmt -- --check'\n        language: rust\n        files: \\.rs$\n        args: []\n      - id: cargo-deny\n        name: cargo deny check\n        description: Check cargo dependencies 检查依赖的安全性\n        entry: bash -c 'cargo deny check -d'\n        language: rust\n        files: \\.rs$\n        args: []\n      - id: cargo-check\n        name: cargo check\n        description: Check the package for errors.\n        entry: bash -c 'cargo check --all'\n        language: rust\n        files: \\.rs$\n        pass_filenames: false\n      - id: cargo-clippy\n        name: cargo clippy\n        description: Lint rust sources\n        entry: bash -c 'cargo clippy --all-targets --all-features --tests --benches -- -D warnings'\n        language: rust\n        files: \\.rs$\n        pass_filenames: false\n      - id: cargo-test\n        name: cargo test\n        description: unit test for the project\n        entry: bash -c 'cargo nextest run --all-features'\n        language: rust\n        files: \\.rs$\n        pass_filenames: false\n\n\n1\n\n使用网络上别人提供的hook 脚本\n\n2\n\n自己本地自定义, 可以在下面看到自己写的脚本",
     "crumbs": [
       "基础篇",
       "环境准备"
@@ -120,8 +109,8 @@
     "objectID": "docs/back-end/rust/basic/01.env.html#查看文档",
     "href": "docs/back-end/rust/basic/01.env.html#查看文档",
     "title": "斯巴拉稀",
-    "section": "3 查看文档",
-    "text": "3 查看文档\n查看本地离线的rust文档,浏览器会自动打开文档, 可以看到好多教程可以点击查看\nrustup doc\n这个会打开 The Rust Programming Language 这本教程\nrustup docs --book\n# 查看帮助,可以看到其他book的 命令\nrustup docs --help\n# 直接打开 rust-by-example 这本书\nrustup docs --rust-by-example",
+    "section": "2 查看文档",
+    "text": "2 查看文档\n查看本地离线的rust文档,浏览器会自动打开文档, 可以看到好多教程可以点击查看\nrustup doc\n这个会打开 The Rust Programming Language 这本教程\nrustup docs --book\n# 查看帮助,可以看到其他book的 命令\nrustup docs --help\n# 直接打开 rust-by-example 这本书\nrustup docs --rust-by-example",
     "crumbs": [
       "基础篇",
       "环境准备"
@@ -131,8 +120,8 @@
     "objectID": "docs/back-end/rust/basic/01.env.html#cargo简单介绍",
     "href": "docs/back-end/rust/basic/01.env.html#cargo简单介绍",
     "title": "斯巴拉稀",
-    "section": "4 cargo简单介绍",
-    "text": "4 cargo简单介绍\ncargo new hello \ncd hello\ntree -a\n# 会创建目录world, 并且 直接有 .git 纳入git管理\n.\n├── .git\n├── .gitignore\n1├── Cargo.toml\n└── src\n    └── main.rs\n\n1\n\ncargo.toml package的一些基本信息 toml参考\n\n\n\n\nCargo.toml\n\n[package]\nname = \"hello\"\n# 注意开发时第一个 version 一般是用0.1.0 不是0.0.1\nversion = \"0.1.0\"\nedition = \"2021\"\n\n\n\nsrc/main.rs\n\nfn main() {\n    println!(\"Hello, world!\");\n}\n\n\n\n执行命令\n\ncargo run\n\n\n\n运行打印的信息\n\n1       Fresh hello v0.1.0 (~/rust2024/hello)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n2     Running `target/debug/hello`\n3Hello, world!\n\n\n1\n\ncargo 调用 rust编译器 rustc来编译代码,生成可执行文件,会放到 target/debug 目录下\n\n2\n\n运行 可执行文件\n\n3\n\n输出结果\n\n\n配置crates国内源3, 下载依赖包就快了\nmkdir -vp ${CARGO_HOME:-$HOME/.cargo}\n\ncat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config\n[source.crates-io]\nreplace-with = 'ustc'\n\n[source.ustc]\nregistry = \"sparse+https://mirrors.ustc.edu.cn/crates.io-index/\"\nEOF\n或者\nmkdir -vp ${CARGO_HOME:-$HOME/.cargo}\n\ncat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config\n[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/\"\nEOF",
+    "section": "3 cargo简单介绍",
+    "text": "3 cargo简单介绍\ncargo new hello \ncd hello\ntree -a\n# 会创建目录world, 并且 直接有 .git 纳入git管理\n.\n├── .git\n├── .gitignore\n1├── Cargo.toml\n└── src\n    └── main.rs\n\n1\n\ncargo.toml package的一些基本信息 toml参考\n\n\n\n\nCargo.toml\n\n[package]\nname = \"hello\"\n# 注意开发时第一个 version 一般是用0.1.0 不是0.0.1\nversion = \"0.1.0\"\nedition = \"2021\"\n\n\n\nsrc/main.rs\n\nfn main() {\n    println!(\"Hello, world!\");\n}\n\n\n\n执行命令\n\ncargo run\n\n\n\n运行打印的信息\n\n1       Fresh hello v0.1.0 (~/rust2024/hello)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.00s\n2     Running `target/debug/hello`\n3Hello, world!\n\n\n1\n\ncargo 调用 rust编译器 rustc来编译代码,生成可执行文件,会放到 target/debug 目录下\n\n2\n\n运行 可执行文件\n\n3\n\n输出结果\n\n\n配置crates国内源7, 下载依赖包就快了\nmkdir -vp ${CARGO_HOME:-$HOME/.cargo}\n\ncat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config\n[source.crates-io]\nreplace-with = 'ustc'\n\n[source.ustc]\nregistry = \"sparse+https://mirrors.ustc.edu.cn/crates.io-index/\"\nEOF\n或者\nmkdir -vp ${CARGO_HOME:-$HOME/.cargo}\n\ncat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config\n[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/\"\nEOF",
     "crumbs": [
       "基础篇",
       "环境准备"
@@ -143,7 +132,7 @@
     "href": "docs/back-end/rust/basic/01.env.html#footnotes",
     "title": "斯巴拉稀",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nrustup国内源↩︎\n官方安装教程↩︎\n中科大开源镜像站 清华大学开源软件镜像站↩︎",
+    "text": "Footnotes\n\n\nrustup国内源↩︎\n官方安装教程↩︎\ncargo-generate  template↩︎\ncargo deny\n\ngithub\nbook\nrust-ecosystem\n\n↩︎\ntypos↩︎\ncargo nextest  https://nexte.st/↩︎\n中科大开源镜像站 清华大学开源软件镜像站↩︎",
     "crumbs": [
       "基础篇",
       "环境准备"
@@ -2796,17 +2785,7 @@
     "href": "docs/developer/git/git.html#进阶技巧",
     "title": "斯巴拉稀",
     "section": "4 进阶技巧",
-    "text": "4 进阶技巧\n\n4.1 hook 钩子\n\n\n4.2 子模块\n\n4.2.1 subtree\n\n\n4.2.2 submodule\n\n4.2.2.1 修改.gitmodules仓库url后需要的操作\n[submodule \"themes/docsy\"]\n    path = themes/docsy\n    url = https://github.com/google/docsy.git\n    branch = v0.2.0\n后来这个地址变更了,拉取最新, .gitmodules 是变更了\n\n\n.gitmodules 变更后的结果\n\n[submodule \"themes/docsy\"]\n    path = themes/docsy\n    url = https://github.com/google/docsy2.git\n    branch = v0.2.0\n\n# 发现还是 用的老地址 进行clone\ngit submodule update --init --recursive --depth 1\n\n\n需要更新到本地的配置\n\n# 会将.gitmodules 的配置更新到 .git/config中去, 实际用到的仓库url在本地配置里\ngit submodule sync --recursive\n# 查看\ncat .git/config # 可以看到更新了\n# 可以了\ngit submodule update --init --recursive --depth 1\n\n\n\n\n\n4.3 git filter-repo\n\n\n\n\n\n\nImportant\n\n\n\n比如commit了一个可执行文件,推送到了远程,然后下个commit你将它删除,推送,实际上这个文件还是存在的. 如何彻底删除它?\n\n\n安装2\n# 只保留README.md文件 和 guides/目录和 tools/releases目录 ,相对于根目录位置的文件\ngit filter-repo --path README.md --path guides/ --path tools/releases\n# 与上面刚好相反, 只删除这几个 东西 , 相对于根目录位置的文件\ngit filter-repo --path README.md --path guides/ --path tools/releases --invert-paths\n#--path-glob '*.DS_Store' 指定这个的话 , 相比path,这个会 包含这类foo.DS_Store or bar/baz.DS_Store\n#--path 基于根目录的\n\n#使用这个命令后, 不需要再 清理reflog 和original里的东西 (git filter-branch 这个官方的需要这么做), 因为已经帮你做了\n#直接\ngit push -f --all\ngit push -f --tags\n\n4.3.1 实际仓库瘦身\n#执行命令, 会进行压缩打包, 在 .git/objects/pack 目录下生成一个pack文件,\n# objects/ 原本好多的文件夹都不见了. 都压缩打包到了这里\ngit gc\n\n#可以看到pack打包的文件里 具体是什么文件\ngit verify-pack -v .git/objects/pack/*.idx\n\n#查看当前所有的文件.  多次commit 都会显示哦\ngit rev-list --objects --all\n\n#-k 3 对第三列的字段进行排序.  -n 表示用数值排序\ngit verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n  \n\n#找到占用空间比较大的文件名\ngit rev-list --objects --all | grep \"$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -15 | awk '{print$1}')\"\n\n#下方命令中的 path/to/large/files 是大文件所在的路径，千万不要弄错！\ngit filter-branch --tree-filter 'rm -f path/to/large/files' --tag-name-filter cat -- --all\n\n\n#如果提示\nCannot create a new backup.\nA previous backup already exists in refs/original/\nForce overwriting the backup with -f\n就\ngit filter-branch -f --tree-filter 'rm -f path/to/large/files' --tag-name-filter cat -- --all\n\n# 运行后\n提示 所有分支都重写了. 所有分支里的这个文件 都没有了哦\nRef 'refs/heads/master' was rewritten\nRef 'refs/heads/x' was rewritten\nRef 'refs/remotes/origin/master' was rewritten\nRef 'refs/remotes/origin/x' was rewritten\n\n# 提交\n\ngit push origin --tags --force\ngit push origin --all --force\n\n# 其他开发人员\ngit pull --rebase\n\n\n4.3.2 提升目录为根目录\n\n\n仓库当前目录结果\n\nmodule/\n   foo.c\n   bar.c\notherDir/\n   blah.config\n   stuff.txt\nzebra.jpg\n\n\n\n只保留module下的文件, 并且将module下的所有文件移动到根目录下\n\ngit filter-repo --subdirectory-filter module/\n\n\n\n执行完后的仓库目录结构,其他都没了\n\nfoo.c\nbar.c\n\n\n\n4.3.3 移动所有文件到其他目录下\n\n\n仓库当前目录结果\n\nmodule/\n   foo.c\n   bar.c\notherDir/\n   blah.config\n   stuff.txt\nzebra.jpg\n\ngit filter-repo --to-subdirectory-filter my-module/\n\n\n执行后的目录结构\n\nmy-module/\n   module/\n      foo.c\n      bar.c\n   otherDir/\n      blah.config\n      stuff.txt\n   zebra.jpg",
-    "crumbs": [
-      "git"
-    ]
-  },
-  {
-    "objectID": "docs/developer/git/git.html#commit-message-规范",
-    "href": "docs/developer/git/git.html#commit-message-规范",
-    "title": "斯巴拉稀",
-    "section": "5 commit message 规范",
-    "text": "5 commit message 规范",
+    "text": "4 进阶技巧\n\n4.1 hook2\n\n4.1.1 基础\n\n\n4.1.2 pre-commit framework\n\n\n\n\n\n\nImportant\n\n\n\ntodo…\n\n\npip install pre-commit\n# 然后在 你的git 仓库中添加 配置文件 .pre-commit-config.yaml\n# 执行该命令会将 hook 写到 .git/hooks/pre-commit, 这样每次你commit 就会自动执行了\npre-commit install\n\n\n\n4.2 CHANGELOG\n\n4.2.1 git cliff3\nTODO\n生成changelog 工具\n# 使用cargo (rust工具) 来安装\ncargo install git-cliff\n# 初始化配置文件 cliff.toml, 再自行修改\ngit cliff --init\n# 生成changelog 文件\ngit cliff -o CHANGELOG.md\n\n\n4.2.2 git-chglog4\n\n\n\n4.3 子模块\n\n4.3.1 subtree\n\n\n4.3.2 submodule\n\n4.3.2.1 修改.gitmodules仓库url后需要的操作\n[submodule \"themes/docsy\"]\n    path = themes/docsy\n    url = https://github.com/google/docsy.git\n    branch = v0.2.0\n后来这个地址变更了,拉取最新, .gitmodules 是变更了\n\n\n.gitmodules 变更后的结果\n\n[submodule \"themes/docsy\"]\n    path = themes/docsy\n    url = https://github.com/google/docsy2.git\n    branch = v0.2.0\n\n# 发现还是 用的老地址 进行clone\ngit submodule update --init --recursive --depth 1\n\n\n需要更新到本地的配置\n\n# 会将.gitmodules 的配置更新到 .git/config中去, 实际用到的仓库url在本地配置里\ngit submodule sync --recursive\n# 查看\ncat .git/config # 可以看到更新了\n# 可以了\ngit submodule update --init --recursive --depth 1\n\n\n\n\n\n4.4 git filter-repo\n\n\n\n\n\n\nImportant\n\n\n\n比如commit了一个可执行文件,推送到了远程,然后下个commit你将它删除,推送,实际上这个文件还是存在的. 如何彻底删除它?\n\n\n安装5\n# 只保留README.md文件 和 guides/目录和 tools/releases目录 ,相对于根目录位置的文件\ngit filter-repo --path README.md --path guides/ --path tools/releases\n# 与上面刚好相反, 只删除这几个 东西 , 相对于根目录位置的文件\ngit filter-repo --path README.md --path guides/ --path tools/releases --invert-paths\n#--path-glob '*.DS_Store' 指定这个的话 , 相比path,这个会 包含这类foo.DS_Store or bar/baz.DS_Store\n#--path 基于根目录的\n\n#使用这个命令后, 不需要再 清理reflog 和original里的东西 (git filter-branch 这个官方的需要这么做), 因为已经帮你做了\n#直接\ngit push -f --all\ngit push -f --tags\n\n4.4.1 实际仓库瘦身\n#执行命令, 会进行压缩打包, 在 .git/objects/pack 目录下生成一个pack文件,\n# objects/ 原本好多的文件夹都不见了. 都压缩打包到了这里\ngit gc\n\n#可以看到pack打包的文件里 具体是什么文件\ngit verify-pack -v .git/objects/pack/*.idx\n\n#查看当前所有的文件.  多次commit 都会显示哦\ngit rev-list --objects --all\n\n#-k 3 对第三列的字段进行排序.  -n 表示用数值排序\ngit verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n  \n\n#找到占用空间比较大的文件名\ngit rev-list --objects --all | grep \"$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -15 | awk '{print$1}')\"\n\n#下方命令中的 path/to/large/files 是大文件所在的路径，千万不要弄错！\ngit filter-branch --tree-filter 'rm -f path/to/large/files' --tag-name-filter cat -- --all\n\n\n#如果提示\nCannot create a new backup.\nA previous backup already exists in refs/original/\nForce overwriting the backup with -f\n就\ngit filter-branch -f --tree-filter 'rm -f path/to/large/files' --tag-name-filter cat -- --all\n\n# 运行后\n提示 所有分支都重写了. 所有分支里的这个文件 都没有了哦\nRef 'refs/heads/master' was rewritten\nRef 'refs/heads/x' was rewritten\nRef 'refs/remotes/origin/master' was rewritten\nRef 'refs/remotes/origin/x' was rewritten\n\n# 提交\n\ngit push origin --tags --force\ngit push origin --all --force\n\n# 其他开发人员\ngit pull --rebase\n\n\n4.4.2 提升目录为根目录\n\n\n仓库当前目录结果\n\nmodule/\n   foo.c\n   bar.c\notherDir/\n   blah.config\n   stuff.txt\nzebra.jpg\n\n\n\n只保留module下的文件, 并且将module下的所有文件移动到根目录下\n\ngit filter-repo --subdirectory-filter module/\n\n\n\n执行完后的仓库目录结构,其他都没了\n\nfoo.c\nbar.c\n\n\n\n4.4.3 移动所有文件到其他目录下\n\n\n仓库当前目录结果\n\nmodule/\n   foo.c\n   bar.c\notherDir/\n   blah.config\n   stuff.txt\nzebra.jpg\n\ngit filter-repo --to-subdirectory-filter my-module/\n\n\n执行后的目录结构\n\nmy-module/\n   module/\n      foo.c\n      bar.c\n   otherDir/\n      blah.config\n      stuff.txt\n   zebra.jpg\n\n\n\n\n4.5 commit message\n\n4.5.1 commitizen6\n\n\n4.5.2 commitizen-go7",
     "crumbs": [
       "git"
     ]
@@ -2816,7 +2795,7 @@
     "href": "docs/developer/git/git.html#footnotes",
     "title": "斯巴拉稀",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nhttps://github.com/github/gitignore↩︎\nhttps://github.com/newren/git-filter-repo/blob/main/INSTALL.md#installation-via-package-manager↩︎",
+    "text": "Footnotes\n\n\nhttps://github.com/github/gitignore↩︎\npre-commit↩︎\nchangelog git-cliff\n\ngithub\nhttps://git-cliff.org/\ndoc\n\n↩︎\ngit-chglog↩︎\nhttps://github.com/newren/git-filter-repo/blob/main/INSTALL.md#installation-via-package-manager↩︎\ncommitizen  document  getting started↩︎\ncommitizen-go↩︎",
     "crumbs": [
       "git"
     ]
@@ -2885,208 +2864,328 @@
     "text": "3 i\n#查看外部连接Foreign Address 那一栏 ip ,如果不是0 , 就可能电脑被人监听了\nnetstat -an|grep LISTEN"
   },
   {
-    "objectID": "docs/developer/rime.html",
-    "href": "docs/developer/rime.html",
+    "objectID": "docs/developer/vscode.html",
+    "href": "docs/developer/vscode.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "!!! tips vim中 ESC后就会自动切换到英文模式"
+    "text": "前面设置同步后, 想看看同步到哪个账号\n\n点击打开云更改, 也可以看到账号, 还可以登录新的账号来同步"
   },
   {
-    "objectID": "docs/developer/rime.html#rime",
-    "href": "docs/developer/rime.html#rime",
+    "objectID": "docs/developer/vscode.html#官方同步方案",
+    "href": "docs/developer/vscode.html#官方同步方案",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "!!! tips vim中 ESC后就会自动切换到英文模式"
+    "text": "前面设置同步后, 想看看同步到哪个账号\n\n点击打开云更改, 也可以看到账号, 还可以登录新的账号来同步"
   },
   {
-    "objectID": "docs/developer/rime.html#双拼输入法",
-    "href": "docs/developer/rime.html#双拼输入法",
-    "title": "斯巴拉稀",
-    "section": "2 双拼输入法",
-    "text": "2 双拼输入法"
-  },
-  {
-    "objectID": "docs/middleware/es/env.html",
-    "href": "docs/middleware/es/env.html",
+    "objectID": "docs/developer/env.html",
+    "href": "docs/developer/env.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "Back to top"
+    "text": "# 下载你要的字体\nwget https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip\nwget https://raw.fastgit.org/ryanoasis/nerd-fonts/master/install.sh\nchmod +x install.sh\nmkdir -p patched-fonts/FiraCode\nunzip -d patched-fonts/FiraCode FiraCode.zip\n./install.sh FiraCode\n\n\n\nOperatorMonoSSm-Book,Hack Nerd Font,Cascadia Code,menlo,JetBrains Mono,Fira Code Rec Mono\n\n\n\nmonaspace"
   },
   {
-    "objectID": "docs/middleware/mysql/undo.html",
-    "href": "docs/middleware/mysql/undo.html",
+    "objectID": "docs/developer/env.html#编程字体",
+    "href": "docs/developer/env.html#编程字体",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "Back to top"
+    "text": "# 下载你要的字体\nwget https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip\nwget https://raw.fastgit.org/ryanoasis/nerd-fonts/master/install.sh\nchmod +x install.sh\nmkdir -p patched-fonts/FiraCode\nunzip -d patched-fonts/FiraCode FiraCode.zip\n./install.sh FiraCode\n\n\n\nOperatorMonoSSm-Book,Hack Nerd Font,Cascadia Code,menlo,JetBrains Mono,Fira Code Rec Mono\n\n\n\nmonaspace"
   },
   {
-    "objectID": "docs/middleware/mysql/redo.html",
-    "href": "docs/middleware/mysql/redo.html",
+    "objectID": "docs/developer/env.html#手写体",
+    "href": "docs/developer/env.html#手写体",
     "title": "斯巴拉稀",
-    "section": "",
-    "text": "Back to top"
+    "section": "2 手写体",
+    "text": "2 手写体\n\n2.1 Shantell_Sans\nshantell-sans"
   },
   {
-    "objectID": "docs/middleware/mysql/index.html",
-    "href": "docs/middleware/mysql/index.html",
+    "objectID": "docs/developer/env.html#terminal",
+    "href": "docs/developer/env.html#terminal",
     "title": "斯巴拉稀",
-    "section": "",
-    "text": "Warning\n\n\n\n未完待续",
-    "crumbs": [
-      "索引底层"
-    ]
+    "section": "3 terminal",
+    "text": "3 terminal\n\n3.1 zsh+ohmyzsh\n\n\n3.2 iterm2\n\n3.2.1 发送命令到所有窗口\ncommand+shift+i 点击确定\ncommand+shift+i 点击取消即可 (如果上面已经点击不用提示的话,这里 不会有东西弹出来, 直接就已经取消发送到多个窗口了)\n\n\n\n3.3 MobaXTerm\n\n\n3.4 tabby1\n\n\n3.5 WindTerm\nhttps://github.com/kingToolbox/WindTerm/releases"
   },
   {
-    "objectID": "docs/middleware/mysql/index.html#红黑树-red-black-trees",
-    "href": "docs/middleware/mysql/index.html#红黑树-red-black-trees",
+    "objectID": "docs/developer/env.html#快捷键",
+    "href": "docs/developer/env.html#快捷键",
     "title": "斯巴拉稀",
-    "section": "1 红黑树 Red-Black Trees",
-    "text": "1 红黑树 Red-Black Trees\n\n\n\n\n\n\n\nn层最多能存放多少数据?\n\n\n\n\n红黑树解决了二叉树插入有序数据导致所有的节点都会在根节点的右侧或左侧,变成了链表的问题, 插入一条数据后,会自动调整\n那么能不能用这个结构来存储mysql数据呢?\nn层的话, 总共能放 total = 2⁰ + 2¹ +2² +… 2ⁿ⁻¹\n2total = 2¹ +2² +… 2ⁿ = 2⁰ + 2¹ +2² +… 2ⁿ⁻¹+ 2ⁿ - 2⁰ = total + 2ⁿ - 2⁰\n2total = total + 2ⁿ - 2⁰\n结果: total = 2ⁿ-1",
-    "crumbs": [
-      "索引底层"
-    ]
+    "section": "4 快捷键",
+    "text": "4 快捷键\ncommand+r 正常刷新，使用缓存数据 command+shift+r 强制刷新,强制浏览器重新下载并加载内容"
   },
   {
-    "objectID": "docs/middleware/mysql/transaction.html",
-    "href": "docs/middleware/mysql/transaction.html",
+    "objectID": "docs/developer/env.html#国内源",
+    "href": "docs/developer/env.html#国内源",
     "title": "斯巴拉稀",
-    "section": "",
-    "text": "Back to top"
+    "section": "5 国内源",
+    "text": "5 国内源\nhttps://mirrors.huaweicloud.com/home\n\n5.1 macOS\n\n\n5.2 brew2\n\n5.2.1 使用国内源来安装homebrew\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/brew.git\"\nexport HOMEBREW_CORE_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/homebrew-core.git\"\nexport HOMEBREW_BOTTLE_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles\"\nexport HOMEBREW_API_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles/api\"\n\n/bin/bash -c \"$(curl -fsSL https://github.com/Homebrew/install/raw/HEAD/install.sh)\"\n# 或\n/bin/bash -c \"$(curl -fsSL https://mirrors.ustc.edu.cn/misc/brew-install.sh)\"\n\n\n5.2.2 brew 国内源配置\n\n\n4.0版本\n\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/brew.git\"\nbrew update\necho 'export HOMEBREW_BREW_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/brew.git\"' &gt;&gt; ~/.zshrc\necho 'export HOMEBREW_BOTTLE_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles\"' &gt;&gt; ~/.zshrc\necho 'export HOMEBREW_API_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles/api\"' &gt;&gt; ~/.zshrc\nbrew tap --custom-remote --force-auto-update homebrew/cask https://mirrors.ustc.edu.cn/homebrew-cask.git\nbrew tap --custom-remote --force-auto-update homebrew/cask-versions https://mirrors.ustc.edu.cn/homebrew-cask-versions.git\n\n\n\n5.2.3 取消brew install 提示升级\nexport HOMEBREW_NO_AUTO_UPDATE=true\n\n\n5.2.4 命令\n# 查看已安装包列表\nbrew list\n# 查询可用包\nbrew search &lt;packageName&gt;\nbrew install node\nbrew uninstall git\nbrew -v\n# 安装mysql指定版本,根据上面的search 可以找到\nbrew install mysql@5.7\n# 启动和停止服务\nbrew services stop redis\nbrew services start redis\n\n\n\n5.3 Term2里lrzsz支持文件上传\nbrew install lrzsz\n创建2个bash脚本\n\n\n/usr/local/bin/term_send.sh\n\n#!/bin/bash\n# Author: Matt Mastracci (matthew@mastracci.com)\n# AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script\n# licensed under cc-wiki with attribution required\n# Remainder of script public domain\n\nFILE=`osascript -e 'tell application \"iTerm\" to activate' -e 'tell application \"iTerm\" to set thefile to choose file with prompt \"Choose a file to send\"' -e \"do shell script (\\\"echo \\\"&(quoted form of POSIX path of thefile as Unicode text)&\\\"\\\")\"`\nif [[ -z \"$FILE\" ]]; then\n    echo Cancelled.\n    # Send ZModem cancel\n    echo -e \\\\x18\\\\x18\\\\x18\\\\x18\\\\x18\n    sleep 1\n        echo\n    echo \\# Cancelled transfer\nelse\n    echo $FILE\n    /usr/local/bin/sz \"$FILE\" -E -e -b\n    sleep 1\n    echo \\# Received $FILE\nfi\n\n\n\n/usr/local/bin/term_recv.sh\n\n#!/usr/bin/env bash\n# vim: fdm=marker foldlevel=0 sw=2 ts=2 sts=2\n\nFILE=`osascript -e 'tell application \"iTerm\" to activate' -e 'tell application \"iTerm\" to set thefile to choose folder with prompt \"Choose a folder to place received files in\"' -e \"do shell script (\\\"echo \\\"&(quoted form of POSIX path of thefile as Unicode text)&\\\"\\\")\"`\n\nif [[ -z \"$FILE\" ]]; then\n  echo \" Cancelled\"\n  # Send ZModem cancel\n  echo -e \\\\x18\\\\x18\\\\x18\\\\x18\\\\x18\n  sleep 1\n  echo\n  echo \" # Cancelled transfer\"\nelse\n  cd \"$FILE\"\n  \"${HOMEBREW_PREFIX:-/usr/local}/bin/rz\" -E -e -b\n  sleep 1\n  echo\n  echo \" # Sent -&gt; $FILE\"\n  echo\nfi\n\n设置Iterm2的Tirgger特性，profiles-&gt;default-&gt;editProfiles-&gt;Advanced中的Tirgger\n添加两条trigger，分别设置 Regular expression，Action，Parameters，Instant如下：\n\n\n第一个trigger\n\nRegular expression: rz waiting to receive.\\*\\*B0100\nAction: Run Silent Coprocess\nParameters: /usr/local/bin/term_send.sh\nInstant: checked\n\n\n\n第二个\n\nRegular expression: \\*\\*B00000000000000\nAction: Run Silent Coprocess\nParameters: /usr/local/bin/term_recv.sh\nInstant: checked\n\n\n\n5.4 终端快捷键\n\n\n\n\n\n\n\n快捷键\n功能\n\n\n\n\n++command+k++\n清屏 ,无法再看之前的输出屏幕\n\n\n++ctrl+l++\n清屏,终端光标移到到屏幕上方..\n\n\n\n\n\n5.5 U盘和有些移动硬盘\n一般我们的u盘的文件格式是ntfs,而mac不支持\n# 插入u盘或移动硬盘后\ndiskutil list\n# 看到如下的盘符\n# Microsoft Basic Data 之后的就是你的盘符的名称了\n# 有多少个你都记下来( 一般我们会将移动硬盘分区,就是分区的名称了)\n/dev/disk2 (external, physical):\nMicrosoft Basic Data XYZ       1.0 TB     disk2s1\n修改/etc/fstab, 添加如下 = 号右边的第一个就是写你的盘符名称,有多少个,就有多少行\nLABEL=OPQ none ntfs rw,auto,nobrowse\nLABEL=XYZ none ntfs rw,auto,nobrowse\n映射盘符,将盘符映射到桌面快捷键方式一样\nsudo ln -s /Volumes/XYZ ~XYZsktop/XYZ\n重启电脑\n\n5.5.1 遇到复制到u盘文件变灰色\n# 表示删除文件或者文件夹里面的文件的 属性 com.apple.FinderInfo\n# -d 表示删除, -r递归\nxattr -d -r com.apple.FinderInfo *\n\n\n5.5.2 聚焦搜索\n# 打开\nsudo mdutil -a -i on\n# 关闭, 这样会搜不到软件\nsudo mdutil -a -i off"
   },
   {
-    "objectID": "docs/middleware/mysql/env.html",
-    "href": "docs/middleware/mysql/env.html",
+    "objectID": "docs/developer/env.html#windows",
+    "href": "docs/developer/env.html#windows",
     "title": "斯巴拉稀",
-    "section": "",
-    "text": "# 我们在my.cnf 其实是可以配置的,但是明文,不好\n# mysql提供了一个命令,设置一个标签my (名字随便起)来登录\n# 这个命令实际上生成了一个二进制文件,路径是 ~/.mylogin.cnf\n# -G my 后面是你的连接参数, 需要什么就加什么, 比如 -h -P\nmysql_config_editor set -G my -uroot -p\nEnter password:   这里你输入密码\n# 然后我们打印一下\nmysql_config_editor print --all\n# 显示的密码不是明文\n  [my]\n  user = root\n  password = *****\n# 使用该标签登录\nmysql --login-path=my",
-    "crumbs": [
-      "环境准备"
-    ]
+    "section": "6 Windows",
+    "text": "6 Windows\n\n6.1 命令永久修改环境变量\nsetx PATH \"%PATH%;c:\\go\\bin\""
   },
   {
-    "objectID": "docs/middleware/mysql/env.html#免密登录mysql",
-    "href": "docs/middleware/mysql/env.html#免密登录mysql",
+    "objectID": "docs/developer/env.html#footnotes",
+    "href": "docs/developer/env.html#footnotes",
     "title": "斯巴拉稀",
-    "section": "",
-    "text": "# 我们在my.cnf 其实是可以配置的,但是明文,不好\n# mysql提供了一个命令,设置一个标签my (名字随便起)来登录\n# 这个命令实际上生成了一个二进制文件,路径是 ~/.mylogin.cnf\n# -G my 后面是你的连接参数, 需要什么就加什么, 比如 -h -P\nmysql_config_editor set -G my -uroot -p\nEnter password:   这里你输入密码\n# 然后我们打印一下\nmysql_config_editor print --all\n# 显示的密码不是明文\n  [my]\n  user = root\n  password = *****\n# 使用该标签登录\nmysql --login-path=my",
-    "crumbs": [
-      "环境准备"
-    ]
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n科大源↩︎\nhttps://brew.sh/↩︎"
   },
   {
-    "objectID": "docs/middleware/mysql/binlog.html",
-    "href": "docs/middleware/mysql/binlog.html",
+    "objectID": "docs/middleware/mysql/backup-recovery.html",
+    "href": "docs/middleware/mysql/backup-recovery.html",
     "title": "斯巴拉稀",
     "section": "",
     "text": "Caution\n\n\n\ntodo…",
     "crumbs": [
-      "二进制日志"
+      "备份与恢复"
     ]
   },
   {
-    "objectID": "docs/middleware/mysql/binlog.html#配置信息",
-    "href": "docs/middleware/mysql/binlog.html#配置信息",
+    "objectID": "docs/middleware/mysql/backup-recovery.html#查看默认配置文件位置",
+    "href": "docs/middleware/mysql/backup-recovery.html#查看默认配置文件位置",
     "title": "斯巴拉稀",
-    "section": "1 配置信息",
-    "text": "1 配置信息\n\n\nmy.cnf\n\nserver-id               = 1\nlog_bin                 = mysql-bin\n\n+-----------------------------------------+---------------------+\n| Variable_name               | Value                           |\n+-----------------------------------------+---------------------+\n| log_bin                     | ON                              |  -- 是否开启\n| log_bin_basename            | /var/lib/mysql/mysql-bin        |\n| log_bin_index               | /var/lib/mysql/mysql-bin.index  |\n| max_binlog_size             | 104857600                       |  -- binlog文件的最大值,达到最大值,则重新生成一个新的\n| binlog_format               | ROW                             |  -- 有三种 statement(记录sql语句), row(每一行数据) , mixed\n+-----------------------------------------+---------------------+\n\nshow master status;\n\n\n执行结果\n\n+------------------+----------+\n| File             | Position |\n+------------------+----------+\n| mysql-bin.000001 |      154 |\n+------------------+----------+\n\n\n我们发现 mysql-bin.000001的文件大小 154 字节数就是上面的position\nll mysql-bin*\n-rw-r----- 1 mysql mysql 154 Sep  3 14:36 mysql-bin.000001\n-rw-r----- 1 mysql mysql  19 Sep  3 14:36 mysql-bin.index\n\n\n\n查看binlog更具体的内容\n\nshow binlog events in 'mysql-bin.000001'\\G\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n*************************** 1. row ***************************\n   Log_name: mysql-bin.000001\n        Pos: 4\n Event_type: Format_desc\n  Server_id: 1\nEnd_log_pos: 123\n       Info: Server ver: 5.7.17-0ubuntu0.16.04.1-log, Binlog ver: 4\n*************************** 2. row ***************************\n   Log_name: mysql-bin.000001\n        Pos: 123\n Event_type: Previous_gtids\n  Server_id: 1\nEnd_log_pos: 154\n       Info:\n\n\n\n\n\n\n刷新日志,会重新生成一个二进制文件\n\nflush binary logs;\nshow master status;\n+------------------+----------+\n| File             | Position |\n+------------------+----------+\n| mysql-bin.000002 |      154 |\n+------------------+----------+",
+    "section": "1 查看默认配置文件位置",
+    "text": "1 查看默认配置文件位置\nmysql --help|grep 'my.cnf'",
     "crumbs": [
-      "二进制日志"
+      "备份与恢复"
     ]
   },
   {
-    "objectID": "docs/middleware/mysql/binlog.html#binlog_format",
-    "href": "docs/middleware/mysql/binlog.html#binlog_format",
+    "objectID": "docs/middleware/mysql/backup-recovery.html#备份",
+    "href": "docs/middleware/mysql/backup-recovery.html#备份",
     "title": "斯巴拉稀",
-    "section": "2 binlog_format",
-    "text": "2 binlog_format\n\n\n\n\n\n\n\nformat\ndescription\n\n\n\n\nstatement\n记录操作的sql文  不支持不确定的sql语句,比如update ....  limit 3\n\n\nrow\n记录操作的每一行数据,每张表一定要有主键\n\n\nmixed",
+    "section": "2 备份",
+    "text": "2 备份\n\n2.1 –compact测试导出结果\n# --compact\nmysqldump -uroot -p12345 --compact -B dbname\n\n\n2.2 开发常用的命令\n# 导出 需要的库与表的创建语句 ,所以我们一般不用-A\n# 包含event 存储过程等\nmysqldump -uroot -p123456 -B -d --triggers -R -E  db1 db2&gt; db_struct.sql\n\n# 导出需要初始化的表数据\n# 含有 db的create 和use 语句的\nmysqldump -uroot -p12345 -B --hex-blob -t mysql db1 db2&gt; dbdata.sql\nmysqldump -uroot -p12345 --hex-blob -t dbname table1 table2  &gt; sometable.sql\n\n# 先导入mysql\nmysql -uroot -p123456 &lt; db_struct.sql\nmysql -uroot -p123456 &lt; dbdata.sql\nmysql -uroot -p123456 dbname &lt; sometable.sql\n\n\n2.3 生产环境命令\n# -E --events\n# -R --routines\n# -F --flush-logs\nmysqldump -uroot -p123456 -A --flush-privileges --single-transaction --master-data=1(或者2) -F --triggers -R -E --hex-blob |gzip &gt;xx.sql.gz\n\n\n2.4 备份单个与多个数据库\n默认是导出表创建语句和数据的\n# -B  会有create db 语句,和 use db 语句. 这样导入时不需要指定 数据库\nmysqldump -uroot -p12345  -B dbname \nmysqldump -uroot -p12345  -B dbname  dbname2\n\n\n2.5 备份单表和多个表\nmysqldump -uroot -p12345 dbname school &gt; school.sql\nmysqldump -uroot -p12345 dbname city school &gt; city_school.sql\n\n\n2.6 只导出表结构\n# 一个库 (包含库创建语句和所有表的创建语句)\nmysqldump -uroot -p12345 -B -d dbname &gt; dbname.sql\n\n# 多个表的创建语句\nmysqldump -uroot -p12345 -d dbname table1 table2 &gt; dbname.sql\n\n\n2.7 只导出数据\nmysqldump -uroot -p12345 -t dbname &gt; dbname.sql\nmysqldump -uroot -p12345 -t dbname table1 table2 &gt; dbname.sql",
     "crumbs": [
-      "二进制日志"
+      "备份与恢复"
     ]
   },
   {
-    "objectID": "docs/middleware/mysql/binlog.html#查看binlog文件里的sql语句",
-    "href": "docs/middleware/mysql/binlog.html#查看binlog文件里的sql语句",
-    "title": "斯巴拉稀",
-    "section": "3 查看binlog文件里的sql语句",
-    "text": "3 查看binlog文件里的sql语句\n#这个可以看到具体的sql文件\nmysqlbinlog mysql-bin.000001 -vv\n#-----------------------------------------------------\n### INSERT INTO `test`.`mm`\n### SET\n###   @1=5 /* INT meta=0 nullable=0 is_null=0 */\n###   @2=5 /* INT meta=0 nullable=1 is_null=0 */\n#-----------------------------------------------------\n@1 表示第一列\n@2 表示第二列\nmysqlbinlog mysql-bin.000001 --base64-output=decode-row -v\nhelp show binlog events;",
-    "crumbs": [
-      "二进制日志"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mongodb/install.html",
-    "href": "docs/middleware/mongodb/install.html",
+    "objectID": "docs/middleware/mysql/ha.html",
+    "href": "docs/middleware/mysql/ha.html",
     "title": "斯巴拉稀",
     "section": "",
     "text": "Back to top"
   },
   {
-    "objectID": "docs/middleware/redis/data-type.html",
-    "href": "docs/middleware/redis/data-type.html",
+    "objectID": "docs/middleware/mysql/optimization.html",
+    "href": "docs/middleware/mysql/optimization.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "未完待续",
-    "crumbs": [
-      "基础",
-      "数据类型"
-    ]
+    "text": "!!! note “什么是驱动表” 在join连表查询时,用来最先获得数据，并以此表的数据为依据，逐步获得其他表的数据，直至最终查询到所有满足条件的数据的第一个表\n```title=“2个表 id主键” select * from a; +—-+——+——+ | id | name | age | +—-+——+——+ | 1 | tom | 20 | | 2 | jack | 22 | +—-+——+——+\nselect * from b; +—-+——–+ | id | class | +—-+——–+ | 1 | class1 | | 2 | class2 | | 3 | class3 | +—-+——–+\n```sql\n-- 连表查询\nselect * from a,b where a.id=b.id\n!!! note 这就好比来了2个人,去你上学的班级里找和他们同名的同学. 你总不至于用你班级的人的名字一个一个去和这2个人对比吧? 直接用2个人的名字 从你班级里找就是了.只需要2次\nfor each row in 驱动表 do\n    lookup 驱动表的each row的索引 in  内表 index\n        if 如果在内表里找到了该索引\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n| id | select_type | table | possible_keys | rows | filtered | Extra                                              |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n|  1 | SIMPLE      | a     | PRIMARY       |    2 |   100.00 | NULL                                               |\n|  1 | SIMPLE      | b     | PRIMARY       |    3 |    33.33 | Using where; Using join buffer (Block Nested Loop) |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+"
   },
   {
-    "objectID": "docs/middleware/redis/data-type.html#五大基本类型",
-    "href": "docs/middleware/redis/data-type.html#五大基本类型",
+    "objectID": "docs/middleware/mysql/optimization.html#系统默认的优化",
+    "href": "docs/middleware/mysql/optimization.html#系统默认的优化",
     "title": "斯巴拉稀",
-    "section": "1 五大基本类型",
-    "text": "1 五大基本类型\n\n1.1 strings\n\n1.1.1 基本命令\n\n增改查自增减删除\n\n\nset age 20 # 不管这个key 存不存在都设置\n# SETNX = SET if Not eXists, 不存在才设置\n# 现在用 set key value NX 来替代\nset age 30 nx # 不存在才设置,相当于创建\nset age 34 xx # age存在才设置,相当于更新\nget age # 查看key,不存在返回nil\n\n# SET key value EX seconds\n# ex expire , 设置key 5秒后过期, 会删除\nset age 10 EX 5\n\n# MSET key value [key value ...]\n# n次get命令,需要n次网络时间,和n次命令时间\n# mget 只需要一次,一次会传递所有的命令给, 执行要么全部成功,要么都失败\nmset name tom age 10\nmget name age\n\n# 设置新的值,会返回旧的name的值\ngetset name tom\n# 追加字符串到key的值后面\nappend name cat\n# ==&gt; tomcat\n# strlen 也是o(1)的复杂度, 就是说 不是实时计算key的长度的,\n# 而是 有计数器统计该key的长度 做了记录的\nstrlen name # 获取长度\n\nsetrange name 1 x\n# tomcat ==&gt; txmcat\ngetrange name 1 3\n# ==&gt;xmc\n\n\n# 如果key不存在,那么该key是int型,初始值是0, 则自增1, 就变成了1, 返回值就是age的值\nincr age\n# 如果不存在该key, 值变为-1 同上\ndecr age\n\nincrby age 2 # 表示age 增加2\ndecrby age 2 # -2\nincrbyfloat age 1.2\n# 使用负数来实现 decr 的\nincrbyfloat age -1.2\n\n\ndel name\n\n\n\n\n\n1.1.2 应用场景\n分布式id 生成器 利用redis的单线程特性, 多个服务可能要来请求,使用incr 就可以来搞出一个自增的id\n\n\n\n1.2 lists\n有序的,可以做左边插入,弹出,右边插入,弹出的操作\n\n1.2.1 基本命令\n\npush/pop查指定元素前后插入删除根据索引修改元素根据索引截取元素\n\n\n# 从右边插入,可插入多个\nrpush names tom jack\n# 从左边插入\nlpush names bob stark\n\nlpop names #左边弹出\nrpop names #右边弹出\n# 上面我们的lpop 和rpop 都是非阻塞的,直接给出结果,如果没有元素的话,返回的是nil\n# 这里的blpop和brpop是阻塞版本\n# 如果key列表里面有值,则马上返回,不管你的timeout是啥\n# 如果key里面没有元素,则等待timeout秒, 还没有结果则退出\n# 如果timeout=0,则会永远的等待下去,直到列表里 有新的元素\nblpop key timeout\n\n\n# lrange key start end # 包含end\n# start end 如果是 负数\n# 比如 lrange key -6  -1    :-1 表示最右边的那个元素, -2 表示 -1那个的左边元素\nlrange names 0 -1 # 查看所有的元素\n# 获取 索引位置的元素\nlindex names 2\n# 列表长度 (元素个数)\nllen names\n\n\n# 在\n# 下面2个的时间复杂度是o(n),因为需要遍历\ninsert after bob bob2\ninsert before bob marry\n\n\n# 如果count &gt;0 则表示从左到右删除count个 相同的value(因为list可以存放相同的元素)\n# 如果count &lt;0 则表示从右到左\n# count=0 删除所有\nlrem key count value\n\n\n# 设置索引位置1 的元素为 trump\nlset names 1 trump\n\n\n# names a b c d e\nltrim names 1 3 # 截取索引1-3 包含3 的元素\nlrange names 0 -1 # ==&gt; b c d\n\n\n\n\n\n\n1.3 hashes\n类似下面这样,就是key对应的是个map\n\"tom\":{\n    \"name\":\"tom\",\n    \"age\":20,\n    \"sex\":\"boy\"\n}\n可以理解为 一张表的一条记录 比如user表,无法给单独的field 设置过期时间\n\n1.3.1 基本命令\n\n增改查删\n\n\n# u:1 叫key ,name 叫field\nhset u:1 name tom\n# 多个field, #原本的多个field的命令 hmset 说是将被废弃,现在还可以用\nhset u:1 name tom age 22 sex boy\n# 只能设置一个field ,  这搞的. 不如就保留 hmset , 不要在 hset 里可以设置多个field.\nHSETNX  u:1 name jack # 不存在才设置\n\n# field 自增\nhincrby u:1 age 1\n\n\n# 获取field,只能一个field\nhget u:1 name\n# 多个field .. 服了. 和上面的感觉..\nhmget u:1 name age\nhgetall u:1 #返回所有field 和value\n\n# 判断field是否存在\nhexists u:1 name\n# 如果说判断 u1 是否存在\nhlen u:1 # 返回 u1 有多少个field\n\nhkeys u:1 # 返回所有的field\nhvals u:1 # 返回所有的value\n\n\nhdel u:1 name\nhdel u:1 age sex #删除多个field\n\n\n\n\n\n1.3.2 应用场景\n使用user:id值 作为key, 里面再存map 比如name 啊, pv(主页访问量),这样一个key 存放很多用户的信息\n\n\n\n1.4 sets 集合\n无序,无重复\n\n1.4.1 基本命令\n\n添加删除查看集合运算\n\n\n# 添加元素\nsadd country china\n\n\n# 删除元素\nsrem country japan\n\n\n# 计算集合元素个数\nscard animal\n# 获取集合所有元素\nsmembers animal\n# 判断元素是否在集合内\nSISMEMBER animal cow\n# 随机返回一个元素\nSRANDMEMBER animal\n# 随机弹出一个元素\nSPOP animal\n\n\nsdiff  user:1:playing_game  user:2:playing_game #差集\nsinter user:1:playing_game  user:2:playing_game #交集\nsunion user:1:playing_game  user:2:playing_game #并集\n\n\n\n\n\n1.4.2 应用场景\n\n抽奖可以用srandmember/spop\n用户点赞某个帖子 ( 帖子id作为key,里面存发用户id表示点赞)\n给用户添加标签, 还要知道一个标签对应了那些用户,都可以用集合来\n微博用户之间的共同关注\n\n\n\n\n1.5 sorted sets 有序集合\nset 存放的就是元素 zset 存放的 需要一个score分值(用来排序的,可以重复) 和 元素 时间复杂度是 o(logN)\n\n1.5.1 基本命令\n\n增改删查集合运算\n\n\n# zadd key score element1 score2 element2 ...\nzadd student 80 xiaoming\nzadd student 80 xiaoming 90 tom\n# 增加或减少(使用负数) 元素的分数\nzincrby student 3 xiaoming\n\n\n# 指定元素删除 可以删除多个元素\nzrem student xiaoming xiaobai\n# 根据排名范围来删除元素\nZREMRANGEBYRANK student 1 2\n# 柑橘分数范围来删除元素\nZREMRANGEBYscore student 71  89\n\n\n# 获取元素的分数\nzscore student xiaoming\n\n# 返回元素总数\nzcard student\n# 按照分数升序, 返回元素的排名,\n# 0 表示第一位, 也就是分数最小的那一位\nzrank student xiaoming\n# 按照分数降序,返回元素的排名\n# 0 表示第一位, 也就是分数最大的那一位\nzrevrank student xiaohei\n\n# range 按照分数升序,返回索引范围内的元素\nzrange student 0 -1\n# withscores 表示显示分数\nzrange student 0 -1 withscores\n# 返回指定分数范围内的元素\nzrangebyscore student 70 90 [withscores]\n\n# 按照分数降序\nzrevrange student 0 -1\n# 指定分数范围, 先指定大 后小\nzrevrangebyscore student 100 50 [withscores]\n\n\n# 指定分数范围内有多少个元素\nzcount key minScore maxScore\n\n\nzadd stu1 77 tom 80 jack 50 karen\nzadd stu2 10 tom 60 jack 80 kelly\n\n# 交集\n# ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE &lt;SUM | MIN | MAX&gt;]\n# destination 会将交集的结果写入 这个key\n# numkeys 2 表示有2个key 参与交集运算, 必须指定\n# WEIGHTS 默认是1, 也就是说你的分数的权重, 比如权重是10,如果你的分数是1, 那么等同于是10分的分量\n# AGGREGATE 交集后对于元素分数的处理, 默认是SUM,各集合该元素的分数*权重 的和\nzinterstore res_stu 2 stu1 stu2 # 交集后 tom 元素的分数是 77*1+10*1 =87\nzrange res_stu  0 -1 withscores\n\nzrange res_stu  0 -1 withscores\n\n\n执行结果\n\ntom\n87\njack\n140\n\n\n# 权重需要分别指定\nzinterstore res_stu 2 stu1 stu2 WEIGHTS 5 1 AGGREGATE SUM\n\n# 并集 ,其他参数等 同交集的处理\nZUNIONSTORE res_stu 2 stu1 stu2\n\n\n\n\n\n1.5.2 应用场景\n什么什么各种排行版 可以使用有序集合",
-    "crumbs": [
-      "基础",
-      "数据类型"
-    ]
+    "section": "",
+    "text": "!!! note “什么是驱动表” 在join连表查询时,用来最先获得数据，并以此表的数据为依据，逐步获得其他表的数据，直至最终查询到所有满足条件的数据的第一个表\n```title=“2个表 id主键” select * from a; +—-+——+——+ | id | name | age | +—-+——+——+ | 1 | tom | 20 | | 2 | jack | 22 | +—-+——+——+\nselect * from b; +—-+——–+ | id | class | +—-+——–+ | 1 | class1 | | 2 | class2 | | 3 | class3 | +—-+——–+\n```sql\n-- 连表查询\nselect * from a,b where a.id=b.id\n!!! note 这就好比来了2个人,去你上学的班级里找和他们同名的同学. 你总不至于用你班级的人的名字一个一个去和这2个人对比吧? 直接用2个人的名字 从你班级里找就是了.只需要2次\nfor each row in 驱动表 do\n    lookup 驱动表的each row的索引 in  内表 index\n        if 如果在内表里找到了该索引\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n| id | select_type | table | possible_keys | rows | filtered | Extra                                              |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n|  1 | SIMPLE      | a     | PRIMARY       |    2 |   100.00 | NULL                                               |\n|  1 | SIMPLE      | b     | PRIMARY       |    3 |    33.33 | Using where; Using join buffer (Block Nested Loop) |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+"
   },
   {
-    "objectID": "docs/middleware/redis/data-type.html#扩展类型",
-    "href": "docs/middleware/redis/data-type.html#扩展类型",
+    "objectID": "docs/middleware/mysql/optimization.html#sql编写优化",
+    "href": "docs/middleware/mysql/optimization.html#sql编写优化",
     "title": "斯巴拉稀",
-    "section": "2 扩展类型",
-    "text": "2 扩展类型\n\n2.1 bitmaps 位图\n\n2.1.1 基本命令\n\n\n\n\n\n\nTip\n\n\n\nbitmaps are an extension of the string data type\n\n\n\n位的设置与获取位运算\n\n\n字母A 对应的ascii码是 65 对应的二进制 0100 0001\n# 注意索引从0开始,从高位往低位这样算,从左到右.\n#  65二进制的高位第6位(从0开始算)是1,这里索引是1\nsetbit x 1 1 #命令的返回结果 是之前这个位置的值 (值:0或1)\nsetbit x 7 1 # 这个设置的是低位的1, 也就是二进制的第0位\n# 通过以上的设置A这个key 的结果就是 0100 0001\nget x\n# 结果就是A\n# 获取key 第二个位置的 bit值\ngetbit x 1\n\n# 获取bit为1的个数, 可以指定bit范围\nbitcount A [start end]\n\nset z 65 # 注意我们的值是字符串,是一个字节一个字节进行\"解析\"的\nstrlen z # 可以看到长度\n# \"65\"的 ascii是 6是54  0011 0110,在内存的低地址,  5 是53  0011 0101 在内存上地址比\"6\" 的大一个字节\n# 再强调一下 字符串是一个字节一个字节进行\"解析\"的\n# 那么0-7的索引是 \"6\"的位 , 8-15是\"5\"的位\n# setbit 索引本身就是从低地址到高地址, 只不过每个字节上 (字节的高位在小的索引上)\ngetbit z 6 # 1\ngetbit z 15 # 1\n\n\ngo代码验证字符串左边是放在低地址\n\na := \"654\"\nb := (*reflect.StringHeader)(unsafe.Pointer(&a))\nprintln(b.Len, b.Data)\nc := (*[3]int8)(unsafe.Pointer(b.Data))\nprintln(c[0], c[1], c[2])\nprintln(&c[0], &c[1], &c[2])\n\n\n\nsetbit tmp 6 1\nsetbit tmp 7 1\n# bitop= bit + operate + 后面的 and与,or或,not非,xor异或 等\n# 位的或操作,将结果给到new_str这个key\nbitop or new_str A tmp\n# new_str的value结果是 \"C\"\n\n\n\n\n\n2.1.2 应用场景\n用来统计登录用户,或者说有多少用户\n\n假设有1亿个用户, 那么需要1亿个位,也不过10M多, setbit login_user user_id 1 该用户在线了\n如果有的设计上用户的id初始就非常巨大. 第一个用户是100亿.以后依次递增, 那么我们完全可以-100亿后的数字 作为索引进行设置1\n\n\n\n\n2.2 GEO\ntype city  # 是zset类型\ngeoadd key 经度 纬度 成员\ngeoadd city 116.20 39.56 beijing\n# 可以添加多个\nGEOADD city 116.20 39.56 beijing 120.12 30.16 hangzhou \n# 获取某个成员经纬度\ngeopos city hangzhou\n# 计算2个位置之间的距离,默认单位是m, 可以在后面带上(km千米,mi英里,ft尺)\nGEODIST city hangzhou beijing km\n\n# georadius 获取指定范围内的地理位置\ngeoradius city 116 39 100 km # --&gt; beijing\n\n\n2.3 hyperLogLog\n\n\n\n\n\n\nNote\n\n\n\n\n如果让你统计一个数据集里不同元素的数量,比如日活用户\n你可能会说统计这个, 放进set ,然后scard 不就行了\n如果数据量巨大呢, 都放进set吗, 所以这种情况set肯定不行.\n用bitmap? 1000万也才1M多, 挺不错的. 有没有占用更少的呢.\nhyperLogLog就可以解决这个问题\n基于hyperLogLog(HLL)算法,使用极小的空间,完成数量统计, ==本质是字符串==\nHyperLogLog（HLL）是一种基数({==一个集合中不同元素的数量==})估计算法. HLL算法可以在{==极少的内存使用下==},快速准确地估计一个大型数据集的基数.\n每个HyperLogLog键只占用12KB内存,就可以计算接近2^64个不同元素的基数\n\n\n\n# 添加多个\n# key不存在,则添加成功返回1\n# 如key已经存在, 然后添加的元素 也都已经有了, 则返回0, 表示添加无效.\nPFADD login_yesterday 1 2 3 4 2\ntype login_yesterday # 本质是字符串\n# 计算基数 (不同元素的数量) 插入大量数据时,统计可能不那么准确, 因为本身就是预估\nPFCOUNT login_yesterday # 4个\npfadd login_today 1 2 5 7\nPFMERGE login login_today login_yesterday # 将合并的结果设置到login 这个key中\nPFCOUNT login_yesterday login_today # 直接合并计算\n\n2.3.1 应用场景\n\n\n\n\n\n\nTip\n\n\n\nhyperLogLog 本身不保存实际的数据,只是用来统计\n\n\n\n统计日活,月活数据\n\n\n\n\n2.4 Bloom Filter 布隆过滤器\n\n\n\n\n\n\nCaution\n\n\n\n这个不是数据类型. 不过我暂时放在这里\n\n\n原理就是: 一个很长的二进制 (初始位的值都是0,像bitmap)和诺干个hash函数 比如一个电话号码 给哈希函数(多个)计算过后的值,在二进制的相应位置的位上改成1, 比如我们要判断这个电话号码是否在这10亿号码中, 先将10亿个号码这样处理, 然后我们计算这个电话号码的哈希,看对应位上是否都是1\n误差率\n\nm个二进制位\nn个预备数据\nk个哈希函数\n\n\n2.4.1 应用场景\n垃圾邮件过滤等\n\n\n\n2.5 bitfields(todo)\n\n\n2.6 Streams(todo)",
-    "crumbs": [
-      "基础",
-      "数据类型"
-    ]
+    "section": "2 SQL编写优化",
+    "text": "2 SQL编写优化\n\n2.1 最左前缀法则\n\n\n2.2 不在索引列上做任何操作\n\n\n2.3 少用or或in,使用union\n\n\n2.4 字符串要加单引号\n\n\n2.5 != 和 null 判断 都会使索引失效\n\n\n2.6 order by 优化\n\n\n2.7 分页查询优化\n\n\n2.8 in & exists"
   },
   {
-    "objectID": "docs/middleware/redis/architecture.html#哨兵",
-    "href": "docs/middleware/redis/architecture.html#哨兵",
-    "title": "斯巴拉稀",
-    "section": "2 哨兵",
-    "text": "2 哨兵"
-  },
-  {
-    "objectID": "docs/middleware/redis/architecture.html#集群",
-    "href": "docs/middleware/redis/architecture.html#集群",
-    "title": "斯巴拉稀",
-    "section": "3 集群",
-    "text": "3 集群"
-  },
-  {
-    "objectID": "docs/middleware/redis/cache.html",
-    "href": "docs/middleware/redis/cache.html",
+    "objectID": "docs/middleware/mysql/lock.html",
+    "href": "docs/middleware/mysql/lock.html",
     "title": "斯巴拉稀",
     "section": "",
     "text": "Back to top"
   },
   {
-    "objectID": "add-table.html",
-    "href": "add-table.html",
+    "objectID": "docs/middleware/mysql/sql.html",
+    "href": "docs/middleware/mysql/sql.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "Sample grid table.\n\n\n\n\n\n\n\nFruit\nPrice\nAdvantages\n\n\n\n\nBananas\n$1.34\n\nbuilt-in wrapper\nbright color\n\n\n\nOranges\n$2.10\n\ncures scurvy\ntasty\n\n\n\n\n在vscode中 右键 点击 Edit in visual mode ,然后插入table , 直接编辑它就行, 最后复制"
+    "text": "Warning\n\n\n\ntodo…",
+    "crumbs": [
+      "SQL语句"
+    ]
   },
   {
-    "objectID": "add-table.html#添加这种格式的table-的方式",
-    "href": "add-table.html#添加这种格式的table-的方式",
+    "objectID": "docs/middleware/mysql/sql.html#常用函数",
+    "href": "docs/middleware/mysql/sql.html#常用函数",
+    "title": "斯巴拉稀",
+    "section": "1 常用函数",
+    "text": "1 常用函数\n-- 获取一个uuid\nselect uuid();\n-- 当前时间\nselect now();",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/sql.html#配置相关",
+    "href": "docs/middleware/mysql/sql.html#配置相关",
+    "title": "斯巴拉稀",
+    "section": "2 配置相关",
+    "text": "2 配置相关\n\n2.1 查看mysql相关信息\n\n-- 进入mysql控制台后 (mysql -uroot .. 命令连接后的界面) 输入 \\s 后回车\n\\s\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n--------------\nmysql  Ver 5.7.41-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))\n\nConnection id:      3\nCurrent database:   test\nCurrent pager:      stdout\nUsing outfile:      ''\nUsing delimiter:    ;\nServer version:     5.7.41 MySQL Community Server (GPL)\nProtocol version:   10\nConnection:     192.168.1.100 via TCP/IP\nServer characterset:    latin1\nDb     characterset:    latin1\nClient characterset:    latin1\nConn.  characterset:    latin1\nTCP port:       3306\nBinary data as:     Hexadecimal\nUptime:         43 min 23 sec\n--------------\n\n\n\n\n\n\n2.2 查看会话与全局变量\n-- 进入mysql后 查看会话变量\nselect @@autocommit;\n-- 查看全局\nselect @@global.autocommit;\n-- 我们平常设置变量 ,下面的只对当前会话有效\n-- 其实是省略了set session autocommit=1; 中的session\nset autocommit=1;\n\n-- 这样设置后,我们查看select @@autocommit 发现还是1,\n-- global只对以后的会话有效,对当前无效,当前的还是保持原来的\nset global autocommit=0;\n-- 模糊查看变量\nshow variables like \"%log%\";\n\n\n2.3 查看字符集\n\nshow character set like '%utf%';\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+---------+------------------+--------------------+--------+\n| Charset | Description      | Default collation  | Maxlen |\n+---------+------------------+--------------------+--------+\n| utf8    | UTF-8 Unicode    | utf8_general_ci    |      3 |\n| utf8mb4 | UTF-8 Unicode    | utf8mb4_general_ci |      4 |\n| utf16   | UTF-16 Unicode   | utf16_general_ci   |      4 |\n| utf16le | UTF-16LE Unicode | utf16le_general_ci |      4 |\n| utf32   | UTF-32 Unicode   | utf32_general_ci   |      4 |\n+---------+------------------+--------------------+--------+\n\n\n\n\n\n\n2.4 隔离级别\nshow variables like '%tx%';",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/sql.html#权限设置",
+    "href": "docs/middleware/mysql/sql.html#权限设置",
+    "title": "斯巴拉稀",
+    "section": "3 权限设置",
+    "text": "3 权限设置\n-- 角色,mysql中没有角色,用的一种叫代理的方式  这个只有5.7支持\n-- 官方叫 role like 机制\nshow grants;\ncreate user 'dba'@'127.0.0.1';\ncreate user 'xyz'@'::1';\ngrant proxy on 'dba'@'127.0.0.1' to 'xyz'@'::1';\ngrant select on mysql.* to 'dba'@'127.0.0.1';\n\n-- 查看该用户的权限\nshow grants for 'dba'@'127.0.0.1';\n\n-- 可以查看到\nselect * from mysql.proxies_priv;",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/sql.html#database",
+    "href": "docs/middleware/mysql/sql.html#database",
+    "title": "斯巴拉稀",
+    "section": "4 database",
+    "text": "4 database\n-- mysql中database与schema 是一模一样的.\n-- 其他数据库可能是一个database有多个schema.\n-- mysql估计是为了和其他数据库保持一致,好理解所以有了schema\n-- 下面2个操作结果一样\nshow databases;\nshow schemas;\n\n-- 选择database,进行查询时,需要先选择你的db\nuse database_name;\n\n-- 每一个数据库对应data dir目录里的是一个文件夹.但是information_schema 不在里面\nuse information_schema;\n-- 我们发现这些个表的引擎都是memory,所以..没有\nshow table status;",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/sql.html#table",
+    "href": "docs/middleware/mysql/sql.html#table",
+    "title": "斯巴拉稀",
+    "section": "5 table",
+    "text": "5 table\n\n5.1 查看创建信息\n-- 查看当前db下的所有表信息\nshow table status;\n-- 某个表的一些信息\nshow table status like 'table_name';\n-- 显示创建表的语句\nshow create table table_name;\n\n\n5.2 索引\n-- 删除主键\nalter table table_name drop primary key;\n-- 删除一般索引\nalter table table_name drop index index_name;\n\n\n5.3 临时表\n\n\n\n\n\n\nCaution\n\n\n\n\n创建的临时表是基于会话的,你另外开一个会话,你看不到你创建的临时表\n临时表可以与实体表重名\n在有重名的情况下, 你select * from a实际查询的是临时表,而不是实体表\n\n\n\n\n创建临时表\n\ncreate temporary table  tmp_a (id int);\n\n\n\n查看临时表的默认存储引擎\n\nshow variables like '%default_tmp%';\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+----------------------------+--------+\n| Variable_name              | Value  |\n+----------------------------+--------+\n| default_tmp_storage_engine | InnoDB |\n+----------------------------+--------+\n\n\n\n\n\n\n\n查看 临时表的状态\n\n-- 可以看到系统里有创建了多少个临时表\nshow global status like '%tmp_tables%';\n-- 当前会话里的情况\nshow status like '%tmp_tables%';\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+--------------------+-------+\n| Variable_name      | Value |\n+--------------------+-------+\n| Created_tmp_tables | 6     |\n+--------------------+-------+\n\n\n\n\n\n\n表结构存放目录\n\nshow variables like 'tmpdir';\n\n-- 如果你是在mysql所在服务器 用的mysql命令连接可以直接使用如下命令查看\n-- 可以看到.frm的文件\n-- 退出当前mysql 会话, 这个表空间文件会删除的.\nsystem ls /tmp\n\n\n\n\n\n\n临时表表结构文件命名方式\n\n\n\n\n临时表的表结构文件.frm 命名方式是 #sql{进程id}_{线程id}_序列号\n线程id 通过 show processlist 的ID列获得.\n\n\n\n\n\n\n表空间的存放目录\n\nshow variables like \"%data%\";\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+---------------------------------------+------------------------+\n| Variable_name                         | Value                  |\n+---------------------------------------+------------------------+\n2| datadir                               | /var/lib/mysql/        |\n| innodb_data_file_path                 | ibdata1:12M:autoextend |\n| innodb_data_home_dir                  |                        |\n1| innodb_temp_data_file_path            | ibtmp1:12M:autoextend  |\n+---------------------------------------+------------------------+\n\n1\n\n创建的文件名是 ibtmp1,放在 innodb_data_home_dir 目录下\n\n2\n\n如果 innodb_data_home_dir 是空的, 就放到datadir 下\n\n\n-- 可以看到\nsystem ls /var/lib/mysql/ibtmp1\n\n\n\n\n\n\n5.4 增\n\n\n5.5 删\n\n\n5.6 改\n\n\n5.7 查",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/sql.html#奇技",
+    "href": "docs/middleware/mysql/sql.html#奇技",
+    "title": "斯巴拉稀",
+    "section": "6 奇技",
+    "text": "6 奇技\n\n6.1 导出csv,带字段名\n# 默认导出没有标题. 所以用union 来完成效果\nmysql -uroot -proot test -e \"select 'a','b','c' from dual union select a,b,c from test  into outfile '/tmp/x.csv' CHARACTER SET gbk fields terminated by ',' optionally enclosed by '\\\"' lines terminated by '\\r\\n'; \"\n\n\n\n\n\n\nTip\n\n\n\n\noptionally enclosed by ‘\"’ 这样 字段内容有, 号的 就不会被分成2个了.\nsecure_file_priv=/tmp/ 这个参数影响 导出文件的位置,以及是否可导出\n如果 上面的参数为空, 去 /tmp/xxxxx-mariadb/tmp 看看",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/sql.html#null",
+    "href": "docs/middleware/mysql/sql.html#null",
+    "title": "斯巴拉稀",
+    "section": "7 null",
+    "text": "7 null\n\n\n\n\n\n\n注意\n\n\n\n\n任何值与null进行=比较,得到的都是null\n用is 来判断\n\n\n\nselect null=1;\nselect 1=null;\nselect null in (1,null);",
+    "crumbs": [
+      "SQL语句"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/kafka/install.html",
+    "href": "docs/middleware/kafka/install.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "Sample grid table.\n\n\n\n\n\n\n\nFruit\nPrice\nAdvantages\n\n\n\n\nBananas\n$1.34\n\nbuilt-in wrapper\nbright color\n\n\n\nOranges\n$2.10\n\ncures scurvy\ntasty\n\n\n\n\n在vscode中 右键 点击 Edit in visual mode ,然后插入table , 直接编辑它就行, 最后复制"
+    "text": "修改bin/kafka-run-class.sh\n\n添加 LOG_DIR=/新的位置\n\n修改kafka_2.12-2.3.0/config/log4j.properties\n\n配置 /var/log/kafka位置 添加 kafka.logs.dir=/新的位置\n\n\n\nlog.dirs=/tmp/kafka-logs\n/infusion-server/kafka_2.12-2.3.0/config/server.properties\nlog.retention.hours 本身就已经设置 168个小时,保留7天.\n修改后, 停止kafka 将原本的数据目录 复制到新的位置, 重启. 数据迁移"
+  },
+  {
+    "objectID": "docs/middleware/kafka/install.html#配置",
+    "href": "docs/middleware/kafka/install.html#配置",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "修改bin/kafka-run-class.sh\n\n添加 LOG_DIR=/新的位置\n\n修改kafka_2.12-2.3.0/config/log4j.properties\n\n配置 /var/log/kafka位置 添加 kafka.logs.dir=/新的位置\n\n\n\nlog.dirs=/tmp/kafka-logs\n/infusion-server/kafka_2.12-2.3.0/config/server.properties\nlog.retention.hours 本身就已经设置 168个小时,保留7天.\n修改后, 停止kafka 将原本的数据目录 复制到新的位置, 重启. 数据迁移"
+  },
+  {
+    "objectID": "docs/middleware/redis/persistence.html",
+    "href": "docs/middleware/redis/persistence.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Caution\n\n\n\n未完待续",
+    "crumbs": [
+      "基础",
+      "数据持久化"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/persistence.html#rdb",
+    "href": "docs/middleware/redis/persistence.html#rdb",
+    "title": "斯巴拉稀",
+    "section": "1 RDB",
+    "text": "1 RDB\n\n\n\n\n\n\nTip\n\n\n\n\nsnapshot,快照\n二进制格式\n早期redis版本的默认方式\n按照事先指定的频率,周期性都保存到磁盘\n默认文件是dump.rdb\n宕机后,数据会丢失一部分\n\n\n\n\n\nredis.conf\n\nsave 900 1  #900秒内如果有&gt;=1个key发生变化(set写入的操作),则写入磁盘\nsave 300 10 #300秒内如果有&gt;=10个key,则不用等待900秒 写入\nsave 60 10000  #如果60秒内有&gt;=10000个 则写入\n\n\n\n\n\n\n\nCaution\n\n\n\n如果你在60秒内 做了 999次操作, 然后这个时候redis服务器宕机了. 那么数据就不会写入磁盘,也就是说丢失了.\n\n\n\n1.1 主动生成rdb快照\n进入客户端\n# 每次执行这样的命令都会将所有redis内存快照到一个新的rdb文件,并覆盖原有快照文件\nsave 或 bgsave  \n\nsavebgsave\n\n\n同步方式,在主线程中保存快照, 所以这个时候所有操作会阻塞,因为主线程就是用来执行client的请求的\n\n\n\nbackground save ,异步方式,client请求不会阻塞\n调用fork创建一个子进程,父进程继续处理各个请求\nlinux的写时复制cow特点,父子进程共享同一个物理空间,父进程会将操作的页面创建一个副本,而子进程的数据还是要开始保存的那个时间点\n子进程负责将内存中的内容保存到临时文件,只有当其保存ok后,才会保存到真正的文件\n执行完后,子进程退出\n\n\n\n\n\n\n1.2 重放\n\n就是将dump.rdb 重新加载到内存\nrdb比aof的重放速度快,直接文件重新写入 ,aof是重新执行命令",
+    "crumbs": [
+      "基础",
+      "数据持久化"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/persistence.html#aof",
+    "href": "docs/middleware/redis/persistence.html#aof",
+    "title": "斯巴拉稀",
+    "section": "2 AOF",
+    "text": "2 AOF\n\nappend only file\n记录每一次的写操作,几乎不会丢失数据,但是 这样性能肯定就没那么好了\n\n因为写入磁盘本身 是先写到缓存的? 操作系统..\n\n就是将你执行的redis命令 添加到指定的文件\n文件会比较大\n重启时,可以通过重新执行文件中的命令在内存中重建数据\n\n\n\nredis.conf中开启aof\n\nappendonly no # 设置为yes 开启\nappendfilename \"appendonly.aof\"  # 文件名\ndir /usr/local/var/db/redis/  # 存放的目录在这里\n\n\n2.1 写入策略\n# appendfsync always  # 每写一条命令,就写入, 这个性能最不好\n# 每1秒,redis内部本身也是先写到缓存中,到达1秒后,写入磁盘\n# 故障时 只会丢失1秒钟的数据\nappendfsync everysec\n# appendfsync no      # 将数据交给操作系统来处理.\n\n#表示重写的时候,父进程的新的操作不同步到文件\nno-appendfsync-on-rewrite no\n#可以用config set parma value 来修改\n但是如果要永久话,需要 config rewirte\n\n\n2.2 重写优化\n我们知道当redis重启时, 会将aof文件里的命令重新执行来达到重建数据的目的\n\naof重写的问题\n\naof 是重新执行了一遍命令, 肯定比rdb 重放慢\n由于可能有很多无用的命令, 这个很好理解, 就是你后面的命令 直接覆盖了前面的, set a 1 ,set a 2,第一条命令实际就是没用的\n比如你执行了100次的操作,可能只要一次就行了,但是保存的还是100语句\n\n手动重写命令 bgrewirteaof 命令可以重写aof文件,合并一些操作\n\n不会读取旧的aof文件\n比如内存中的结果直接变成 它所对应的语句 写到临时文件\n将内存中的文件保存到临时文件,最后替换真正的文件\n过程\n\n主进程通过fork 生成子进程\n子进程根据内存中的数据创建数据库重建命令序列与临时文件中\n父进程继续接收client的请求,会把这些请求的命令追加于原来的aof文件,为了防止重写失败,额外的会把这些新的请求写于一个缓冲队列中\n子进程写完临时文件后,会通知父进程,父进程会把缓冲队列中的命令写到临时文件中\n最后 父进程?用临时文件替换老的aof文\n\n\n\n\n\n2.3 重写策略\n# 当你的文件 自上一次重写后 大小增加了100%后, 会触发重写\n#当现在得aof文件是上次重写后的文件的2倍大小时,再次重写\nauto-aof-rewrite-percentage 100\n# 表示当文件至少达到64m的时候才会自动重写, 因为文件太小 本身加载到内存就很快.\nauto-aof-rewrite-min-size 64mb",
+    "crumbs": [
+      "基础",
+      "数据持久化"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/persistence.html#redis-4.0以后-混合持久化",
+    "href": "docs/middleware/redis/persistence.html#redis-4.0以后-混合持久化",
+    "title": "斯巴拉稀",
+    "section": "3 redis 4.0以后 混合持久化",
+    "text": "3 redis 4.0以后 混合持久化\n重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重 放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很 长的时间。 Redis 4.0 为了解决这个问题，带来了一个新的持久化选项——混合持久化\n\n就是结合了上面的2个\n开启\n\naof-use-rdb-preamble yes\n\nAOF在重写时，不再是单纯将内存数据转换为RESP命令写入AOF文件，而是将 重写这一刻之前的内存做RDB快照处理，并且将RDB快照内容和增量的AOF修改内存数据的命令存在一 起，都写入新的AOF文件，新的文件一开始不叫appendonly.aof，等到重写完新的AOF文件才会进行改 名，原子的覆盖原有的AOF文件，完成新旧两个AOF文件的替换。\n于是在 Redis 重启的时候，可以先加载 RDB 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，因此重启效率大幅得到提升。\n\n\n\nbgrewirteaof 后看下 aof文件,然后 set 写入 ,再看看文件里的内容",
+    "crumbs": [
+      "基础",
+      "数据持久化"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/principle.html",
+    "href": "docs/middleware/redis/principle.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "docs/middleware/redis/source-code.html",
+    "href": "docs/middleware/redis/source-code.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "Caution\n\n\n\n未完待续",
+    "crumbs": [
+      "源码分析",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/source-code.html#vscode-debug-环境搭建",
+    "href": "docs/middleware/redis/source-code.html#vscode-debug-环境搭建",
+    "title": "斯巴拉稀",
+    "section": "1 vscode debug 环境搭建",
+    "text": "1 vscode debug 环境搭建\n\n添加配置\n\n\nmac 环境选择lldb, 然后修改部分配置,如下\n\n\nlaunch.json\n\n{\n    \"version\": \"0.2.0\",\n    \"configurations\": [\n        {\n            \"name\": \"(lldb) 启动\",\n            \"type\": \"cppdbg\",\n            \"request\": \"launch\",\n            \"program\": \"${workspaceFolder}/src/redis-server\",\n            \"args\": [\n                \"./redis.conf\"\n            ],\n            \"stopAtEntry\": false,\n            \"cwd\": \"${workspaceFolder}\",\n            \"environment\": [],\n            \"externalConsole\": false,\n            \"MIMode\": \"lldb\"\n        }\n\n    ]\n}\n\n\n编译\n\n# 编译\n# -O0 参数表示告诉编译器不要优化代码, 防止你在 Debug 的时候,IDE 里面的 Redis 源码与实际运行的代码对应不上.\n# MALLOC=jemalloc,指定在 Mac OS 系统上 Redis 使用 jemalloc 内存分配器,\n# Linux 默认使用该分配器，如果是 Linux 系统,无需指定该参数\nmake CFLAGS=\"-g -O0\" MALLOC=jemalloc\n\n开始调试 (快捷键F5)\n\n\n\nsrc/server.c main()主函数 打个断点 \n\nint main(int argc, char **argv) {\n    struct timeval tv;\n    int j;\n    char config_from_stdin = 0;\n    ...\n    ...\n}",
+    "crumbs": [
+      "源码分析",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/source-code.html#总体流程",
+    "href": "docs/middleware/redis/source-code.html#总体流程",
+    "title": "斯巴拉稀",
+    "section": "2 总体流程",
+    "text": "2 总体流程\n\n2.1 服务启动\n\n\nserver.c入口redisCommandTableinitServer()\n\n\n\n\nserver.c\n\n// 入口\nint main(int argc, char **argv) {\n    // ...\n    initServerConfig();\n    // ...\n    initServer();\n    // ...\n}\n\n\n\nstruct redisCommand redisCommandTable[] = {\n    {\"module\",moduleCommand,-2,\n    \"admin no-script\",\n    0,NULL,0,0,0,0,0,0},\n\n    {\"get\",getCommand,2,\n    \"read-only fast @string\",\n    0,NULL,1,1,1,0,0,0},\n    ...\n}\n\n\nvoid initServer(void) {\n    // ...\n    server.db = zmalloc(sizeof(redisDb)*server.dbnum);\n    // ...\n    \n    /* 创建并初始化数据库结构 dbnum=16  我们select 0 选择数据库*/\n    for (j = 0; j &lt; server.dbnum; j++) {\n        server.db[j].dict = dictCreate(&dbDictType,NULL);\n        server.db[j].expires = dictCreate(&dbExpiresDictType,NULL);\n        server.db[j].expires_cursor = 0;\n        server.db[j].blocking_keys = dictCreate(&keylistDictType,NULL);\n        server.db[j].ready_keys = dictCreate(&objectKeyPointerValueDictType,NULL);\n        server.db[j].watched_keys = dictCreate(&keylistDictType,NULL);\n        server.db[j].id = j;\n        server.db[j].avg_ttl = 0;\n        server.db[j].defrag_later = listCreate();\n        listSetFreeMethod(server.db[j].defrag_later,(void (*)(void*))sdsfree);\n    }\n\n}",
+    "crumbs": [
+      "源码分析",
+      "环境准备"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/redis/source-code.html#set-age-11-的过程doing",
+    "href": "docs/middleware/redis/source-code.html#set-age-11-的过程doing",
+    "title": "斯巴拉稀",
+    "section": "3 set age 11 的过程(doing)",
+    "text": "3 set age 11 的过程(doing)\n开到key-value的这种结构,数据是如何存储的呢? 我们应该很容易想到哈希表吧, 去看go中map的图书馆例子.\n这里我再举个例子, 新华字典, 我们可以说字典有2种哈希函数, 一种是按照拼音来查,另外一种是按偏旁部首.\ntypedef struct redisDb {\n    /* The keyspace for this DB */\n    dict *dict;                 \n    /* Timeout of keys with a timeout set */\n    dict *expires;           \n    /* Keys with clients waiting for data (BLPOP)*/\n    dict *blocking_keys;   \n    /* Blocked keys that received a PUSH */\n    dict *ready_keys;          \n    /* WATCHED keys for MULTI/EXEC CAS */\n    dict *watched_keys;         \n    /* Database ID */\n    int id;                     \n    /* Average TTL, just for stats */\n    long long avg_ttl;\n    /* Cursor of the active expire cycle. */\n    unsigned long expires_cursor; \n    /* List of key names to attempt to defrag one by one, gradually. */\n    list *defrag_later;         \n} redisDb;",
+    "crumbs": [
+      "源码分析",
+      "环境准备"
+    ]
   },
   {
     "objectID": "docs/middleware/redis/env.html",
@@ -3188,314 +3287,208 @@
     ]
   },
   {
-    "objectID": "docs/middleware/redis/source-code.html",
-    "href": "docs/middleware/redis/source-code.html",
+    "objectID": "add-table.html",
+    "href": "add-table.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "Caution\n\n\n\n未完待续",
-    "crumbs": [
-      "源码分析",
-      "环境准备"
-    ]
+    "text": "Sample grid table.\n\n\n\n\n\n\n\nFruit\nPrice\nAdvantages\n\n\n\n\nBananas\n$1.34\n\nbuilt-in wrapper\nbright color\n\n\n\nOranges\n$2.10\n\ncures scurvy\ntasty\n\n\n\n\n在vscode中 右键 点击 Edit in visual mode ,然后插入table , 直接编辑它就行, 最后复制"
   },
   {
-    "objectID": "docs/middleware/redis/source-code.html#vscode-debug-环境搭建",
-    "href": "docs/middleware/redis/source-code.html#vscode-debug-环境搭建",
+    "objectID": "add-table.html#添加这种格式的table-的方式",
+    "href": "add-table.html#添加这种格式的table-的方式",
     "title": "斯巴拉稀",
-    "section": "1 vscode debug 环境搭建",
-    "text": "1 vscode debug 环境搭建\n\n添加配置\n\n\nmac 环境选择lldb, 然后修改部分配置,如下\n\n\nlaunch.json\n\n{\n    \"version\": \"0.2.0\",\n    \"configurations\": [\n        {\n            \"name\": \"(lldb) 启动\",\n            \"type\": \"cppdbg\",\n            \"request\": \"launch\",\n            \"program\": \"${workspaceFolder}/src/redis-server\",\n            \"args\": [\n                \"./redis.conf\"\n            ],\n            \"stopAtEntry\": false,\n            \"cwd\": \"${workspaceFolder}\",\n            \"environment\": [],\n            \"externalConsole\": false,\n            \"MIMode\": \"lldb\"\n        }\n\n    ]\n}\n\n\n编译\n\n# 编译\n# -O0 参数表示告诉编译器不要优化代码, 防止你在 Debug 的时候,IDE 里面的 Redis 源码与实际运行的代码对应不上.\n# MALLOC=jemalloc,指定在 Mac OS 系统上 Redis 使用 jemalloc 内存分配器,\n# Linux 默认使用该分配器，如果是 Linux 系统,无需指定该参数\nmake CFLAGS=\"-g -O0\" MALLOC=jemalloc\n\n开始调试 (快捷键F5)\n\n\n\nsrc/server.c main()主函数 打个断点 \n\nint main(int argc, char **argv) {\n    struct timeval tv;\n    int j;\n    char config_from_stdin = 0;\n    ...\n    ...\n}",
-    "crumbs": [
-      "源码分析",
-      "环境准备"
-    ]
+    "section": "",
+    "text": "Sample grid table.\n\n\n\n\n\n\n\nFruit\nPrice\nAdvantages\n\n\n\n\nBananas\n$1.34\n\nbuilt-in wrapper\nbright color\n\n\n\nOranges\n$2.10\n\ncures scurvy\ntasty\n\n\n\n\n在vscode中 右键 点击 Edit in visual mode ,然后插入table , 直接编辑它就行, 最后复制"
   },
   {
-    "objectID": "docs/middleware/redis/source-code.html#总体流程",
-    "href": "docs/middleware/redis/source-code.html#总体流程",
-    "title": "斯巴拉稀",
-    "section": "2 总体流程",
-    "text": "2 总体流程\n\n2.1 服务启动\n\n\nserver.c入口redisCommandTableinitServer()\n\n\n\n\nserver.c\n\n// 入口\nint main(int argc, char **argv) {\n    // ...\n    initServerConfig();\n    // ...\n    initServer();\n    // ...\n}\n\n\n\nstruct redisCommand redisCommandTable[] = {\n    {\"module\",moduleCommand,-2,\n    \"admin no-script\",\n    0,NULL,0,0,0,0,0,0},\n\n    {\"get\",getCommand,2,\n    \"read-only fast @string\",\n    0,NULL,1,1,1,0,0,0},\n    ...\n}\n\n\nvoid initServer(void) {\n    // ...\n    server.db = zmalloc(sizeof(redisDb)*server.dbnum);\n    // ...\n    \n    /* 创建并初始化数据库结构 dbnum=16  我们select 0 选择数据库*/\n    for (j = 0; j &lt; server.dbnum; j++) {\n        server.db[j].dict = dictCreate(&dbDictType,NULL);\n        server.db[j].expires = dictCreate(&dbExpiresDictType,NULL);\n        server.db[j].expires_cursor = 0;\n        server.db[j].blocking_keys = dictCreate(&keylistDictType,NULL);\n        server.db[j].ready_keys = dictCreate(&objectKeyPointerValueDictType,NULL);\n        server.db[j].watched_keys = dictCreate(&keylistDictType,NULL);\n        server.db[j].id = j;\n        server.db[j].avg_ttl = 0;\n        server.db[j].defrag_later = listCreate();\n        listSetFreeMethod(server.db[j].defrag_later,(void (*)(void*))sdsfree);\n    }\n\n}",
-    "crumbs": [
-      "源码分析",
-      "环境准备"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/redis/source-code.html#set-age-11-的过程doing",
-    "href": "docs/middleware/redis/source-code.html#set-age-11-的过程doing",
-    "title": "斯巴拉稀",
-    "section": "3 set age 11 的过程(doing)",
-    "text": "3 set age 11 的过程(doing)\n开到key-value的这种结构,数据是如何存储的呢? 我们应该很容易想到哈希表吧, 去看go中map的图书馆例子.\n这里我再举个例子, 新华字典, 我们可以说字典有2种哈希函数, 一种是按照拼音来查,另外一种是按偏旁部首.\ntypedef struct redisDb {\n    /* The keyspace for this DB */\n    dict *dict;                 \n    /* Timeout of keys with a timeout set */\n    dict *expires;           \n    /* Keys with clients waiting for data (BLPOP)*/\n    dict *blocking_keys;   \n    /* Blocked keys that received a PUSH */\n    dict *ready_keys;          \n    /* WATCHED keys for MULTI/EXEC CAS */\n    dict *watched_keys;         \n    /* Database ID */\n    int id;                     \n    /* Average TTL, just for stats */\n    long long avg_ttl;\n    /* Cursor of the active expire cycle. */\n    unsigned long expires_cursor; \n    /* List of key names to attempt to defrag one by one, gradually. */\n    list *defrag_later;         \n} redisDb;",
-    "crumbs": [
-      "源码分析",
-      "环境准备"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/redis/principle.html",
-    "href": "docs/middleware/redis/principle.html",
+    "objectID": "docs/middleware/redis/cache.html",
+    "href": "docs/middleware/redis/cache.html",
     "title": "斯巴拉稀",
     "section": "",
     "text": "Back to top"
   },
   {
-    "objectID": "docs/middleware/redis/persistence.html",
-    "href": "docs/middleware/redis/persistence.html",
+    "objectID": "docs/middleware/redis/architecture.html#哨兵",
+    "href": "docs/middleware/redis/architecture.html#哨兵",
+    "title": "斯巴拉稀",
+    "section": "2 哨兵",
+    "text": "2 哨兵"
+  },
+  {
+    "objectID": "docs/middleware/redis/architecture.html#集群",
+    "href": "docs/middleware/redis/architecture.html#集群",
+    "title": "斯巴拉稀",
+    "section": "3 集群",
+    "text": "3 集群"
+  },
+  {
+    "objectID": "docs/middleware/redis/data-type.html",
+    "href": "docs/middleware/redis/data-type.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "Caution\n\n\n\n未完待续",
+    "text": "未完待续",
     "crumbs": [
       "基础",
-      "数据持久化"
+      "数据类型"
     ]
   },
   {
-    "objectID": "docs/middleware/redis/persistence.html#rdb",
-    "href": "docs/middleware/redis/persistence.html#rdb",
+    "objectID": "docs/middleware/redis/data-type.html#五大基本类型",
+    "href": "docs/middleware/redis/data-type.html#五大基本类型",
     "title": "斯巴拉稀",
-    "section": "1 RDB",
-    "text": "1 RDB\n\n\n\n\n\n\nTip\n\n\n\n\nsnapshot,快照\n二进制格式\n早期redis版本的默认方式\n按照事先指定的频率,周期性都保存到磁盘\n默认文件是dump.rdb\n宕机后,数据会丢失一部分\n\n\n\n\n\nredis.conf\n\nsave 900 1  #900秒内如果有&gt;=1个key发生变化(set写入的操作),则写入磁盘\nsave 300 10 #300秒内如果有&gt;=10个key,则不用等待900秒 写入\nsave 60 10000  #如果60秒内有&gt;=10000个 则写入\n\n\n\n\n\n\n\nCaution\n\n\n\n如果你在60秒内 做了 999次操作, 然后这个时候redis服务器宕机了. 那么数据就不会写入磁盘,也就是说丢失了.\n\n\n\n1.1 主动生成rdb快照\n进入客户端\n# 每次执行这样的命令都会将所有redis内存快照到一个新的rdb文件,并覆盖原有快照文件\nsave 或 bgsave  \n\nsavebgsave\n\n\n同步方式,在主线程中保存快照, 所以这个时候所有操作会阻塞,因为主线程就是用来执行client的请求的\n\n\n\nbackground save ,异步方式,client请求不会阻塞\n调用fork创建一个子进程,父进程继续处理各个请求\nlinux的写时复制cow特点,父子进程共享同一个物理空间,父进程会将操作的页面创建一个副本,而子进程的数据还是要开始保存的那个时间点\n子进程负责将内存中的内容保存到临时文件,只有当其保存ok后,才会保存到真正的文件\n执行完后,子进程退出\n\n\n\n\n\n\n1.2 重放\n\n就是将dump.rdb 重新加载到内存\nrdb比aof的重放速度快,直接文件重新写入 ,aof是重新执行命令",
+    "section": "1 五大基本类型",
+    "text": "1 五大基本类型\n\n1.1 strings\n\n1.1.1 基本命令\n\n增改查自增减删除\n\n\nset age 20 # 不管这个key 存不存在都设置\n# SETNX = SET if Not eXists, 不存在才设置\n# 现在用 set key value NX 来替代\nset age 30 nx # 不存在才设置,相当于创建\nset age 34 xx # age存在才设置,相当于更新\nget age # 查看key,不存在返回nil\n\n# SET key value EX seconds\n# ex expire , 设置key 5秒后过期, 会删除\nset age 10 EX 5\n\n# MSET key value [key value ...]\n# n次get命令,需要n次网络时间,和n次命令时间\n# mget 只需要一次,一次会传递所有的命令给, 执行要么全部成功,要么都失败\nmset name tom age 10\nmget name age\n\n# 设置新的值,会返回旧的name的值\ngetset name tom\n# 追加字符串到key的值后面\nappend name cat\n# ==&gt; tomcat\n# strlen 也是o(1)的复杂度, 就是说 不是实时计算key的长度的,\n# 而是 有计数器统计该key的长度 做了记录的\nstrlen name # 获取长度\n\nsetrange name 1 x\n# tomcat ==&gt; txmcat\ngetrange name 1 3\n# ==&gt;xmc\n\n\n# 如果key不存在,那么该key是int型,初始值是0, 则自增1, 就变成了1, 返回值就是age的值\nincr age\n# 如果不存在该key, 值变为-1 同上\ndecr age\n\nincrby age 2 # 表示age 增加2\ndecrby age 2 # -2\nincrbyfloat age 1.2\n# 使用负数来实现 decr 的\nincrbyfloat age -1.2\n\n\ndel name\n\n\n\n\n\n1.1.2 应用场景\n分布式id 生成器 利用redis的单线程特性, 多个服务可能要来请求,使用incr 就可以来搞出一个自增的id\n\n\n\n1.2 lists\n有序的,可以做左边插入,弹出,右边插入,弹出的操作\n\n1.2.1 基本命令\n\npush/pop查指定元素前后插入删除根据索引修改元素根据索引截取元素\n\n\n# 从右边插入,可插入多个\nrpush names tom jack\n# 从左边插入\nlpush names bob stark\n\nlpop names #左边弹出\nrpop names #右边弹出\n# 上面我们的lpop 和rpop 都是非阻塞的,直接给出结果,如果没有元素的话,返回的是nil\n# 这里的blpop和brpop是阻塞版本\n# 如果key列表里面有值,则马上返回,不管你的timeout是啥\n# 如果key里面没有元素,则等待timeout秒, 还没有结果则退出\n# 如果timeout=0,则会永远的等待下去,直到列表里 有新的元素\nblpop key timeout\n\n\n# lrange key start end # 包含end\n# start end 如果是 负数\n# 比如 lrange key -6  -1    :-1 表示最右边的那个元素, -2 表示 -1那个的左边元素\nlrange names 0 -1 # 查看所有的元素\n# 获取 索引位置的元素\nlindex names 2\n# 列表长度 (元素个数)\nllen names\n\n\n# 在\n# 下面2个的时间复杂度是o(n),因为需要遍历\ninsert after bob bob2\ninsert before bob marry\n\n\n# 如果count &gt;0 则表示从左到右删除count个 相同的value(因为list可以存放相同的元素)\n# 如果count &lt;0 则表示从右到左\n# count=0 删除所有\nlrem key count value\n\n\n# 设置索引位置1 的元素为 trump\nlset names 1 trump\n\n\n# names a b c d e\nltrim names 1 3 # 截取索引1-3 包含3 的元素\nlrange names 0 -1 # ==&gt; b c d\n\n\n\n\n\n\n1.3 hashes\n类似下面这样,就是key对应的是个map\n\"tom\":{\n    \"name\":\"tom\",\n    \"age\":20,\n    \"sex\":\"boy\"\n}\n可以理解为 一张表的一条记录 比如user表,无法给单独的field 设置过期时间\n\n1.3.1 基本命令\n\n增改查删\n\n\n# u:1 叫key ,name 叫field\nhset u:1 name tom\n# 多个field, #原本的多个field的命令 hmset 说是将被废弃,现在还可以用\nhset u:1 name tom age 22 sex boy\n# 只能设置一个field ,  这搞的. 不如就保留 hmset , 不要在 hset 里可以设置多个field.\nHSETNX  u:1 name jack # 不存在才设置\n\n# field 自增\nhincrby u:1 age 1\n\n\n# 获取field,只能一个field\nhget u:1 name\n# 多个field .. 服了. 和上面的感觉..\nhmget u:1 name age\nhgetall u:1 #返回所有field 和value\n\n# 判断field是否存在\nhexists u:1 name\n# 如果说判断 u1 是否存在\nhlen u:1 # 返回 u1 有多少个field\n\nhkeys u:1 # 返回所有的field\nhvals u:1 # 返回所有的value\n\n\nhdel u:1 name\nhdel u:1 age sex #删除多个field\n\n\n\n\n\n1.3.2 应用场景\n使用user:id值 作为key, 里面再存map 比如name 啊, pv(主页访问量),这样一个key 存放很多用户的信息\n\n\n\n1.4 sets 集合\n无序,无重复\n\n1.4.1 基本命令\n\n添加删除查看集合运算\n\n\n# 添加元素\nsadd country china\n\n\n# 删除元素\nsrem country japan\n\n\n# 计算集合元素个数\nscard animal\n# 获取集合所有元素\nsmembers animal\n# 判断元素是否在集合内\nSISMEMBER animal cow\n# 随机返回一个元素\nSRANDMEMBER animal\n# 随机弹出一个元素\nSPOP animal\n\n\nsdiff  user:1:playing_game  user:2:playing_game #差集\nsinter user:1:playing_game  user:2:playing_game #交集\nsunion user:1:playing_game  user:2:playing_game #并集\n\n\n\n\n\n1.4.2 应用场景\n\n抽奖可以用srandmember/spop\n用户点赞某个帖子 ( 帖子id作为key,里面存发用户id表示点赞)\n给用户添加标签, 还要知道一个标签对应了那些用户,都可以用集合来\n微博用户之间的共同关注\n\n\n\n\n1.5 sorted sets 有序集合\nset 存放的就是元素 zset 存放的 需要一个score分值(用来排序的,可以重复) 和 元素 时间复杂度是 o(logN)\n\n1.5.1 基本命令\n\n增改删查集合运算\n\n\n# zadd key score element1 score2 element2 ...\nzadd student 80 xiaoming\nzadd student 80 xiaoming 90 tom\n# 增加或减少(使用负数) 元素的分数\nzincrby student 3 xiaoming\n\n\n# 指定元素删除 可以删除多个元素\nzrem student xiaoming xiaobai\n# 根据排名范围来删除元素\nZREMRANGEBYRANK student 1 2\n# 柑橘分数范围来删除元素\nZREMRANGEBYscore student 71  89\n\n\n# 获取元素的分数\nzscore student xiaoming\n\n# 返回元素总数\nzcard student\n# 按照分数升序, 返回元素的排名,\n# 0 表示第一位, 也就是分数最小的那一位\nzrank student xiaoming\n# 按照分数降序,返回元素的排名\n# 0 表示第一位, 也就是分数最大的那一位\nzrevrank student xiaohei\n\n# range 按照分数升序,返回索引范围内的元素\nzrange student 0 -1\n# withscores 表示显示分数\nzrange student 0 -1 withscores\n# 返回指定分数范围内的元素\nzrangebyscore student 70 90 [withscores]\n\n# 按照分数降序\nzrevrange student 0 -1\n# 指定分数范围, 先指定大 后小\nzrevrangebyscore student 100 50 [withscores]\n\n\n# 指定分数范围内有多少个元素\nzcount key minScore maxScore\n\n\nzadd stu1 77 tom 80 jack 50 karen\nzadd stu2 10 tom 60 jack 80 kelly\n\n# 交集\n# ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE &lt;SUM | MIN | MAX&gt;]\n# destination 会将交集的结果写入 这个key\n# numkeys 2 表示有2个key 参与交集运算, 必须指定\n# WEIGHTS 默认是1, 也就是说你的分数的权重, 比如权重是10,如果你的分数是1, 那么等同于是10分的分量\n# AGGREGATE 交集后对于元素分数的处理, 默认是SUM,各集合该元素的分数*权重 的和\nzinterstore res_stu 2 stu1 stu2 # 交集后 tom 元素的分数是 77*1+10*1 =87\nzrange res_stu  0 -1 withscores\n\nzrange res_stu  0 -1 withscores\n\n\n执行结果\n\ntom\n87\njack\n140\n\n\n# 权重需要分别指定\nzinterstore res_stu 2 stu1 stu2 WEIGHTS 5 1 AGGREGATE SUM\n\n# 并集 ,其他参数等 同交集的处理\nZUNIONSTORE res_stu 2 stu1 stu2\n\n\n\n\n\n1.5.2 应用场景\n什么什么各种排行版 可以使用有序集合",
     "crumbs": [
       "基础",
-      "数据持久化"
+      "数据类型"
     ]
   },
   {
-    "objectID": "docs/middleware/redis/persistence.html#aof",
-    "href": "docs/middleware/redis/persistence.html#aof",
+    "objectID": "docs/middleware/redis/data-type.html#扩展类型",
+    "href": "docs/middleware/redis/data-type.html#扩展类型",
     "title": "斯巴拉稀",
-    "section": "2 AOF",
-    "text": "2 AOF\n\nappend only file\n记录每一次的写操作,几乎不会丢失数据,但是 这样性能肯定就没那么好了\n\n因为写入磁盘本身 是先写到缓存的? 操作系统..\n\n就是将你执行的redis命令 添加到指定的文件\n文件会比较大\n重启时,可以通过重新执行文件中的命令在内存中重建数据\n\n\n\nredis.conf中开启aof\n\nappendonly no # 设置为yes 开启\nappendfilename \"appendonly.aof\"  # 文件名\ndir /usr/local/var/db/redis/  # 存放的目录在这里\n\n\n2.1 写入策略\n# appendfsync always  # 每写一条命令,就写入, 这个性能最不好\n# 每1秒,redis内部本身也是先写到缓存中,到达1秒后,写入磁盘\n# 故障时 只会丢失1秒钟的数据\nappendfsync everysec\n# appendfsync no      # 将数据交给操作系统来处理.\n\n#表示重写的时候,父进程的新的操作不同步到文件\nno-appendfsync-on-rewrite no\n#可以用config set parma value 来修改\n但是如果要永久话,需要 config rewirte\n\n\n2.2 重写优化\n我们知道当redis重启时, 会将aof文件里的命令重新执行来达到重建数据的目的\n\naof重写的问题\n\naof 是重新执行了一遍命令, 肯定比rdb 重放慢\n由于可能有很多无用的命令, 这个很好理解, 就是你后面的命令 直接覆盖了前面的, set a 1 ,set a 2,第一条命令实际就是没用的\n比如你执行了100次的操作,可能只要一次就行了,但是保存的还是100语句\n\n手动重写命令 bgrewirteaof 命令可以重写aof文件,合并一些操作\n\n不会读取旧的aof文件\n比如内存中的结果直接变成 它所对应的语句 写到临时文件\n将内存中的文件保存到临时文件,最后替换真正的文件\n过程\n\n主进程通过fork 生成子进程\n子进程根据内存中的数据创建数据库重建命令序列与临时文件中\n父进程继续接收client的请求,会把这些请求的命令追加于原来的aof文件,为了防止重写失败,额外的会把这些新的请求写于一个缓冲队列中\n子进程写完临时文件后,会通知父进程,父进程会把缓冲队列中的命令写到临时文件中\n最后 父进程?用临时文件替换老的aof文\n\n\n\n\n\n2.3 重写策略\n# 当你的文件 自上一次重写后 大小增加了100%后, 会触发重写\n#当现在得aof文件是上次重写后的文件的2倍大小时,再次重写\nauto-aof-rewrite-percentage 100\n# 表示当文件至少达到64m的时候才会自动重写, 因为文件太小 本身加载到内存就很快.\nauto-aof-rewrite-min-size 64mb",
+    "section": "2 扩展类型",
+    "text": "2 扩展类型\n\n2.1 bitmaps 位图\n\n2.1.1 基本命令\n\n\n\n\n\n\nTip\n\n\n\nbitmaps are an extension of the string data type\n\n\n\n位的设置与获取位运算\n\n\n字母A 对应的ascii码是 65 对应的二进制 0100 0001\n# 注意索引从0开始,从高位往低位这样算,从左到右.\n#  65二进制的高位第6位(从0开始算)是1,这里索引是1\nsetbit x 1 1 #命令的返回结果 是之前这个位置的值 (值:0或1)\nsetbit x 7 1 # 这个设置的是低位的1, 也就是二进制的第0位\n# 通过以上的设置A这个key 的结果就是 0100 0001\nget x\n# 结果就是A\n# 获取key 第二个位置的 bit值\ngetbit x 1\n\n# 获取bit为1的个数, 可以指定bit范围\nbitcount A [start end]\n\nset z 65 # 注意我们的值是字符串,是一个字节一个字节进行\"解析\"的\nstrlen z # 可以看到长度\n# \"65\"的 ascii是 6是54  0011 0110,在内存的低地址,  5 是53  0011 0101 在内存上地址比\"6\" 的大一个字节\n# 再强调一下 字符串是一个字节一个字节进行\"解析\"的\n# 那么0-7的索引是 \"6\"的位 , 8-15是\"5\"的位\n# setbit 索引本身就是从低地址到高地址, 只不过每个字节上 (字节的高位在小的索引上)\ngetbit z 6 # 1\ngetbit z 15 # 1\n\n\ngo代码验证字符串左边是放在低地址\n\na := \"654\"\nb := (*reflect.StringHeader)(unsafe.Pointer(&a))\nprintln(b.Len, b.Data)\nc := (*[3]int8)(unsafe.Pointer(b.Data))\nprintln(c[0], c[1], c[2])\nprintln(&c[0], &c[1], &c[2])\n\n\n\nsetbit tmp 6 1\nsetbit tmp 7 1\n# bitop= bit + operate + 后面的 and与,or或,not非,xor异或 等\n# 位的或操作,将结果给到new_str这个key\nbitop or new_str A tmp\n# new_str的value结果是 \"C\"\n\n\n\n\n\n2.1.2 应用场景\n用来统计登录用户,或者说有多少用户\n\n假设有1亿个用户, 那么需要1亿个位,也不过10M多, setbit login_user user_id 1 该用户在线了\n如果有的设计上用户的id初始就非常巨大. 第一个用户是100亿.以后依次递增, 那么我们完全可以-100亿后的数字 作为索引进行设置1\n\n\n\n\n2.2 GEO\ntype city  # 是zset类型\ngeoadd key 经度 纬度 成员\ngeoadd city 116.20 39.56 beijing\n# 可以添加多个\nGEOADD city 116.20 39.56 beijing 120.12 30.16 hangzhou \n# 获取某个成员经纬度\ngeopos city hangzhou\n# 计算2个位置之间的距离,默认单位是m, 可以在后面带上(km千米,mi英里,ft尺)\nGEODIST city hangzhou beijing km\n\n# georadius 获取指定范围内的地理位置\ngeoradius city 116 39 100 km # --&gt; beijing\n\n\n2.3 hyperLogLog\n\n\n\n\n\n\nNote\n\n\n\n\n如果让你统计一个数据集里不同元素的数量,比如日活用户\n你可能会说统计这个, 放进set ,然后scard 不就行了\n如果数据量巨大呢, 都放进set吗, 所以这种情况set肯定不行.\n用bitmap? 1000万也才1M多, 挺不错的. 有没有占用更少的呢.\nhyperLogLog就可以解决这个问题\n基于hyperLogLog(HLL)算法,使用极小的空间,完成数量统计, ==本质是字符串==\nHyperLogLog（HLL）是一种基数({==一个集合中不同元素的数量==})估计算法. HLL算法可以在{==极少的内存使用下==},快速准确地估计一个大型数据集的基数.\n每个HyperLogLog键只占用12KB内存,就可以计算接近2^64个不同元素的基数\n\n\n\n# 添加多个\n# key不存在,则添加成功返回1\n# 如key已经存在, 然后添加的元素 也都已经有了, 则返回0, 表示添加无效.\nPFADD login_yesterday 1 2 3 4 2\ntype login_yesterday # 本质是字符串\n# 计算基数 (不同元素的数量) 插入大量数据时,统计可能不那么准确, 因为本身就是预估\nPFCOUNT login_yesterday # 4个\npfadd login_today 1 2 5 7\nPFMERGE login login_today login_yesterday # 将合并的结果设置到login 这个key中\nPFCOUNT login_yesterday login_today # 直接合并计算\n\n2.3.1 应用场景\n\n\n\n\n\n\nTip\n\n\n\nhyperLogLog 本身不保存实际的数据,只是用来统计\n\n\n\n统计日活,月活数据\n\n\n\n\n2.4 Bloom Filter 布隆过滤器\n\n\n\n\n\n\nCaution\n\n\n\n这个不是数据类型. 不过我暂时放在这里\n\n\n原理就是: 一个很长的二进制 (初始位的值都是0,像bitmap)和诺干个hash函数 比如一个电话号码 给哈希函数(多个)计算过后的值,在二进制的相应位置的位上改成1, 比如我们要判断这个电话号码是否在这10亿号码中, 先将10亿个号码这样处理, 然后我们计算这个电话号码的哈希,看对应位上是否都是1\n误差率\n\nm个二进制位\nn个预备数据\nk个哈希函数\n\n\n2.4.1 应用场景\n垃圾邮件过滤等\n\n\n\n2.5 bitfields(todo)\n\n\n2.6 Streams(todo)",
     "crumbs": [
       "基础",
-      "数据持久化"
+      "数据类型"
     ]
   },
   {
-    "objectID": "docs/middleware/redis/persistence.html#redis-4.0以后-混合持久化",
-    "href": "docs/middleware/redis/persistence.html#redis-4.0以后-混合持久化",
-    "title": "斯巴拉稀",
-    "section": "3 redis 4.0以后 混合持久化",
-    "text": "3 redis 4.0以后 混合持久化\n重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重 放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很 长的时间。 Redis 4.0 为了解决这个问题，带来了一个新的持久化选项——混合持久化\n\n就是结合了上面的2个\n开启\n\naof-use-rdb-preamble yes\n\nAOF在重写时，不再是单纯将内存数据转换为RESP命令写入AOF文件，而是将 重写这一刻之前的内存做RDB快照处理，并且将RDB快照内容和增量的AOF修改内存数据的命令存在一 起，都写入新的AOF文件，新的文件一开始不叫appendonly.aof，等到重写完新的AOF文件才会进行改 名，原子的覆盖原有的AOF文件，完成新旧两个AOF文件的替换。\n于是在 Redis 重启的时候，可以先加载 RDB 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，因此重启效率大幅得到提升。\n\n\n\nbgrewirteaof 后看下 aof文件,然后 set 写入 ,再看看文件里的内容",
-    "crumbs": [
-      "基础",
-      "数据持久化"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/kafka/install.html",
-    "href": "docs/middleware/kafka/install.html",
-    "title": "斯巴拉稀",
-    "section": "",
-    "text": "修改bin/kafka-run-class.sh\n\n添加 LOG_DIR=/新的位置\n\n修改kafka_2.12-2.3.0/config/log4j.properties\n\n配置 /var/log/kafka位置 添加 kafka.logs.dir=/新的位置\n\n\n\nlog.dirs=/tmp/kafka-logs\n/infusion-server/kafka_2.12-2.3.0/config/server.properties\nlog.retention.hours 本身就已经设置 168个小时,保留7天.\n修改后, 停止kafka 将原本的数据目录 复制到新的位置, 重启. 数据迁移"
-  },
-  {
-    "objectID": "docs/middleware/kafka/install.html#配置",
-    "href": "docs/middleware/kafka/install.html#配置",
-    "title": "斯巴拉稀",
-    "section": "",
-    "text": "修改bin/kafka-run-class.sh\n\n添加 LOG_DIR=/新的位置\n\n修改kafka_2.12-2.3.0/config/log4j.properties\n\n配置 /var/log/kafka位置 添加 kafka.logs.dir=/新的位置\n\n\n\nlog.dirs=/tmp/kafka-logs\n/infusion-server/kafka_2.12-2.3.0/config/server.properties\nlog.retention.hours 本身就已经设置 168个小时,保留7天.\n修改后, 停止kafka 将原本的数据目录 复制到新的位置, 重启. 数据迁移"
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html",
-    "href": "docs/middleware/mysql/sql.html",
-    "title": "斯巴拉稀",
-    "section": "",
-    "text": "Warning\n\n\n\ntodo…",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#常用函数",
-    "href": "docs/middleware/mysql/sql.html#常用函数",
-    "title": "斯巴拉稀",
-    "section": "1 常用函数",
-    "text": "1 常用函数\n-- 获取一个uuid\nselect uuid();\n-- 当前时间\nselect now();",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#配置相关",
-    "href": "docs/middleware/mysql/sql.html#配置相关",
-    "title": "斯巴拉稀",
-    "section": "2 配置相关",
-    "text": "2 配置相关\n\n2.1 查看mysql相关信息\n\n-- 进入mysql控制台后 (mysql -uroot .. 命令连接后的界面) 输入 \\s 后回车\n\\s\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n--------------\nmysql  Ver 5.7.41-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))\n\nConnection id:      3\nCurrent database:   test\nCurrent pager:      stdout\nUsing outfile:      ''\nUsing delimiter:    ;\nServer version:     5.7.41 MySQL Community Server (GPL)\nProtocol version:   10\nConnection:     192.168.1.100 via TCP/IP\nServer characterset:    latin1\nDb     characterset:    latin1\nClient characterset:    latin1\nConn.  characterset:    latin1\nTCP port:       3306\nBinary data as:     Hexadecimal\nUptime:         43 min 23 sec\n--------------\n\n\n\n\n\n\n2.2 查看会话与全局变量\n-- 进入mysql后 查看会话变量\nselect @@autocommit;\n-- 查看全局\nselect @@global.autocommit;\n-- 我们平常设置变量 ,下面的只对当前会话有效\n-- 其实是省略了set session autocommit=1; 中的session\nset autocommit=1;\n\n-- 这样设置后,我们查看select @@autocommit 发现还是1,\n-- global只对以后的会话有效,对当前无效,当前的还是保持原来的\nset global autocommit=0;\n-- 模糊查看变量\nshow variables like \"%log%\";\n\n\n2.3 查看字符集\n\nshow character set like '%utf%';\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+---------+------------------+--------------------+--------+\n| Charset | Description      | Default collation  | Maxlen |\n+---------+------------------+--------------------+--------+\n| utf8    | UTF-8 Unicode    | utf8_general_ci    |      3 |\n| utf8mb4 | UTF-8 Unicode    | utf8mb4_general_ci |      4 |\n| utf16   | UTF-16 Unicode   | utf16_general_ci   |      4 |\n| utf16le | UTF-16LE Unicode | utf16le_general_ci |      4 |\n| utf32   | UTF-32 Unicode   | utf32_general_ci   |      4 |\n+---------+------------------+--------------------+--------+\n\n\n\n\n\n\n2.4 隔离级别\nshow variables like '%tx%';",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#权限设置",
-    "href": "docs/middleware/mysql/sql.html#权限设置",
-    "title": "斯巴拉稀",
-    "section": "3 权限设置",
-    "text": "3 权限设置\n-- 角色,mysql中没有角色,用的一种叫代理的方式  这个只有5.7支持\n-- 官方叫 role like 机制\nshow grants;\ncreate user 'dba'@'127.0.0.1';\ncreate user 'xyz'@'::1';\ngrant proxy on 'dba'@'127.0.0.1' to 'xyz'@'::1';\ngrant select on mysql.* to 'dba'@'127.0.0.1';\n\n-- 查看该用户的权限\nshow grants for 'dba'@'127.0.0.1';\n\n-- 可以查看到\nselect * from mysql.proxies_priv;",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#database",
-    "href": "docs/middleware/mysql/sql.html#database",
-    "title": "斯巴拉稀",
-    "section": "4 database",
-    "text": "4 database\n-- mysql中database与schema 是一模一样的.\n-- 其他数据库可能是一个database有多个schema.\n-- mysql估计是为了和其他数据库保持一致,好理解所以有了schema\n-- 下面2个操作结果一样\nshow databases;\nshow schemas;\n\n-- 选择database,进行查询时,需要先选择你的db\nuse database_name;\n\n-- 每一个数据库对应data dir目录里的是一个文件夹.但是information_schema 不在里面\nuse information_schema;\n-- 我们发现这些个表的引擎都是memory,所以..没有\nshow table status;",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#table",
-    "href": "docs/middleware/mysql/sql.html#table",
-    "title": "斯巴拉稀",
-    "section": "5 table",
-    "text": "5 table\n\n5.1 查看创建信息\n-- 查看当前db下的所有表信息\nshow table status;\n-- 某个表的一些信息\nshow table status like 'table_name';\n-- 显示创建表的语句\nshow create table table_name;\n\n\n5.2 索引\n-- 删除主键\nalter table table_name drop primary key;\n-- 删除一般索引\nalter table table_name drop index index_name;\n\n\n5.3 临时表\n\n\n\n\n\n\nCaution\n\n\n\n\n创建的临时表是基于会话的,你另外开一个会话,你看不到你创建的临时表\n临时表可以与实体表重名\n在有重名的情况下, 你select * from a实际查询的是临时表,而不是实体表\n\n\n\n\n创建临时表\n\ncreate temporary table  tmp_a (id int);\n\n\n\n查看临时表的默认存储引擎\n\nshow variables like '%default_tmp%';\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+----------------------------+--------+\n| Variable_name              | Value  |\n+----------------------------+--------+\n| default_tmp_storage_engine | InnoDB |\n+----------------------------+--------+\n\n\n\n\n\n\n\n查看 临时表的状态\n\n-- 可以看到系统里有创建了多少个临时表\nshow global status like '%tmp_tables%';\n-- 当前会话里的情况\nshow status like '%tmp_tables%';\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+--------------------+-------+\n| Variable_name      | Value |\n+--------------------+-------+\n| Created_tmp_tables | 6     |\n+--------------------+-------+\n\n\n\n\n\n\n表结构存放目录\n\nshow variables like 'tmpdir';\n\n-- 如果你是在mysql所在服务器 用的mysql命令连接可以直接使用如下命令查看\n-- 可以看到.frm的文件\n-- 退出当前mysql 会话, 这个表空间文件会删除的.\nsystem ls /tmp\n\n\n\n\n\n\n临时表表结构文件命名方式\n\n\n\n\n临时表的表结构文件.frm 命名方式是 #sql{进程id}_{线程id}_序列号\n线程id 通过 show processlist 的ID列获得.\n\n\n\n\n\n\n表空间的存放目录\n\nshow variables like \"%data%\";\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n+---------------------------------------+------------------------+\n| Variable_name                         | Value                  |\n+---------------------------------------+------------------------+\n2| datadir                               | /var/lib/mysql/        |\n| innodb_data_file_path                 | ibdata1:12M:autoextend |\n| innodb_data_home_dir                  |                        |\n1| innodb_temp_data_file_path            | ibtmp1:12M:autoextend  |\n+---------------------------------------+------------------------+\n\n1\n\n创建的文件名是 ibtmp1,放在 innodb_data_home_dir 目录下\n\n2\n\n如果 innodb_data_home_dir 是空的, 就放到datadir 下\n\n\n-- 可以看到\nsystem ls /var/lib/mysql/ibtmp1\n\n\n\n\n\n\n5.4 增\n\n\n5.5 删\n\n\n5.6 改\n\n\n5.7 查",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#奇技",
-    "href": "docs/middleware/mysql/sql.html#奇技",
-    "title": "斯巴拉稀",
-    "section": "6 奇技",
-    "text": "6 奇技\n\n6.1 导出csv,带字段名\n# 默认导出没有标题. 所以用union 来完成效果\nmysql -uroot -proot test -e \"select 'a','b','c' from dual union select a,b,c from test  into outfile '/tmp/x.csv' CHARACTER SET gbk fields terminated by ',' optionally enclosed by '\\\"' lines terminated by '\\r\\n'; \"\n\n\n\n\n\n\nTip\n\n\n\n\noptionally enclosed by ‘\"’ 这样 字段内容有, 号的 就不会被分成2个了.\nsecure_file_priv=/tmp/ 这个参数影响 导出文件的位置,以及是否可导出\n如果 上面的参数为空, 去 /tmp/xxxxx-mariadb/tmp 看看",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/sql.html#null",
-    "href": "docs/middleware/mysql/sql.html#null",
-    "title": "斯巴拉稀",
-    "section": "7 null",
-    "text": "7 null\n\n\n\n\n\n\n注意\n\n\n\n\n任何值与null进行=比较,得到的都是null\n用is 来判断\n\n\n\nselect null=1;\nselect 1=null;\nselect null in (1,null);",
-    "crumbs": [
-      "SQL语句"
-    ]
-  },
-  {
-    "objectID": "docs/middleware/mysql/lock.html",
-    "href": "docs/middleware/mysql/lock.html",
+    "objectID": "docs/middleware/mongodb/install.html",
+    "href": "docs/middleware/mongodb/install.html",
     "title": "斯巴拉稀",
     "section": "",
     "text": "Back to top"
   },
   {
-    "objectID": "docs/middleware/mysql/optimization.html",
-    "href": "docs/middleware/mysql/optimization.html",
-    "title": "斯巴拉稀",
-    "section": "",
-    "text": "!!! note “什么是驱动表” 在join连表查询时,用来最先获得数据，并以此表的数据为依据，逐步获得其他表的数据，直至最终查询到所有满足条件的数据的第一个表\n```title=“2个表 id主键” select * from a; +—-+——+——+ | id | name | age | +—-+——+——+ | 1 | tom | 20 | | 2 | jack | 22 | +—-+——+——+\nselect * from b; +—-+——–+ | id | class | +—-+——–+ | 1 | class1 | | 2 | class2 | | 3 | class3 | +—-+——–+\n```sql\n-- 连表查询\nselect * from a,b where a.id=b.id\n!!! note 这就好比来了2个人,去你上学的班级里找和他们同名的同学. 你总不至于用你班级的人的名字一个一个去和这2个人对比吧? 直接用2个人的名字 从你班级里找就是了.只需要2次\nfor each row in 驱动表 do\n    lookup 驱动表的each row的索引 in  内表 index\n        if 如果在内表里找到了该索引\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n| id | select_type | table | possible_keys | rows | filtered | Extra                                              |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n|  1 | SIMPLE      | a     | PRIMARY       |    2 |   100.00 | NULL                                               |\n|  1 | SIMPLE      | b     | PRIMARY       |    3 |    33.33 | Using where; Using join buffer (Block Nested Loop) |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+"
-  },
-  {
-    "objectID": "docs/middleware/mysql/optimization.html#系统默认的优化",
-    "href": "docs/middleware/mysql/optimization.html#系统默认的优化",
-    "title": "斯巴拉稀",
-    "section": "",
-    "text": "!!! note “什么是驱动表” 在join连表查询时,用来最先获得数据，并以此表的数据为依据，逐步获得其他表的数据，直至最终查询到所有满足条件的数据的第一个表\n```title=“2个表 id主键” select * from a; +—-+——+——+ | id | name | age | +—-+——+——+ | 1 | tom | 20 | | 2 | jack | 22 | +—-+——+——+\nselect * from b; +—-+——–+ | id | class | +—-+——–+ | 1 | class1 | | 2 | class2 | | 3 | class3 | +—-+——–+\n```sql\n-- 连表查询\nselect * from a,b where a.id=b.id\n!!! note 这就好比来了2个人,去你上学的班级里找和他们同名的同学. 你总不至于用你班级的人的名字一个一个去和这2个人对比吧? 直接用2个人的名字 从你班级里找就是了.只需要2次\nfor each row in 驱动表 do\n    lookup 驱动表的each row的索引 in  内表 index\n        if 如果在内表里找到了该索引\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n| id | select_type | table | possible_keys | rows | filtered | Extra                                              |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+\n|  1 | SIMPLE      | a     | PRIMARY       |    2 |   100.00 | NULL                                               |\n|  1 | SIMPLE      | b     | PRIMARY       |    3 |    33.33 | Using where; Using join buffer (Block Nested Loop) |\n+----+-------------+-------+---------------+------+----------+----------------------------------------------------+"
-  },
-  {
-    "objectID": "docs/middleware/mysql/optimization.html#sql编写优化",
-    "href": "docs/middleware/mysql/optimization.html#sql编写优化",
-    "title": "斯巴拉稀",
-    "section": "2 SQL编写优化",
-    "text": "2 SQL编写优化\n\n2.1 最左前缀法则\n\n\n2.2 不在索引列上做任何操作\n\n\n2.3 少用or或in,使用union\n\n\n2.4 字符串要加单引号\n\n\n2.5 != 和 null 判断 都会使索引失效\n\n\n2.6 order by 优化\n\n\n2.7 分页查询优化\n\n\n2.8 in & exists"
-  },
-  {
-    "objectID": "docs/middleware/mysql/ha.html",
-    "href": "docs/middleware/mysql/ha.html",
-    "title": "斯巴拉稀",
-    "section": "",
-    "text": "Back to top"
-  },
-  {
-    "objectID": "docs/middleware/mysql/backup-recovery.html",
-    "href": "docs/middleware/mysql/backup-recovery.html",
+    "objectID": "docs/middleware/mysql/binlog.html",
+    "href": "docs/middleware/mysql/binlog.html",
     "title": "斯巴拉稀",
     "section": "",
     "text": "Caution\n\n\n\ntodo…",
     "crumbs": [
-      "备份与恢复"
+      "二进制日志"
     ]
   },
   {
-    "objectID": "docs/middleware/mysql/backup-recovery.html#查看默认配置文件位置",
-    "href": "docs/middleware/mysql/backup-recovery.html#查看默认配置文件位置",
+    "objectID": "docs/middleware/mysql/binlog.html#配置信息",
+    "href": "docs/middleware/mysql/binlog.html#配置信息",
     "title": "斯巴拉稀",
-    "section": "1 查看默认配置文件位置",
-    "text": "1 查看默认配置文件位置\nmysql --help|grep 'my.cnf'",
+    "section": "1 配置信息",
+    "text": "1 配置信息\n\n\nmy.cnf\n\nserver-id               = 1\nlog_bin                 = mysql-bin\n\n+-----------------------------------------+---------------------+\n| Variable_name               | Value                           |\n+-----------------------------------------+---------------------+\n| log_bin                     | ON                              |  -- 是否开启\n| log_bin_basename            | /var/lib/mysql/mysql-bin        |\n| log_bin_index               | /var/lib/mysql/mysql-bin.index  |\n| max_binlog_size             | 104857600                       |  -- binlog文件的最大值,达到最大值,则重新生成一个新的\n| binlog_format               | ROW                             |  -- 有三种 statement(记录sql语句), row(每一行数据) , mixed\n+-----------------------------------------+---------------------+\n\nshow master status;\n\n\n执行结果\n\n+------------------+----------+\n| File             | Position |\n+------------------+----------+\n| mysql-bin.000001 |      154 |\n+------------------+----------+\n\n\n我们发现 mysql-bin.000001的文件大小 154 字节数就是上面的position\nll mysql-bin*\n-rw-r----- 1 mysql mysql 154 Sep  3 14:36 mysql-bin.000001\n-rw-r----- 1 mysql mysql  19 Sep  3 14:36 mysql-bin.index\n\n\n\n查看binlog更具体的内容\n\nshow binlog events in 'mysql-bin.000001'\\G\n\n\n\n\n\n\n\n点击查看执行结果\n\n\n\n\n\n*************************** 1. row ***************************\n   Log_name: mysql-bin.000001\n        Pos: 4\n Event_type: Format_desc\n  Server_id: 1\nEnd_log_pos: 123\n       Info: Server ver: 5.7.17-0ubuntu0.16.04.1-log, Binlog ver: 4\n*************************** 2. row ***************************\n   Log_name: mysql-bin.000001\n        Pos: 123\n Event_type: Previous_gtids\n  Server_id: 1\nEnd_log_pos: 154\n       Info:\n\n\n\n\n\n\n刷新日志,会重新生成一个二进制文件\n\nflush binary logs;\nshow master status;\n+------------------+----------+\n| File             | Position |\n+------------------+----------+\n| mysql-bin.000002 |      154 |\n+------------------+----------+",
     "crumbs": [
-      "备份与恢复"
+      "二进制日志"
     ]
   },
   {
-    "objectID": "docs/middleware/mysql/backup-recovery.html#备份",
-    "href": "docs/middleware/mysql/backup-recovery.html#备份",
+    "objectID": "docs/middleware/mysql/binlog.html#binlog_format",
+    "href": "docs/middleware/mysql/binlog.html#binlog_format",
     "title": "斯巴拉稀",
-    "section": "2 备份",
-    "text": "2 备份\n\n2.1 –compact测试导出结果\n# --compact\nmysqldump -uroot -p12345 --compact -B dbname\n\n\n2.2 开发常用的命令\n# 导出 需要的库与表的创建语句 ,所以我们一般不用-A\n# 包含event 存储过程等\nmysqldump -uroot -p123456 -B -d --triggers -R -E  db1 db2&gt; db_struct.sql\n\n# 导出需要初始化的表数据\n# 含有 db的create 和use 语句的\nmysqldump -uroot -p12345 -B --hex-blob -t mysql db1 db2&gt; dbdata.sql\nmysqldump -uroot -p12345 --hex-blob -t dbname table1 table2  &gt; sometable.sql\n\n# 先导入mysql\nmysql -uroot -p123456 &lt; db_struct.sql\nmysql -uroot -p123456 &lt; dbdata.sql\nmysql -uroot -p123456 dbname &lt; sometable.sql\n\n\n2.3 生产环境命令\n# -E --events\n# -R --routines\n# -F --flush-logs\nmysqldump -uroot -p123456 -A --flush-privileges --single-transaction --master-data=1(或者2) -F --triggers -R -E --hex-blob |gzip &gt;xx.sql.gz\n\n\n2.4 备份单个与多个数据库\n默认是导出表创建语句和数据的\n# -B  会有create db 语句,和 use db 语句. 这样导入时不需要指定 数据库\nmysqldump -uroot -p12345  -B dbname \nmysqldump -uroot -p12345  -B dbname  dbname2\n\n\n2.5 备份单表和多个表\nmysqldump -uroot -p12345 dbname school &gt; school.sql\nmysqldump -uroot -p12345 dbname city school &gt; city_school.sql\n\n\n2.6 只导出表结构\n# 一个库 (包含库创建语句和所有表的创建语句)\nmysqldump -uroot -p12345 -B -d dbname &gt; dbname.sql\n\n# 多个表的创建语句\nmysqldump -uroot -p12345 -d dbname table1 table2 &gt; dbname.sql\n\n\n2.7 只导出数据\nmysqldump -uroot -p12345 -t dbname &gt; dbname.sql\nmysqldump -uroot -p12345 -t dbname table1 table2 &gt; dbname.sql",
+    "section": "2 binlog_format",
+    "text": "2 binlog_format\n\n\n\n\n\n\n\nformat\ndescription\n\n\n\n\nstatement\n记录操作的sql文  不支持不确定的sql语句,比如update ....  limit 3\n\n\nrow\n记录操作的每一行数据,每张表一定要有主键\n\n\nmixed",
     "crumbs": [
-      "备份与恢复"
+      "二进制日志"
     ]
   },
   {
-    "objectID": "docs/developer/env.html",
-    "href": "docs/developer/env.html",
+    "objectID": "docs/middleware/mysql/binlog.html#查看binlog文件里的sql语句",
+    "href": "docs/middleware/mysql/binlog.html#查看binlog文件里的sql语句",
+    "title": "斯巴拉稀",
+    "section": "3 查看binlog文件里的sql语句",
+    "text": "3 查看binlog文件里的sql语句\n#这个可以看到具体的sql文件\nmysqlbinlog mysql-bin.000001 -vv\n#-----------------------------------------------------\n### INSERT INTO `test`.`mm`\n### SET\n###   @1=5 /* INT meta=0 nullable=0 is_null=0 */\n###   @2=5 /* INT meta=0 nullable=1 is_null=0 */\n#-----------------------------------------------------\n@1 表示第一列\n@2 表示第二列\nmysqlbinlog mysql-bin.000001 --base64-output=decode-row -v\nhelp show binlog events;",
+    "crumbs": [
+      "二进制日志"
+    ]
+  },
+  {
+    "objectID": "docs/middleware/mysql/env.html",
+    "href": "docs/middleware/mysql/env.html",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "# 下载你要的字体\nwget https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip\nwget https://raw.fastgit.org/ryanoasis/nerd-fonts/master/install.sh\nchmod +x install.sh\nmkdir -p patched-fonts/FiraCode\nunzip -d patched-fonts/FiraCode FiraCode.zip\n./install.sh FiraCode\n\n\n\nOperatorMonoSSm-Book,Hack Nerd Font,Cascadia Code,menlo,JetBrains Mono,Fira Code Rec Mono\n\n\n\nmonaspace"
+    "text": "# 我们在my.cnf 其实是可以配置的,但是明文,不好\n# mysql提供了一个命令,设置一个标签my (名字随便起)来登录\n# 这个命令实际上生成了一个二进制文件,路径是 ~/.mylogin.cnf\n# -G my 后面是你的连接参数, 需要什么就加什么, 比如 -h -P\nmysql_config_editor set -G my -uroot -p\nEnter password:   这里你输入密码\n# 然后我们打印一下\nmysql_config_editor print --all\n# 显示的密码不是明文\n  [my]\n  user = root\n  password = *****\n# 使用该标签登录\nmysql --login-path=my",
+    "crumbs": [
+      "环境准备"
+    ]
   },
   {
-    "objectID": "docs/developer/env.html#编程字体",
-    "href": "docs/developer/env.html#编程字体",
+    "objectID": "docs/middleware/mysql/env.html#免密登录mysql",
+    "href": "docs/middleware/mysql/env.html#免密登录mysql",
     "title": "斯巴拉稀",
     "section": "",
-    "text": "# 下载你要的字体\nwget https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip\nwget https://raw.fastgit.org/ryanoasis/nerd-fonts/master/install.sh\nchmod +x install.sh\nmkdir -p patched-fonts/FiraCode\nunzip -d patched-fonts/FiraCode FiraCode.zip\n./install.sh FiraCode\n\n\n\nOperatorMonoSSm-Book,Hack Nerd Font,Cascadia Code,menlo,JetBrains Mono,Fira Code Rec Mono\n\n\n\nmonaspace"
+    "text": "# 我们在my.cnf 其实是可以配置的,但是明文,不好\n# mysql提供了一个命令,设置一个标签my (名字随便起)来登录\n# 这个命令实际上生成了一个二进制文件,路径是 ~/.mylogin.cnf\n# -G my 后面是你的连接参数, 需要什么就加什么, 比如 -h -P\nmysql_config_editor set -G my -uroot -p\nEnter password:   这里你输入密码\n# 然后我们打印一下\nmysql_config_editor print --all\n# 显示的密码不是明文\n  [my]\n  user = root\n  password = *****\n# 使用该标签登录\nmysql --login-path=my",
+    "crumbs": [
+      "环境准备"
+    ]
   },
   {
-    "objectID": "docs/developer/env.html#手写体",
-    "href": "docs/developer/env.html#手写体",
+    "objectID": "docs/middleware/mysql/transaction.html",
+    "href": "docs/middleware/mysql/transaction.html",
     "title": "斯巴拉稀",
-    "section": "2 手写体",
-    "text": "2 手写体\n\n2.1 Shantell_Sans\nshantell-sans"
+    "section": "",
+    "text": "Back to top"
   },
   {
-    "objectID": "docs/developer/env.html#terminal",
-    "href": "docs/developer/env.html#terminal",
+    "objectID": "docs/middleware/mysql/index.html",
+    "href": "docs/middleware/mysql/index.html",
     "title": "斯巴拉稀",
-    "section": "3 terminal",
-    "text": "3 terminal\n\n3.1 zsh+ohmyzsh\n\n\n3.2 iterm2\n\n3.2.1 发送命令到所有窗口\ncommand+shift+i 点击确定\ncommand+shift+i 点击取消即可 (如果上面已经点击不用提示的话,这里 不会有东西弹出来, 直接就已经取消发送到多个窗口了)\n\n\n\n3.3 MobaXTerm\n\n\n3.4 tabby1\n\n\n3.5 WindTerm\nhttps://github.com/kingToolbox/WindTerm/releases"
+    "section": "",
+    "text": "Warning\n\n\n\n未完待续",
+    "crumbs": [
+      "索引底层"
+    ]
   },
   {
-    "objectID": "docs/developer/env.html#快捷键",
-    "href": "docs/developer/env.html#快捷键",
+    "objectID": "docs/middleware/mysql/index.html#红黑树-red-black-trees",
+    "href": "docs/middleware/mysql/index.html#红黑树-red-black-trees",
     "title": "斯巴拉稀",
-    "section": "4 快捷键",
-    "text": "4 快捷键\ncommand+r 正常刷新，使用缓存数据 command+shift+r 强制刷新,强制浏览器重新下载并加载内容"
+    "section": "1 红黑树 Red-Black Trees",
+    "text": "1 红黑树 Red-Black Trees\n\n\n\n\n\n\n\nn层最多能存放多少数据?\n\n\n\n\n红黑树解决了二叉树插入有序数据导致所有的节点都会在根节点的右侧或左侧,变成了链表的问题, 插入一条数据后,会自动调整\n那么能不能用这个结构来存储mysql数据呢?\nn层的话, 总共能放 total = 2⁰ + 2¹ +2² +… 2ⁿ⁻¹\n2total = 2¹ +2² +… 2ⁿ = 2⁰ + 2¹ +2² +… 2ⁿ⁻¹+ 2ⁿ - 2⁰ = total + 2ⁿ - 2⁰\n2total = total + 2ⁿ - 2⁰\n结果: total = 2ⁿ-1",
+    "crumbs": [
+      "索引底层"
+    ]
   },
   {
-    "objectID": "docs/developer/env.html#国内源",
-    "href": "docs/developer/env.html#国内源",
+    "objectID": "docs/middleware/mysql/redo.html",
+    "href": "docs/middleware/mysql/redo.html",
     "title": "斯巴拉稀",
-    "section": "5 国内源",
-    "text": "5 国内源\nhttps://mirrors.huaweicloud.com/home\n\n5.1 macOS\n\n\n5.2 brew2\n\n5.2.1 使用国内源来安装homebrew\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/brew.git\"\nexport HOMEBREW_CORE_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/homebrew-core.git\"\nexport HOMEBREW_BOTTLE_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles\"\nexport HOMEBREW_API_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles/api\"\n\n/bin/bash -c \"$(curl -fsSL https://github.com/Homebrew/install/raw/HEAD/install.sh)\"\n# 或\n/bin/bash -c \"$(curl -fsSL https://mirrors.ustc.edu.cn/misc/brew-install.sh)\"\n\n\n5.2.2 brew 国内源配置\n\n\n4.0版本\n\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/brew.git\"\nbrew update\necho 'export HOMEBREW_BREW_GIT_REMOTE=\"https://mirrors.ustc.edu.cn/brew.git\"' &gt;&gt; ~/.zshrc\necho 'export HOMEBREW_BOTTLE_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles\"' &gt;&gt; ~/.zshrc\necho 'export HOMEBREW_API_DOMAIN=\"https://mirrors.ustc.edu.cn/homebrew-bottles/api\"' &gt;&gt; ~/.zshrc\nbrew tap --custom-remote --force-auto-update homebrew/cask https://mirrors.ustc.edu.cn/homebrew-cask.git\nbrew tap --custom-remote --force-auto-update homebrew/cask-versions https://mirrors.ustc.edu.cn/homebrew-cask-versions.git\n\n\n\n5.2.3 取消brew install 提示升级\nexport HOMEBREW_NO_AUTO_UPDATE=true\n\n\n5.2.4 命令\n# 查看已安装包列表\nbrew list\n# 查询可用包\nbrew search &lt;packageName&gt;\nbrew install node\nbrew uninstall git\nbrew -v\n# 安装mysql指定版本,根据上面的search 可以找到\nbrew install mysql@5.7\n# 启动和停止服务\nbrew services stop redis\nbrew services start redis\n\n\n\n5.3 Term2里lrzsz支持文件上传\nbrew install lrzsz\n创建2个bash脚本\n\n\n/usr/local/bin/term_send.sh\n\n#!/bin/bash\n# Author: Matt Mastracci (matthew@mastracci.com)\n# AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script\n# licensed under cc-wiki with attribution required\n# Remainder of script public domain\n\nFILE=`osascript -e 'tell application \"iTerm\" to activate' -e 'tell application \"iTerm\" to set thefile to choose file with prompt \"Choose a file to send\"' -e \"do shell script (\\\"echo \\\"&(quoted form of POSIX path of thefile as Unicode text)&\\\"\\\")\"`\nif [[ -z \"$FILE\" ]]; then\n    echo Cancelled.\n    # Send ZModem cancel\n    echo -e \\\\x18\\\\x18\\\\x18\\\\x18\\\\x18\n    sleep 1\n        echo\n    echo \\# Cancelled transfer\nelse\n    echo $FILE\n    /usr/local/bin/sz \"$FILE\" -E -e -b\n    sleep 1\n    echo \\# Received $FILE\nfi\n\n\n\n/usr/local/bin/term_recv.sh\n\n#!/usr/bin/env bash\n# vim: fdm=marker foldlevel=0 sw=2 ts=2 sts=2\n\nFILE=`osascript -e 'tell application \"iTerm\" to activate' -e 'tell application \"iTerm\" to set thefile to choose folder with prompt \"Choose a folder to place received files in\"' -e \"do shell script (\\\"echo \\\"&(quoted form of POSIX path of thefile as Unicode text)&\\\"\\\")\"`\n\nif [[ -z \"$FILE\" ]]; then\n  echo \" Cancelled\"\n  # Send ZModem cancel\n  echo -e \\\\x18\\\\x18\\\\x18\\\\x18\\\\x18\n  sleep 1\n  echo\n  echo \" # Cancelled transfer\"\nelse\n  cd \"$FILE\"\n  \"${HOMEBREW_PREFIX:-/usr/local}/bin/rz\" -E -e -b\n  sleep 1\n  echo\n  echo \" # Sent -&gt; $FILE\"\n  echo\nfi\n\n设置Iterm2的Tirgger特性，profiles-&gt;default-&gt;editProfiles-&gt;Advanced中的Tirgger\n添加两条trigger，分别设置 Regular expression，Action，Parameters，Instant如下：\n\n\n第一个trigger\n\nRegular expression: rz waiting to receive.\\*\\*B0100\nAction: Run Silent Coprocess\nParameters: /usr/local/bin/term_send.sh\nInstant: checked\n\n\n\n第二个\n\nRegular expression: \\*\\*B00000000000000\nAction: Run Silent Coprocess\nParameters: /usr/local/bin/term_recv.sh\nInstant: checked\n\n\n\n5.4 终端快捷键\n\n\n\n\n\n\n\n快捷键\n功能\n\n\n\n\n++command+k++\n清屏 ,无法再看之前的输出屏幕\n\n\n++ctrl+l++\n清屏,终端光标移到到屏幕上方..\n\n\n\n\n\n5.5 U盘和有些移动硬盘\n一般我们的u盘的文件格式是ntfs,而mac不支持\n# 插入u盘或移动硬盘后\ndiskutil list\n# 看到如下的盘符\n# Microsoft Basic Data 之后的就是你的盘符的名称了\n# 有多少个你都记下来( 一般我们会将移动硬盘分区,就是分区的名称了)\n/dev/disk2 (external, physical):\nMicrosoft Basic Data XYZ       1.0 TB     disk2s1\n修改/etc/fstab, 添加如下 = 号右边的第一个就是写你的盘符名称,有多少个,就有多少行\nLABEL=OPQ none ntfs rw,auto,nobrowse\nLABEL=XYZ none ntfs rw,auto,nobrowse\n映射盘符,将盘符映射到桌面快捷键方式一样\nsudo ln -s /Volumes/XYZ ~XYZsktop/XYZ\n重启电脑\n\n5.5.1 遇到复制到u盘文件变灰色\n# 表示删除文件或者文件夹里面的文件的 属性 com.apple.FinderInfo\n# -d 表示删除, -r递归\nxattr -d -r com.apple.FinderInfo *\n\n\n5.5.2 聚焦搜索\n# 打开\nsudo mdutil -a -i on\n# 关闭, 这样会搜不到软件\nsudo mdutil -a -i off"
+    "section": "",
+    "text": "Back to top"
   },
   {
-    "objectID": "docs/developer/env.html#windows",
-    "href": "docs/developer/env.html#windows",
+    "objectID": "docs/middleware/mysql/undo.html",
+    "href": "docs/middleware/mysql/undo.html",
     "title": "斯巴拉稀",
-    "section": "6 Windows",
-    "text": "6 Windows\n\n6.1 命令永久修改环境变量\nsetx PATH \"%PATH%;c:\\go\\bin\""
+    "section": "",
+    "text": "Back to top"
   },
   {
-    "objectID": "docs/developer/env.html#footnotes",
-    "href": "docs/developer/env.html#footnotes",
+    "objectID": "docs/middleware/es/env.html",
+    "href": "docs/middleware/es/env.html",
     "title": "斯巴拉稀",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\n科大源↩︎\nhttps://brew.sh/↩︎"
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "docs/developer/rime.html",
+    "href": "docs/developer/rime.html",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "!!! tips vim中 ESC后就会自动切换到英文模式"
+  },
+  {
+    "objectID": "docs/developer/rime.html#rime",
+    "href": "docs/developer/rime.html#rime",
+    "title": "斯巴拉稀",
+    "section": "",
+    "text": "!!! tips vim中 ESC后就会自动切换到英文模式"
+  },
+  {
+    "objectID": "docs/developer/rime.html#双拼输入法",
+    "href": "docs/developer/rime.html#双拼输入法",
+    "title": "斯巴拉稀",
+    "section": "2 双拼输入法",
+    "text": "2 双拼输入法"
   },
   {
     "objectID": "docs/developer/vim.html",
@@ -5041,6 +5034,16 @@
     "title": "斯巴拉稀",
     "section": "7 配置评论",
     "text": "7 配置评论\n\ngiscus\n文档\n\n默认已经全局设置, 想要单个取消显示评论\n---\ncomments: false\n---",
+    "crumbs": [
+      "快速入门"
+    ]
+  },
+  {
+    "objectID": "docs/quarto/basic.html#搜索",
+    "href": "docs/quarto/basic.html#搜索",
+    "title": "斯巴拉稀",
+    "section": "8 搜索",
+    "text": "8 搜索\n直接键盘输入s 即可弹出搜索框 ## darkmode vapor主题 scss文件",
     "crumbs": [
       "快速入门"
     ]

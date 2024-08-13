@@ -30,6 +30,7 @@
   // --title-block-banner-color: #353a40;
   --sidebar-section-hr: #6ca25b;
   --table-has-border-color: #d4d8dc;
+  --panel-tabset-active-bg: #fdf3d1;
 }
 hr.sidebar-divider.hi {
   // color: #6ca25b;
@@ -160,7 +161,7 @@ div.panel-tabset {
         // border-top-right-radius:0.5rem;
       }
       a.nav-link.active {
-        background-color: #fdf3d1 !important;
+        background-color: var(--panel-tabset-active-bg) !important;
       }
     }
   }
@@ -407,23 +408,35 @@ div#code-annotation-line-highlight {
 // }
 
 
-// .navbar .quarto-color-scheme-toggle:not(.alternate) .bi::before {
-// }
+.navbar .quarto-color-scheme-toggle:not(.alternate) .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 16 16"><g fill="white"><path d="M9 11c.628-.836 1-1.874 1-3a4.98 4.98 0 0 0-1-3h4a3 3 0 1 1 0 6z"/><path d="M5 12a4 4 0 1 1 0-8a4 4 0 0 1 0 8m0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10"/></g></svg>') !important;
+}
 
-// .navbar .quarto-color-scheme-toggle.alternate .bi::before {
-// }
+.navbar .quarto-color-scheme-toggle.alternate .bi::before{
+  // fill="gold" 修改svg的颜色
+  background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 16 16"><g fill="white"><path d="M7 5H3a3 3 0 0 0 0 6h4a5 5 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416q.235-.537.584-1"/><path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0"/></g></svg>') !important;
+}
 
+// 控制 上面svg的大小
+.quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle i.bi::before {
+    display: inline-block;
+    height: 1.6rem;
+    width: 2rem;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 2rem 2rem;
+}
+
+
+// 如果没有设置navbar, 有sidebar的情况下,会在sidebar上现实切换按钮
 // .sidebar-navigation .quarto-color-scheme-toggle:not(.alternate) .bi::before {
 // }
 
 // .sidebar-navigation .quarto-color-scheme-toggle.alternate .bi::before {
-//   background-image: url('data:image/svg+xml,');
 // }
 
 // .navbar{
 //   background-color: #d97069;
 // }
-
-table {
-  border: 1px solid #d4d8dc;
-}
+/*-- scss:defaults --*/
+$link-color: blue;
