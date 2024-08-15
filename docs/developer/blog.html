@@ -326,6 +326,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource title=&quot;使用已有的plantuml文件,目录是相对docs/&quot; number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>```</span>
 <span id="cb6-2"><a href="#cb6-2"></a>@from_file:go/.diagram/reflect-type.plantuml</span>
 <span id="cb6-3"><a href="#cb6-3"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>wbs</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource kroki-plantuml number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>@startwbs</span>
+<span id="cb7-2"><a href="#cb7-2"></a>&lt;style&gt;</span>
+<span id="cb7-3"><a href="#cb7-3"></a>' this time, scoping to wbsDiagram</span>
+<span id="cb7-4"><a href="#cb7-4"></a>wbsDiagram {</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  ' Here we introduce a global style, i.e. not targeted to any element</span>
+<span id="cb7-7"><a href="#cb7-7"></a>  ' thus all lines (meaning connector and borders,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>  ' there are no other lines in WBS) are black by default</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  Linecolor black</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  ' But we can also target a diagram specific element, like arrow</span>
+<span id="cb7-12"><a href="#cb7-12"></a>   arrow {</span>
+<span id="cb7-13"><a href="#cb7-13"></a>    ' note that Connectors are actually "Arrows"; this may change in the future</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    ' so this means all Connectors and Arrows are now going to be green</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    LineColor green</span>
+<span id="cb7-16"><a href="#cb7-16"></a>  }</span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a>}</span>
+<span id="cb7-19"><a href="#cb7-19"></a>&lt;/style&gt;</span>
+<span id="cb7-20"><a href="#cb7-20"></a></span>
+<span id="cb7-21"><a href="#cb7-21"></a>* World</span>
+<span id="cb7-22"><a href="#cb7-22"></a>** America</span>
+<span id="cb7-23"><a href="#cb7-23"></a>*** Canada</span>
+<span id="cb7-24"><a href="#cb7-24"></a>** Europe</span>
+<span id="cb7-25"><a href="#cb7-25"></a>*** England</span>
+<span id="cb7-26"><a href="#cb7-26"></a>*** Germany</span>
+<span id="cb7-27"><a href="#cb7-27"></a>*** Spain</span>
+<span id="cb7-28"><a href="#cb7-28"></a>@endwbs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>样式修改, 可以这样看 有哪些可以改的</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1"></a>```kroki-plantuml</span>
+<span id="cb8-2"><a href="#cb8-2"></a>@startuml</span>
+<span id="cb8-3"><a href="#cb8-3"></a>skinparameters</span>
+<span id="cb8-4"><a href="#cb8-4"></a>@enduml</span>
+<span id="cb8-5"><a href="#cb8-5"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>然后在puml文件中前面几行添加</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="然后在puml文件中前面几行添加"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1"></a>skinparam TitleBorderThickness 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://plantuml.com/zh/creole">写更丰富的类似html,markdown</a></p>
 </section>
 <section id="blockdiag" class="level4" data-number="2.1.4">
 <h4 data-number="2.1.4" class="anchored" data-anchor-id="blockdiag"><span class="header-section-number">2.1.4</span> blockdiag</h4>
@@ -338,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hugo" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="hugo"><span class="header-section-number">2.2</span> hugo</h3>
 <p><a href="https://github.com/google/docsy#readme">docsy主题</a> <a href="https://gohugo.io/getting-started/">hugo官网</a></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">hugo</span> <span class="co"># 生成静态文件. public/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">hugo</span> <span class="co"># 生成静态文件. public/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="博客部署方案" class="level2" data-number="3">

@@ -467,7 +467,7 @@ Caution
 <li>AOF在重写时，不再是单纯将内存数据转换为RESP命令写入AOF文件，而是将 <strong>重写这一刻之前的内存</strong>做RDB快照处理，并且将RDB快照内容和<strong>增量的AOF修改内存数据的命令存在一 起</strong>，都写入新的AOF文件，新的文件一开始不叫appendonly.aof，等到重写完新的AOF文件才会进行改 名，原子的覆盖原有的AOF文件，完成新旧两个AOF文件的替换。</li>
 <li>于是在 Redis 重启的时候，可以先加载 RDB 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，因此重启效率大幅得到提升。</li>
 </ul>
-<embed src="../../../.diagram/8d989b999bb23e6d8bb0209fe7672e07.svg">
+<img src="../../../.diagram/8d989b999bb23e6d8bb0209fe7672e07.svg" class="img-fluid" alt="Diagram">
 <ul>
 <li>bgrewirteaof 后看下 aof文件,然后 set 写入 ,再看看文件里的内容</li>
 </ul>
