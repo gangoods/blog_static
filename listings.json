@@ -4,11 +4,7 @@
     "items": []
   },
   {
-    "listing": "/docs/back-end/go/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/quarto/index.html",
+    "listing": "/docs/front-end/css/index.html",
     "items": []
   },
   {
@@ -50,7 +46,11 @@
     "items": []
   },
   {
-    "listing": "/docs/front-end/css/index.html",
+    "listing": "/docs/quarto/index.html",
+    "items": []
+  },
+  {
+    "listing": "/docs/back-end/go/index.html",
     "items": []
   },
   {
