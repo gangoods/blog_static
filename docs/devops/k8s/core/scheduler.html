@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>scheduler – 斯巴拉稀</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../docs/devops/k8s/core/persistence.html" rel="next">
+<link href="../../../../docs/devops/k8s/core/controller.html" rel="prev">
+<link href="../../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">编程语言</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/go/index.html">
+ <span class="dropdown-text">Go</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/cicd/index.html">
+ <span class="dropdown-text">cicd</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/k8s/index.html">
+ <span class="dropdown-text">k8s</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"></h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">基础</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/basics/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">架构总览</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/basics/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境安装</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/basics/harbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">镜像仓库</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">核心概念与实战</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/pod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pod</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/controller.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">控制器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/scheduler.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">调度器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/persistence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">存储管理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">配置管理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">服务</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/service/service.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">service</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/service/ingress.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ingress</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/service/traefik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">traefik</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/core/api-resource.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API资源</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">组件</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/kubectl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">kubectl</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/apiserver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apiserver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/controller-manager.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">controller-manager</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/component/etcd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">etcd</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">二次开发</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">介绍</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">client-go</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/client-go/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">介绍</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/client-go/client-go.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">client-go</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">operator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/operator/crd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">自定义资源</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/operator/sample-controller.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">sample-controller</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/develop/operator/kubebuilder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">kubebuilder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">生态</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/devops/k8s/ecosystem/helm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">helm</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#nodename" id="toc-nodename" class="nav-link active" data-scroll-target="#nodename"><span class="header-section-number">1</span> nodeName</a></li>
+  <li><a href="#nodeselector" id="toc-nodeselector" class="nav-link" data-scroll-target="#nodeselector"><span class="header-section-number">2</span> nodeSelector</a></li>
+  <li><a href="#affinity" id="toc-affinity" class="nav-link" data-scroll-target="#affinity"><span class="header-section-number">3</span> Affinity</a>
+  <ul>
+  <li><a href="#基础介绍" id="toc-基础介绍" class="nav-link" data-scroll-target="#基础介绍"><span class="header-section-number">3.1</span> 基础介绍</a></li>
+  <li><a href="#节点亲和性" id="toc-节点亲和性" class="nav-link" data-scroll-target="#节点亲和性"><span class="header-section-number">3.2</span> 节点亲和性</a></li>
+  <li><a href="#pod间-亲和性和反亲和性" id="toc-pod间-亲和性和反亲和性" class="nav-link" data-scroll-target="#pod间-亲和性和反亲和性"><span class="header-section-number">3.3</span> pod间 亲和性和反亲和性</a></li>
+  </ul></li>
+  <li><a href="#taint与toleration" id="toc-taint与toleration" class="nav-link" data-scroll-target="#taint与toleration"><span class="header-section-number">4</span> Taint与Toleration</a>
+  <ul>
+  <li><a href="#基础介绍-1" id="toc-基础介绍-1" class="nav-link" data-scroll-target="#基础介绍-1"><span class="header-section-number">4.1</span> 基础介绍</a></li>
+  <li><a href="#污点操作命令" id="toc-污点操作命令" class="nav-link" data-scroll-target="#污点操作命令"><span class="header-section-number">4.2</span> 污点操作命令</a></li>
+  <li><a href="#污点相关配置" id="toc-污点相关配置" class="nav-link" data-scroll-target="#污点相关配置"><span class="header-section-number">4.3</span> 污点相关配置</a>
+  <ul class="collapse">
+  <li><a href="#内置污点" id="toc-内置污点" class="nav-link" data-scroll-target="#内置污点"><span class="header-section-number">4.3.1</span> 内置污点</a></li>
+  <li><a href="#不可用多久才会被打上污点" id="toc-不可用多久才会被打上污点" class="nav-link" data-scroll-target="#不可用多久才会被打上污点"><span class="header-section-number">4.3.2</span> 不可用多久才会被打上污点</a></li>
+  </ul></li>
+  <li><a href="#pod默认容忍" id="toc-pod默认容忍" class="nav-link" data-scroll-target="#pod默认容忍"><span class="header-section-number">4.4</span> pod默认容忍</a></li>
+  <li><a href="#pod容忍度操作命令" id="toc-pod容忍度操作命令" class="nav-link" data-scroll-target="#pod容忍度操作命令"><span class="header-section-number">4.5</span> pod容忍度操作命令</a></li>
+  <li><a href="#问题答疑" id="toc-问题答疑" class="nav-link" data-scroll-target="#问题答疑"><span class="header-section-number">4.6</span> 问题答疑</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>kube-scheduler负责调度Pod到集群内的节点上,它监听kube-apiserver,查询还未分配Node的Pod</li>
+<li>然后根据调度策略为这些Pod分配节点(最终体现为更新Pod的spec.nodeName字段)</li>
+</ul>
+</div>
+</div>
+<p><a href="https://kubernetes.io/zh/docs/concepts/scheduling-eviction/kube-scheduler/">kube-scheduler</a></p>
+<p><code>pkg/scheduler/scheduler.go#New</code></p>
+<p><code>snapshot := internalcache.NewEmptySnapshot()</code></p>
+<section id="nodename" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="nodename"><span class="header-section-number">1</span> nodeName</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>直接指定节点名字,跳过调度器, <span class="txt-highlight"><strong>实际就没有走调度流程</strong></span></p>
+</div>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="at">  </span><span class="fu">nodeName</span><span class="kw">:</span><span class="at"> kube-01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nodeselector" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="nodeselector"><span class="header-section-number">2</span> nodeSelector</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>直接通过键值对将Pod调度到具有特定<code>label</code>的Node上</p>
+</div>
+</div>
+<p><a href="https://kubernetes.io/zh/docs/tasks/configure-pod-container/assign-pods-nodes/">nodeSelector</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">k</span> get no</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 给节点打上标签</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">k</span> label nodes node1 disk-type=ssd</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># 查看节点标签</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="ex">k</span> get nodes <span class="at">--show-labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="at">  </span><span class="fu">nodeSelector</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="at">    </span><span class="fu">disk-type</span><span class="kw">:</span><span class="at"> ssd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="affinity" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="affinity"><span class="header-section-number">3</span> Affinity</h2>
+<section id="基础介绍" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="基础介绍"><span class="header-section-number">3.1</span> 基础介绍</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>亲和: 亲近</li>
+<li>requiredDuringSchedulingIgnoredDuringExecution 硬亲和
+<ul>
+<li>requiredDuringScheduling
+<ul>
+<li>调度时必须满足, 比如你设置了想要调度到有标签是app=web的节点,那么节点上必须有这样的标签</li>
+</ul></li>
+<li>IgnoredDuringExecution
+<ul>
+<li>执行时忽略, 比如你pod已经调度完在节点上运行了, 然后现在将节点上的标签app=web 删除了, 那么不会影响这个pod</li>
+</ul></li>
+</ul></li>
+<li>preferredDuringSchedulingIgnoredDuringExecution 软亲和
+<ul>
+<li>preferredDuringScheduling
+<ul>
+<li>调度时最好满足, 首选这样的节点.</li>
+</ul></li>
+<li>IgnoredDuringExecution
+<ul>
+<li>同硬亲和</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>查看说明</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="查看说明"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">k</span> explain pod.spec.affinity.nodeAffinity</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">k</span> explain pod.spec.affinity.podAffinity</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">k</span> explain pod.spec.affinity.podAntiAffinity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="节点亲和性" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="节点亲和性"><span class="header-section-number">3.2</span> 节点亲和性</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>NodeSelector 的升级版,也是用labels来约束, 支持更丰富的配置规则,使用更灵活</li>
+<li>如果&nbsp;<code>nodeSelector</code>&nbsp;和&nbsp;<code>nodeAffinity</code>&nbsp;两者都指定,那 node 需要两个条件都满足,pod 才能调度</li>
+</ul>
+</div>
+</div>
+<p><a href="https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity">节点亲和性</a></p>
+<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode numberSource yaml code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6"></a><span class="at">  </span><span class="fu">affinity</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-7"><a href="#annotated-cell-5-7"></a><span class="at">    </span><span class="fu">nodeAffinity</span><span class="kw">:</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-8" class="code-annotation-target"><a href="#annotated-cell-5-8"></a><span class="at">      </span><span class="fu">requiredDuringSchedulingIgnoredDuringExecution</span><span class="kw">:</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-9" class="code-annotation-target"><a href="#annotated-cell-5-9"></a><span class="at">        </span><span class="fu">nodeSelectorTerms</span><span class="kw">:</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-10" class="code-annotation-target"><a href="#annotated-cell-5-10"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">matchExpressions</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-11"><a href="#annotated-cell-5-11"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> disk-type</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-12" class="code-annotation-target"><a href="#annotated-cell-5-12"></a><span class="at">            </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> In</span></span>
+<span id="annotated-cell-5-13"><a href="#annotated-cell-5-13"></a><span class="at">            </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-14"><a href="#annotated-cell-5-14"></a><span class="at">            </span><span class="kw">-</span><span class="at"> ssd</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-15" class="code-annotation-target"><a href="#annotated-cell-5-15"></a><span class="at">      </span><span class="fu">preferredDuringSchedulingIgnoredDuringExecution</span><span class="kw">:</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-5-16" class="code-annotation-target"><a href="#annotated-cell-5-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-5-17" class="code-annotation-target"><a href="#annotated-cell-5-17"></a><span class="at">        </span><span class="fu">preference</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-18"><a href="#annotated-cell-5-18"></a><span class="at">          </span><span class="fu">matchExpressions</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-19"><a href="#annotated-cell-5-19"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> label-1</span></span>
+<span id="annotated-cell-5-20"><a href="#annotated-cell-5-20"></a><span class="at">            </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> In</span></span>
+<span id="annotated-cell-5-21"><a href="#annotated-cell-5-21"></a><span class="at">            </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-22"><a href="#annotated-cell-5-22"></a><span class="at">            </span><span class="kw">-</span><span class="at"> key-1</span></span>
+<span id="annotated-cell-5-23"><a href="#annotated-cell-5-23"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="dv">50</span></span>
+<span id="annotated-cell-5-24"><a href="#annotated-cell-5-24"></a><span class="at">        </span><span class="fu">preference</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-25"><a href="#annotated-cell-5-25"></a><span class="at">          </span><span class="fu">matchExpressions</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-26"><a href="#annotated-cell-5-26"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> label-2</span></span>
+<span id="annotated-cell-5-27"><a href="#annotated-cell-5-27"></a><span class="at">            </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> In</span></span>
+<span id="annotated-cell-5-28"><a href="#annotated-cell-5-28"></a><span class="at">            </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-29"><a href="#annotated-cell-5-29"></a><span class="at">            </span><span class="kw">-</span><span class="at"> key-2</span></span>
+<span id="annotated-cell-5-30"><a href="#annotated-cell-5-30"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="annotated-cell-5-31"><a href="#annotated-cell-5-31"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="annotated-cell-5-32"><a href="#annotated-cell-5-32"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="annotated-cell-5-33"><a href="#annotated-cell-5-33"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="8" data-code-annotation="1">硬亲和力配置,必须符合</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="9" data-code-annotation="2">节点选择器配置, 可以配置多个matchExpressions,满足一个即可</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="10" data-code-annotation="3">可以配置多个key, 必须都满足</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="12" data-code-annotation="4">这里表示节点必须包含键名为 disk-type 的标签,并且其值为ssd</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="15" data-code-annotation="5">软亲和力配置,表示最好符合</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="16" data-code-annotation="6">软亲和力的权重, 权重越高优先级越大,范围1-100</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="17" data-code-annotation="7">软亲和力配置项,和weight同级</span>
+</dd>
+</dl>
+<p>如果存在两个候选节点,都满足 requiredDuringSchedulingIgnoredDuringExecution 规则,其中一个节点具有标签 label-1:key-1,另一个节点具有标签 label-2:key-2, <span class="txt-highlight">调度器会考察各个节点的 weight 取值，并将该权重值添加到节点的其他得分值之上</span></p>
+</section>
+<section id="pod间-亲和性和反亲和性" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="pod间-亲和性和反亲和性"><span class="header-section-number">3.3</span> pod间 亲和性和反亲和性</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>PodAffinity : 想要和含有某些标签的pod 部署在”一起” (一个topology中)</li>
+<li>podAntiAffinity: 与PodAffinity 相反</li>
+</ul>
+</div>
+</div>
+<p><a href="https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity">pod-affinity</a></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="什么是topologyKey">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+什么是topologyKey
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>拓扑域,主要针对节点进行区域的划分,比如服务器有华东区这类的,{==用节点的label进行判断==},key相同且value也相同才是属于同一个的拓扑域</li>
+<li>对于 Pod 亲和性而言,在 requiredDuringSchedulingIgnoredDuringExecution 和 preferredDuringSchedulingIgnoredDuringExecution 中,topologyKey 不允许为空</li>
+<li>对于 requiredDuringSchedulingIgnoredDuringExecution 要求的 Pod 反亲和性, 准入控制器 LimitPodHardAntiAffinityTopology 要求 topologyKey 只能是 kubernetes.io/hostname. 如果你希望使用其他定制拓扑逻辑,你可以更改准入控制器或者禁用之</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">k</span> explain pod.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.topologyKey</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># 节点默认都有一个 标签</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">k</span> get no <span class="at">--show-labels</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#我们能看到各个节点应该都有这样一个标签</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">kubernetes.io/hostname=xxx</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#  我们可以给不同的节点设置相同的标签, 后续可以用以表示它们在同一个topology</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="ex">k</span> label no node1 node2 area=north</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> apps/v1</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Deployment</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> redis-cache</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="at">  </span><span class="fu">selector</span><span class="kw">:</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="at">    </span><span class="fu">matchLabels</span><span class="kw">:</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> store</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="at">  </span><span class="fu">replicas</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="at">  </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="at">    </span><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="at">      </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="at">        </span><span class="fu">app</span><span class="kw">:</span><span class="at"> store</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="at">    </span><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="at">      </span><span class="fu">affinity</span><span class="kw">:</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="at">        </span><span class="fu">podAntiAffinity</span><span class="kw">:</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="at">          </span><span class="fu">requiredDuringSchedulingIgnoredDuringExecution</span><span class="kw">:</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">labelSelector</span><span class="kw">:</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="at">              </span><span class="fu">matchExpressions</span><span class="kw">:</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="at">              </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> app</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="at">                </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> In</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="at">                </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="at">                </span><span class="kw">-</span><span class="at"> store</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="at">            </span><span class="fu">topologyKey</span><span class="kw">:</span><span class="at"> </span><span class="st">"kubernetes.io/hostname"</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="at">      </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> redis-server</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> redis:3.2-alpine</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>反亲和性规则表示: Pod 不能被调度到这样的节点(集群/域)中
+<ol type="1">
+<li>具有标签<code>kubernetes.io/hostname=xxx</code>的节点们(集群),或说在这样一个名字叫<code>kubernetes.io/hostname=xxx</code>的域中</li>
+<li>且 集群(或域)中至少有一个节点运行着一个带有 app=store 标签的 Pod</li>
+</ol></li>
+<li>首先第一个redis副本, 因为现在虽然每个节点都有kubernetes.io/hostname的标签,但是没有运行着 app=store标签 的pod,所以随便选一个节点部署第一个redis副本,比如node1</li>
+<li>部署第一个redis副本后, 这个时候出现了这样的节点
+<ol type="1">
+<li>运行着带有 app=store 标签的 Pod,且节点具有标签kubernetes.io/hostname=node1</li>
+</ol></li>
+<li>部署第二个redis副本, 这个时候发现 node1 是不符合的, 因为有 app=store 的pod 且节点有标签是kubernetes.io/hostname,那么就在其他节点上随便选一个</li>
+<li>部署第三个同理, 这样就会将3个redis 部署到不同的节点上去了.</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> apps/v1</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Deployment</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> web-server</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="at">  </span><span class="fu">selector</span><span class="kw">:</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="at">    </span><span class="fu">matchLabels</span><span class="kw">:</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="at">      </span><span class="fu">app</span><span class="kw">:</span><span class="at"> web-store</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="at">  </span><span class="fu">replicas</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="at">  </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="at">    </span><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="at">      </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="at">        </span><span class="fu">app</span><span class="kw">:</span><span class="at"> web-store</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="at">    </span><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="at">      </span><span class="fu">affinity</span><span class="kw">:</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="at">        </span><span class="fu">podAntiAffinity</span><span class="kw">:</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="at">          </span><span class="fu">requiredDuringSchedulingIgnoredDuringExecution</span><span class="kw">:</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">labelSelector</span><span class="kw">:</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="at">              </span><span class="fu">matchExpressions</span><span class="kw">:</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="at">              </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> app</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="at">                </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> In</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="at">                </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="at">                </span><span class="kw">-</span><span class="at"> web-store</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="at">            </span><span class="fu">topologyKey</span><span class="kw">:</span><span class="at"> </span><span class="st">"kubernetes.io/hostname"</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="at">        </span><span class="fu">podAffinity</span><span class="kw">:</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="at">          </span><span class="fu">requiredDuringSchedulingIgnoredDuringExecution</span><span class="kw">:</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">labelSelector</span><span class="kw">:</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="at">              </span><span class="fu">matchExpressions</span><span class="kw">:</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="at">              </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> app</span></span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="at">                </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> In</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="at">                </span><span class="fu">values</span><span class="kw">:</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a><span class="at">                </span><span class="kw">-</span><span class="at"> store</span></span>
+<span id="cb7-33"><a href="#cb7-33"></a><span class="at">            </span><span class="fu">topologyKey</span><span class="kw">:</span><span class="at"> </span><span class="st">"kubernetes.io/hostname"</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a><span class="at">      </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> web-app</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx:1.16-alpine</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>现在我们可以马上理解,根据反亲和性规则 ,它们3个副本肯定会部署到不同的节点上</li>
+<li>接着根据亲和性规则: pod要被调度到这样的节点(集群/域)中
+<ol type="1">
+<li>具有标签<code>kubernetes.io/hostname=xxx</code>的节点们(集群),或说在这样一个名字叫<code>kubernetes.io/hostname=xxx</code>的域中</li>
+<li>且 集群(或域)中至少有一个节点运行着一个带有 <code>app=store</code> 标签的 Pod</li>
+</ol></li>
+<li>根据前面的redis副本, 现在3个节点是 有<code>app=store</code>标签的pod运行,然后节点标签具有<code>kubernetes.io/hostname=xxx</code>,它们符合亲和性规则</li>
+<li>第一个副本随机选择一个 redis所在的节点, 然后第二个根据反亲和会选择另外一个 redis所在的节点, 第三个同理</li>
+</ol>
+<p>最后的结果</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">node-1</th>
+<th>node-2</th>
+<th>node-3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">web-server-1</td>
+<td>web-server-2</td>
+<td>web-server-3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">redis-cache-1</td>
+<td>redis-cache-2</td>
+<td>redis-cache-3</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="taint与toleration" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="taint与toleration"><span class="header-section-number">4</span> Taint与Toleration</h2>
+<section id="基础介绍-1" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="基础介绍-1"><span class="header-section-number">4.1</span> 基础介绍</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Taint: 污点</li>
+<li>Toleration: 容忍</li>
+<li>原理:一旦某个节点被加上了一个Taint(理解为被打上了”污点”),那么正常情况下所有Pod都嫌这样的节点”脏”,都不会在这样的节点上运行</li>
+<li>除非有个别的Pod声明自己能”容忍”这个”污点”,即声明了Toleration, 这样它可以在这个节点上运行</li>
+<li>Toleration是让Pod容忍节点上设置的污点Taint</li>
+<li><span class="txt-highlight">pod有容忍不是说你就会调度到有个污点的节点, 只是说你这个pod可以调度到有这个污点的节点</span></li>
+<li><span class="txt-highlight">节点可以有多个污点, pod必须全部容忍这些污点才能够调度到该节点</span></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>就像找男/女朋友, 不能容忍对方的缺点,pass, 可以容忍,ok</p>
+</div>
+</div>
+<table class="caption-top table">
+<caption>污点类型说明</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Taint 效果(类型)</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NoSchedule</td>
+<td><ol type="1">
+<li>节点打上污点后,禁止调度到该节点</li>
+<li>已经在该节点上的Pod不受影响,容忍这个污点的pod可以被调度到这个节点</li>
+</ol></td>
+</tr>
+<tr class="even">
+<td>NoExecute</td>
+<td><ol type="1">
+<li>节点打上污点后,禁止调度到该节点</li>
+<li>已经在该节点上的,但没有容忍这个污点的pod，会立马被驱逐</li>
+<li><strong>如果pod容忍了污点但是设置了tolerationSeconds,则表示pod容忍含这个污点的节点tolerationSeconds秒后(容忍也有个限度),被驱逐</strong></li>
+<li>如果pod容忍了污点,且没有设置tolerationSeconds,那么可以被调度到该节点,不会被驱逐</li>
+<li>单独的pod被驱逐后不会重新调度</li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td>PreferNoSchedule</td>
+<td><ol type="1">
+<li>节点被打上key=value:PreferNoSchedule 的污点, 你想要pod调度到这样的节点, <strong>pod是无需有对这个污点的容忍</strong> |</li>
+<li>这个PreferNoSchedule表示尽量避免将Pod调度到这样的节点上，如果没有更合适的节点，可以部署到该节点</li>
+</ol></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="污点操作命令" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="污点操作命令"><span class="header-section-number">4.2</span> 污点操作命令</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>key 和effect一起 才能表示 是否是同一个 污点</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">增</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">查</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">删</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">改</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#创建一个污点(一个节点可以有多个污点):</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># TAINT_VALUE可以不写, 就是 =TAINT_VALUE  不写</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">k</span> taint nodes NODE_NAME TAINT_KEY=TAINT_VALUE:EFFECT</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="ex">k</span> taint nodes node01 ssd=true:PreferNoSchedule</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">k</span> describe no node1 <span class="kw">|</span><span class="fu">grep</span> taint <span class="at">-iA</span> 10</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="ex">k</span> describe no master1 <span class="kw">|</span><span class="fu">grep</span> taint <span class="at">-iA</span> 10</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="co"># master 默认是不会被调度到的.</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="ex">Taints:</span>             node-role.kubernetes.io/master:NoSchedule</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">k</span> taint no node1 hello=tomcat:NoSchedule-</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="ex">k</span> taint no node1 hello:NoSchedule- <span class="co"># 这样就可以了. 因为同样的key只会有一个</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="ex">k</span> taint no node1 hello-&nbsp; <span class="co">#删除这个key的所有污点 (不同的effect)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># key 和effect 作为 区分不同的 污点</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co"># 修改 key为hello effect为NoSchedule 的污点的 value值, 没有就创建该污点</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="ex">k</span> taint no node1 hello=world:NoSchedule <span class="at">--overwrite</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="污点相关配置" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="污点相关配置"><span class="header-section-number">4.3</span> 污点相关配置</h3>
+<section id="内置污点" class="level4" data-number="4.3.1">
+<h4 data-number="4.3.1" class="anchored" data-anchor-id="内置污点"><span class="header-section-number">4.3.1</span> 内置污点</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/not-ready:节点未准备好，相当于节点状态Ready的值为False。</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/unreachable:Node Controller访问不到节点，相当于节点状态Ready的值为Unknown。</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/out-of-disk:节点磁盘耗尽。</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/memory-pressure:节点存在内存压力。</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/disk-pressure:节点存在磁盘压力。</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/network-unavailable:节点网络不可达。</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>node.kubernetes.io/unschedulable:节点不可调度。</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>node.cloudprovider.kubernetes.io/uninitialized:如果Kubelet启动时指定了一个外部的cloudprovider,它</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>将给当前节点添加一个Taint将其标记为不可用。在cloud-controller-manager的一个controller初始化这个 节点后，Kubelet将删除这个Taint。</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="不可用多久才会被打上污点" class="level4" data-number="4.3.2">
+<h4 data-number="4.3.2" class="anchored" data-anchor-id="不可用多久才会被打上污点"><span class="header-section-number">4.3.2</span> 不可用多久才会被打上污点</h4>
+<p><a href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-controller-manager/">kube-controller-manager 参数</a></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>/etc/kubernetes/manifests/kube-controller-manager.yaml 相关配置</strong></pre>
+</div>
+<div class="sourceCode" id="annotated-cell-9" data-filename="/etc/kubernetes/manifests/kube-controller-manager.yaml 相关配置"><pre class="sourceCode numberSource yaml code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">command</span><span class="kw">:</span></span>
+<span id="annotated-cell-9-4"><a href="#annotated-cell-9-4"></a><span class="at">    </span><span class="kw">-</span><span class="at"> kube-controller-manager</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> ...</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-6" class="code-annotation-target"><a href="#annotated-cell-9-6"></a><span class="at">    </span><span class="kw">-</span><span class="at"> --node-monitor-grace-period=40s</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-7" class="code-annotation-target"><a href="#annotated-cell-9-7"></a><span class="at">    </span><span class="kw">-</span><span class="at"> --node-monitor-period=5s</span></span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> ...</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="6" data-code-annotation="1">添加这个 默认是40s, 表示40s 内一直不可用,就会被打上污点</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="7" data-code-annotation="2">5s会去探测一次节点是否可用</span>
+</dd>
+</dl>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>你的节点发生故障, pod需要等待40s+pod对污点的容忍时间tolerationSeconds</li>
+<li>可以准备2个节点,将node1 关机, 查看 <code>k get no</code> 看状态, 大概40s 才会看到 not_ready</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="pod默认容忍" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="pod默认容忍"><span class="header-section-number">4.4</span> pod默认容忍</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx:1.14.2</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode numberSource bash code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode bash"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a><span class="co"># 创建后</span></span>
+<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2"></a><span class="ex">k</span> get pod nginx2 <span class="at">-o</span> yaml<span class="kw">|</span><span class="fu">grep</span> tolerations: <span class="at">-iA</span> 10</span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3"></a>  <span class="ex">tolerations:</span></span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4"></a>  <span class="ex">-</span> effect: NoExecute</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5"></a>    <span class="ex">key:</span> node.kubernetes.io/not-ready</span>
+<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6"></a>    <span class="ex">operator:</span> Exists</span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7"></a>    <span class="ex">tolerationSeconds:</span> 300</span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8"></a>  <span class="ex">-</span> effect: NoExecute</span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9"></a>    <span class="ex">key:</span> node.kubernetes.io/unreachable</span>
+<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10"></a>    <span class="ex">operator:</span> Exists</span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11"></a>    <span class="ex">tolerationSeconds:</span> 300</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="5" data-code-annotation="1">节点没有ready时会打上这样的污点,在节点上的pod(被控制器管理的pod)默认会等待5m中才会被驱逐,重新调度</span>
+</dd>
+</dl>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>你可能会疑问, 出了问题, pod 5m后才会被重新调度, 是不是有点长了.</li>
+<li>这个设置的原因是一般情况下节点是短暂的网络中断或临时故障,时间不会太长,这样做的目的是避免在节点暂时不可用的情况下频繁地驱逐和重建 Pod，以减少不必要的服务中断和资源浪费</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="如果你确定节点会故障较长一段时间">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+如果你确定节点会故障较长一段时间
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>toleration-patch.yaml</strong></pre>
+</div>
+<div class="sourceCode" id="cb14" data-filename="toleration-patch.yaml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="at">  </span><span class="fu">tolerations</span><span class="kw">:</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">effect</span><span class="kw">:</span><span class="at"> NoExecute</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> node.kubernetes.io/not-ready</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="at">    </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> Exists</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="at">    </span><span class="fu">tolerationSeconds</span><span class="kw">:</span><span class="at"> </span><span class="dv">60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># 更新</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="ex">k</span> patch po nginx2 <span class="at">--patch</span> <span class="st">"</span><span class="va">$(</span><span class="fu">cat</span> toleration-patch.yaml<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="pod容忍度操作命令" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="pod容忍度操作命令"><span class="header-section-number">4.5</span> pod容忍度操作命令</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">key value effect完全匹配</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">容忍key,effect匹配的节点</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">容忍key匹配的节点</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">容忍所有污点</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="sourceCode" id="annotated-cell-21"><pre class="sourceCode numberSource yaml code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-21-1"><a href="#annotated-cell-21-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="annotated-cell-21-2"><a href="#annotated-cell-21-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="annotated-cell-21-3"><a href="#annotated-cell-21-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="annotated-cell-21-4"><a href="#annotated-cell-21-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="annotated-cell-21-5"><a href="#annotated-cell-21-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="annotated-cell-21-6"><a href="#annotated-cell-21-6"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="annotated-cell-21-7"><a href="#annotated-cell-21-7"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="annotated-cell-21-8"><a href="#annotated-cell-21-8"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="annotated-cell-21-9"><a href="#annotated-cell-21-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="annotated-cell-21-10"><a href="#annotated-cell-21-10"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="annotated-cell-21-11"><a href="#annotated-cell-21-11"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="annotated-cell-21-12"><a href="#annotated-cell-21-12"></a><span class="at">  </span><span class="fu">tolerations</span><span class="kw">:</span></span>
+<span id="annotated-cell-21-13"><a href="#annotated-cell-21-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> </span><span class="st">"key1"</span></span>
+<span id="annotated-cell-21-14"><a href="#annotated-cell-21-14"></a><span class="at">    </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> </span><span class="st">"Equal"</span></span>
+<span id="annotated-cell-21-15"><a href="#annotated-cell-21-15"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> </span><span class="st">"value1"</span></span>
+<span id="annotated-cell-21-16"><a href="#annotated-cell-21-16"></a><span class="at">    </span><span class="fu">effect</span><span class="kw">:</span><span class="at"> </span><span class="st">"NoExecute"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-21-17" class="code-annotation-target"><a href="#annotated-cell-21-17"></a><span class="at">    </span><span class="fu">tolerationSeconds</span><span class="kw">:</span><span class="at"> </span><span class="dv">3600</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="17" data-code-annotation="1">如果有这个设置,表示容忍这个节点3600s后,驱逐</span>
+</dd>
+</dl>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="at">  </span><span class="fu">tolerations</span><span class="kw">:</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> </span><span class="st">"key1"</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="at">    </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> </span><span class="st">"Exists"</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="at">    </span><span class="fu">effect</span><span class="kw">:</span><span class="at"> </span><span class="st">"NoSchedule"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>无需效果effect 匹配</p>
+</div>
+</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="at">  </span><span class="fu">tolerations</span><span class="kw">:</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">key</span><span class="kw">:</span><span class="at"> </span><span class="st">"key1"</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="at">    </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> </span><span class="st">"Exists"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="at">    </span><span class="fu">imagePullPolicy</span><span class="kw">:</span><span class="at"> IfNotPresent</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="at">  </span><span class="fu">tolerations</span><span class="kw">:</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">operator</span><span class="kw">:</span><span class="at"> </span><span class="st">"Exists"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="问题答疑" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="问题答疑"><span class="header-section-number">4.6</span> 问题答疑</h3>
+<div class="callout callout-style-default callout-caution callout-titled" title="指定有污点的nodeName的pod 会如何?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+指定有污点的nodeName的pod 会如何?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>没有设置容忍的情况下,也会先创建pod,因为指定了nodeName就会跳过调度器,然后才会根据节点上污点的effect做相关行为</li>
+<li>比如
+<ol type="1">
+<li>node1有 k=v:NoExecute, pod 设置nodeName=node1</li>
+<li>通过describe pod 可以看到pod 创建 并Started , 后马上就被驱逐了(但是describe 看不到)</li>
+<li>可以给pod 设置一个preStop sleep 20 这样可以看到…</li>
+</ol></li>
+</ul>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../../docs/devops/k8s/core/controller.html" class="pagination-link" aria-label="控制器">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">控制器</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../docs/devops/k8s/core/persistence.html" class="pagination-link" aria-label="存储管理">
+        <span class="nav-page-text">存储管理</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
