@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-10-01 13:29:47</p>
+      <p class="date">2024-10-01 13:52:00</p>
     </div>
   </div>
   
@@ -773,16 +773,18 @@ Caution
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1"></a></span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="kw">let</span> raw_bytes <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">;</span>  <span class="co">// 默认类型是[u8; 4]</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="co">// transmute::&lt;src-type, dst-type&gt;(src:src-type)</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>    <span class="kw">let</span> num <span class="op">=</span> <span class="kw">unsafe</span> <span class="op">{</span> <span class="pp">std::mem::transmute::</span><span class="op">&lt;</span>[<span class="dt">u8</span><span class="op">;</span> <span class="dv">4</span>]<span class="op">,</span> <span class="dt">u32</span><span class="op">&gt;</span>(raw_bytes) <span class="op">};</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a>    <span class="co">// 100 00000011 00000010 00000001</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a>    <span class="pp">println!</span>(<span class="st">"{:b}"</span><span class="op">,</span> num)<span class="op">;</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> num)<span class="op">;</span> <span class="co">// 67305985</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>    <span class="kw">let</span> num <span class="op">=</span> <span class="dv">67305985u32</span><span class="op">;</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="kw">unsafe</span> <span class="op">{</span> <span class="pp">std::mem::transmute::</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">,</span> [<span class="dt">u8</span><span class="op">;</span> <span class="dv">4</span>]<span class="op">&gt;</span>(num) <span class="op">};</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> r)<span class="op">;</span>  <span class="co">// [1, 2, 3, 4]</span></span>
-<span id="cb17-13"><a href="#cb17-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="co">// 这个元素的类型会根据你后面的transmute 里的src-type 来推断</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>    <span class="co">// 之前在数组那里我们了解到  let x = [1, 2, 3, 4]; =&gt; 默认类型是[i32; 4]</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>    <span class="kw">let</span> raw_bytes <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>    <span class="co">// transmute::&lt;src-type, dst-type&gt;(src:src-type)</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>    <span class="kw">let</span> num <span class="op">=</span> <span class="kw">unsafe</span> <span class="op">{</span> <span class="pp">std::mem::transmute::</span><span class="op">&lt;</span>[<span class="dt">u8</span><span class="op">;</span> <span class="dv">4</span>]<span class="op">,</span> <span class="dt">u32</span><span class="op">&gt;</span>(raw_bytes) <span class="op">};</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="co">// 100 00000011 00000010 00000001</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>    <span class="pp">println!</span>(<span class="st">"{:b}"</span><span class="op">,</span> num)<span class="op">;</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> num)<span class="op">;</span> <span class="co">// 67305985</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a>    <span class="kw">let</span> num <span class="op">=</span> <span class="dv">67305985u32</span><span class="op">;</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="kw">unsafe</span> <span class="op">{</span> <span class="pp">std::mem::transmute::</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">,</span> [<span class="dt">u8</span><span class="op">;</span> <span class="dv">4</span>]<span class="op">&gt;</span>(num) <span class="op">};</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> r)<span class="op">;</span>  <span class="co">// [1, 2, 3, 4]</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>指针类型转换</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="dv">67244033i32</span><span class="op">;</span></span>
