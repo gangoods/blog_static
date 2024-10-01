@@ -73,6 +73,27 @@ div.code-result{
       padding: 0;
     }
   }
+  div.panel-tabset{
+    margin-top: 0;
+    ul.nav.nav-tabs li.nav-item a.nav-link{
+        font-size: 0.875em;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        border-radius: 0;
+        color: #333333 !important;
+        border: 1px solid #e6e6e6 !important;
+    }
+     
+    div.tab-content{
+      padding: 0;
+      margin: 0;
+      border-radius: 0.2rem;
+      box-shadow:1px 1px 2px rgba(0, 0, 0, .125);
+    }
+
+   
+
+  }
 }
 
 div.sourceCode {

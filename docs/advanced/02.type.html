@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>add-table – 斯巴拉稀</title>
+<title>type – 斯巴拉稀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../docs/advanced/01.mem.html" rel="prev">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,15 +106,15 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./favicon.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -89,15 +124,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./docs/basic/01.env.html"> 
+    <a class="nav-link" href="../../docs/basic/01.env.html"> 
 <span class="menu-text">核心基础</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/advanced/01.mem.html"> 
+    <a class="nav-link active" href="../../docs/advanced/01.mem.html" aria-current="page"> 
 <span class="menu-text">进阶</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/pkg/utils.html"> 
+    <a class="nav-link" href="../../docs/pkg/utils.html"> 
 <span class="menu-text">库</span></a>
   </li>  
 </ul>
@@ -107,17 +142,66 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"></h1>
+        </a>     
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">进阶</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/advanced/01.mem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">内存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/advanced/02.type.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">奇异的类型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#添加这种格式的table-的方式" id="toc-添加这种格式的table-的方式" class="nav-link active" data-scroll-target="#添加这种格式的table-的方式"><span class="header-section-number">1</span> 添加这种格式的table 的方式</a></li>
+  <li><a href="#dst" id="toc-dst" class="nav-link active" data-scroll-target="#dst"><span class="header-section-number">1</span> DST</a></li>
+  <li><a href="#zst" id="toc-zst" class="nav-link" data-scroll-target="#zst"><span class="header-section-number">2</span> ZST</a></li>
+  <li><a href="#空类型" id="toc-空类型" class="nav-link" data-scroll-target="#空类型"><span class="header-section-number">3</span> 空类型</a></li>
+  <li><a href="#repr" id="toc-repr" class="nav-link" data-scroll-target="#repr"><span class="header-section-number">4</span> repr</a>
+  <ul>
+  <li><a href="#reprc" id="toc-reprc" class="nav-link" data-scroll-target="#reprc"><span class="header-section-number">4.1</span> repr(C)</a></li>
+  <li><a href="#reprtransparent" id="toc-reprtransparent" class="nav-link" data-scroll-target="#reprtransparent"><span class="header-section-number">4.2</span> repr(transparent)</a></li>
+  <li><a href="#repru-repri" id="toc-repru-repri" class="nav-link" data-scroll-target="#repru-repri"><span class="header-section-number">4.3</span> repr(u<em>) repr(i</em>)</a></li>
+  <li><a href="#reprpacked" id="toc-reprpacked" class="nav-link" data-scroll-target="#reprpacked"><span class="header-section-number">4.4</span> repr(packed)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -127,44 +211,90 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="添加这种格式的table-的方式" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="添加这种格式的table-的方式"><span class="header-section-number">1</span> 添加这种格式的table 的方式</h2>
-<table class="caption-top table">
-<caption>Sample grid table.</caption>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Fruit</th>
-<th>Price</th>
-<th>Advantages</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Bananas</td>
-<td>$1.34</td>
-<td><ul>
-<li>built-in wrapper</li>
-<li>bright color</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Oranges</td>
-<td>$2.10</td>
-<td><ul>
-<li>cures scurvy</li>
-<li>tasty</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
-<p>在vscode中 右键 点击 <code>Edit in visual mode</code> ,然后插入table , 直接编辑它就行, 最后复制</p>
+<img src="../../.diagram/de8bd16be0c74fe64926a1e35c6f2cf2.svg" class="img-fluid" alt="Diagram">
+<section id="dst" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="dst"><span class="header-section-number">1</span> DST</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">trait</span> Summary <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">fn</span> summarize(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="kw">fn</span> hello(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="co">// 报错, 无法获取大小</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::size_of::</span><span class="op">&lt;</span>Summary<span class="op">&gt;</span>())<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="zst" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="zst"><span class="header-section-number">2</span> ZST</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">struct</span> Nothing<span class="op">;</span> <span class="co">// No fields = no size</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>                <span class="co">// All fields have no size = no size</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">struct</span> LotsOfNothing <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    foo<span class="op">:</span> Nothing<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    qux<span class="op">:</span> ()<span class="op">,</span>      <span class="co">// empty tuple has no size</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    baz<span class="op">:</span> [<span class="dt">u8</span><span class="op">;</span> <span class="dv">0</span>]<span class="op">,</span> <span class="co">// empty array has no size</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::size_of::</span><span class="op">&lt;</span>Nothing<span class="op">&gt;</span>())<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::size_of::</span><span class="op">&lt;</span>LotsOfNothing<span class="op">&gt;</span>())<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="kw">let</span> a <span class="op">=</span> Nothing <span class="op">{};</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="op">&amp;</span>a<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::</span>size_of_val(<span class="op">&amp;</span>a))<span class="op">;</span> <span class="co">// 0</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="pp">println!</span>(<span class="st">"{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>a)<span class="op">;</span> <span class="co">// 0x7ff7b1bacf4f</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>    <span class="pp">println!</span>(<span class="st">"{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>b)<span class="op">;</span> <span class="co">// 0x7ff7b1bacf50</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::</span>size_of_val(<span class="op">&amp;</span>b))<span class="op">;</span> <span class="co">// 8</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="空类型" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="空类型"><span class="header-section-number">3</span> 空类型</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">enum</span> NoVariants <span class="op">{}</span> <span class="co">// No variants = no size</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">// 无法实例化</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="co">// let a = NoVariants;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::size_of::</span><span class="op">&lt;</span>NoVariants<span class="op">&gt;</span>())<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="repr" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="repr"><span class="header-section-number">4</span> repr</h2>
+<section id="reprc" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="reprc"><span class="header-section-number">4.1</span> repr(C)</h3>
+<p>它的目的很简单, 就是和 <code>C</code> 保持一致. 数据的顺序,大小,对齐方式都和你在<code>C</code> 或<code>C++</code>中见到的一摸一样.</p>
+<p>我们前面在<a href="01.mem.html#内存对齐">内存对齐</a>看对<code>Struct A</code>的对齐方式和它的大小,这里我们使用<code>repr(C)</code>来定义<code>Struct A</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="at">#[</span>repr<span class="at">(</span>C<span class="at">)]</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">struct</span> A <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    a<span class="op">:</span> <span class="dt">u8</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    b<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    c<span class="op">:</span> <span class="dt">u16</span><span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="op">}</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">use</span> <span class="pp">std::</span>mem<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="kw">let</span> x <span class="op">=</span> A <span class="op">{</span> a<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> b<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> c<span class="op">:</span> <span class="dv">3</span> <span class="op">};</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="co">// 12</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="pp">mem::</span>size_of_val(<span class="op">&amp;</span>x))<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="pp">println!</span>(<span class="st">"0x{:p}-0x{:p}-0x{:p}"</span><span class="op">,</span> <span class="op">&amp;</span>x<span class="op">.</span>a<span class="op">,</span> <span class="op">&amp;</span>x<span class="op">.</span>b<span class="op">,</span> <span class="op">&amp;</span>x<span class="op">.</span>c)<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>TODO 特殊情况</p>
+<ul>
+<li>ZSTs are still zero-sized …</li>
+<li>…</li>
+</ul>
+</section>
+<section id="reprtransparent" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="reprtransparent"><span class="header-section-number">4.2</span> repr(transparent)</h3>
+</section>
+<section id="repru-repri" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="repru-repri"><span class="header-section-number">4.3</span> repr(u<em>) repr(i</em>)</h3>
+</section>
+<section id="reprpacked" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="reprpacked"><span class="header-section-number">4.4</span> repr(packed)</h3>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -741,6 +871,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../docs/advanced/01.mem.html" class="pagination-link" aria-label="内存">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">内存</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

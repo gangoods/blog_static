@@ -1,6 +1,0 @@
-Error 400: err: failed to compile -: bad usage: D2_LAYOUT "tala" is not bundled and could not be found in your $PATH.
-err: The available options are: dagre, elk. For details on each option, run "d2 layout".
-err:
-err: For more information on setup, please visit https://github.com/terrastruct/d2.
-err: Run with --help to see usage.
- (exit code 1)
