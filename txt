@@ -1,7 +1,0 @@
-a
-#b
-#[tmux-complete.vim]
-#No tmux found!
-#found
-#ii
-#fff

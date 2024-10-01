@@ -2,5 +2,11 @@
   {
     "listing": "/docs/index.html",
     "items": []
+  },
+  {
+    "listing": "/docs/blog/index.html",
+    "items": [
+      "/docs/blog/posts/2024-08-04-hello.html"
+    ]
   }
 ]
