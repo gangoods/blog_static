@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 832 240"><defs><filter id="a" width="1.157" height="1.504" x="-.079" y="-.252"><feGaussianBlur stdDeviation="4.2"/></filter></defs><desc>blockdiag {
+node_width = 128;  // default value is 128
+node_height = 40;  // default value is 40
+span_width = 64;  // default value is 64
+span_height = 100;  // default value is 40 设置高于 node_height 多少 ,group 框框那里就会看到高出node多少
+// set default shape
+default_shape = roundedbox;  // default value is &apos;box&apos;
+
+// set default colors
+// default_node_color = lightblue;
+default_group_color = &quot;yellow&quot;;
+//  default_linecolor = blue;
+// default_textcolor = red;
+
+default_fontsize = 14;
+api-request -&gt; Authentication -&gt; Authorization -&gt; Admission;
+api-request [color = &quot;greenyellow&quot;];
+Authentication [color = &quot;LightCyan&quot;, numbered = 1];
+Authorization [color = &quot;orange&quot;, numbered = 2];
+Admission [color = &quot;DeepSkyBlue&quot;, numbered = 3];
+
+group {
+    label = &quot;API Server&quot;;
+    fontsize = 18;
+    //color = &quot;#FF0000&quot;;
+    // Set group shape to &apos;line group&apos; (default is box)
+// shape = line;
+
+    // Set line style (effects to &apos;line group&apos; only)
+// style = dashed;
+    Authentication -&gt; Authorization -&gt; Admission;
+}
+}</desc><path fill="#FF0" d="M248 75h528v90H248z" style="filter:url(#a)"/><path stroke="#000" d="M75 106h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H75a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8M267 106h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H267a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8M459 106h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H459a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8M651 106h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H651a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8" style="filter:url(#a);opacity:.7;fill-opacity:1"/><path fill="#ADFF2F" stroke="#000" d="M72 100h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H72a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8"/><text x="128.5" y="128" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="81">api-request</text><path fill="#E0FFFF" stroke="#000" d="M264 100h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H264a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8"/><text x="320" y="127" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="106">Authentication</text><circle cx="256" cy="100" r="12" fill="pink" stroke="#000"/><text x="256.5" y="107" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="9">1</text><path fill="orange" stroke="#000" d="M456 100h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H456a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8"/><text x="512" y="127" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="98">Authorization</text><circle cx="448" cy="100" r="12" fill="pink" stroke="#000"/><text x="448.5" y="107" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="9">2</text><path fill="#00BFFF" stroke="#000" d="M648 100h112a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H648a8 8 0 0 1-8-8v-24a8 8 0 0 1 8-8"/><text x="704" y="127" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="74">Admission</text><circle cx="640" cy="100" r="12" fill="pink" stroke="#000"/><text x="640.5" y="107" font-family="sans-serif" font-size="14" text-anchor="middle" textLength="9">3</text><path fill="none" stroke="#000" d="M192 120h56"/><path stroke="#000" d="m255 120-7-4v8z"/><path fill="none" stroke="#000" d="M384 120h56"/><path stroke="#000" d="m447 120-7-4v8z"/><path fill="none" stroke="#000" d="M576 120h56"/><path stroke="#000" d="m639 120-7-4v8z"/><text x="512" y="84" font-family="sans-serif" font-size="18" text-anchor="middle" textLength="100">API Server</text></svg>

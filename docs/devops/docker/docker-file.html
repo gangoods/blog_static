@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>docker-file – 斯巴拉稀</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/devops/docker/docker-compose.html" rel="next">
+<link href="../../../docs/devops/docker/ip.html" rel="prev">
+<link href="../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/quarto/index.html"> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">编程语言</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/programming/go/index.html">
+ <span class="dropdown-text">Go</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/programming/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/programming/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/cicd/index.html">
+ <span class="dropdown-text">cicd</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/k8s/index.html">
+ <span class="dropdown-text">k8s</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"></h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基础</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">架构</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/docker.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">常用命令</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/ip.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">流量走向分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/docker-file.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">dockerfile</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/docker-compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">docker-compose</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/podman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">podman</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">底层原理(todo…)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/namespace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">namespace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/cgroup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cgroup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/union-fs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">union fs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">network</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">TOC</h2>
+   
+  <ul>
+  <li><a href="#dockerfile-指令" id="toc-dockerfile-指令" class="nav-link active" data-scroll-target="#dockerfile-指令"><span class="header-section-number">1</span> dockerfile 指令</a>
+  <ul>
+  <li><a href="#from" id="toc-from" class="nav-link" data-scroll-target="#from"><span class="header-section-number">1.1</span> from</a></li>
+  <li><a href="#label" id="toc-label" class="nav-link" data-scroll-target="#label"><span class="header-section-number">1.2</span> LABEL</a></li>
+  <li><a href="#run" id="toc-run" class="nav-link" data-scroll-target="#run"><span class="header-section-number">1.3</span> RUN</a></li>
+  <li><a href="#cmd" id="toc-cmd" class="nav-link" data-scroll-target="#cmd"><span class="header-section-number">1.4</span> CMD</a></li>
+  <li><a href="#entrypoint" id="toc-entrypoint" class="nav-link" data-scroll-target="#entrypoint"><span class="header-section-number">1.5</span> ENTRYPOINT</a>
+  <ul class="collapse">
+  <li><a href="#exec模式-与-shell模式" id="toc-exec模式-与-shell模式" class="nav-link" data-scroll-target="#exec模式-与-shell模式"><span class="header-section-number">1.5.1</span> exec模式 与 shell模式</a></li>
+  </ul></li>
+  <li><a href="#expose" id="toc-expose" class="nav-link" data-scroll-target="#expose"><span class="header-section-number">1.6</span> EXPOSE</a></li>
+  <li><a href="#healthcheck" id="toc-healthcheck" class="nav-link" data-scroll-target="#healthcheck"><span class="header-section-number">1.7</span> HEALTHCHECK</a></li>
+  <li><a href="#env" id="toc-env" class="nav-link" data-scroll-target="#env"><span class="header-section-number">1.8</span> ENV</a></li>
+  <li><a href="#add-不推荐" id="toc-add-不推荐" class="nav-link" data-scroll-target="#add-不推荐"><span class="header-section-number">1.9</span> ADD (不推荐)</a></li>
+  <li><a href="#copy" id="toc-copy" class="nav-link" data-scroll-target="#copy"><span class="header-section-number">1.10</span> COPY</a></li>
+  <li><a href="#user" id="toc-user" class="nav-link" data-scroll-target="#user"><span class="header-section-number">1.11</span> USER</a></li>
+  <li><a href="#arg" id="toc-arg" class="nav-link" data-scroll-target="#arg"><span class="header-section-number">1.12</span> ARG</a></li>
+  <li><a href="#其他" id="toc-其他" class="nav-link" data-scroll-target="#其他"><span class="header-section-number">1.13</span> 其他</a></li>
+  <li><a href="#dockerfile-最佳实践" id="toc-dockerfile-最佳实践" class="nav-link" data-scroll-target="#dockerfile-最佳实践"><span class="header-section-number">1.14</span> dockerfile 最佳实践</a></li>
+  </ul></li>
+  <li><a href="#多进程的容器镜像1" id="toc-多进程的容器镜像1" class="nav-link" data-scroll-target="#多进程的容器镜像1"><span class="header-section-number">2</span> 多进程的容器镜像</a></li>
+  <li><a href="#构建-build" id="toc-构建-build" class="nav-link" data-scroll-target="#构建-build"><span class="header-section-number">3</span> 构建 build</a>
+  <ul>
+  <li><a href="#理解构建上下文build-context" id="toc-理解构建上下文build-context" class="nav-link" data-scroll-target="#理解构建上下文build-context"><span class="header-section-number">3.1</span> 理解构建上下文(Build Context)</a></li>
+  <li><a href="#build-cache" id="toc-build-cache" class="nav-link" data-scroll-target="#build-cache"><span class="header-section-number">3.2</span> Build Cache</a></li>
+  <li><a href="#多段构建multi-stage-build" id="toc-多段构建multi-stage-build" class="nav-link" data-scroll-target="#多段构建multi-stage-build"><span class="header-section-number">3.3</span> 多段构建(Multi-stage build)</a>
+  <ul class="collapse">
+  <li><a href="#使用最小的镜像" id="toc-使用最小的镜像" class="nav-link" data-scroll-target="#使用最小的镜像"><span class="header-section-number">3.3.1</span> 使用最小的镜像</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#通过镜像逆向dockerfile" id="toc-通过镜像逆向dockerfile" class="nav-link" data-scroll-target="#通过镜像逆向dockerfile"><span class="header-section-number">4</span> 通过镜像逆向dockerfile</a></li>
+  <li><a href="#dockerignore" id="toc-dockerignore" class="nav-link" data-scroll-target="#dockerignore"><span class="header-section-number">5</span> .dockerignore</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<pre><code>未完待续</code></pre>
+<section id="dockerfile-指令" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="dockerfile-指令"><span class="header-section-number">1</span> dockerfile 指令</h2>
+<section id="from" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="from"><span class="header-section-number">1.1</span> from</h3>
+<p>FROM:选择基础镜像，推荐 alpine</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">FROM</span> [--platform=&lt;platform&gt;] &lt;image&gt;[@&lt;digest&gt;] [<span class="kw">AS</span> &lt;name&gt;]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="label" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="label"><span class="header-section-number">1.2</span> LABEL</h3>
+<p>maintainer 废弃</p>
+<p><strong>按标签组织项目 (不用搞目录什么的.)</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">LABEL</span> multi.label1=<span class="st">"value1"</span> multi.label2=<span class="st">"value2"</span> other=<span class="st">"value3"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>配合 label filter 可过滤镜像查询结果</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">docker</span> images <span class="at">-f</span> label=multi.label1=<span class="st">"value1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>查看镜像的label</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># -A 10 看 labels 后10行</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">docker</span> inspect image_name <span class="kw">|</span><span class="fu">grep</span> labels <span class="at">-A</span> 10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="run"><span class="header-section-number">1.3</span> RUN</h3>
+<p>!!! warning 这两条命令应该永远用&amp;&amp;连接，如果分开执行，RUN apt-get update 构建层被缓存，可能会导致新 package 无法安装</p>
+<p>执行命令,最常见的用法是</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">RUN</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cmd" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="cmd"><span class="header-section-number">1.4</span> CMD</h3>
+<p>!!! tip 1. 运行的命令会被实际执行是指定的命令覆盖 2. 定义了多个,只有最后一个会执行 3. 当指定了 ENTRYPOINT 后，CMD 的含义就发生了改变，不再是直接的运行其命令，而是将 CMD 的内容作为参数传给 ENTRYPOINT 指令</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">CMD</span> [<span class="st">"executableA"</span>, <span class="st">"param1"</span>, <span class="st">"param2"</span>...]</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">CMD</span> [<span class="st">"executableB"</span>, <span class="st">"param1"</span>, <span class="st">"param2"</span>...]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 这个echo hello 会覆盖配置里的cmd, 配置里的cmd不会执行</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># 在没有 ENTRYPOINT的时候,我们运行容器, 想执行什么命令就执行什么命令</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">docker</span> run image_name echo hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="entrypoint" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="entrypoint"><span class="header-section-number">1.5</span> ENTRYPOINT</h3>
+<p>!!! tips - 定义可以执行的容器镜像入口命令 ,必定会执行,不会被覆盖 - ==在不指定entrypoint的情况下,Docker 会为你提供一个隐含的 ENTRYPOINT，即:/bin/sh -c, 所以你的cmd 是这个的参数哦== - 不过docker run 时指定–entrypoint 可以覆盖</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 我们一般 是不会这么做的...</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--entrypoint</span> /bin/bash image_name </span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># 注意覆盖的是 entrypoint 里的指令,</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># 设置的cmd 还是作为 entrypoint 的参数,这里可以指定参数 /usr/share/nginx/html</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--entrypoint</span> ls nginx  /usr/share/nginx/html</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># 这个是进入容器执行, 不是说覆盖了原来的entrypoint..  别混淆了.</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co"># 任何运行的容器,都可以这样操作..</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="ex">docker</span> exec <span class="at">-it</span> image_name bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#docker run –-entrypoint 可替换 Dockerfile 中定义的 ENTRYPOINT  </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#ENTRYPOINT 的最佳实践是用 ENTRYPOINT 定义镜像主命令，并通过 CMD 定义主要参数，如下所示</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"sed"</span>]</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">CMD</span> [<span class="st">"--help"</span>]</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#可以这样, 这样的话, 就看你运行的时候指定啥了.</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="kw">CMD</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">FROM</span> ubuntu</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install  <span class="at">-y</span> stress</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">ENTRYPOINT</span> [<span class="st">"/usr/bin/stress"</span>]</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="kw">CMD</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">docker</span> build <span class="at">-t</span> stress .</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># 指定的参数-v会覆盖 dockerfile里配置的cmd</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="ex">docker</span> run <span class="at">--rm</span> stress <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exec模式-与-shell模式" class="level4" data-number="1.5.1">
+<h4 data-number="1.5.1" class="anchored" data-anchor-id="exec模式-与-shell模式"><span class="header-section-number">1.5.1</span> exec模式 与 shell模式</h4>
+<p>!!! note “shell模式与exec模式的区别” shell 模式会忽略所有 CMD 命令的参数和 docker run 的命令行参数，ENTRYPOINT 要运行的命令会作为 /bin/sh -c 的子命令运行，而且 /bin/sh 不会传递信号，也就是说 ENTRYPOINT 要运行的命令不是 PID 为 1 的进程，且不会收到 Unix 信号，所以你要执行的命令不会收到 docker stop <container> 发出的 SIGTERM 信号 (这里说的是,不会优雅退出, 就是直接停止了容器, 还没停止里面的程序, 可以写个程序测试)<br> 一般情况下,我们停止一个服务, 是需要优雅退出的. 比如nginx ,会先让其处理已经发送过来的请求.</container></p>
+<p>=== “exec模式 (推荐)” <code>dockerfile     # exec 模式     ENTRYPOINT ["executable", "param1", "param2"]</code> <code>dockerfile     FROM ubuntu     ENTRYPOINT ["top", "-b"]     CMD ["-c"]</code> <code>bash     docker build -t top .     docker run --rm --name top top     # 然后在另外一个会话执行 下面的, 可以看到, 执行的命令本身 pid =1     docker exec -it top ps -ef         UID        PID  PPID  C STIME TTY          TIME CMD         root         1     0  0 03:29 ?        00:00:00 top -b -c         root        16     0  0 03:30 pts/0    00:00:00 ps -ef     我们可以 ctrl+c 退出</code> === “shell模式”</p>
+<pre><code>```dockerfile
+ENTRYPOINT command param1 param2
+```
+
+```dockerfile
+FROM ubuntu
+ENTRYPOINT top -b
+CMD -c
+```
+```bash
+# 是 pid=1 的shell 进程的 子进程
+docker exec -it stest ps -ef
+    UID        PID  PPID  C STIME TTY          TIME CMD
+    root         1     0  0 03:36 ?        00:00:00 /bin/sh -c top -b /bin/sh -c -c
+    root         7     1  0 03:36 ?        00:00:00 top -b
+    root        17     0  0 03:36 pts/0    00:00:00 ps -ef
+#ctrl+c 没反应.. 
+```</code></pre>
+<p>=== “go程序测试” !!! warning 写的代码 测试信号接收..<br> 代码暂时没找到在哪…..</p>
+</section>
+</section>
+<section id="expose" class="level3" data-number="1.6">
+<h3 data-number="1.6" class="anchored" data-anchor-id="expose"><span class="header-section-number">1.6</span> EXPOSE</h3>
+<p>暴露端口</p>
+<ul>
+<li>是镜像创建者和使用者的约定,告知用户你暴露了什么服务(端口)</li>
+<li>在 docker run –P 时，docker 会自动映射 expose 的端口到主机大端口，如0.0.0.0:32768-&gt;80/tcp</li>
+<li>-P 是将容器内所有暴露的端口(写了EXPOSE的) 映射到主机的随机端口上,如果没有写EXPOSE, 就不会映射任何端口</li>
+<li>-p 指定容器的端口({==无需 dockerfile 写 EXPOSE==})映射到主机</li>
+<li>从某种意义上看{==EXPOSE只是一种提醒/告知: 说我这个应用应该访问这个端口,这个端口提供服务==}</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb14-1"><a href="#cb14-1"></a><span class="op">--</span><span class="dv">8</span><span class="op">&lt;--</span> <span class="st">"devops/docker/code/go-web-simple/main.go"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb15-1"><a href="#cb15-1"></a>--8&lt;-- <span class="st">"devops/docker/code/go-web-simple/dockerfile"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">EXPOSE</span> &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="healthcheck" class="level3" data-number="1.7">
+<h3 data-number="1.7" class="anchored" data-anchor-id="healthcheck"><span class="header-section-number">1.7</span> HEALTHCHECK</h3>
+<p>健康检查</p>
+<pre><code>--interval=&lt;duration&gt;：指定健康检查的时间间隔,默认为 30 秒.
+--timeout=&lt;duration&gt;：指定每次健康检查的超时时间,默认为 30 秒.
+--retries=&lt;number&gt;：指定在将容器标记为不健康之前尝试健康检查的次数,默认为 3 次.</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">HEALTHCHECK</span> <span class="op">--interval=5s</span> <span class="op">--timeout=3s</span> \</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="kw">CMD</span> <span class="ex">curl</span> <span class="at">-f</span> http://localhost/ <span class="kw">||</span> <span class="bu">exit</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="env" class="level3" data-number="1.8">
+<h3 data-number="1.8" class="anchored" data-anchor-id="env"><span class="header-section-number">1.8</span> ENV</h3>
+<p>设置环境变量, 就是进入容器后,你可以用env 看到这些</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">ENV</span> &lt;key&gt;=&lt;value&gt; ...</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co">#或者MYSQL_VERSION=5.7</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">ENV</span> MYSQL_VERSION 5.7</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># run 实际上是进入容器执行的. 所以用到的变量可以</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="kw">RUN</span> <span class="ex">agt-get</span> install <span class="at">-y</span> mysql-server=<span class="st">"</span><span class="va">${MYSQL_VERSION}</span><span class="st">"</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="add-不推荐" class="level3" data-number="1.9">
+<h3 data-number="1.9" class="anchored" data-anchor-id="add-不推荐"><span class="header-section-number">1.9</span> ADD (不推荐)</h3>
+<p>!!! note - 从源地址(文件，目录或者 URL)复制文件到目标路径 - 如果 src 是一个本地压缩文件,则在 ADD 的同时完整解压操作 - 如果 dest 不存在,则 ADD 指令会创建目标目录 - 如果 dest 结尾没有/,那么 dest 是目标文件名,如果 dest 结尾有/,那么 dest 是目标目录名 - 如果 src 是一个目录,则所有文件都会被复制至 dest - 如果 src 是一个本地压缩文件,则在 ADD 的同时完整解压操作 - ADD 支持通配符，如 ADD check* /testdir/</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">ADD</span> [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;  </span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">ADD</span> [--chown=&lt;user&gt;:&lt;group&gt;] [<span class="st">"&lt;src&gt;"</span>,... <span class="st">"&lt;dest&gt;"</span>] (路径中有空格时使用)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="copy" class="level3" data-number="1.10">
+<h3 data-number="1.10" class="anchored" data-anchor-id="copy"><span class="header-section-number">1.10</span> COPY</h3>
+<p>!!! note - COPY:从源地址(文件，目录)复制文件到目标路径 - 可以用于多阶段编译场景，可以用前一个临时镜像中拷贝文件 - COPY 不解压文件 - COPY 只支持本地文件的复制</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">COPY</span> [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">COPY</span> [--chown=&lt;user&gt;:&lt;group&gt;] [<span class="st">"&lt;src&gt;"</span>,... <span class="st">"&lt;dest&gt;"</span>] <span class="co"># 路径中有空格时使用</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="kw">COPY</span> <span class="op">--from=build</span> /bin/project /bin/project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>```bash title=“src是目录时注意点” FROM ubuntu COPY tmp /root/</p>
+<p>. ├── dockerfile └── tmp ├── abc └── t2 └── 123</p>
+<p>docker run –rm tmp ls /root abc t2 #没有 tmp 目录,, 所以写copy的时候 要 copy tmp /root/tmp</p>
+<pre><code>
+
+
+###  VOLUME
+将指定目录定义为外挂存储卷，Dockerfile 中在该指令之后所有对同一目录的修改都无效 VOLUME ["/data"]</code></pre>
+<p>等价于 docker run –v /data，可通过 docker inspect 查看主机的 mount point， /var/lib/docker/volumes/<containerid>/_data</containerid></p>
+<pre><code>### WORKDIR
+切换工作目录
+WORKDIR，意思是在这一句之后，Dockerfile 后面的操作都以这一句指定的 WORKDIR 目录作为当前目录
+还有设置后,你`docker run -it xxx bash` 进入后, `pwd`看到的,就不会是默认的/ 而是这个了.
+
+
+```dockerfile
+WORKDIR /path/to/workdir</code></pre>
+</section>
+<section id="user" class="level3" data-number="1.11">
+<h3 data-number="1.11" class="anchored" data-anchor-id="user"><span class="header-section-number">1.11</span> USER</h3>
+<p>USER:切换运行镜像的用户和用户组, 容器默认会以root的用户去运行容器, 可以用user指定成其他 用户必须存在,没有的话先添加</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">#RUN USERADD abc</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="kw">USER</span> &lt;user&gt;[:&lt;group&gt;] </span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># 进去容器后,  whoami 能看到</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="arg" class="level3" data-number="1.12">
+<h3 data-number="1.12" class="anchored" data-anchor-id="arg"><span class="header-section-number">1.12</span> ARG</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb25-1"><a href="#cb25-1"></a>from ubuntu</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">ARG</span> FILE</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="co"># 可以有默认值</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="kw">ARG</span> DIR=<span class="st">"/root"</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="kw">RUN</span> <span class="bu">cd</span> <span class="va">$DIR</span> <span class="kw">&amp;&amp;</span> <span class="fu">touch</span> <span class="va">$FILE</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a></span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="co"># 生成镜像的时候 --build-arg 然后 FILE=hello.txt 传递 参数</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>docker build --build-arg FILE=hello.txt -t yyy  .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="其他" class="level3" data-number="1.13">
+<h3 data-number="1.13" class="anchored" data-anchor-id="其他"><span class="header-section-number">1.13</span> 其他</h3>
+<pre><code>• ONBUILD  
+• STOPSIGNAL  
+• HEALTHCHECK 
+• SHELL</code></pre>
+</section>
+<section id="dockerfile-最佳实践" class="level3" data-number="1.14">
+<h3 data-number="1.14" class="anchored" data-anchor-id="dockerfile-最佳实践"><span class="header-section-number">1.14</span> dockerfile 最佳实践</h3>
+<ul>
+<li>每个镜像最好只有一个进程</li>
+<li>当无法避免同一镜像运行多进程时,应选择合理的初始化进程(init process)</li>
+<li>最小化层级数
+<ul>
+<li>只有 RUN,COPY,ADD 会创建新层,其他指令创建临时层,不会增加镜像大小</li>
+<li>多条 RUN 命令可通过连接符连接成一条指令集以减少层数</li>
+<li>通过多段构建减少镜像层数</li>
+</ul></li>
+<li>把多行参数按字母排序，可以减少可能出现的重复参数，并且提高可读性</li>
+<li>编写 dockerfile 的时候,应该把变更频率低的编译指令优先构建以便放在镜像底层以有效利用 build cache</li>
+<li>复制文件时,每个文件应独立复制,这确保某个文件变更时,只影响改文件对应的缓存</li>
+</ul>
+</section>
+</section>
+<section id="多进程的容器镜像1" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="多进程的容器镜像1"><span class="header-section-number">2</span> 多进程的容器镜像<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
+<ul>
+<li>选择适当的 init 进程</li>
+<li>需要捕获 SIGTERM 信号并完成子进程的优雅终止</li>
+<li>负责清理退出的子进程以避免僵尸进程</li>
+</ul>
+</section>
+<section id="构建-build" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="构建-build"><span class="header-section-number">3</span> 构建 build</h2>
+<section id="理解构建上下文build-context" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="理解构建上下文build-context"><span class="header-section-number">3.1</span> 理解构建上下文(Build Context)</h3>
+<p>!!! note - 当运行 docker build 命令时，当前工作目录被称为构建上下文 - 首先会把构建上下文传输给docker daemon,可能当前目录(构建上下文)里有很多没用的文件,这样就会导致传输时间长,所以当前目录要干净 - 可以通过 <code>.dockerignore</code> 文件从编译上下文排除某些文件 - 可以创建一个专门的目录放置 Dockerfile，并在目录中运行 docker build</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># .  就是你的构建目录,会将这个目录下的所有文件包含在构建上下文</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="co"># 默认查找当前目录的 Dockerfile ,–f 指定 Dockerfile</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="ex">docker</span> build . –f ./Dockerfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="build-cache" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="build-cache"><span class="header-section-number">3.2</span> Build Cache</h3>
+<p>构建容器镜像时，Docker 依次读取 Dockerfile 中的指令，并按顺序依次执行构建指令。<br>
+Docker 读取指令后，会先判断缓存中是否有可用的已存镜像，只有已存镜像不存在时才会重新构建。</p>
+<ul>
+<li>通常 Docker 简单判断 Dockerfile 中的指令与镜像。</li>
+<li>针对 ADD 和 COPY 指令，Docker 判断该镜像层每一个文件的内容并生成一个 checksum，与现存镜像比较时，Docker 比较的是二者的 checksum。</li>
+<li>其他指令，比如 RUN apt-get -y update，Docker 简单比较与现存镜像中的指令字串是否一致。</li>
+<li>当某一层 cache 失效以后，所有所有层级的 cache 均一并失效，后续指令都重新构建镜像。
+<ul>
+<li>==所以构建的时候,不会变的东西放到最上面==</li>
+</ul></li>
+</ul>
+</section>
+<section id="多段构建multi-stage-build" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="多段构建multi-stage-build"><span class="header-section-number">3.3</span> 多段构建(Multi-stage build)</h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">FROM</span> golang:1.10-alpine3.8 <span class="kw">AS</span> multistage</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="kw">RUN</span> <span class="ex">apk</span> add <span class="at">--no-cache</span> <span class="at">--update</span> git</span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="kw">WORKDIR</span> /go/src/api</span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="kw">COPY</span> . .</span>
+<span id="cb28-7"><a href="#cb28-7"></a></span>
+<span id="cb28-8"><a href="#cb28-8"></a><span class="kw">RUN</span> <span class="ex">go</span> get <span class="at">-d</span> <span class="at">-v</span> <span class="dt">\</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">go</span> install <span class="at">-v</span> <span class="dt">\</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">go</span> build</span>
+<span id="cb28-11"><a href="#cb28-11"></a></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="co">##alpine 空的,啥也没有, 因为我们的go程序本身就是可执行文件.</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="kw">FROM</span> alpine:3.8</span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="kw">COPY</span> <span class="op">--from=multistage</span> /go/bin/api /go/bin/</span>
+<span id="cb28-16"><a href="#cb28-16"></a><span class="kw">EXPOSE</span> 3000</span>
+<span id="cb28-17"><a href="#cb28-17"></a><span class="kw">CMD</span> [<span class="st">"/go/bin/api"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>!!! tip 也可以使用<code>--from=0</code> 来表示从第一个阶段来</p>
+<section id="使用最小的镜像" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="使用最小的镜像"><span class="header-section-number">3.3.1</span> 使用最小的镜像</h4>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1"></a><span class="ex">from</span> scratch <span class="co"># 空的, 里面基础命令都没有, 所以一般我们用 alpine</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">#很多都有这种 -alpine</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="ex">from</span> golang:1.17.2-alpine</span>
+<span id="cb29-5"><a href="#cb29-5"></a></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="ex">from</span> openjdk:alpine</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="通过镜像逆向dockerfile" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="通过镜像逆向dockerfile"><span class="header-section-number">4</span> 通过镜像逆向dockerfile</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1"></a><span class="ex">docker</span> run <span class="at">-v</span> /var/run/docker.sock:/var/run/docker.sock alpine/dfimage nginx:alpine</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dockerignore" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="dockerignore"><span class="header-section-number">5</span> .dockerignore</h2>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://github.com/krallin/tini">https://github.com/krallin/tini</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/devops/docker/ip.html" class="pagination-link" aria-label="流量走向分析">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">流量走向分析</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/devops/docker/docker-compose.html" class="pagination-link" aria-label="docker-compose">
+        <span class="nav-page-text">docker-compose</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
