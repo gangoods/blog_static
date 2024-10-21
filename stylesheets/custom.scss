@@ -1,0 +1,497 @@
+/*-- scss:rules --*/
+@font-face {
+  /* excalidraw英文手写 ,注意在obsidian 中的excalidraw 使用 第一个手写字体,就是这里的了.
+    使用m 号字体就可以了*/
+  font-family: "Virgil";
+  /* https://github.com/arrowtype/shantell-sans */
+  /* 这里我用的是 tldraw 的手写英文字体
+    Shantell_Sans-Normal-SemiBold.woff2
+    Shantell_Sans-Normal-Medium.woff2 重命名的 */
+  // 如果想该成你想要的手写字体, 你就复制过来改成这个名字, 因为 后续的svg里使用的字体就是这个名字和路径
+  src: url("/stylesheets/font/Virgil-hand.woff2");
+}
+@font-face {
+  // Cabin Sketch 是 当前主题默认的字体
+  // https://fonts.googleapis.com/css2?family=Pangolin&display=swap
+  font-family: "pangolin";
+  src: url("/stylesheets/font/pangolin.woff2");
+}
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/stylesheets/font/JetBrainsMono-Regular.woff2");
+}
+// :root{
+//   --md-nav-icon--open: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>folder-open-outline</title><path d="M6.1,10L4,18V8H21A2,2 0 0,0 19,6H12L10,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H19C19.9,20 20.7,19.4 20.9,18.5L23.2,10H6.1M19,18H6L7.6,12H20.6L19,18Z" /></svg>');
+//   --md-nav-icon--close: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>folder-outline</title><path d="M20,18H4V8H20M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z" /></svg>');
+// }
+:root{
+  --md-code--highlight-bg-color: #fbf3d5;
+  --title-block-banner-index-color: #353a40;
+  // --title-block-banner-color: #353a40;
+  --sidebar-section-hr: #6ca25b;
+  --table-has-border-color: #d4d8dc;
+  --panel-tabset-active-bg: #fdf3d1;
+  --sidebar-text-shadow-color: #292c33;
+}
+hr.sidebar-divider.hi {
+  // color: #6ca25b;
+  border-top: 2px dashed var(--sidebar-section-hr);
+}
+table.caption-top.table{
+  border: 1px solid var(--table-has-border-color) !important;
+  border-collapse: collapse;
+  th,
+  td {
+      border: 1px solid var(--table-has-border-color);
+  }
+}
+// div.has-tbl-border{
+//   table {
+//     // margin: 0 auto;
+//     border: 1px solid var(--table-has-border-color);
+//     border-collapse: collapse;
+//   }
+//   th,
+//   td {
+//       border: 1px solid var(--table-has-border-color);
+//   }
+// }
+div.code-result{
+  div.sourceCode:first-child{
+    margin-bottom: 0;
+  }
+  div.code-with-filename:first-child {
+    div.sourceCode{
+      margin-bottom: 0;
+    }
+  }
+  div.callout{
+    margin-top: 0;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+    border-radius: .2rem;
+    div.callout-body-container.callout-body{
+      margin: 0;
+      padding: 0;
+    }
+  }
+  div.callout + div.sourceCode{
+    margin-top: 0 ;
+  }
+  div.callout +div.code-with-filename{
+    margin-top: 0 ;
+  }
+  div.callout.has_sbl_source_code{
+    margin-bottom: 0;
+  }
+  div.panel-tabset{
+    margin-top: 0;
+    ul.nav.nav-tabs li.nav-item a.nav-link{
+        font-size: 0.875em;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        border-radius: 0;
+        color: #333333 !important;
+        border: 1px solid #e6e6e6 !important;
+    }
+     
+    div.tab-content{
+      padding: 0;
+      // margin: 0;
+      border-radius: 0.2rem;
+      box-shadow:1px 1px 2px rgba(0, 0, 0, .125);
+    }
+
+   
+
+  }
+}
+
+div.sourceCode {
+  background-color: #fafafa;
+  //  #f5f5f5;
+  // border-color: #eff7fa;
+  border: 0px solid !important;
+  border-radius: 0.2rem;
+//   box-shadow: 5px 5px 10px -4px rgba(0, 0, 0, 0.3);
+box-shadow:1px 1px 2px rgba(0, 0, 0, .125);
+}
+pre code {
+  // border-color: #fdf3d1 !important;
+  border-color: #f5f5f5 !important;
+  // font-weight: normal;
+  font-family: "JetBrainsMono";
+}
+strong{
+    font-family: "JetBrainsMono" ;
+}
+div.code-with-filename {
+  .code-with-filename-file {
+    // border-color: #f5f5f5 !important;
+    border: 0px solid !important;
+    box-shadow:1px 1px 2px rgba(0, 0, 0, .125);
+    // background-color: #d9ecdc;
+    background-color: #f8f5ed;
+    /* 上边 | 右边 | 下边 | 左边 */
+    padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+    // border-top-left-radius: 5px 25px;
+    // border-top-right-radius: 5px 25px;
+    
+  }
+  pre {
+    border: none;
+  }
+}
+pre.number-lines > code.sourceCode {
+  border-left: 0.5px solid gray !important;
+  border-radius: 0;
+}
+body {
+  font-weight: normal;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+.toc-active li > a.nav-link.active {
+  border-left: 2px solid #f1a93c !important;
+  background-color: #fdf5ec;
+}
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  color: #eb6864 !important;
+}
+div.sidebar-item-container .active,
+div.sidebar-item-container .show > .nav-link,
+div.sidebar-item-container .sidebar-link > code {
+  color: #8f3f3d;
+}
+a.sidebar-link.active {
+  border-right: 2px solid #56a451 !important;
+  background-color: #f0f7f0;
+  // padding-top: 0.1rem;
+  // padding-bottom: 0.1rem;
+}
+a.sidebar-link {
+  padding: 0.1rem;
+}
+
+div.panel-tabset {
+  ul.nav.nav-tabs {
+    border-bottom: 0px;
+    li.nav-item {
+      border-bottom: 0px;
+      a.nav-link {
+        color: #333333 !important;
+        border: 1px solid #cccecf !important;
+        border-bottom: 0px;
+        // border-radius: 0;
+        // border-top-left-radius: 0.5rem;
+        border-radius: 8px 3px 0 0;
+        margin-bottom: -1px;
+        // border-top-right-radius:0.5rem;
+      }
+      a.nav-link.active {
+        background-color: var(--panel-tabset-active-bg) !important;
+      }
+    }
+  }
+  div.tab-content {
+    // margin-top: -1px;
+    padding: 0.8em;
+    padding-bottom: 0.2em;
+    border: 1px solid #cccecf;
+    // border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+}
+// panel-tabset 都是代码的情况 设置挤满div
+div.tab-content.all-code-panel{
+  padding: 0 !important;
+  div.sourceCode{
+    margin-bottom: 0;
+  }
+}
+
+div.callout {
+  border-radius: 5px 5px 5px 5px / 25px 25px 25px 5px;
+  border-top-left-radius: 5px 25px;
+  border-top-right-radius: 5px 25px;
+  border-bottom-right-radius: 5px 25px;
+  border-bottom-left-radius: 5px;
+  div.callout-header {
+    border-top-left-radius: 5px 25px;
+    border-top-right-radius: 5px 25px;
+    font-family: "Cabin Sketch";
+  }
+  div.callout-body {
+    padding-top: 0.3em;
+    padding-bottom: 0.2em;
+    font-size: 1rem !important;
+    font-family: "JetBrainsMono";
+    color: #5e5e5e;
+  }
+  // box-shadow: 5px 5px 10px -4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+    border-right: 0px solid !important;
+    border-top: 0px solid !important;
+    border-bottom: 0px solid !important;
+}
+
+#quarto-sidebar {
+  border-right: 1px solid #f5f5f5;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Cabin Sketch", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    // text-shadow: 0 0 1px rgba(#292c33, .3), 0 0 2px rgba(#292c33, .3), 0 0 5px rgba(#292c33, .2);
+}
+h1{
+    text-shadow: 0 0 1px rgba(#292c33, .3), 0 0 2px rgba(#292c33, .3), 0 0 5px rgba(#292c33, .2);
+}
+
+h2 {
+  font-size: 1.8625em !important;
+  font-weight: bold !important;
+  color: #4fa0b5;
+  // color: #ff79c6;
+  .header-section-number {
+    color: #4fa0b5;
+  }
+  text-shadow: 0 0 0.3em #4fa0b5;
+}
+h3 {
+  font-size: 1.5625em !important;
+  font-weight: bold !important;
+  color: #56a451;
+  .header-section-number {
+    color: #56a451;
+  }
+  text-shadow: 0 0 0.5em #56a451;
+}
+h4 {
+  font-size: 1.1625em !important;
+  font-weight: bold !important;
+  // color: #3270eb;
+  color: #ff79c6;
+  .header-section-number {
+    color: #ff79c6;
+  }
+  text-shadow: 0 0 1em #ff79c6;
+}
+h5 {
+  font-size: 1.1625em !important;
+  font-weight: bold !important;
+  color: #9be51c;
+  .header-section-number {
+    color: #9be51c;
+  }
+  text-shadow: 0 0 0.5em #9be51c;
+}
+#quarto-document-content li a,
+p > a {
+  color: #3270eb;
+}
+
+.txt-highlight {
+  background-color: #fdf188;
+}
+.txt-underline {
+  text-decoration: underline #daa98c;
+  text-decoration-thickness: 0.2em;
+}
+// 点击navbar后,显示的页面里的
+.link-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: "JetBrainsMono";
+}
+div.code-annotation-gutter-bg {
+  // background-color: #f5f5f5;
+  background-color: transparent;
+  // 代码有 #<1> 这种情况 右边的标号所在的窗口会在
+  // 代码的div上方,这样会将代码给截断,这里设置它靠后
+  z-index: -100;
+}
+div.code-annotation-gutter {
+  // background-color: #f5f5f5;
+  background-color: transparent;
+  z-index: -100;
+}
+a.code-annotation-anchor {
+  background-color: #9be51c !important;
+}
+button.code-annotation-anchor {
+  background-color: #9be51c !important;
+}
+dl.code-annotation-container-grid {
+  // background-color: #f2f7f1;
+
+  dd {
+    // vertical-align: middle;
+    margin-bottom: 0;
+    span {
+      margin-top: 0.5rem;
+    }
+  }
+  dt {
+    background-color: #94c644;
+    height: 19px;
+    width: 19px;
+    line-height: 19px;
+    margin-bottom: 0.2rem;
+  }
+  dt.code-annotation-active {
+    color: black !important;
+    border: solid #aaa 1px;
+    background-color: yellow !important;
+  }
+}
+
+div#code-annotation-line-highlight {
+  background-color: #fdf188;
+}
+// #code-annotation-line-highlight-gutter{
+// }
+
+#quarto-margin-sidebar,
+#quarto-sidebar {
+  font-family: "JetBrainsMono";
+  // font-family: "Cabin Sketch";
+  // font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+  //   "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+  //   "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: normal;
+  text-shadow: 0 0 1px rgba(#a0a1a7, .3), 0 0 2px rgba(#a0a1a7, .3), 0 0 5px rgba(#a0a1a7, .2);
+}
+
+// 下面是暂时用的
+.features {
+  padding-bottom: 2em;
+}
+
+.feature {
+  margin-top: 20px;
+}
+
+@media (min-width: 800px) {
+  .features {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0 0 -30px;
+    width: calc(100% + 30px);
+  }
+  .feature {
+    width: calc(33% - 30px);
+    margin: 20px 0 0 30px;
+  }
+}
+
+.feature h3 {
+  margin-top: 0;
+}
+
+.feature p:first-of-type {
+  margin-bottom: 0.2rem;
+  color: rgb(84, 85, 85);
+}
+
+// .content{
+// #quarto-margin-sidebar {
+//   box-shadow: -15px 0 10px -15px rgba(0, 0, 0, 0.3);
+//   // box-shadow:inset  15px 0 10px -15px rgba(0, 0, 0, 0.3);
+// }
+#quarto-sidebar {
+  box-shadow: 15px 0 10px -15px rgba(0, 0, 0, 0.3);
+}
+
+// div.callout-important{
+//     border-top: 1px solid #ec82c3 !important;
+//     border-right: 1px solid #ec82c3 !important;
+//     border-bottom: 1px solid #ec82c3 !important;
+// }
+// div.callout-tip{
+//     border-top: 1px solid LightGreen !important;
+//     border-right: 1px solid LightGreen !important;
+//     border-bottom: 1px solid LightGreen !important;
+// }
+
+// div.callout-note{
+//     border-top: 1px solid DeepSkyBlue !important;
+//     border-right: 1px solid DeepSkyBlue !important;
+//     border-bottom: 1px solid DeepSkyBlue !important;
+// }
+// div.callout-caution{
+//     border-top: 1px solid Salmon !important;
+//     border-right: 1px solid Salmon !important;
+//     border-bottom: 1px solid Salmon !important;
+// }
+
+
+// div.annotation{
+//   margin-left: 20px !important;
+//   padding: 0;
+//   div.sourceCode {
+//     margin:  0;
+//   }
+// }
+// dl.code-annotation-container-grid{
+//   margin-bottom: 0;
+// }
+
+
+// .code-annotation-line-highlight
+// code-annotation-container-grid
+
+// code.sourceCode  span[id] {
+//   display: block;
+// }
+
+
+.navbar .quarto-color-scheme-toggle:not(.alternate) .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 16 16"><g fill="white"><path d="M9 11c.628-.836 1-1.874 1-3a4.98 4.98 0 0 0-1-3h4a3 3 0 1 1 0 6z"/><path d="M5 12a4 4 0 1 1 0-8a4 4 0 0 1 0 8m0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10"/></g></svg>') !important;
+}
+
+.navbar .quarto-color-scheme-toggle.alternate .bi::before{
+  // fill="gold" 修改svg的颜色
+  background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 16 16"><g fill="white"><path d="M7 5H3a3 3 0 0 0 0 6h4a5 5 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416q.235-.537.584-1"/><path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0"/></g></svg>') !important;
+}
+
+// 控制 上面svg的大小
+.quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle i.bi::before {
+    display: inline-block;
+    height: 1.6rem;
+    width: 2rem;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 2rem 2rem;
+}
+
+
+// 如果没有设置navbar, 有sidebar的情况下,会在sidebar上现实切换按钮
+// .sidebar-navigation .quarto-color-scheme-toggle:not(.alternate) .bi::before {
+// }
+
+// .sidebar-navigation .quarto-color-scheme-toggle.alternate .bi::before {
+// }
+
+// .navbar{
+//   background-color: #d97069;
+// }
+/*-- scss:defaults --*/
+$link-color: blue;
+
+// code.sourceCode {
+//   text-shadow: 0 0 1px rgba(#292c33, .3), 0 0 2px rgba(#292c33, .3), 0 0 5px rgba(#292c33, .2);
+//   span.co{
+//     text-shadow: none;
+//   }
+// }
