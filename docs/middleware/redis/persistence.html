@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Blog – 斯巴拉稀</title>
+<title>persistence – 斯巴拉稀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../favicon.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/middleware/redis/data-type.html" rel="next">
+<link href="../../../docs/middleware/redis/env.html" rel="prev">
+<link href="../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,83 +103,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-image','listing-categories','listing-description','listing-word-count','listing-reading-time','listing-date','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: var(--title-block-banner-index-color);
-      }
-</style>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="../../js/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../favicon.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -160,21 +130,21 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
         <li>
-    <a class="dropdown-item" href="../../docs/programming/go/index.html">
+    <a class="dropdown-item" href="../../../docs/programming/go/index.html">
  <span class="dropdown-text">Go</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/programming/rust/index.html">
+    <a class="dropdown-item" href="../../../docs/programming/rust/index.html">
  <span class="dropdown-text">Rust</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/programming/python/index.html">
+    <a class="dropdown-item" href="../../../docs/programming/python/index.html">
  <span class="dropdown-text">Python</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/netprog/index.html"> 
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -183,19 +153,19 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
         <li>
-    <a class="dropdown-item" href="../../docs/devops/linux/index.html">
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
  <span class="dropdown-text">linux</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/devops/docker/index.html">
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
  <span class="dropdown-text">docker/podman</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/devops/cicd/index.html">
+    <a class="dropdown-item" href="../../../docs/devops/cicd/index.html">
  <span class="dropdown-text">cicd</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/devops/k8s/index.html">
+    <a class="dropdown-item" href="../../../docs/devops/k8s/index.html">
  <span class="dropdown-text">k8s</span></a>
   </li>  
     </ul>
@@ -206,21 +176,21 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
         <li>
-    <a class="dropdown-item" href="../../docs/middleware/mysql/index_.html">
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
  <span class="dropdown-text">mysql</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/middleware/redis/index.html">
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
  <span class="dropdown-text">redis</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/developer/index.html"> 
+    <a class="nav-link" href="../../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../docs/blog/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -230,116 +200,277 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"></h1>
+        </a>     
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-            <p class="subtitle lead">关于实际工作或者学习中遇到的bug或其他问题都写在这里!</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基础</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/persistence.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">数据持久化</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/data-type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数据类型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">源码分析</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/middleware/redis/source-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="test">test <span class="quarto-category-count">(1)</span></div></div></div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-
-
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="asc">
-          Modified - Oldest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="desc">
-          Modified - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">TOC</h2>
+   
+  <ul>
+  <li><a href="#rdb" id="toc-rdb" class="nav-link active" data-scroll-target="#rdb"><span class="header-section-number">1</span> RDB</a>
+  <ul>
+  <li><a href="#主动生成rdb快照" id="toc-主动生成rdb快照" class="nav-link" data-scroll-target="#主动生成rdb快照"><span class="header-section-number">1.1</span> 主动生成rdb快照</a></li>
+  <li><a href="#重放" id="toc-重放" class="nav-link" data-scroll-target="#重放"><span class="header-section-number">1.2</span> 重放</a></li>
+  </ul></li>
+  <li><a href="#aof" id="toc-aof" class="nav-link" data-scroll-target="#aof"><span class="header-section-number">2</span> AOF</a>
+  <ul>
+  <li><a href="#写入策略" id="toc-写入策略" class="nav-link" data-scroll-target="#写入策略"><span class="header-section-number">2.1</span> 写入策略</a></li>
+  <li><a href="#重写优化" id="toc-重写优化" class="nav-link" data-scroll-target="#重写优化"><span class="header-section-number">2.2</span> 重写优化</a></li>
+  <li><a href="#重写策略" id="toc-重写策略" class="nav-link" data-scroll-target="#重写策略"><span class="header-section-number">2.3</span> 重写策略</a></li>
+  </ul></li>
+  <li><a href="#redis-4.0以后-混合持久化" id="toc-redis-4.0以后-混合持久化" class="nav-link" data-scroll-target="#redis-4.0以后-混合持久化"><span class="header-section-number">3</span> redis 4.0以后 混合持久化</a></li>
+  </ul>
+</nav>
     </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="test" data-listing-date-sort="1722737483000" data-listing-file-modified-sort="1727754996700" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
-<div class="thumbnail">
-<p><a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external"></a></p><a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">hello</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('test'); return false;">
-test
+<div class="callout-title-container flex-fill">
+Caution
 </div>
 </div>
-<div class="listing-description">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">world </a>
+<div class="callout-body-container callout-body">
+<p>未完待续</p>
 </div>
 </div>
-<div class="metadata">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">
-<div class="listing-date">
-2024-08-04 10:11:23
+<section id="rdb" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="rdb"><span class="header-section-number">1</span> RDB</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="listing-reading-time">
-1 min
-</div>
-<div class="metadata-value listing-word-count">
-4 words
-</div>
-<div class="metadata-value listing-file-modified">
-2024-10-01 11:56:36
-</div>
-</a>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>snapshot,快照</li>
+<li>二进制格式</li>
+<li>早期redis版本的默认方式</li>
+<li>按照事先指定的频率,周期性都保存到磁盘</li>
+<li>默认文件是dump.rdb</li>
+<li>宕机后,数据会丢失一部分</li>
+</ul>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
 </div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>redis.conf</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="redis.conf"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">save 900 1</span><span class="co">  #900秒内如果有&gt;=1个key发生变化(set写入的操作),则写入磁盘</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="at">save 300 10</span><span class="co"> #300秒内如果有&gt;=10个key,则不用等待900秒 写入</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="at">save 60 10000</span><span class="co">  #如果60秒内有&gt;=10000个 则写入</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>如果你在60秒内 做了 999次操作, 然后这个时候redis服务器宕机了. 那么数据就不会写入磁盘,也就是说丢失了.</p>
+</div>
+</div>
+<section id="主动生成rdb快照" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="主动生成rdb快照"><span class="header-section-number">1.1</span> 主动生成rdb快照</h3>
+<p>进入客户端</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 每次执行这样的命令都会将所有redis内存快照到一个新的rdb文件,并覆盖原有快照文件</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">save</span> 或 bgsave  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">save</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">bgsave</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>同步方式,在主线程中保存快照, 所以这个时候所有操作会阻塞,因为主线程就是用来执行client的请求的</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ul>
+<li>background save ,异步方式,client请求不会阻塞</li>
+<li>调用fork创建一个子进程,父进程继续处理各个请求</li>
+<li>linux的写时复制cow特点,父子进程共享同一个物理空间,父进程会将操作的页面创建一个副本,而子进程的数据还是要开始保存的那个时间点</li>
+<li>子进程负责将内存中的内容保存到临时文件,只有当其保存ok后,才会保存到真正的文件</li>
+<li>执行完后,子进程退出</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="重放" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="重放"><span class="header-section-number">1.2</span> 重放</h3>
+<ul>
+<li>就是将dump.rdb 重新加载到内存</li>
+<li>rdb比aof的重放速度快,直接文件重新写入 ,aof是重新执行命令</li>
+</ul>
+</section>
+</section>
+<section id="aof" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="aof"><span class="header-section-number">2</span> AOF</h2>
+<ul>
+<li>append only file</li>
+<li>记录每一次的写操作,几乎不会丢失数据,但是 这样性能肯定就没那么好了
+<ul>
+<li>因为写入磁盘本身 是先写到缓存的? 操作系统..</li>
+</ul></li>
+<li>就是将你执行的redis命令 添加到指定的文件</li>
+<li>文件会比较大</li>
+<li>重启时,可以通过重新执行文件中的命令在内存中重建数据</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>redis.conf中开启aof</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="redis.conf中开启aof"><pre class="sourceCode numberSource conf number-lines code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">appendonly</span> <span class="dt">no</span> <span class="co"># 设置为yes 开启</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="dt">appendfilename</span> <span class="dt">"appendonly.aof"</span>  <span class="co"># 文件名</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="dt">dir</span> <span class="er">/</span><span class="dt">usr</span><span class="er">/</span><span class="dt">local</span><span class="er">/</span><span class="dt">var</span><span class="er">/</span><span class="dt">db</span><span class="er">/</span><span class="dt">redis</span><span class="er">/</span>  <span class="co"># 存放的目录在这里</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="写入策略" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="写入策略"><span class="header-section-number">2.1</span> 写入策略</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource conf number-lines code-with-copy"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># appendfsync always  # 每写一条命令,就写入, 这个性能最不好</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># 每1秒,redis内部本身也是先写到缓存中,到达1秒后,写入磁盘</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># 故障时 只会丢失1秒钟的数据</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="dt">appendfsync</span> <span class="dt">everysec</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># appendfsync no      # 将数据交给操作系统来处理.</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#表示重写的时候,父进程的新的操作不同步到文件</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="dt">no-appendfsync-on-rewrite</span> <span class="dt">no</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#可以用config set parma value 来修改</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">但是如果要永久话,需要</span> config rewirte</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="重写优化" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="重写优化"><span class="header-section-number">2.2</span> 重写优化</h3>
+<p>我们知道当redis重启时, 会将aof文件里的命令重新执行来达到重建数据的目的</p>
+<ul>
+<li>aof重写的问题
+<ul>
+<li>aof 是重新执行了一遍命令, 肯定比rdb 重放慢</li>
+<li>由于可能有很多无用的命令, 这个很好理解, 就是你后面的命令 直接覆盖了前面的, set a 1 ,set a 2,第一条命令实际就是没用的</li>
+<li>比如你执行了100次的操作,可能只要一次就行了,但是保存的还是100语句</li>
+</ul></li>
+<li>手动重写命令 bgrewirteaof 命令可以重写aof文件,合并一些操作
+<ul>
+<li>不会读取旧的aof文件</li>
+<li>比如内存中的结果直接变成 它所对应的语句 写到临时文件</li>
+<li>将内存中的文件保存到临时文件,最后替换真正的文件</li>
+<li>过程
+<ul>
+<li>主进程通过fork 生成子进程</li>
+<li>子进程根据内存中的数据创建数据库重建命令序列与临时文件中</li>
+<li>父进程继续接收client的请求,会把这些请求的命令追加于原来的aof文件,为了防止重写失败,额外的会把这些新的请求写于一个缓冲队列中</li>
+<li>子进程写完临时文件后,会通知父进程,父进程会把缓冲队列中的命令写到临时文件中</li>
+<li>最后 父进程?用临时文件替换老的aof文</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="重写策略" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="重写策略"><span class="header-section-number">2.3</span> 重写策略</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 当你的文件 自上一次重写后 大小增加了100%后, 会触发重写</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#当现在得aof文件是上次重写后的文件的2倍大小时,再次重写</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">auto-aof-rewrite-percentage</span> 100</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># 表示当文件至少达到64m的时候才会自动重写, 因为文件太小 本身加载到内存就很快.</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">auto-aof-rewrite-min-size</span> 64mb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="redis-4.0以后-混合持久化" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="redis-4.0以后-混合持久化"><span class="header-section-number">3</span> redis 4.0以后 混合持久化</h2>
+<p>重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重 放，但是重放 AOF 日志性能相对 RDB来说要慢很多，这样在 Redis 实例很大的情况下，启动需要花费很 长的时间。 Redis 4.0 为了解决这个问题，带来了一个新的持久化选项——混合持久化</p>
+<ul>
+<li>就是结合了上面的2个</li>
+<li>开启</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">aof-use-rdb-preamble</span> yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>AOF在重写时，不再是单纯将内存数据转换为RESP命令写入AOF文件，而是将 <strong>重写这一刻之前的内存</strong>做RDB快照处理，并且将RDB快照内容和<strong>增量的AOF修改内存数据的命令存在一 起</strong>，都写入新的AOF文件，新的文件一开始不叫appendonly.aof，等到重写完新的AOF文件才会进行改 名，原子的覆盖原有的AOF文件，完成新旧两个AOF文件的替换。</li>
+<li>于是在 Redis 重启的时候，可以先加载 RDB 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，因此重启效率大幅得到提升。</li>
+</ul>
+<img src="../../../.diagram/8d989b999bb23e6d8bb0209fe7672e07.svg" class="img-fluid" alt="Diagram">
+<ul>
+<li>bgrewirteaof 后看下 aof文件,然后 set 写入 ,再看看文件里的内容</li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -909,6 +1040,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/middleware/redis/env.html" class="pagination-link" aria-label="快速入门">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">快速入门</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/middleware/redis/data-type.html" class="pagination-link" aria-label="数据类型">
+        <span class="nav-page-text">数据类型</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>rust 实用库 – 斯巴拉稀</title>
+<title>ip – 斯巴拉稀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,26 +57,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../favicon.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/devops/docker/docker-file.html" rel="next">
+<link href="../../../docs/devops/docker/docker.html" rel="prev">
+<link href="../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,8 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../favicon.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -123,31 +124,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../docs/basic/env.html"> 
-<span class="menu-text">核心基础</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../docs/advanced/01.mem.html"> 
-<span class="menu-text">进阶</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../../docs/pkg/utils.html" aria-current="page"> 
-<span class="menu-text">库</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">实战</span>
+ <span class="menu-text">编程语言</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
         <li>
-    <a class="dropdown-item" href="../../docs/hands-on/compiler/index.html">
- <span class="dropdown-text">编译器doing</span></a>
+    <a class="dropdown-item" href="../../../docs/programming/go/index.html">
+ <span class="dropdown-text">Go</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/programming/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/programming/python/index.html">
+ <span class="dropdown-text">Python</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/blog/index.html"> 
+    <a class="nav-link" href="../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/cicd/index.html">
+ <span class="dropdown-text">cicd</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/devops/k8s/index.html">
+ <span class="dropdown-text">k8s</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -163,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">rust 实用库</h1>
+          <h1 class="quarto-secondary-nav-title"></h1>
         </a>     
     </div>
   </nav>
@@ -177,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">库</span></a>
+ <span class="menu-text">基础</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -185,8 +228,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/pkg/utils.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">常用库</span></a>
+  <a href="../../../docs/devops/docker/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">架构</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/docker.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">常用命令</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/ip.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">流量走向分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/docker-file.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dockerfile</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/docker-compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">docker-compose</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/podman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">podman</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">底层原理(todo…)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/namespace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">namespace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/cgroup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cgroup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/union-fs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">union fs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/devops/docker/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">network</span></a>
   </div>
 </li>
       </ul>
@@ -201,190 +316,194 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">TOC</h2>
    
   <ul>
-  <li><a href="#csv" id="toc-csv" class="nav-link active" data-scroll-target="#csv"><span class="header-section-number">1</span> csv</a></li>
-  <li><a href="#serde1" id="toc-serde1" class="nav-link" data-scroll-target="#serde1"><span class="header-section-number">2</span> serde</a></li>
-  <li><a href="#time" id="toc-time" class="nav-link" data-scroll-target="#time"><span class="header-section-number">3</span> time</a>
-  <ul>
-  <li><a href="#标准库里的time" id="toc-标准库里的time" class="nav-link" data-scroll-target="#标准库里的time"><span class="header-section-number">3.1</span> 标准库里的time</a></li>
-  </ul></li>
+  <li><a href="#启动容器" id="toc-启动容器" class="nav-link active" data-scroll-target="#启动容器"><span class="header-section-number">0.1</span> 启动容器</a></li>
+  <li><a href="#打开iptables调试功能" id="toc-打开iptables调试功能" class="nav-link" data-scroll-target="#打开iptables调试功能"><span class="header-section-number">0.2</span> 打开iptables调试功能</a></li>
+  <li><a href="#查看-nat-表" id="toc-查看-nat-表" class="nav-link" data-scroll-target="#查看-nat-表"><span class="header-section-number">0.3</span> 查看 NAT 表</a></li>
+  <li><a href="#查看-filter-表" id="toc-查看-filter-表" class="nav-link" data-scroll-target="#查看-filter-表"><span class="header-section-number">0.4</span> 查看 filter 表</a></li>
+  <li><a href="#watch-日志" id="toc-watch-日志" class="nav-link" data-scroll-target="#watch-日志"><span class="header-section-number">0.5</span> watch 日志</a></li>
+  <li><a href="#外部浏览器访问-nginx" id="toc-外部浏览器访问-nginx" class="nav-link" data-scroll-target="#外部浏览器访问-nginx"><span class="header-section-number">0.6</span> 外部浏览器访问 nginx</a></li>
+  <li><a href="#观察日志" id="toc-观察日志" class="nav-link" data-scroll-target="#观察日志"><span class="header-section-number">0.7</span> 观察日志</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-    <div class="quarto-title">
-    <h1 class="title d-none d-lg-block">rust 实用库</h1>
-      </div>
-  
-  <div class="quarto-title-meta">
-            <div>
-      <div class="quarto-title-meta-heading">Created</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">2024-09-13 13:39:46</p>
-      </div>
-    </div>
-            <div>
-      <div class="quarto-title-meta-heading">Updated</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">2024-10-05 14:38:32</p>
-      </div>
-    </div>
-      </div>
-</header>
 
 
-<section id="csv" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="csv"><span class="header-section-number">1</span> csv</h2>
-<div class="sourceCode" id="cb1" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">cargo</span> add csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">use</span> <span class="pp">anyhow::</span><span class="dt">Result</span><span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">use</span> <span class="pp">std::fs::</span><span class="op">{</span><span class="kw">self</span><span class="op">,</span> File<span class="op">};</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="co">// 如果你是在 工作空间根目录下 执行 cargo run,</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="co">// 则这个csv文件需要相对于 工作空间根目录</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">let</span> file <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"a.csv"</span>)<span class="op">?;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">let</span> <span class="kw">mut</span> csv <span class="op">=</span> <span class="pp">csv::Reader::</span>from_reader(file)<span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="co">// let headers = csv.headers()?.clone();</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="co">// println!("{:?}", headers);</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="cf">for</span> result <span class="kw">in</span> csv<span class="op">.</span>records() <span class="op">{</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>        <span class="kw">let</span> record <span class="op">=</span> result<span class="op">?;</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>        <span class="co">//  let json_val = headers.iter().zip(record.iter()).collect::&lt;Value&gt;();</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>        <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> record)<span class="op">;</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>        <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> record<span class="op">.</span>get(<span class="dv">0</span>))<span class="op">;</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>    <span class="op">}</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<section id="启动容器" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="启动容器"><span class="header-section-number">0.1</span> 启动容器</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">docker</span> run <span class="at">-itd</span> <span class="at">--name</span> nginx <span class="at">-p</span> 80:80 nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="serde1" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="serde1"><span class="header-section-number">2</span> serde<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
-<div class="sourceCode" id="cb3" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">cargo</span> add serde <span class="at">--features</span> derive</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">use</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="pp">serde::</span>Deserialize<span class="at">)]</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">struct</span> Record <span class="op">{</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>    city<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>    region<span class="op">:</span> <span class="dt">u8</span><span class="op">,</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    country<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="op">}</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">/* a.csv</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">tokyo,3,japan</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">beijing,1,china</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">*/</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">fn</span> read_csv() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>    <span class="kw">let</span> file <span class="op">=</span> <span class="pp">std::fs::File::</span>open(<span class="st">"a.csv"</span>)<span class="op">?;</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>    <span class="kw">let</span> <span class="kw">mut</span> rdr <span class="op">=</span> <span class="pp">csv::ReaderBuilder::</span>new()</span>
-<span id="cb4-17"><a href="#cb4-17"></a>        <span class="op">.</span>has_headers(<span class="cn">false</span>) <span class="co">// 如果都是数据的情况, 设置没有 header</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>        <span class="op">.</span>from_reader(file)<span class="op">;</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>    <span class="cf">for</span> result <span class="kw">in</span> rdr<span class="op">.</span>deserialize() <span class="op">{</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>        <span class="co">// Notice that we need to provide a type hint for automatic</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>        <span class="co">// deserialization.</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>        <span class="kw">let</span> record<span class="op">:</span> Record <span class="op">=</span> result<span class="op">?;</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a>        <span class="pp">println!</span>(<span class="st">"{}-{}"</span><span class="op">,</span> record<span class="op">.</span>city<span class="op">,</span> record<span class="op">.</span>country)<span class="op">;</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a>    <span class="op">}</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="op">}</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="co">/*  a-with-header.csv</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="co">city,region,country</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="co">tokyo,3,japan</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="co">beijing,1,china</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a><span class="co"> */</span></span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="kw">fn</span> read_csv_with_header() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a>    <span class="kw">let</span> file <span class="op">=</span> <span class="pp">std::fs::File::</span>open(<span class="st">"a-with-header.csv"</span>)<span class="op">?;</span></span>
-<span id="cb4-35"><a href="#cb4-35"></a>    <span class="kw">let</span> <span class="kw">mut</span> rdr <span class="op">=</span> <span class="pp">csv::ReaderBuilder::</span>new()</span>
-<span id="cb4-36"><a href="#cb4-36"></a>        <span class="op">.</span>has_headers(<span class="cn">true</span>) <span class="co">// 如果是有header的情况, 设置true</span></span>
-<span id="cb4-37"><a href="#cb4-37"></a>        <span class="op">.</span>from_reader(file)<span class="op">;</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a>    <span class="cf">for</span> result <span class="kw">in</span> rdr<span class="op">.</span>deserialize() <span class="op">{</span></span>
-<span id="cb4-39"><a href="#cb4-39"></a>        <span class="kw">let</span> record<span class="op">:</span> Record <span class="op">=</span> result<span class="op">?;</span></span>
-<span id="cb4-40"><a href="#cb4-40"></a>        <span class="pp">println!</span>(<span class="st">"{}-{}"</span><span class="op">,</span> record<span class="op">.</span>city<span class="op">,</span> record<span class="op">.</span>country)<span class="op">;</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a>    <span class="op">}</span></span>
-<span id="cb4-42"><a href="#cb4-42"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb4-43"><a href="#cb4-43"></a><span class="op">}</span></span>
-<span id="cb4-44"><a href="#cb4-44"></a></span>
-<span id="cb4-45"><a href="#cb4-45"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-46"><a href="#cb4-46"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Err</span>(err) <span class="op">=</span> read_csv() <span class="op">{</span></span>
-<span id="cb4-47"><a href="#cb4-47"></a>        <span class="pp">println!</span>(<span class="st">"error running read_csv_with_header: {}"</span><span class="op">,</span> err)<span class="op">;</span></span>
-<span id="cb4-48"><a href="#cb4-48"></a>    <span class="op">}</span></span>
-<span id="cb4-49"><a href="#cb4-49"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Err</span>(err) <span class="op">=</span> read_csv_with_header() <span class="op">{</span></span>
-<span id="cb4-50"><a href="#cb4-50"></a>        <span class="pp">println!</span>(<span class="st">"error running read_csv_with_header: {}"</span><span class="op">,</span> err)<span class="op">;</span></span>
-<span id="cb4-51"><a href="#cb4-51"></a>    <span class="op">}</span></span>
-<span id="cb4-52"><a href="#cb4-52"></a><span class="op">}</span></span>
-<span id="cb4-53"><a href="#cb4-53"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">cargo</span> add serde_json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">use</span> <span class="pp">serde::</span><span class="op">{</span>Deserialize<span class="op">,</span> Serialize<span class="op">};</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">// 使用 serde 的 derive 宏来为结构体自动实现序列化和反序列化</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="at">#[</span>derive<span class="at">(</span>Serialize<span class="op">,</span> Deserialize<span class="op">,</span> <span class="bu">Debug</span><span class="at">)]</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="kw">struct</span> Person <span class="op">{</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="co">// rename可以设置json 格式的时候, 显示的名字</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">#[</span>serde<span class="at">(</span>rename <span class="op">=</span> <span class="st">"user_name"</span><span class="at">)]</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>    name<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>    age<span class="op">:</span> <span class="dt">u8</span><span class="op">,</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>    phones<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;,</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="op">}</span></span>
+<section id="打开iptables调试功能" class="level3" data-number="0.2">
+<h3 data-number="0.2" class="anchored" data-anchor-id="打开iptables调试功能"><span class="header-section-number">0.2</span> 打开iptables调试功能</h3>
+<p>通过调试可以看 iptables 几个表 (raw mangle nat filter ) 的顺序,谁先谁后, 可以自己测试一下.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">modprobe</span> ipt_LOG <span class="co">#centos6</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">modprobe</span> nf_log_ipv4 <span class="co">#centos7</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># 查看</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="ex">sysctl</span> net.netfilter.nf_log.2</span>
+<span id="cb2-5"><a href="#cb2-5"></a>   <span class="co">#centos 7</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>     <span class="ex">net.netfilter.nf_log.2</span> = nf_log_ipv4</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># raw 表 添加规则, 打开调试. </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="ex">iptables</span> <span class="at">-t</span> raw <span class="at">-A</span> PREROUTING <span class="at">-p</span> tcp <span class="at">--dport</span> 80 <span class="at">-j</span> TRACE </span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="ex">iptables</span> <span class="at">-t</span> raw <span class="at">-A</span> OUTPUT <span class="at">-p</span> tcp <span class="at">--dport</span> 80 <span class="at">-j</span> TRACE</span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="ex">iptables</span> <span class="at">-t</span> raw <span class="at">-nL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="查看-nat-表" class="level3" data-number="0.3">
+<h3 data-number="0.3" class="anchored" data-anchor-id="查看-nat-表"><span class="header-section-number">0.3</span> 查看 NAT 表</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">iptables</span> <span class="at">-t</span> nat <span class="at">-nvL</span> <span class="at">--line-numbers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>Chain PREROUTING (policy ACCEPT 0 packets, 0 bytes)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb4-3"><a href="#cb4-3"></a>1        0     0 DOCKER     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>Chain INPUT (policy ACCEPT 0 packets, 0 bytes)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>Chain OUTPUT (policy ACCEPT 12 packets, 883 bytes)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb4-10"><a href="#cb4-10"></a>1        0     0 DOCKER     all  --  *      *       0.0.0.0/0           !127.0.0.0/8          ADDRTYPE match dst-type LOCAL</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a>Chain POSTROUTING (policy ACCEPT 12 packets, 883 bytes)</span>
+<span id="cb4-13"><a href="#cb4-13"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb4-14"><a href="#cb4-14"></a>1        0     0 MASQUERADE  all  --  *      !docker0  172.17.0.0/16        0.0.0.0/0</span>
+<span id="cb4-15"><a href="#cb4-15"></a>2        0     0 MASQUERADE  tcp  --  *      *       172.17.0.2           172.17.0.2           tcp dpt:80</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a>Chain DOCKER (2 references)</span>
+<span id="cb4-18"><a href="#cb4-18"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb4-19"><a href="#cb4-19"></a>1        0     0 RETURN     all  --  docker0 *       0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb4-20"><a href="#cb4-20"></a>2        0     0 DNAT       tcp  --  !docker0 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.17.0.2:80</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="查看-filter-表" class="level3" data-number="0.4">
+<h3 data-number="0.4" class="anchored" data-anchor-id="查看-filter-表"><span class="header-section-number">0.4</span> 查看 filter 表</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">iptables</span> <span class="at">-t</span> filter <span class="at">-nvL</span> <span class="at">--line-numbers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>Chain INPUT (policy ACCEPT 523 packets, 31567 bytes)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-6"><a href="#cb6-6"></a>1       40  7071 DOCKER-USER  all  --  *      *       0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-7"><a href="#cb6-7"></a>2       40  7071 DOCKER-ISOLATION-STAGE-1  all  --  *      *       0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-8"><a href="#cb6-8"></a>3       15   833 ACCEPT     all  --  *      docker0  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span>
+<span id="cb6-9"><a href="#cb6-9"></a>4        3   156 DOCKER     all  --  *      docker0  0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-10"><a href="#cb6-10"></a>5       22  6082 ACCEPT     all  --  docker0 !docker0  0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-11"><a href="#cb6-11"></a>6        0     0 ACCEPT     all  --  docker0 docker0  0.0.0.0/0            0.0.0.0/0</span>
 <span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co">// 创建一个 Person 实例</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a>    <span class="kw">let</span> person <span class="op">=</span> Person <span class="op">{</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>        name<span class="op">:</span> <span class="st">"John Doe"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>        age<span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>        phones<span class="op">:</span> <span class="pp">vec!</span>[<span class="st">"+44 1234567"</span><span class="op">.</span>to_string()<span class="op">,</span> <span class="st">"+44 2345678"</span><span class="op">.</span>to_string()]<span class="op">,</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>    <span class="op">};</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a></span>
-<span id="cb6-21"><a href="#cb6-21"></a>    <span class="co">// 将 Person 实例序列化为 JSON 字符串</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a>    <span class="kw">let</span> serialized <span class="op">=</span> <span class="pp">serde_json::</span>to_string(<span class="op">&amp;</span>person)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a>    <span class="pp">println!</span>(<span class="st">"Serialized:</span><span class="sc">\n</span><span class="st">{}"</span><span class="op">,</span> serialized)<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>Chain OUTPUT (policy ACCEPT 274 packets, 92208 bytes)</span>
+<span id="cb6-14"><a href="#cb6-14"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-15"><a href="#cb6-15"></a></span>
+<span id="cb6-16"><a href="#cb6-16"></a>Chain DOCKER (1 references)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-18"><a href="#cb6-18"></a>1        3   156 ACCEPT     tcp  --  !docker0 docker0  0.0.0.0/0            172.17.0.2           tcp dpt:80</span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a>Chain DOCKER-ISOLATION-STAGE-1 (1 references)</span>
+<span id="cb6-21"><a href="#cb6-21"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-22"><a href="#cb6-22"></a>1       22  6082 DOCKER-ISOLATION-STAGE-2  all  --  docker0 !docker0  0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-23"><a href="#cb6-23"></a>2       40  7071 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0</span>
 <span id="cb6-24"><a href="#cb6-24"></a></span>
-<span id="cb6-25"><a href="#cb6-25"></a>    <span class="co">// 将 JSON 字符串反序列化为 Person 实例</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a>    <span class="kw">let</span> deserialized<span class="op">:</span> Person <span class="op">=</span> <span class="pp">serde_json::</span>from_str(<span class="op">&amp;</span>serialized)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a>    <span class="pp">println!</span>(<span class="st">"Deserialized:</span><span class="sc">\n</span><span class="st">{:?}"</span><span class="op">,</span> deserialized)<span class="op">;</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-25"><a href="#cb6-25"></a>Chain DOCKER-ISOLATION-STAGE-2 (1 references)</span>
+<span id="cb6-26"><a href="#cb6-26"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-27"><a href="#cb6-27"></a>1        0     0 DROP       all  --  *      docker0  0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-28"><a href="#cb6-28"></a>2       22  6082 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0</span>
+<span id="cb6-29"><a href="#cb6-29"></a></span>
+<span id="cb6-30"><a href="#cb6-30"></a>Chain DOCKER-USER (1 references)</span>
+<span id="cb6-31"><a href="#cb6-31"></a>num   pkts bytes target     prot opt in     out     source               destination</span>
+<span id="cb6-32"><a href="#cb6-32"></a>1       40  7071 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="time" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="time"><span class="header-section-number">3</span> time</h2>
-<section id="标准库里的time" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="标准库里的time"><span class="header-section-number">3.1</span> 标准库里的time</h3>
-<div class="sourceCode" id="cb7" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">use</span> <span class="pp">std::time::</span><span class="op">{</span>Duration<span class="op">,</span> SystemTime<span class="op">,</span> <span class="cn">UNIX_EPOCH</span><span class="op">};</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="kw">let</span> now <span class="op">=</span> <span class="pp">SystemTime::</span>now()<span class="op">;</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> now)<span class="op">;</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="kw">let</span> now <span class="op">=</span> <span class="pp">SystemTime::</span>now()<span class="op">;</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="co">// UNIX_EPOCH: 1970/1/1</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="cf">match</span> now<span class="op">.</span>duration_since(<span class="cn">UNIX_EPOCH</span>) <span class="op">{</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>        <span class="cn">Ok</span>(elapsed) <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>            <span class="pp">println!</span>(<span class="st">"从 UNIX EPOCH 现在过去了 {} 秒"</span><span class="op">,</span> elapsed<span class="op">.</span>as_secs())<span class="op">;</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>        <span class="op">}</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>            <span class="pp">println!</span>(<span class="st">"SystemTime 在 UNIX EPOCH 之前: {:?}"</span><span class="op">,</span> e)<span class="op">;</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>        <span class="op">}</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>    <span class="op">}</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a></span>
-<span id="cb7-17"><a href="#cb7-17"></a>    <span class="kw">use</span> <span class="pp">std::</span>thread<span class="op">;</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a></span>
-<span id="cb7-19"><a href="#cb7-19"></a>    <span class="pp">println!</span>(<span class="st">"程序开始"</span>)<span class="op">;</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>    <span class="co">// 休眠2s</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>    <span class="pp">thread::</span>sleep(<span class="pp">Duration::</span>from_secs(<span class="dv">2</span>))<span class="op">;</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="pp">println!</span>(<span class="st">"程序结束"</span>)<span class="op">;</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a>    <span class="kw">let</span> duration <span class="op">=</span> now<span class="op">.</span>elapsed()<span class="op">;</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a>    <span class="pp">println!</span>(<span class="st">"从获取now开始 到现在操作耗时: {:?}"</span><span class="op">,</span> duration)<span class="op">;</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a>    <span class="kw">let</span> now2 <span class="op">=</span> now<span class="op">.</span>checked_add(<span class="pp">Duration::</span>from_secs(<span class="dv">3</span>))<span class="op">;</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> now2)<span class="op">;</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="watch-日志" class="level3" data-number="0.5">
+<h3 data-number="0.5" class="anchored" data-anchor-id="watch-日志"><span class="header-section-number">0.5</span> watch 日志</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/kern.log</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># 或 ?</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">tail</span> <span class="at">-f</span> /var/log/messages</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#或 ?</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">dmesg</span> <span class="at">--follow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="外部浏览器访问-nginx" class="level3" data-number="0.6">
+<h3 data-number="0.6" class="anchored" data-anchor-id="外部浏览器访问-nginx"><span class="header-section-number">0.6</span> 外部浏览器访问 nginx</h3>
+<p>上面我的操作我是在虚拟机里的.</p>
+</section>
+<section id="观察日志" class="level3" data-number="0.7">
+<h3 data-number="0.7" class="anchored" data-anchor-id="观察日志"><span class="header-section-number">0.7</span> 观察日志</h3>
+<p>流量进来先走 nat:PREROUTING -&gt; 如果有转发就走filter:FORWARD-&gt;nat:POSTROUTING</p>
+<div class="callout callout-style-default callout-note callout-titled" title="查看执行结果">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+查看执行结果
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>TRACE: raw:PREROUTING:policy:2 IN=eth0 OUT=</span>
+<span id="cb8-2"><a href="#cb8-2"></a># nat:PREROUTING:rule:1 找 nat:PREROUTING 第一条规则, target 是 DOCKER</span>
+<span id="cb8-3"><a href="#cb8-3"></a>TRACE: nat:PREROUTING:rule:1 IN=eth0 OUT=</span>
+<span id="cb8-4"><a href="#cb8-4"></a>#  nat:DOCKER: 的第一条规则 in 不匹配, 所以 继续下一条规则. 第2条匹配了.</span>
+<span id="cb8-5"><a href="#cb8-5"></a>TRACE: nat:DOCKER:rule:2 IN=eth0 OUT=</span>
+<span id="cb8-6"><a href="#cb8-6"></a># 走filter 的 forward(因为前面的规则里nat:DOCKER:rule:2  再根据路由)</span>
+<span id="cb8-7"><a href="#cb8-7"></a># 跳转到 DOCKER-USER</span>
+<span id="cb8-8"><a href="#cb8-8"></a>TRACE: filter:FORWARD:rule:1 IN=eth0 OUT=docker0 </span>
+<span id="cb8-9"><a href="#cb8-9"></a># 跳这DOCKER-USER 第一条. 是个return (return的意思是,结束子chains,返回到原来的chains 继续它的下一条)</span>
+<span id="cb8-10"><a href="#cb8-10"></a># 可以理解为 main函数里 调用了 A 函数, A函数里面return了. 你到了main ,执行 A函数后面的语句.</span>
+<span id="cb8-11"><a href="#cb8-11"></a>TRACE: filter:DOCKER-USER:return:1 IN=eth0 OUT=docker0</span>
+<span id="cb8-12"><a href="#cb8-12"></a># 回到forward的第二条 发现是跳 DOCKER-ISOLATION-STAGE-1</span>
+<span id="cb8-13"><a href="#cb8-13"></a>TRACE: filter:FORWARD:rule:2 IN=eth0 OUT=docker0</span>
+<span id="cb8-14"><a href="#cb8-14"></a># DOCKER-ISOLATION-STAGE-1的第一条 没有符合规则, 继续第二条看是否匹配, 匹配了.</span>
+<span id="cb8-15"><a href="#cb8-15"></a># 第二条是个return </span>
+<span id="cb8-16"><a href="#cb8-16"></a>TRACE: filter:DOCKER-ISOLATION-STAGE-1:return:2 IN=eth0 OUT=docker0</span>
+<span id="cb8-17"><a href="#cb8-17"></a># 继续回到forward.  (看第3条规则没匹配,因为是还没有建立连接)</span>
+<span id="cb8-18"><a href="#cb8-18"></a>TRACE: filter:FORWARD:rule:4 IN=eth0 OUT=docker0</span>
+<span id="cb8-19"><a href="#cb8-19"></a># accept 了..</span>
+<span id="cb8-20"><a href="#cb8-20"></a>TRACE: filter:DOCKER:rule:1 IN=eth0 OUT=docker0</span>
+<span id="cb8-21"><a href="#cb8-21"></a>TRACE: nat:POSTROUTING:policy:3 IN= OUT=docker0</span>
+<span id="cb8-22"><a href="#cb8-22"></a># 后续</span>
+<span id="cb8-23"><a href="#cb8-23"></a>TRACE: filter:FORWARD:rule:1 IN=eth0 OUT=docker0</span>
+<span id="cb8-24"><a href="#cb8-24"></a>TRACE: filter:DOCKER-USER:return:1 IN=eth0 OUT=docker0</span>
+<span id="cb8-25"><a href="#cb8-25"></a>TRACE: filter:FORWARD:rule:2 IN=eth0 OUT=docker0</span>
+<span id="cb8-26"><a href="#cb8-26"></a>TRACE: filter:DOCKER-ISOLATION-STAGE-1:return:2 IN=eth0 OUT=docker0</span>
+<span id="cb8-27"><a href="#cb8-27"></a># 看 这个时候匹配上了. 因为已经建立连接了.</span>
+<span id="cb8-28"><a href="#cb8-28"></a>TRACE: filter:FORWARD:rule:3 IN=eth0 OUT=docker0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
 </section>
-</section>
 
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p><a href="https://serde.rs/">https://serde.rs/</a> <br> <a href="https://github.com/serde-rs/serde">serde github</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -958,10 +1077,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/devops/docker/docker.html" class="pagination-link" aria-label="常用命令">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">常用命令</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/devops/docker/docker-file.html" class="pagination-link" aria-label="dockerfile">
+        <span class="nav-page-text">dockerfile</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
 
 
-<script src="../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 </body></html>

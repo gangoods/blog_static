@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>references – 斯巴拉稀</title>
+<title>mem – 斯巴拉稀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,47 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../docs/programming/go/basic/string.html" rel="next">
+<link href="../../../../docs/programming/go/basic/unsafe.html" rel="prev">
+<link href="../../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -90,15 +107,15 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./favicon.png" alt="" class="navbar-logo">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -113,21 +130,21 @@ div.csl-indent {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
         <li>
-    <a class="dropdown-item" href="./docs/programming/go/index.html">
+    <a class="dropdown-item" href="../../../../docs/programming/go/index.html">
  <span class="dropdown-text">Go</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./docs/programming/rust/index.html">
+    <a class="dropdown-item" href="../../../../docs/programming/rust/index.html">
  <span class="dropdown-text">Rust</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./docs/programming/python/index.html">
+    <a class="dropdown-item" href="../../../../docs/programming/python/index.html">
  <span class="dropdown-text">Python</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./docs/netprog/index.html"> 
+    <a class="nav-link" href="../../../../docs/netprog/index.html"> 
 <span class="menu-text">网络编程</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -136,19 +153,19 @@ div.csl-indent {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
         <li>
-    <a class="dropdown-item" href="./docs/devops/linux/index.html">
+    <a class="dropdown-item" href="../../../../docs/devops/linux/index.html">
  <span class="dropdown-text">linux</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./docs/devops/docker/index.html">
+    <a class="dropdown-item" href="../../../../docs/devops/docker/index.html">
  <span class="dropdown-text">docker/podman</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./docs/devops/cicd/index.html">
+    <a class="dropdown-item" href="../../../../docs/devops/cicd/index.html">
  <span class="dropdown-text">cicd</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./docs/devops/k8s/index.html">
+    <a class="dropdown-item" href="../../../../docs/devops/k8s/index.html">
  <span class="dropdown-text">k8s</span></a>
   </li>  
     </ul>
@@ -159,21 +176,21 @@ div.csl-indent {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
         <li>
-    <a class="dropdown-item" href="./docs/middleware/mysql/index_.html">
+    <a class="dropdown-item" href="../../../../docs/middleware/mysql/index_.html">
  <span class="dropdown-text">mysql</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./docs/middleware/redis/index.html">
+    <a class="dropdown-item" href="../../../../docs/middleware/redis/index.html">
  <span class="dropdown-text">redis</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./docs/developer/index.html"> 
+    <a class="nav-link" href="../../../../docs/developer/index.html"> 
 <span class="menu-text">程序员必备</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/blog/index.html"> 
+    <a class="nav-link" href="../../../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -183,19 +200,263 @@ div.csl-indent {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"></h1>
+        </a>     
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">TOC</h2>
-   
-  <ul>
-  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
-  </ul>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基础篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/quick-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/plan9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">汇编</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/pragma-directives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">编译指示</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/variable-type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">变量与类型的本质</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/unsafe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">unsafe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/mem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">程序的内存分布</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/string.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">字符串</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/slice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">切片</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/func-closure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">函数和闭包</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">结构体</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/interface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">接口</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/reflect.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">反射</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/defer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">defer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/panic-recover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">panic-recover</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/escape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">逃逸分析</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/gc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/basic/start-go.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">go程序的启动过程</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">并发</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/concurrency/context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">context</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/concurrency/channel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">channel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/concurrency/goroutine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">goroutine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/concurrency/lock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">lock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/concurrency/sync.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">sync</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">工程设计</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/infrastructure/directory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">目录结构</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/infrastructure/error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">错误处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/infrastructure/test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">测试</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/infrastructure/clean-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">编码规范</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">工具与实用库</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/pkg/dlv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dlv调试</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/pkg/cobra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cobra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/go/pkg/go-generate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">generate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -203,14 +464,76 @@ div.csl-indent {
 
 
 
-<section id="references" class="level1 unnumbered">
-<h1 class="unnumbered">References</h1>
-<div id="refs" role="list">
-
+<img src="../../../../.diagram/b07015b66a2cd7aa16dfcb95f4f5a903.svg" class="img-fluid" alt="Diagram">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource go number-lines code-with-copy"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">package</span> main</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">var</span> global_init_xyz <span class="dt">int64</span> <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">var</span> global_noinit_xyz <span class="dt">int64</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">var</span> global_init_strxyz <span class="dt">string</span> <span class="op">=</span> <span class="st">"hello"</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">var</span> global_noinit_strxyz <span class="dt">string</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">const</span> global_xyz <span class="dt">int64</span> <span class="op">=</span> <span class="dv">314</span>  <span class="co">// 常量</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="kw">var</span> local_xyz <span class="dt">int64</span> <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="bu">println</span><span class="op">(&amp;</span>local_xyz<span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="bu">println</span><span class="op">(&amp;</span>global_init_xyz<span class="op">)</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="bu">println</span><span class="op">(&amp;</span>global_noinit_xyz<span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="bu">println</span><span class="op">(&amp;</span>global_init_strxyz<span class="op">)</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="bu">println</span><span class="op">(&amp;</span>global_noinit_strxyz<span class="op">)</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="bu">println</span><span class="op">(</span>global_xyz<span class="op">)</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">objdump查看各个段</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">go tool compile</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">go</span> build <span class="at">-o</span> main <span class="at">-gcflags</span> <span class="st">"-N -l"</span> main.go</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># size 可执行文件</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># 查看程序内存的代码段 数据段等</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># 最好使用c程序来 看各个变量在哪个段</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">size</span> main</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># dec = text+data+bss</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># hex 是dec的16进制数</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="ex">text</span>       data     bss     dec     hex filename</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="ex">774543</span>    13424  202000  989967   f1b0f main</span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="ex">objdump</span> <span class="at">-t</span> main<span class="kw">|</span><span class="fu">grep</span> xyz</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="ex">00000000004c0170</span> g     O .noptrdata 0000000000000008 main.global_init_xyz</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="ex">00000000004f10a0</span> g     O .noptrbss  0000000000000008 main.global_noinit_xyz</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="ex">00000000004c12e0</span> g     O .data  0000000000000010 main.global_init_strxyz</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="ex">00000000004c35b0</span> g     O .bss   0000000000000010 main.global_noinit_strxyz</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="ex">objdump</span> <span class="at">-t</span> main<span class="kw">|</span><span class="fu">grep</span> string</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="ex">0000000000466220</span> l     O .rodata    0000000000000000 go:string.<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>go tool compile -S -N -l main.go 查看</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="go tool compile -S -N -l main.go 查看"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">go:string.</span><span class="st">"hello"</span> SRODATA dupok size=5</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">0x0000</span> 68 65 6c 6c 6f                                   hello</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">main.global_init_xyz</span> SNOPTRDATA size=8</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">main.global_noinit_xyz</span> SNOPTRBSS size=8</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="ex">main.global_init_strxyz</span> SDATA size=16</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="ex">main.global_noinit_strxyz</span> SBSS size=16</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>字符串 字面量 hello这种是在只读的内存区的.<br> 定义的常量 global_xyz ,在汇编中可能是以 <code>MOVL    $314, AX</code> 这种形式来操作的,并不存在只读区,具体情况具体分析<br> 可以关注到go里有 noptrdata noptrbss这种 无指针的 这种区</p>
+</div>
 </div>
 
 
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -786,6 +1109,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../../docs/programming/go/basic/unsafe.html" class="pagination-link" aria-label="unsafe">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">unsafe</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../docs/programming/go/basic/string.html" class="pagination-link" aria-label="字符串">
+        <span class="nav-page-text">字符串</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
