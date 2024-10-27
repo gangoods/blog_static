@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <div>
       <div class="quarto-title-meta-heading">Updated</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2024-10-09 08:24:41</p>
+        <p class="date">2024-10-27 13:37:33</p>
       </div>
     </div>
       </div>
@@ -352,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="概念" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="概念"><span class="header-section-number">1</span> 概念</h2>
-<img src="../../.diagram/bdc874b42e833a3fd8b2b15df77eac8c.svg" class="img-fluid" alt="Diagram">
+<img src="../../.diagram/e215095a89c9ad3479be9a842680fb4f.svg" class="img-fluid" alt="Diagram">
 <div class="callout callout-style-default callout-tip callout-titled" title="知识点回顾">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>() 既是一种类型, 也是一个值</p>
+<p>() 既是一种类型:单元类型, 也是一个值</p>
 </div>
 </div>
 </section>
@@ -373,8 +373,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>{}代码块表达式的值</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb1" data-filename="{}代码块表达式的值" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">// {} 代码块, 如果最后一个表达式后面有分号，那么整个代码块的值是 ()</span></span>
+<div class="sourceCode cell-code" id="cb1" data-filename="{}代码块表达式的值" data-playground="rust" data-hl="2" data-code-line-numbers="2"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">// {} 代码块 是有值的, 如果最后一个表达式后面有分号，那么整个代码块的值是 ()</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>        <span class="kw">let</span> tmp <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a>    <span class="op">};</span></span>
@@ -386,6 +386,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11"></a>    <span class="pp">println!</span>(<span class="st">"a的值: {:?}"</span><span class="op">,</span> a)<span class="op">;</span> <span class="co">// 5</span></span>
 <span id="cb1-12"><a href="#cb1-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="sourceCode" id="cb2" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">fn</span> test() <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>        <span class="kw">let</span> a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>        <span class="co">// 如果写了什么作为返回值, 就只能写 ()</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>        <span class="co">// 当然我们不可能写类似这样的代码</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>        <span class="co">// 因为这个{} 没有接收者</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>        ()</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    b</span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="赋值表达式" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="赋值表达式"><span class="header-section-number">3</span> 赋值表达式</h2>
@@ -393,29 +404,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>赋值表达式的值</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb2" data-playground="rust" data-filename="赋值表达式的值" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">let</span> y<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="co">// 赋值表达式 y=2, 我们知道表达式是有值的, 它的返回值是()</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="co">// let b = (y = 2); (y=2) 的括号可以省略,所以如下写法</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">let</span> b <span class="op">=</span> y <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="pp">println!</span>(<span class="st">"y的值: {}"</span><span class="op">,</span> y)<span class="op">;</span> <span class="co">// 2</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="pp">println!</span>(<span class="st">"b的值: {:?}"</span><span class="op">,</span> b)<span class="op">;</span> <span class="co">// ()</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="co">// 直接报错, 右边是个语句,没有返回值</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="co">// let a=(let z=2;);</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-playground="rust" data-filename="赋值表达式的值" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">let</span> y<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="co">// 赋值表达式 y=2, 我们知道表达式是有值的, 它的返回值是()</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">// let b = (y = 2); (y=2) 的括号可以省略,所以如下写法</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="kw">let</span> b <span class="op">=</span> y <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="pp">println!</span>(<span class="st">"y的值: {}"</span><span class="op">,</span> y)<span class="op">;</span> <span class="co">// 2</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="pp">println!</span>(<span class="st">"b的值: {:?}"</span><span class="op">,</span> b)<span class="op">;</span> <span class="co">// ()</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="co">// 直接报错, 右边是个语句,没有返回值</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="co">// let a=(let z=2;);</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>if中使用赋值表达式</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3" data-filename="if中使用赋值表达式" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">let</span> z<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="co">// z=3 的返回值是() , 而 我们需要是的 bool类型</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">// 所以报错了.</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="cf">if</span> z <span class="op">=</span> <span class="dv">3</span> <span class="op">{</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="op">}</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4" data-filename="if中使用赋值表达式" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">let</span> z<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="co">// z=3 的返回值是() , 而 我们需要是的 bool类型</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="co">// 所以报错了.</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="cf">if</span> z <span class="op">=</span> <span class="dv">3</span> <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="if-else-表达式" class="level2" data-number="4">
@@ -436,11 +447,11 @@ Note
 </ul>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">let</span> is_one <span class="op">=</span> <span class="cf">if</span> x <span class="op">==</span> <span class="dv">1</span> <span class="op">{</span> <span class="cn">true</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="cn">false</span> <span class="op">};</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> is_one)<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">let</span> is_one <span class="op">=</span> <span class="cf">if</span> x <span class="op">==</span> <span class="dv">1</span> <span class="op">{</span> <span class="cn">true</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="cn">false</span> <span class="op">};</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> is_one)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ```rust {playground="rust"}
 fn m() {
     let a = 1222;

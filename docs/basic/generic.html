@@ -319,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#在函数中使用" id="toc-在函数中使用" class="nav-link active" data-scroll-target="#在函数中使用"><span class="header-section-number">1</span> 在函数中使用</a></li>
   <li><a href="#在结构体中使用" id="toc-在结构体中使用" class="nav-link" data-scroll-target="#在结构体中使用"><span class="header-section-number">2</span> 在结构体中使用</a></li>
   <li><a href="#在枚举中使用" id="toc-在枚举中使用" class="nav-link" data-scroll-target="#在枚举中使用"><span class="header-section-number">3</span> 在枚举中使用</a></li>
-  <li><a href="#在方法中使用" id="toc-在方法中使用" class="nav-link" data-scroll-target="#在方法中使用"><span class="header-section-number">4</span> 在方法中使用</a></li>
+  <li><a href="#impl中使用" id="toc-impl中使用" class="nav-link" data-scroll-target="#impl中使用"><span class="header-section-number">4</span> impl中使用</a></li>
   <li><a href="#t" id="toc-t" class="nav-link" data-scroll-target="#t"><span class="header-section-number">5</span> ::&lt;T&gt;</a></li>
   <li><a href="#性能问题" id="toc-性能问题" class="nav-link" data-scroll-target="#性能问题"><span class="header-section-number">6</span> 性能问题</a></li>
   </ul>
@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <div>
       <div class="quarto-title-meta-heading">Updated</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2024-10-05 14:38:32</p>
+        <p class="date">2024-10-27 17:19:25</p>
       </div>
     </div>
       </div>
@@ -460,14 +460,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16"></a>    <span class="kw">let</span> error_value <span class="op">=</span> <span class="dt">Result</span><span class="pp">::</span><span class="cn">Err</span>(<span class="dv">5</span>)<span class="op">;</span></span>
 <span id="cb5-17"><a href="#cb5-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="在方法中使用" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="在方法中使用"><span class="header-section-number">4</span> 在方法中使用</h2>
+<section id="impl中使用" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="impl中使用"><span class="header-section-number">4</span> impl中使用</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">struct</span> Point<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>    x<span class="op">:</span> T<span class="op">,</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>    y<span class="op">:</span> T<span class="op">,</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="op">}</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">// 在impl 后&lt;T&gt; 来申明</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">// 来表明是为  Point&lt;T&gt; 这个类型实现方法</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">// 在impl 后&lt;T&gt; 是申明泛型参数 T</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">// 来表明是为  Point&lt;T&gt; 这个类型实现方法,这里的T就使用了前面申明的T</span></span>
 <span id="cb6-7"><a href="#cb6-7"></a><span class="kw">impl</span><span class="op">&lt;</span>T<span class="op">&gt;</span> Point<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb6-8"><a href="#cb6-8"></a>    <span class="kw">fn</span> x(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span>T <span class="op">{</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a>        <span class="op">&amp;</span><span class="kw">self</span><span class="op">.</span>x</span>
@@ -516,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2"></a>    <span class="co">// 声明一个类型为 Vec&lt;i32&gt; 的变量，并初始化它</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>    <span class="kw">let</span> numbers<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>    <span class="co">// 泛型函数，并明确指定类型参数</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="co">// 泛型函数</span></span>
 <span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">fn</span> create_empty_vec<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a>        <span class="dt">Vec</span><span class="pp">::</span>new()</span>
 <span id="cb8-8"><a href="#cb8-8"></a>    <span class="op">}</span></span>

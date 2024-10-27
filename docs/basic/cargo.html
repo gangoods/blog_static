@@ -341,8 +341,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#使用外部crate" id="toc-使用外部crate" class="nav-link" data-scroll-target="#使用外部crate"><span class="header-section-number">5.2</span> 使用外部crate</a></li>
   <li><a href="#测试" id="toc-测试" class="nav-link" data-scroll-target="#测试"><span class="header-section-number">5.3</span> 测试</a></li>
   </ul></li>
-  <li><a href="#安装二进制包" id="toc-安装二进制包" class="nav-link" data-scroll-target="#安装二进制包"><span class="header-section-number">6</span> 安装二进制包</a></li>
-  <li><a href="#自定义命令扩展" id="toc-自定义命令扩展" class="nav-link" data-scroll-target="#自定义命令扩展"><span class="header-section-number">7</span> 自定义命令扩展</a></li>
+  <li><a href="#一个package多个binary" id="toc-一个package多个binary" class="nav-link" data-scroll-target="#一个package多个binary"><span class="header-section-number">6</span> 一个package多个binary</a></li>
+  <li><a href="#安装二进制包" id="toc-安装二进制包" class="nav-link" data-scroll-target="#安装二进制包"><span class="header-section-number">7</span> 安装二进制包</a></li>
+  <li><a href="#自定义命令扩展" id="toc-自定义命令扩展" class="nav-link" data-scroll-target="#自定义命令扩展"><span class="header-section-number">8</span> 自定义命令扩展</a></li>
   </ul>
 </nav>
     </div>
@@ -364,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <div>
       <div class="quarto-title-meta-heading">Updated</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2024-10-05 14:38:32</p>
+        <p class="date">2024-10-27 17:04:29</p>
       </div>
     </div>
       </div>
@@ -536,45 +537,45 @@ Caution
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">src/lib.rs</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">src/main.rs</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="annotated-cell-29" data-code-line-numbers=""><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><span id="annotated-cell-29-1"><a href="#annotated-cell-29-1"></a><span class="co">//! # Art</span></span>
-<span id="annotated-cell-29-2"><a href="#annotated-cell-29-2"></a><span class="co">//!</span></span>
-<span id="annotated-cell-29-3"><a href="#annotated-cell-29-3"></a><span class="co">//! A library for modeling artistic concepts.</span></span>
-<span id="annotated-cell-29-4"><a href="#annotated-cell-29-4"></a></span>
-<span id="annotated-cell-29-5"><a href="#annotated-cell-29-5"></a><span class="co">// --加上这些--</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-29" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-29-6" class="code-annotation-target"><a href="#annotated-cell-29-6"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>PrimaryColor<span class="op">;</span></span>
-<span id="annotated-cell-29-7"><a href="#annotated-cell-29-7"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>SecondaryColor<span class="op">;</span></span>
-<span id="annotated-cell-29-8"><a href="#annotated-cell-29-8"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::utils::</span>mix<span class="op">;</span></span>
-<span id="annotated-cell-29-9"><a href="#annotated-cell-29-9"></a><span class="co">//  -----</span></span>
-<span id="annotated-cell-29-10"><a href="#annotated-cell-29-10"></a></span>
-<span id="annotated-cell-29-11"><a href="#annotated-cell-29-11"></a><span class="kw">pub</span> <span class="kw">mod</span> kinds <span class="op">{</span></span>
-<span id="annotated-cell-29-12"><a href="#annotated-cell-29-12"></a>    <span class="co">/// The primary colors according to the RYB color model.</span></span>
-<span id="annotated-cell-29-13"><a href="#annotated-cell-29-13"></a>    <span class="kw">pub</span> <span class="kw">enum</span> PrimaryColor <span class="op">{</span></span>
-<span id="annotated-cell-29-14"><a href="#annotated-cell-29-14"></a>        Red<span class="op">,</span></span>
-<span id="annotated-cell-29-15"><a href="#annotated-cell-29-15"></a>        Yellow<span class="op">,</span></span>
-<span id="annotated-cell-29-16"><a href="#annotated-cell-29-16"></a>        Blue<span class="op">,</span></span>
-<span id="annotated-cell-29-17"><a href="#annotated-cell-29-17"></a>    <span class="op">}</span></span>
-<span id="annotated-cell-29-18"><a href="#annotated-cell-29-18"></a></span>
-<span id="annotated-cell-29-19"><a href="#annotated-cell-29-19"></a>    <span class="co">/// The secondary colors according to the RYB color model.</span></span>
-<span id="annotated-cell-29-20"><a href="#annotated-cell-29-20"></a>    <span class="kw">pub</span> <span class="kw">enum</span> SecondaryColor <span class="op">{</span></span>
-<span id="annotated-cell-29-21"><a href="#annotated-cell-29-21"></a>        Orange<span class="op">,</span></span>
-<span id="annotated-cell-29-22"><a href="#annotated-cell-29-22"></a>        Green<span class="op">,</span></span>
-<span id="annotated-cell-29-23"><a href="#annotated-cell-29-23"></a>        Purple<span class="op">,</span></span>
-<span id="annotated-cell-29-24"><a href="#annotated-cell-29-24"></a>    <span class="op">}</span></span>
-<span id="annotated-cell-29-25"><a href="#annotated-cell-29-25"></a><span class="op">}</span></span>
-<span id="annotated-cell-29-26"><a href="#annotated-cell-29-26"></a></span>
-<span id="annotated-cell-29-27"><a href="#annotated-cell-29-27"></a><span class="kw">pub</span> <span class="kw">mod</span> utils <span class="op">{</span></span>
-<span id="annotated-cell-29-28"><a href="#annotated-cell-29-28"></a>    <span class="kw">use</span> <span class="kw">crate</span><span class="pp">::kinds::</span><span class="op">*;</span></span>
-<span id="annotated-cell-29-29"><a href="#annotated-cell-29-29"></a></span>
-<span id="annotated-cell-29-30"><a href="#annotated-cell-29-30"></a>    <span class="co">/// Combines two primary colors in equal amounts to create</span></span>
-<span id="annotated-cell-29-31"><a href="#annotated-cell-29-31"></a>    <span class="co">/// a secondary color.</span></span>
-<span id="annotated-cell-29-32"><a href="#annotated-cell-29-32"></a>    <span class="kw">pub</span> <span class="kw">fn</span> mix(c1<span class="op">:</span> PrimaryColor<span class="op">,</span> c2<span class="op">:</span> PrimaryColor) <span class="op">-&gt;</span> SecondaryColor <span class="op">{</span></span>
-<span id="annotated-cell-29-33"><a href="#annotated-cell-29-33"></a>        <span class="pp">SecondaryColor::</span>Orange</span>
-<span id="annotated-cell-29-34"><a href="#annotated-cell-29-34"></a>    <span class="op">}</span></span>
-<span id="annotated-cell-29-35"><a href="#annotated-cell-29-35"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-31" data-code-line-numbers=""><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><span id="annotated-cell-31-1"><a href="#annotated-cell-31-1"></a><span class="co">//! # Art</span></span>
+<span id="annotated-cell-31-2"><a href="#annotated-cell-31-2"></a><span class="co">//!</span></span>
+<span id="annotated-cell-31-3"><a href="#annotated-cell-31-3"></a><span class="co">//! A library for modeling artistic concepts.</span></span>
+<span id="annotated-cell-31-4"><a href="#annotated-cell-31-4"></a></span>
+<span id="annotated-cell-31-5"><a href="#annotated-cell-31-5"></a><span class="co">// --加上这些--</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-31" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-31-6" class="code-annotation-target"><a href="#annotated-cell-31-6"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>PrimaryColor<span class="op">;</span></span>
+<span id="annotated-cell-31-7"><a href="#annotated-cell-31-7"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::kinds::</span>SecondaryColor<span class="op">;</span></span>
+<span id="annotated-cell-31-8"><a href="#annotated-cell-31-8"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="kw">self</span><span class="pp">::utils::</span>mix<span class="op">;</span></span>
+<span id="annotated-cell-31-9"><a href="#annotated-cell-31-9"></a><span class="co">//  -----</span></span>
+<span id="annotated-cell-31-10"><a href="#annotated-cell-31-10"></a></span>
+<span id="annotated-cell-31-11"><a href="#annotated-cell-31-11"></a><span class="kw">pub</span> <span class="kw">mod</span> kinds <span class="op">{</span></span>
+<span id="annotated-cell-31-12"><a href="#annotated-cell-31-12"></a>    <span class="co">/// The primary colors according to the RYB color model.</span></span>
+<span id="annotated-cell-31-13"><a href="#annotated-cell-31-13"></a>    <span class="kw">pub</span> <span class="kw">enum</span> PrimaryColor <span class="op">{</span></span>
+<span id="annotated-cell-31-14"><a href="#annotated-cell-31-14"></a>        Red<span class="op">,</span></span>
+<span id="annotated-cell-31-15"><a href="#annotated-cell-31-15"></a>        Yellow<span class="op">,</span></span>
+<span id="annotated-cell-31-16"><a href="#annotated-cell-31-16"></a>        Blue<span class="op">,</span></span>
+<span id="annotated-cell-31-17"><a href="#annotated-cell-31-17"></a>    <span class="op">}</span></span>
+<span id="annotated-cell-31-18"><a href="#annotated-cell-31-18"></a></span>
+<span id="annotated-cell-31-19"><a href="#annotated-cell-31-19"></a>    <span class="co">/// The secondary colors according to the RYB color model.</span></span>
+<span id="annotated-cell-31-20"><a href="#annotated-cell-31-20"></a>    <span class="kw">pub</span> <span class="kw">enum</span> SecondaryColor <span class="op">{</span></span>
+<span id="annotated-cell-31-21"><a href="#annotated-cell-31-21"></a>        Orange<span class="op">,</span></span>
+<span id="annotated-cell-31-22"><a href="#annotated-cell-31-22"></a>        Green<span class="op">,</span></span>
+<span id="annotated-cell-31-23"><a href="#annotated-cell-31-23"></a>        Purple<span class="op">,</span></span>
+<span id="annotated-cell-31-24"><a href="#annotated-cell-31-24"></a>    <span class="op">}</span></span>
+<span id="annotated-cell-31-25"><a href="#annotated-cell-31-25"></a><span class="op">}</span></span>
+<span id="annotated-cell-31-26"><a href="#annotated-cell-31-26"></a></span>
+<span id="annotated-cell-31-27"><a href="#annotated-cell-31-27"></a><span class="kw">pub</span> <span class="kw">mod</span> utils <span class="op">{</span></span>
+<span id="annotated-cell-31-28"><a href="#annotated-cell-31-28"></a>    <span class="kw">use</span> <span class="kw">crate</span><span class="pp">::kinds::</span><span class="op">*;</span></span>
+<span id="annotated-cell-31-29"><a href="#annotated-cell-31-29"></a></span>
+<span id="annotated-cell-31-30"><a href="#annotated-cell-31-30"></a>    <span class="co">/// Combines two primary colors in equal amounts to create</span></span>
+<span id="annotated-cell-31-31"><a href="#annotated-cell-31-31"></a>    <span class="co">/// a secondary color.</span></span>
+<span id="annotated-cell-31-32"><a href="#annotated-cell-31-32"></a>    <span class="kw">pub</span> <span class="kw">fn</span> mix(c1<span class="op">:</span> PrimaryColor<span class="op">,</span> c2<span class="op">:</span> PrimaryColor) <span class="op">-&gt;</span> SecondaryColor <span class="op">{</span></span>
+<span id="annotated-cell-31-33"><a href="#annotated-cell-31-33"></a>        <span class="pp">SecondaryColor::</span>Orange</span>
+<span id="annotated-cell-31-34"><a href="#annotated-cell-31-34"></a>    <span class="op">}</span></span>
+<span id="annotated-cell-31-35"><a href="#annotated-cell-31-35"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-29" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-31" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-29" data-code-lines="6,7,8" data-code-annotation="1">这样生成的文档方便用户查看,不需要点击多次才能看到</span>
+<span data-code-cell="annotated-cell-31" data-code-lines="6,7,8" data-code-annotation="1">这样生成的文档方便用户查看,不需要点击多次才能看到</span>
 </dd>
 </dl>
 </div>
@@ -769,14 +770,31 @@ Caution
 <span id="cb23-5"><a href="#cb23-5"></a><span class="ex">cargo</span> test <span class="at">-p</span> adder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="安装二进制包" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="安装二进制包"><span class="header-section-number">6</span> 安装二进制包</h2>
-<p>只能安装具有 binary target的 package (有binary crate)</p>
-<div class="sourceCode" id="cb24" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># 会安装到 $HOME/.cargo/bin 目录</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="ex">cargo</span> install ripgrep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="一个package多个binary" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="一个package多个binary"><span class="header-section-number">6</span> 一个package多个binary</h2>
+<div class="sourceCode" id="cb24" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="ex">├──</span> Cargo.lock</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="ex">├──</span> Cargo.toml</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="ex">├──</span> src</span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="ex">│</span>   ├── main.rs  <span class="co"># 含有main()</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="ex">│</span>   ├── bin <span class="co"># 必须用这个目录名</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="ex">│</span>   │   └── hello.rs <span class="co"># 同样含有main()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>运行另外一个可执行 binary hello.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb25" data-filename="运行另外一个可执行 binary hello.rs" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">cargo</span> run <span class="at">--bin</span><span class="op">=</span>hello <span class="co"># = 指定文件名(去掉 .后缀)</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># 可以不用=</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="ex">cargo</span> run <span class="at">--bin</span> hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="自定义命令扩展" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="自定义命令扩展"><span class="header-section-number">7</span> 自定义命令扩展</h2>
+<section id="安装二进制包" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="安装二进制包"><span class="header-section-number">7</span> 安装二进制包</h2>
+<p>只能安装具有 binary target的 package (有binary crate)</p>
+<div class="sourceCode" id="cb26" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># 会安装到 $HOME/.cargo/bin 目录</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="ex">cargo</span> install ripgrep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="自定义命令扩展" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="自定义命令扩展"><span class="header-section-number">8</span> 自定义命令扩展</h2>
 <p>在系统中你可以直接运行的一个命令 名字是<code>cargo-xxxx</code>,那么你就可以运行<code>cargo xxxx</code> 这样来替代运行它, <code>cargo --list</code> 可以查看到.</p>
 <p>我们在安装rust后, 可以在<code>~/.cargo/bin</code> 看到一些可执行文件, <code>cargo-fmt</code> 就是其中的一个, 我们可以发现有<code>cargo fmt</code>这个命令,就像cargo 的内置命令一样</p>
 <!-- ## 项目目录结构

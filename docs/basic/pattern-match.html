@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#剩余部分" id="toc-剩余部分" class="nav-link" data-scroll-target="#剩余部分"><span class="header-section-number">8.3</span> _ 剩余部分</a></li>
   <li><a href="#和-if" id="toc-和-if" class="nav-link" data-scroll-target="#和-if"><span class="header-section-number">8.4</span> | 和 if</a></li>
   <li><a href="#范围" id="toc-范围" class="nav-link" data-scroll-target="#范围"><span class="header-section-number">8.5</span> ..= 范围</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">8.6</span> @</a></li>
+  <li><a href="#绑定" id="toc-绑定" class="nav-link" data-scroll-target="#绑定"><span class="header-section-number">8.6</span> @ 绑定</a></li>
   </ul></li>
   <li><a href="#non_exhaustive" id="toc-non_exhaustive" class="nav-link" data-scroll-target="#non_exhaustive"><span class="header-section-number">9</span> non_exhaustive</a></li>
   </ul>
@@ -361,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <div>
       <div class="quarto-title-meta-heading">Updated</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2024-10-12 07:34:27</p>
+        <p class="date">2024-10-27 14:10:26</p>
       </div>
     </div>
       </div>
@@ -402,7 +402,7 @@ Important
 <span id="cb1-8"><a href="#cb1-8"></a>    <span class="co">// 所以 将 1 绑定到变量b, 将 2 绑定到变量c</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a>    <span class="kw">let</span> (b<span class="op">,</span> c) <span class="op">=</span> (<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>    <span class="pp">println!</span>(<span class="st">"{}-{}"</span><span class="op">,</span> b<span class="op">,</span> c)<span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>    <span class="co">// 忽略第一个元素 , 这里 _ 就是图一里提到的占位符了,可以作为模式</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="co">// 忽略第一个元素 , 这里 _ 就是图一里提到的占位符模式</span></span>
 <span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">let</span> (_<span class="op">,</span> y) <span class="op">=</span> (<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>    <span class="pp">println!</span>(<span class="st">"y: {}"</span><span class="op">,</span> y)<span class="op">;</span></span>
 <span id="cb1-14"><a href="#cb1-14"></a></span>
@@ -425,7 +425,14 @@ Important
 <span id="cb1-31"><a href="#cb1-31"></a>    <span class="co">// 名字与字段名一样的情况,可以省略</span></span>
 <span id="cb1-32"><a href="#cb1-32"></a>    <span class="kw">let</span> Person <span class="op">{</span> name<span class="op">,</span> age <span class="op">}</span> <span class="op">=</span> p2<span class="op">;</span></span>
 <span id="cb1-33"><a href="#cb1-33"></a>    <span class="pp">println!</span>(<span class="st">"{} : {}"</span><span class="op">,</span> name<span class="op">,</span> age)<span class="op">;</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="kw">let</span> p3 <span class="op">=</span> Person <span class="op">{</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>        name<span class="op">:</span> <span class="st">"guan yu"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>        age<span class="op">:</span> <span class="dv">13</span><span class="op">,</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    <span class="op">};</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    <span class="co">// 可以使用.. 省略</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>    <span class="kw">let</span> Person <span class="op">{</span> name<span class="op">,..</span> <span class="op">}</span> <span class="op">=</span> p3<span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span>name)<span class="op">;</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>支持&amp; 这种匹配</strong></pre>
@@ -439,7 +446,11 @@ Important
 <span id="cb2-7"><a href="#cb2-7"></a>    <span class="co">// 函数传递参数 相当于 let 形参=传递的实参</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>    <span class="co">// let &amp;(x, y)= &amp;(3,5)</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>    print_coordinates(<span class="op">&amp;</span>point)<span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="co">// 理解了 这也是模式匹配, 下面这个就不觉得奇怪了</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="kw">let</span> <span class="op">&amp;</span>a <span class="op">=</span> <span class="op">&amp;</span><span class="dv">11</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> a)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="match" class="level2" data-number="3">
@@ -466,7 +477,7 @@ Important
 <span id="cb4-12"><a href="#cb4-12"></a>        <span class="cn">None</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"No value"</span>)<span class="op">,</span></span>
 <span id="cb4-13"><a href="#cb4-13"></a>    <span class="op">}</span></span>
 <span id="cb4-14"><a href="#cb4-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">enum</span> Coin <span class="op">{</span></span>
+<div class="sourceCode cell-code" id="cb5" data-playground="rust" data-hl="23" data-code-line-numbers="23"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">enum</span> Coin <span class="op">{</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>    Penny<span class="op">,</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>    Nickel<span class="op">,</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>    Dime(<span class="dt">String</span>)<span class="op">,</span></span>
@@ -511,7 +522,12 @@ Important
 <span id="cb6-13"><a href="#cb6-13"></a>        <span class="co">// _ 是占位符模式</span></span>
 <span id="cb6-14"><a href="#cb6-14"></a>        _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"其他数字"</span>)<span class="op">,</span></span>
 <span id="cb6-15"><a href="#cb6-15"></a>    <span class="op">}</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="cf">match</span> x<span class="op">{</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>        <span class="dv">2</span><span class="op">=&gt;</span><span class="pp">println!</span>(<span class="st">"二"</span>)<span class="op">,</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>        <span class="co">// 可以随便一个变量名来表示其他数据</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>        other<span class="op">=&gt;</span><span class="pp">println!</span>(<span class="st">"其他数字: {}"</span><span class="op">,</span>other)<span class="op">,</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="op">}</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="结构体" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="结构体"><span class="header-section-number">3.3</span> 结构体</h3>
@@ -562,7 +578,7 @@ Important
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="co">// n 是值, 这里匹配上了</span></span>
 <span id="cb9-5"><a href="#cb9-5"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="dv">1</span> <span class="op">=</span> n <span class="op">{</span></span>
 <span id="cb9-6"><a href="#cb9-6"></a>        <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span>  <span class="co">// 也能 else if {} else{}</span></span>
 <span id="cb9-8"><a href="#cb9-8"></a>        <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
 <span id="cb9-9"><a href="#cb9-9"></a>    <span class="op">}</span></span>
 <span id="cb9-10"><a href="#cb9-10"></a>    <span class="co">// 类似我们之前if 条件语句那边</span></span>
@@ -571,7 +587,7 @@ Important
 <span id="cb9-13"><a href="#cb9-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="sourceCode cell-code" id="cb10" data-hl="7-8" data-playground="rust" data-code-line-numbers="7-8"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<div class="sourceCode cell-code" id="cb10" data-hl="2-3,7-8" data-playground="rust" data-code-line-numbers="2-3,7-8"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="co">// 之前 这种 let x =1  很显然也可以 使用 if</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>    <span class="co">// 只是这样写, 会提示你 这个肯定会匹配上, 不需要写 if 这种</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a>    <span class="cf">if</span> <span class="kw">let</span> x <span class="op">=</span> <span class="dv">1</span> <span class="op">{</span></span>
@@ -894,8 +910,8 @@ Caution
 <span id="cb26-14"><a href="#cb26-14"></a>    <span class="op">};</span></span>
 <span id="cb26-15"><a href="#cb26-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="section" class="level3" data-number="8.6">
-<h3 data-number="8.6" class="anchored" data-anchor-id="section"><span class="header-section-number">8.6</span> @</h3>
+<section id="绑定" class="level3" data-number="8.6">
+<h3 data-number="8.6" class="anchored" data-anchor-id="绑定"><span class="header-section-number">8.6</span> @ 绑定</h3>
 <div class="sourceCode cell-code" id="cb27" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">enum</span> Student <span class="op">{</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a>    primary <span class="op">{</span> age<span class="op">:</span> <span class="dt">i32</span> <span class="op">},</span></span>
 <span id="cb27-3"><a href="#cb27-3"></a>    junior <span class="op">{</span> age<span class="op">:</span> <span class="dt">i32</span> <span class="op">},</span></span>
@@ -908,17 +924,28 @@ Caution
 <span id="cb27-10"><a href="#cb27-10"></a>            <span class="pp">println!</span>(<span class="st">"Hello"</span>)</span>
 <span id="cb27-11"><a href="#cb27-11"></a>        <span class="op">}</span></span>
 <span id="cb27-12"><a href="#cb27-12"></a>        <span class="co">// 相当于上面 primary_age &gt;= 3 &amp;&amp; primary_age &lt;= 6</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a>        <span class="co">// @前面是绑定的变量</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a>        <span class="co">// @前面是绑定的变量 </span></span>
 <span id="cb27-14"><a href="#cb27-14"></a>        <span class="pp">Student::</span>primary <span class="op">{</span></span>
-<span id="cb27-15"><a href="#cb27-15"></a>            age<span class="op">:</span> primary_age <span class="op">@</span> <span class="dv">3</span><span class="op">..=</span><span class="dv">6</span><span class="op">,</span></span>
-<span id="cb27-16"><a href="#cb27-16"></a>        <span class="op">}</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"是 &gt;=3 &lt;=6 岁的小学生: {}"</span><span class="op">,</span> primary_age)<span class="op">,</span></span>
-<span id="cb27-17"><a href="#cb27-17"></a>        <span class="pp">Student::</span>junior <span class="op">{</span> age<span class="op">:</span> <span class="dv">10</span><span class="op">..=</span><span class="dv">12</span> <span class="op">}</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb27-18"><a href="#cb27-18"></a>            <span class="pp">println!</span>(<span class="st">"10-12 岁的初中生"</span>)</span>
-<span id="cb27-19"><a href="#cb27-19"></a>        <span class="op">}</span></span>
-<span id="cb27-20"><a href="#cb27-20"></a>        <span class="pp">Student::</span>junior <span class="op">{</span> age <span class="op">}</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Found: {}"</span><span class="op">,</span> age)<span class="op">,</span></span>
-<span id="cb27-21"><a href="#cb27-21"></a>        _ <span class="op">=&gt;</span> ()<span class="op">,</span></span>
-<span id="cb27-22"><a href="#cb27-22"></a>    <span class="op">}</span></span>
-<span id="cb27-23"><a href="#cb27-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-15"><a href="#cb27-15"></a>            <span class="co">// 这里就表示当你符合 &gt;=3 &lt;=6 ,绑定匹配到的age到primary_age 这个变量</span></span>
+<span id="cb27-16"><a href="#cb27-16"></a>            age<span class="op">:</span> primary_age <span class="op">@</span> <span class="dv">3</span><span class="op">..=</span><span class="dv">6</span><span class="op">,</span></span>
+<span id="cb27-17"><a href="#cb27-17"></a>        <span class="op">}</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"是 &gt;=3 &lt;=6 岁的小学生: {}"</span><span class="op">,</span> primary_age)<span class="op">,</span></span>
+<span id="cb27-18"><a href="#cb27-18"></a>        <span class="pp">Student::</span>junior <span class="op">{</span> age<span class="op">:</span> <span class="dv">10</span><span class="op">..=</span><span class="dv">12</span> <span class="op">}</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb27-19"><a href="#cb27-19"></a>            <span class="pp">println!</span>(<span class="st">"10-12 岁的初中生"</span>)</span>
+<span id="cb27-20"><a href="#cb27-20"></a>        <span class="op">}</span></span>
+<span id="cb27-21"><a href="#cb27-21"></a>        <span class="pp">Student::</span>junior <span class="op">{</span> age <span class="op">}</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Found: {}"</span><span class="op">,</span> age)<span class="op">,</span></span>
+<span id="cb27-22"><a href="#cb27-22"></a>        _ <span class="op">=&gt;</span> ()<span class="op">,</span></span>
+<span id="cb27-23"><a href="#cb27-23"></a>    <span class="op">}</span></span>
+<span id="cb27-24"><a href="#cb27-24"></a></span>
+<span id="cb27-25"><a href="#cb27-25"></a>    <span class="kw">let</span> a<span class="op">=</span><span class="cn">Some</span>(<span class="dv">42</span>)<span class="op">;</span></span>
+<span id="cb27-26"><a href="#cb27-26"></a>    <span class="cf">match</span> a <span class="op">{</span></span>
+<span id="cb27-27"><a href="#cb27-27"></a>        <span class="co">// 得到 `Some` 可变类型，如果它的值（绑定到 `n` 上）等于 42，则匹配。</span></span>
+<span id="cb27-28"><a href="#cb27-28"></a>        <span class="cn">Some</span>(n <span class="op">@</span> <span class="dv">42</span>) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"The Answer: {}!"</span><span class="op">,</span> n)<span class="op">,</span></span>
+<span id="cb27-29"><a href="#cb27-29"></a>        <span class="co">// 匹配任意其他数字。</span></span>
+<span id="cb27-30"><a href="#cb27-30"></a>        <span class="cn">Some</span>(n)      <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Not interesting... {}"</span><span class="op">,</span> n)<span class="op">,</span></span>
+<span id="cb27-31"><a href="#cb27-31"></a>        <span class="co">// 匹配任意其他值（`None` 可变类型）。</span></span>
+<span id="cb27-32"><a href="#cb27-32"></a>        _            <span class="op">=&gt;</span> ()<span class="op">,</span></span>
+<span id="cb27-33"><a href="#cb27-33"></a>    <span class="op">}</span></span>
+<span id="cb27-34"><a href="#cb27-34"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode cell-code" id="cb28" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
 <span id="cb28-2"><a href="#cb28-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
 <span id="cb28-3"><a href="#cb28-3"></a>    <span class="cf">match</span> x <span class="op">{</span></span>
