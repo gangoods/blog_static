@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>rust 模块 – 斯巴拉稀</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../docs/programming/rust/basic/cargo.html" rel="next">
+<link href="../../../../docs/programming/rust/basic/iterator.html" rel="prev">
+<link href="../../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">编程语言</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/go/index.html">
+ <span class="dropdown-text">Go</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/cicd/index.html">
+ <span class="dropdown-text">cicd</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/k8s/index.html">
+ <span class="dropdown-text">k8s</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">rust 模块</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基础篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/quick-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/expression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">语句和表达式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">所有权与借用</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">结构体</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/enum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">枚举</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/pattern-match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">模式匹配</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">集合</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/generic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">泛型</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/trait.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">trait</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/lifetime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生命周期</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">错误处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/closure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">闭包</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/iterator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">迭代器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/crate-mod.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">crate与模块</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/cargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cargo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/unsafe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">unsafe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/ptr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">智能指针</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/concurrency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">并发</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">宏</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">进阶</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/advanced/01.mem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">内存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/advanced/02.type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">奇异的类型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">库</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/pkg/utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">常用库</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">实战</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/hands-on/compiler/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">编译器</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">TOC</h2>
+   
+  <ul>
+  <li><a href="#crate1" id="toc-crate1" class="nav-link active" data-scroll-target="#crate1"><span class="header-section-number">1</span> crate</a></li>
+  <li><a href="#module" id="toc-module" class="nav-link" data-scroll-target="#module"><span class="header-section-number">2</span> module</a></li>
+  <li><a href="#pathpub" id="toc-pathpub" class="nav-link" data-scroll-target="#pathpub"><span class="header-section-number">3</span> path,pub</a></li>
+  <li><a href="#use" id="toc-use" class="nav-link" data-scroll-target="#use"><span class="header-section-number">4</span> use</a>
+  <ul>
+  <li><a href="#mod" id="toc-mod" class="nav-link" data-scroll-target="#mod"><span class="header-section-number">4.1</span> mod</a></li>
+  <li><a href="#外部package" id="toc-外部package" class="nav-link" data-scroll-target="#外部package"><span class="header-section-number">4.2</span> 外部package</a></li>
+  <li><a href="#本地package" id="toc-本地package" class="nav-link" data-scroll-target="#本地package"><span class="header-section-number">4.3</span> 本地package</a></li>
+  <li><a href="#use-其他语法" id="toc-use-其他语法" class="nav-link" data-scroll-target="#use-其他语法"><span class="header-section-number">4.4</span> use 其他语法</a></li>
+  <li><a href="#prelude" id="toc-prelude" class="nav-link" data-scroll-target="#prelude"><span class="header-section-number">4.5</span> prelude</a></li>
+  </ul></li>
+  <li><a href="#module-拆分" id="toc-module-拆分" class="nav-link" data-scroll-target="#module-拆分"><span class="header-section-number">5</span> module 拆分</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+    <div class="quarto-title">
+    <h1 class="title d-none d-lg-block">rust 模块</h1>
+      </div>
+  
+  <div class="quarto-title-meta">
+            <div>
+      <div class="quarto-title-meta-heading">Created</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024-09-12 15:58:21</p>
+      </div>
+    </div>
+            <div>
+      <div class="quarto-title-meta-heading">Updated</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024-10-27 16:48:24</p>
+      </div>
+    </div>
+      </div>
+</header>
+
+
+<img src="../../../../.diagram/80f0447b87650d618fdfd10da7febbb4.svg" class="img-fluid" alt="Diagram">
+<section id="crate1" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="crate1"><span class="header-section-number">1</span> crate<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
+<p>Rust 程序由 crate组成. 每个 crate 都是既完整又内聚的单元,包括单个库(library)或可执行程序的所有源代码,以及任何相关的测试、示例、工具、配置和其他杂项</p>
+<p>crate root 是源代码文件,编译器会从这里开始组成你的crate的根module</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">cargo</span> new hello</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> hello</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="ex">tree</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="bu">.</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="ex">├──</span> Cargo.toml</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="ex">└──</span> src</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="ex">├</span>   <span class="co"># 这个是 binary crate 的crate root</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="ex">├</span>   <span class="co"># 这个 binary crate 的名字与package相同, hello</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="ex">└──</span> main.rs</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># 我们手动创建一个library crate</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 这个 library crate 的名字也是与package相同,hello</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">touch</span> src/lib.rs <span class="co"># 这个文件默认就是 library crate 的crate root</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cargo.toml 没有指定上面2个文件名是 crate root ,因为这个是一种默认约定, 就像go里的main.go, cargo 会把crate root 文件给 rustc来构建</p>
+</section>
+<section id="module" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="module"><span class="header-section-number">2</span> module</h2>
+<p>模块是组织代码的一种方式,它允许你将代码分割到不同的文件中,并让每个文件只包含相关的代码. 模块可以嵌套,并且可以被任意数量的模块使用</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">mod</span> front_of_house <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">mod</span> hosting <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>        <span class="kw">fn</span> add_to_waitlist() <span class="op">{}</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>        <span class="kw">fn</span> seat_at_table() <span class="op">{}</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">mod</span> serving <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>        <span class="kw">fn</span> take_order() <span class="op">{}</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>        <span class="kw">fn</span> serve_order() <span class="op">{}</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>        <span class="kw">fn</span> take_payment() <span class="op">{}</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="op">}</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>前面我们说到 <code>src/main.rs and src/lib.rs</code> 之所以被称为 crate root, 这是因为 main.rs或lib.rs 文件的内容形成了一个名字叫做 <code>crate</code>的模块,位于<code>module tree</code>的root位置</p>
+<p>上面代码的 <code>module tree</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">crate</span> <span class="co">#(根部,名字为crate的模块)</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a> <span class="ex">└──</span> front_of_house <span class="co"># (名字为front_of_house的模块)</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>     <span class="ex">├──</span> hosting <span class="co">#(名字为hosting的模块)</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>     <span class="ex">│</span>   ├── add_to_waitlist</span>
+<span id="cb3-5"><a href="#cb3-5"></a>     <span class="ex">│</span>   └── seat_at_table</span>
+<span id="cb3-6"><a href="#cb3-6"></a>     <span class="ex">└──</span> serving <span class="co">#(名字为serving的模块)</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>         <span class="ex">├──</span> take_order</span>
+<span id="cb3-8"><a href="#cb3-8"></a>         <span class="ex">├──</span> serve_order</span>
+<span id="cb3-9"><a href="#cb3-9"></a>         <span class="ex">└──</span> take_payment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>就像目录一样, 这样我们是不是就可以像目录一样的访问方式去找到我们的模块</p>
+</section>
+<section id="pathpub" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="pathpub"><span class="header-section-number">3</span> path,pub</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="关于pub的总结">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+关于pub的总结
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>没有设置<code>pub</code> 相当于 设置<code>pub(self)</code></li>
+<li><code>pub(xxxx)</code> 表示被约束的东西只能被<code>xxxx</code>及其子模块访问</li>
+<li>单独的<code>pub</code> 表示能被外部访问</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">.</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">├──</span> Cargo.toml</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">└──</span> src</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="ex">├──</span> lib.rs</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="ex">└──</span> main.rs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/lib.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="src/lib.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">// 没有pub 的模块, 表示只能被当前模块及其后代模块访问</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">// 对front_of_house 来说 ,当前模块是 crate</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">mod</span> front_of_house <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="co">// 如果没有pub, 表示 hosting模块是私有的, 只能被当前模块及其后代模块访问</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="co">// 对hosting 来说 ,当前模块是front_of_house </span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="co">// 该mod 如果要让外部访问, 需要 + pub</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="kw">pub</span> <span class="kw">mod</span> hosting <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>        <span class="co">// 方法同理</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{}</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="op">}</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="op">}</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="kw">pub</span> <span class="kw">fn</span> eat_at_restaurant() <span class="op">{</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="co">// 绝对路径调用, 这个lib.rs 文件隐含着 形成的 名为 crate的模块</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="co">// 同理如果你在 main.rs 中 使用crate:: 表示main.rs 文件里找模块</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="co">// 因为 front_of_house 和 eat_at_restaurant 在同一个crate中,</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="co">// 注意 eat_at_restaurant 是方法,不是模块, 所以它是在 根模块 crate 中</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="co">// 好比 linux的目录 / 中, 而 front_of_house 是模块, 就好比 /front_of_house 目录</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="co">// 所以可以直接使用 crate:: 来,不需要 pub front_of_house</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>    <span class="kw">crate</span><span class="pp">::front_of_house::hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a>    <span class="co">// 相对路径</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="co">// 好比在目录 / 中访问 front_of_house/hosting/add_to_waitlist</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>    <span class="pp">front_of_house::hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a></span>
+<span id="cb5-26"><a href="#cb5-26"></a>    <span class="kw">let</span> <span class="kw">mut</span> meal <span class="op">=</span> <span class="pp">back_of_house::Breakfast::</span>summer(<span class="st">"Rye"</span>)<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>    meal<span class="op">.</span>toast <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Wheat"</span>)<span class="op">;</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>    <span class="pp">println!</span>(<span class="st">"I'd like {} toast please"</span><span class="op">,</span> meal<span class="op">.</span>toast)<span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a>    <span class="co">//  seasonal_fruit 是私有的, 无法访问</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>    <span class="co">// meal.seasonal_fruit = String::from("blueberries");</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a><span class="op">}</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="kw">fn</span> deliver_order() <span class="op">{}</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a></span>
+<span id="cb5-36"><a href="#cb5-36"></a><span class="kw">mod</span> back_of_house <span class="op">{</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>    <span class="kw">fn</span> fix_incorrect_order() <span class="op">{</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a>        cook_order()<span class="op">;</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a>        <span class="co">// super 父模块 ,得到根模块 crate</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>        <span class="co">// 子模块访问父模块的方法, 方法不需要pub</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>        <span class="kw">super</span><span class="pp">::</span>deliver_order()<span class="op">;</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>        <span class="co">// 绝对路径</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>        <span class="kw">crate</span><span class="pp">::</span>deliver_order()<span class="op">;</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>    <span class="op">}</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a></span>
+<span id="cb5-46"><a href="#cb5-46"></a>    <span class="kw">fn</span> cook_order() <span class="op">{</span></span>
+<span id="cb5-47"><a href="#cb5-47"></a>        <span class="co">// 父模块访问子模块 fridge里的方法, 方法需要pub</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>        <span class="pp">fridge::</span>get_item()<span class="op">;</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a>    <span class="op">}</span></span>
+<span id="cb5-50"><a href="#cb5-50"></a>    <span class="co">// 没有pub 的模块, 只对被当前模块及其后代模块访问</span></span>
+<span id="cb5-51"><a href="#cb5-51"></a>    <span class="co">// 对fridge 来说 ,当前模块是 back_of_house</span></span>
+<span id="cb5-52"><a href="#cb5-52"></a>    <span class="kw">mod</span> fridge <span class="op">{</span></span>
+<span id="cb5-53"><a href="#cb5-53"></a>        <span class="kw">pub</span> <span class="kw">fn</span> get_item() <span class="op">{}</span></span>
+<span id="cb5-54"><a href="#cb5-54"></a>        <span class="co">// 没有pub的, 表示只能被当前模块, 这里就是 fridge 访问</span></span>
+<span id="cb5-55"><a href="#cb5-55"></a>        <span class="kw">fn</span> get_item2()<span class="op">{}</span></span>
+<span id="cb5-56"><a href="#cb5-56"></a>        <span class="kw">fn</span> get_item3()<span class="op">{</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a>            <span class="kw">self</span><span class="pp">::</span>get_item2()<span class="op">;</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a>        <span class="op">}</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a>    <span class="op">}</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a></span>
+<span id="cb5-61"><a href="#cb5-61"></a>    <span class="co">// 结构体的 权限</span></span>
+<span id="cb5-62"><a href="#cb5-62"></a>    <span class="kw">pub</span> <span class="kw">struct</span> Breakfast <span class="op">{</span></span>
+<span id="cb5-63"><a href="#cb5-63"></a>        <span class="kw">pub</span> toast<span class="op">:</span> <span class="dt">String</span><span class="op">,</span> <span class="co">// pub</span></span>
+<span id="cb5-64"><a href="#cb5-64"></a>        seasonal_fruit<span class="op">:</span> <span class="dt">String</span><span class="op">,</span> <span class="co">//私有</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a>    <span class="op">}</span></span>
+<span id="cb5-66"><a href="#cb5-66"></a></span>
+<span id="cb5-67"><a href="#cb5-67"></a>    <span class="kw">impl</span> Breakfast <span class="op">{</span></span>
+<span id="cb5-68"><a href="#cb5-68"></a>        <span class="kw">pub</span> <span class="kw">fn</span> summer(toast<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> Breakfast <span class="op">{</span></span>
+<span id="cb5-69"><a href="#cb5-69"></a>            Breakfast <span class="op">{</span></span>
+<span id="cb5-70"><a href="#cb5-70"></a>                toast<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(toast)<span class="op">,</span></span>
+<span id="cb5-71"><a href="#cb5-71"></a>                seasonal_fruit<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"peaches"</span>)<span class="op">,</span></span>
+<span id="cb5-72"><a href="#cb5-72"></a>            <span class="op">}</span></span>
+<span id="cb5-73"><a href="#cb5-73"></a>        <span class="op">}</span></span>
+<span id="cb5-74"><a href="#cb5-74"></a>    <span class="op">}</span></span>
+<span id="cb5-75"><a href="#cb5-75"></a>    <span class="co">// 枚举的权限, 只要 pub enum ,成员变体就全是pub了</span></span>
+<span id="cb5-76"><a href="#cb5-76"></a>    <span class="kw">pub</span> <span class="kw">enum</span> Appetizer <span class="op">{</span></span>
+<span id="cb5-77"><a href="#cb5-77"></a>        Soup<span class="op">,</span></span>
+<span id="cb5-78"><a href="#cb5-78"></a>        Salad<span class="op">,</span></span>
+<span id="cb5-79"><a href="#cb5-79"></a>    <span class="op">}</span></span>
+<span id="cb5-80"><a href="#cb5-80"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>pub(crate) pub(self) pub(super)</p>
+<div class="code-result">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="bu">.</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">├──</span> Cargo.toml</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">└──</span> src</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="ex">├──</span> lib.rs</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="ex">└──</span> main.rs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Cargo.toml</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">lib.rs</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">main.rs</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">[package]</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"world"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="dt">edition</span> <span class="op">=</span> <span class="st">"2021"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">pub</span> <span class="kw">mod</span> back <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">pub</span> <span class="kw">fn</span> hello() <span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="op">}</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="op">}</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="kw">pub</span> <span class="kw">mod</span> back2 <span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="co">// 表示给只能被crate 模块及其子模块访问</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> world2() <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>        <span class="pp">println!</span>(<span class="st">"world2"</span>)<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="op">}</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="kw">pub</span> <span class="kw">fn</span> world22() <span class="op">{</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>        <span class="pp">println!</span>(<span class="st">"world22"</span>)<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="op">}</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="co">// pub(self) 表示只能被当前模块以及子模块访问</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="co">// 这和不带 pub(self) 是一样的.</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="co">// 等同于 fn world222()</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="kw">pub</span>(<span class="kw">self</span>) <span class="kw">fn</span> world222() <span class="op">{</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>        <span class="pp">println!</span>(<span class="st">"world222"</span>)<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="op">}</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="kw">pub</span> <span class="kw">mod</span> back2_son <span class="op">{</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>        <span class="co">// pub(super) 表示该back2_son_1方法只能被父模块</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>        <span class="co">// 也就是back2及其子模块访问</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a>        <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> back2_son_1() <span class="op">{</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a>            <span class="pp">println!</span>(<span class="st">"back2_son_1"</span>)<span class="op">;</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a>        <span class="op">}</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>        <span class="kw">pub</span> <span class="kw">fn</span> back2_son_2() <span class="op">{</span></span>
+<span id="cb8-27"><a href="#cb8-27"></a>            <span class="pp">println!</span>(<span class="st">"back2_son_2"</span>)<span class="op">;</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a>        <span class="op">}</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a>        <span class="co">// in 只能设置父模块或祖先模块</span></span>
+<span id="cb8-30"><a href="#cb8-30"></a>        <span class="kw">pub</span>(<span class="kw">in</span> <span class="kw">crate</span><span class="pp">::</span>back2) <span class="kw">fn</span> back2_son_3() <span class="op">{</span></span>
+<span id="cb8-31"><a href="#cb8-31"></a>            <span class="pp">println!</span>(<span class="st">"back2_son_3"</span>)<span class="op">;</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a>        <span class="op">}</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a>    <span class="op">}</span></span>
+<span id="cb8-34"><a href="#cb8-34"></a>    <span class="kw">mod</span> back2_son2 <span class="op">{</span></span>
+<span id="cb8-35"><a href="#cb8-35"></a></span>
+<span id="cb8-36"><a href="#cb8-36"></a>        <span class="kw">fn</span> say() <span class="op">{</span></span>
+<span id="cb8-37"><a href="#cb8-37"></a>            <span class="kw">super</span><span class="pp">::back2_son::</span>back2_son_1()<span class="op">;</span></span>
+<span id="cb8-38"><a href="#cb8-38"></a>            <span class="kw">super</span><span class="pp">::back2_son::</span>back2_son_2()<span class="op">;</span></span>
+<span id="cb8-39"><a href="#cb8-39"></a>        <span class="op">}</span></span>
+<span id="cb8-40"><a href="#cb8-40"></a>    <span class="op">}</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a><span class="op">}</span></span>
+<span id="cb8-42"><a href="#cb8-42"></a><span class="co">// 表示给crate 模块及其子模块使用</span></span>
+<span id="cb8-43"><a href="#cb8-43"></a><span class="co">// 在main.rs 里是无法使用的.</span></span>
+<span id="cb8-44"><a href="#cb8-44"></a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> back3 <span class="op">{</span></span>
+<span id="cb8-45"><a href="#cb8-45"></a>    <span class="kw">pub</span> <span class="kw">fn</span> world3() <span class="op">{</span></span>
+<span id="cb8-46"><a href="#cb8-46"></a>        <span class="pp">println!</span>(<span class="st">"world3"</span>)<span class="op">;</span></span>
+<span id="cb8-47"><a href="#cb8-47"></a>        <span class="kw">crate</span><span class="pp">::back2::back2_son::</span>back2_son_2()<span class="op">;</span></span>
+<span id="cb8-48"><a href="#cb8-48"></a>        <span class="co">// crate::back2::back2_son::back2_son_1(); 不可访问</span></span>
+<span id="cb8-49"><a href="#cb8-49"></a>    <span class="op">}</span></span>
+<span id="cb8-50"><a href="#cb8-50"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">use</span> <span class="pp">world::</span>back<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">use</span> <span class="pp">world::</span>back2<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">// use world::back3; 不可访问</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="pp">back::</span>hello()<span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="co">// back2::world2(); 不可访问</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="pp">back2::</span>world22()<span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="co">// back2::world222(); 不可访问</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="use" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="use"><span class="header-section-number">4</span> use</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>use 语句将路径引入到当前作用域,从而允许你使用路径中指定的名称</p>
+</div>
+</div>
+<section id="mod" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="mod"><span class="header-section-number">4.1</span> mod</h3>
+<div class="sourceCode" id="annotated-cell-6"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a><span class="kw">mod</span> front_of_house <span class="op">{</span></span>
+<span id="annotated-cell-6-2"><a href="#annotated-cell-6-2"></a>    <span class="kw">pub</span> <span class="kw">mod</span> hosting <span class="op">{</span></span>
+<span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a>        <span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{}</span></span>
+<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4"></a>        <span class="kw">pub</span> <span class="kw">struct</span> Dog <span class="op">{}</span></span>
+<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5"></a>    <span class="op">}</span></span>
+<span id="annotated-cell-6-6"><a href="#annotated-cell-6-6"></a><span class="op">}</span></span>
+<span id="annotated-cell-6-7"><a href="#annotated-cell-6-7"></a><span class="co">// 将hosting 引入当前作用域, 这样 就能直接使用 这个hosting模块</span></span>
+<span id="annotated-cell-6-8"><a href="#annotated-cell-6-8"></a><span class="co">// 相当于在 crate 根模块中 定义了 hosting 模块</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-9" class="code-annotation-target"><a href="#annotated-cell-6-9"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
+<span id="annotated-cell-6-10"><a href="#annotated-cell-6-10"></a><span class="co">// 使用相对路径, as 别名</span></span>
+<span id="annotated-cell-6-11"><a href="#annotated-cell-6-11"></a><span class="kw">use</span> <span class="pp">front_of_house::</span>hosting <span class="kw">as</span> hosting2<span class="op">;</span></span>
+<span id="annotated-cell-6-12"><a href="#annotated-cell-6-12"></a><span class="co">// 引入函数一般是引入到父级模块</span></span>
+<span id="annotated-cell-6-13"><a href="#annotated-cell-6-13"></a><span class="co">// 可以use 引入具体的函数,但是一般我们不这样弄,</span></span>
+<span id="annotated-cell-6-14"><a href="#annotated-cell-6-14"></a><span class="co">// 因为 最后是让你自己知道使用的函数是引入的模块里的还是你自己这里定义的</span></span>
+<span id="annotated-cell-6-15"><a href="#annotated-cell-6-15"></a><span class="kw">use</span> <span class="pp">front_of_house::hosting::</span>add_to_waitlist <span class="kw">as</span> waitlist<span class="op">;</span></span>
+<span id="annotated-cell-6-16"><a href="#annotated-cell-6-16"></a><span class="co">// 如果是引入 struct enum 等其他不是函数的东西 ,一般就use 到 具体的struct,enum.</span></span>
+<span id="annotated-cell-6-17"><a href="#annotated-cell-6-17"></a><span class="kw">use</span> <span class="pp">front_of_house::hosting::</span>Dog<span class="op">;</span></span>
+<span id="annotated-cell-6-18"><a href="#annotated-cell-6-18"></a></span>
+<span id="annotated-cell-6-19"><a href="#annotated-cell-6-19"></a><span class="co">// 外部代码 默认是不能访问, use 还需要 加上pub</span></span>
+<span id="annotated-cell-6-20"><a href="#annotated-cell-6-20"></a><span class="co">// pub use 表示导出, 这样外部代码就能 导入到它的作用域</span></span>
+<span id="annotated-cell-6-21"><a href="#annotated-cell-6-21"></a><span class="kw">pub</span> <span class="kw">use</span> <span class="pp">front_of_house::</span>hosting <span class="kw">as</span> pub_hosting<span class="op">;</span></span>
+<span id="annotated-cell-6-22"><a href="#annotated-cell-6-22"></a></span>
+<span id="annotated-cell-6-23"><a href="#annotated-cell-6-23"></a><span class="kw">pub</span> <span class="kw">fn</span> eat_at_restaurant() <span class="op">{</span></span>
+<span id="annotated-cell-6-24"><a href="#annotated-cell-6-24"></a>    <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-6-25"><a href="#annotated-cell-6-25"></a>    <span class="pp">hosting2::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-6-26"><a href="#annotated-cell-6-26"></a>    waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-6-27"><a href="#annotated-cell-6-27"></a>    <span class="kw">let</span> a <span class="op">=</span> Dog <span class="op">{};</span></span>
+<span id="annotated-cell-6-28"><a href="#annotated-cell-6-28"></a><span class="op">}</span></span>
+<span id="annotated-cell-6-29"><a href="#annotated-cell-6-29"></a></span>
+<span id="annotated-cell-6-30"><a href="#annotated-cell-6-30"></a><span class="kw">mod</span> back_of_house <span class="op">{</span></span>
+<span id="annotated-cell-6-31"><a href="#annotated-cell-6-31"></a>    <span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
+<span id="annotated-cell-6-32"><a href="#annotated-cell-6-32"></a></span>
+<span id="annotated-cell-6-33"><a href="#annotated-cell-6-33"></a>    <span class="kw">fn</span> take() <span class="op">{</span></span>
+<span id="annotated-cell-6-34"><a href="#annotated-cell-6-34"></a>        <span class="co">// 当前这个 back_of_house 模块下想直接使用, 还是得 use 引入</span></span>
+<span id="annotated-cell-6-35"><a href="#annotated-cell-6-35"></a>        <span class="co">// add_to_waitlist 还是必须pub</span></span>
+<span id="annotated-cell-6-36"><a href="#annotated-cell-6-36"></a>        <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-6-37"><a href="#annotated-cell-6-37"></a>        <span class="co">// 使用super 来</span></span>
+<span id="annotated-cell-6-38"><a href="#annotated-cell-6-38"></a>        <span class="kw">super</span><span class="pp">::hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-6-39"><a href="#annotated-cell-6-39"></a>    <span class="op">}</span></span>
+<span id="annotated-cell-6-40"><a href="#annotated-cell-6-40"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="9" data-code-annotation="1">将hosting 引入当前作用域, 这样 就能直接使用 这个hosting模块 相当于在 crate 根模块中 定义了 hosting 模块</span>
+</dd>
+</dl>
+</section>
+<section id="外部package" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="外部package"><span class="header-section-number">4.2</span> 外部package</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="使用外部package">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+使用外部package
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><code>Cargo.toml</code> 添加要依赖的包</li>
+<li>代码中使用 use 将包引入到自己的作用域</li>
+<li>虽然std标准库也是外部包,但是已经被内置,所以不需要<code>Cargo.toml</code> 中添加</li>
+</ol>
+</div>
+</div>
+<p>添加包</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">cargo</span> add rand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>查看一下<code>Cargo.toml</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">[package]</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"hello"</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="dt">edition</span> <span class="op">=</span> <span class="st">"2021"</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="kw">[dependencies]</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="dt">rand</span> <span class="op">=</span> <span class="st">"0.8.5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">use</span> <span class="pp">rand::</span>Rng<span class="op">;</span>  <span class="co">// 引入添加的外部包</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">use</span> <span class="pp">std::collections::</span>HashMap<span class="op">;</span> <span class="co">// 引入标准库</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="本地package" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="本地package"><span class="header-section-number">4.3</span> 本地package</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>main.rs</code> 变为本地 package的使用者. The module tree should be defined in src/lib.rs. Then, any public items can be used in the binary crate <span class="txt-highlight">by starting paths with the name of the package</span>. The binary crate becomes a user of the library crate just like a completely external crate would use the library crate</p>
+</div>
+</div>
+<div class="code-result">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">.</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="ex">├──</span> Cargo.toml</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="ex">└──</span> src</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="ex">├──</span> lib.rs</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="ex">└──</span> main.rs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Cargo.toml</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">lib.rs</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">main.rs</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">[package]</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"world"</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="dt">edition</span> <span class="op">=</span> <span class="st">"2021"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">pub</span> <span class="kw">mod</span> back <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="kw">pub</span> <span class="kw">fn</span> hello() <span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="op">}</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">use</span> <span class="pp">world::</span>back<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="pp">back::</span>hello()<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-其他语法" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="use-其他语法"><span class="header-section-number">4.4</span> use 其他语法</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">use</span> <span class="pp">std::cmp::</span>Ordering<span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>使用{} 来简写</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="op">{</span><span class="pp">cmp::</span>Ordering<span class="op">,</span> io<span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">use</span> <span class="pp">std::io::</span><span class="bu">Write</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co">// 使用 self, 等价于上面2个</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">use</span> <span class="pp">std::io::</span><span class="op">{</span><span class="kw">self</span><span class="op">,</span> <span class="bu">Write</span><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>使用*</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">use</span> <span class="pp">std::collections::</span><span class="op">*;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="prelude" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="prelude"><span class="header-section-number">4.5</span> prelude</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>标准库中有一些非常常用的东西,我们可能每一个rs文件都要去use相关的, 所以rust编译期自动的为每一个crate插入一句<code>use std::prelude::*;</code></p>
+</div>
+</div>
+</section>
+</section>
+<section id="module-拆分" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="module-拆分"><span class="header-section-number">5</span> module 拆分</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/main.rs</strong></pre>
+</div>
+<div class="sourceCode" id="annotated-cell-14" data-filename="src/main.rs"><pre class="sourceCode numberSource rust code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode rust"><span id="annotated-cell-14-1"><a href="#annotated-cell-14-1"></a><span class="co">// mod 后 就可以直接在 main() 里使用 front_of_house::hosting::add_to_waitlist()</span></span>
+<span id="annotated-cell-14-2"><a href="#annotated-cell-14-2"></a><span class="co">// 这样 显式mod 后, 才会将 该mod 的代码进行编译</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-14-3" class="code-annotation-target"><a href="#annotated-cell-14-3"></a><span class="kw">mod</span> front_of_house<span class="op">;</span></span>
+<span id="annotated-cell-14-4"><a href="#annotated-cell-14-4"></a></span>
+<span id="annotated-cell-14-5"><a href="#annotated-cell-14-5"></a><span class="co">// 上面mod 后, 我们才能用 use 的方式</span></span>
+<span id="annotated-cell-14-6"><a href="#annotated-cell-14-6"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
+<span id="annotated-cell-14-7"><a href="#annotated-cell-14-7"></a></span>
+<span id="annotated-cell-14-8"><a href="#annotated-cell-14-8"></a><span class="kw">pub</span> <span class="kw">fn</span> eat_at_restaurant() <span class="op">{</span></span>
+<span id="annotated-cell-14-9"><a href="#annotated-cell-14-9"></a>    <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-14-10"><a href="#annotated-cell-14-10"></a><span class="op">}</span></span>
+<span id="annotated-cell-14-11"><a href="#annotated-cell-14-11"></a></span>
+<span id="annotated-cell-14-12"><a href="#annotated-cell-14-12"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="annotated-cell-14-13"><a href="#annotated-cell-14-13"></a>    <span class="pp">front_of_house::hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-14-14"><a href="#annotated-cell-14-14"></a>    <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="annotated-cell-14-15"><a href="#annotated-cell-14-15"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="3" data-code-annotation="1">如果我们在定义mod 时, 模块名后面跟着 <code>;</code> 号, 那么rust 必须能从<code>src</code>目录下找到(否则报错)<br> 1. <span class="txt-highlight">与模块同名的文件,里面的内容就是这个模块的定义</span> <br> 2. <span class="txt-highlight">或者与模块同名的文件夹(文件夹里需要一个mod.rs文件,它的内容就是模块的定义)</span></span>
+</dd>
+</dl>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">模块同名的文件</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">模块同名的文件夹</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/front_of_house.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb21" data-filename="src/front_of_house.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">pub</span> <span class="kw">mod</span> hosting <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="op">}</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/front_of_house/mod.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb22" data-filename="src/front_of_house/mod.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">pub</span> <span class="kw">mod</span> hosting <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>    <span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="op">}</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p><span class="txt-highlight">理解为将该文件包含到main.rs中,相当于如下代码</span></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/main.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb23" data-filename="src/main.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">mod</span> front_of_house <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>    <span class="kw">pub</span> <span class="kw">mod</span> hosting <span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>        <span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>            <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>        <span class="op">}</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="op">}</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="op">}</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::front_of_house::</span>hosting<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a></span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="kw">pub</span> <span class="kw">fn</span> eat_at_restaurant() <span class="op">{</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>    <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="op">}</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>    <span class="pp">front_of_house::hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>    <span class="pp">hosting::</span>add_to_waitlist()<span class="op">;</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>我们继续将<code>front_of_house</code>模块里的<code>hosting</code>模块进行拆分</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">模块同名的文件的情况</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">模块同名的文件夹的情况</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/front_of_house.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb24" data-filename="src/front_of_house.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">pub</span> <span class="kw">mod</span> hosting<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">cd</span> src</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">mkdir</span> <span class="at">-p</span> front_of_house</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>我们需要在 <code>front_of_house</code> 目录下创建<code>hosting.rs</code> 文件</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/front_of_house/hosting.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb26" data-filename="src/front_of_house/hosting.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>    <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/front_of_house/mod.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb27" data-filename="src/front_of_house/mod.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">pub</span> <span class="kw">mod</span> hosting<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">cd</span> src</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">mkdir</span> <span class="at">-p</span> front_of_house/hosting</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/front_of_house/hosting/mod.rs</strong></pre>
+</div>
+<div class="sourceCode" id="cb29" data-filename="src/front_of_house/hosting/mod.rs"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">pub</span> <span class="kw">fn</span> add_to_waitlist() <span class="op">{</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>    <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<!-- ## 目录设计
+
+```bash
+.
+├── Cargo.toml
+├── benches
+├── src  # 一般的单元测试放在这里的
+│   └── main.rs
+└── tests # 集成测试的代码, 一般会编译成一个可执行文件
+``` -->
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://github.com/rust-lang/crates.io">crates github</a> <br><a href="https://crates.io/">crates.io</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../../docs/programming/rust/basic/iterator.html" class="pagination-link" aria-label="迭代器">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">迭代器</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../docs/programming/rust/basic/cargo.html" class="pagination-link" aria-label="cargo">
+        <span class="nav-page-text">cargo</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
