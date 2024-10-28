@@ -1,0 +1,2571 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>rust 生命周期 – 斯巴拉稀</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../docs/programming/rust/basic/error.html" rel="next">
+<link href="../../../../docs/programming/rust/basic/trait.html" rel="prev">
+<link href="../../../../favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/rust-playground-0.1.0/run-rust-code-button.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">编程语言</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/go/index.html">
+ <span class="dropdown-text">Go</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/rust/index.html">
+ <span class="dropdown-text">Rust</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/programming/python/index.html">
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/netprog/index.html"> 
+<span class="menu-text">网络编程</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-devops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Devops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-devops">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/linux/index.html">
+ <span class="dropdown-text">linux</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/docker/index.html">
+ <span class="dropdown-text">docker/podman</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/cicd/index.html">
+ <span class="dropdown-text">cicd</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/devops/k8s/index.html">
+ <span class="dropdown-text">k8s</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">中间件</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/middleware/mysql/index_.html">
+ <span class="dropdown-text">mysql</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/middleware/redis/index.html">
+ <span class="dropdown-text">redis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/developer/index.html"> 
+<span class="menu-text">程序员必备</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">rust 生命周期</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基础篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/quick-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/expression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">语句和表达式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">所有权与借用</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">结构体</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/enum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">枚举</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/pattern-match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">模式匹配</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">集合</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/generic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">泛型</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/trait.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">trait</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/lifetime.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">生命周期</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">错误处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/closure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">闭包</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/iterator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">迭代器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/crate-mod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">crate与模块</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/cargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cargo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/unsafe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">unsafe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/ptr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">智能指针</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/concurrency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">并发</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/basic/macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">宏</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">进阶</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/advanced/01.mem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">内存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/advanced/02.type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">奇异的类型</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">库</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/pkg/utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">常用库</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">实战</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/programming/rust/hands-on/compiler/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">编译器</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">TOC</h2>
+   
+  <ul>
+  <li><a href="#先看个例子" id="toc-先看个例子" class="nav-link active" data-scroll-target="#先看个例子"><span class="header-section-number">1</span> 先看个例子</a></li>
+  <li><a href="#借用检查器" id="toc-借用检查器" class="nav-link" data-scroll-target="#借用检查器"><span class="header-section-number">2</span> 借用检查器</a></li>
+  <li><a href="#生命周期的标注" id="toc-生命周期的标注" class="nav-link" data-scroll-target="#生命周期的标注"><span class="header-section-number">3</span> 生命周期的标注</a>
+  <ul>
+  <li><a href="#为什么需要" id="toc-为什么需要" class="nav-link" data-scroll-target="#为什么需要"><span class="header-section-number">3.1</span> 为什么需要</a></li>
+  <li><a href="#标注的真实含义" id="toc-标注的真实含义" class="nav-link" data-scroll-target="#标注的真实含义"><span class="header-section-number">3.2</span> 标注的真实含义</a></li>
+  <li><a href="#函数" id="toc-函数" class="nav-link" data-scroll-target="#函数"><span class="header-section-number">3.3</span> 函数</a></li>
+  <li><a href="#结构体" id="toc-结构体" class="nav-link" data-scroll-target="#结构体"><span class="header-section-number">3.4</span> 结构体</a></li>
+  <li><a href="#约束" id="toc-约束" class="nav-link" data-scroll-target="#约束"><span class="header-section-number">3.5</span> 约束</a></li>
+  <li><a href="#static" id="toc-static" class="nav-link" data-scroll-target="#static"><span class="header-section-number">3.6</span> &amp;’static</a></li>
+  <li><a href="#泛型trait" id="toc-泛型trait" class="nav-link" data-scroll-target="#泛型trait"><span class="header-section-number">3.7</span> 泛型,trait</a></li>
+  <li><a href="#标注省略三规则" id="toc-标注省略三规则" class="nav-link" data-scroll-target="#标注省略三规则"><span class="header-section-number">3.8</span> 标注省略三规则</a></li>
+  </ul></li>
+  <li><a href="#drop-check" id="toc-drop-check" class="nav-link" data-scroll-target="#drop-check"><span class="header-section-number">4</span> drop check</a></li>
+  <li><a href="#subtyping1" id="toc-subtyping1" class="nav-link" data-scroll-target="#subtyping1"><span class="header-section-number">5</span> subtyping</a></li>
+  <li><a href="#variance-型变2" id="toc-variance-型变2" class="nav-link" data-scroll-target="#variance-型变2"><span class="header-section-number">6</span> Variance 型变</a>
+  <ul>
+  <li><a href="#covariant-协变" id="toc-covariant-协变" class="nav-link" data-scroll-target="#covariant-协变"><span class="header-section-number">6.1</span> covariant 协变</a></li>
+  <li><a href="#contravariance-逆变" id="toc-contravariance-逆变" class="nav-link" data-scroll-target="#contravariance-逆变"><span class="header-section-number">6.2</span> Contravariance 逆变</a></li>
+  <li><a href="#invariant-不变" id="toc-invariant-不变" class="nav-link" data-scroll-target="#invariant-不变"><span class="header-section-number">6.3</span> invariant 不变</a></li>
+  <li><a href="#自定义类型的情况" id="toc-自定义类型的情况" class="nav-link" data-scroll-target="#自定义类型的情况"><span class="header-section-number">6.4</span> 自定义类型的情况</a></li>
+  </ul></li>
+  <li><a href="#phantomdata-类型3" id="toc-phantomdata-类型3" class="nav-link" data-scroll-target="#phantomdata-类型3"><span class="header-section-number">7</span> PhantomData 类型</a>
+  <ul>
+  <li><a href="#为什么需要4" id="toc-为什么需要4" class="nav-link" data-scroll-target="#为什么需要4"><span class="header-section-number">7.1</span> 为什么需要</a></li>
+  <li><a href="#消除未使用类型参数的错误" id="toc-消除未使用类型参数的错误" class="nav-link" data-scroll-target="#消除未使用类型参数的错误"><span class="header-section-number">7.2</span> 消除未使用类型参数的错误</a></li>
+  <li><a href="#控制variance" id="toc-控制variance" class="nav-link" data-scroll-target="#控制variance"><span class="header-section-number">7.3</span> 控制Variance</a>
+  <ul class="collapse">
+  <li><a href="#控制-t" id="toc-控制-t" class="nav-link" data-scroll-target="#控制-t"><span class="header-section-number">7.3.1</span> 控制 T</a></li>
+  <li><a href="#控制-a" id="toc-控制-a" class="nav-link" data-scroll-target="#控制-a"><span class="header-section-number">7.3.2</span> 控制 ’a</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+    <div class="quarto-title">
+    <h1 class="title d-none d-lg-block">rust 生命周期</h1>
+      </div>
+  
+  <div class="quarto-title-meta">
+            <div>
+      <div class="quarto-title-meta-heading">Created</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024-05-04 09:49:42</p>
+      </div>
+    </div>
+            <div>
+      <div class="quarto-title-meta-heading">Updated</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024-10-26 19:06:42</p>
+      </div>
+    </div>
+      </div>
+</header>
+
+
+<section id="先看个例子" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="先看个例子"><span class="header-section-number">1</span> 先看个例子</h2>
+<div class="sourceCode" id="cb1" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">let</span> r<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>        r <span class="op">=</span> <span class="op">&amp;</span>x<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="op">}</span>    <span class="co">// x 离开作用域，其值被丢弃</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="pp">println!</span>(<span class="st">"r: {}"</span><span class="op">,</span> r)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-code-line-numbers=""><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">cargo</span> run </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-code-line-numbers=""><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1"></a> --&gt; src/main.rs:6:13</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  |</span>
+<span id="cb3-3"><a href="#cb3-3"></a>5 |         let x = 5;</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  |             - binding `x` declared here</span>
+<span id="cb3-5"><a href="#cb3-5"></a>6 |         r = &amp;x;</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  |             ^^ borrowed value does not live long enough</span>
+<span id="cb3-7"><a href="#cb3-7"></a>7 |     }</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  |     - `x` dropped here while still borrowed</span>
+<span id="cb3-9"><a href="#cb3-9"></a>8 |</span>
+<span id="cb3-10"><a href="#cb3-10"></a>9 |     println!("r: {}", r);</span>
+<span id="cb3-11"><a href="#cb3-11"></a>  |                       - borrow later used here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>rust编译器 如何发现问题的呢?</p>
+</section>
+<section id="借用检查器" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="借用检查器"><span class="header-section-number">2</span> 借用检查器</h2>
+<p>The Borrow Checker</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>借用的生命周期必须比 所有者的生命周期 短, 就是 所有者离开作用域前,你才可以使用它的借用</p>
+</div>
+</div>
+<p>rust编译器 有一个 borrow checker 它会比较作用域来判断所有借用是否合法</p>
+<p>标注上变量的生命周期,我们看看</p>
+<div class="sourceCode" id="cb4" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">let</span> r<span class="op">;</span>                <span class="co">// ---------+-- 'a</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>                          <span class="co">//          |</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="op">{</span>                     <span class="co">//          |</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>        <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span>        <span class="co">// -+-- 'b  |</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>        r <span class="op">=</span> <span class="op">&amp;</span>x<span class="op">;</span>           <span class="co">//  |       |</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="op">}</span>                     <span class="co">// -+       |</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>                          <span class="co">//          |</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="pp">println!</span>(<span class="st">"r: {}"</span><span class="op">,</span> r)<span class="op">;</span> <span class="co">//          |</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="op">}</span>                         <span class="co">// ---------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>这里用 ’a 表示 变量r 的生命周期, ’b 表示变量x 的生命周期 变量r (借用了x)的生命周期 ’a 比 所有者x 的生命周期 ’b 长 , 而这个时候x的生命周期 ’b 已经结束了,x不可用了</p>
+<p>将上面的代码修改成如下,就ok了</p>
+<div class="sourceCode" id="cb5" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span>            <span class="co">// ----------+-- 'b</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>                          <span class="co">//           |</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="op">&amp;</span>x<span class="op">;</span>           <span class="co">// --+-- 'a  |</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>                          <span class="co">//   |       |</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="pp">println!</span>(<span class="st">"r: {}"</span><span class="op">,</span> r)<span class="op">;</span> <span class="co">//   |       |</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>                          <span class="co">// --+       |</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="op">}</span>                         <span class="co">// ----------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="生命周期的标注" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="生命周期的标注"><span class="header-section-number">3</span> 生命周期的标注</h2>
+<section id="为什么需要" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="为什么需要"><span class="header-section-number">3.1</span> 为什么需要</h3>
+<div class="code-result">
+<div class="sourceCode cell-code" id="cb6" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">fn</span> longest(x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> y<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>        x</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>        y</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="op">}</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="op">}</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="op">{</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="st">"xyz"</span><span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="op">}</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled" title="分析一下上面例子">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+分析一下上面例子
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><code>longest</code>返回一个借用, 那么我们必须知道, <span class="txt-highlight">这个返回值(调用方的接收者)借用的值的生命周期要比这个借用长</span>,编译器需要能够检查是否达到这样的要求</li>
+<li>因为函数内的局部变量在函数执行完毕后, 都会失效的, <span class="txt-highlight">所以返回值是借用的情况下, 它肯定只能是来至于函数参数且该参数必定是引用类型</span> (这里 暂不考虑 &amp;’static ),只要知道它来至于哪个, 就能确定接收者和谁的生命周期有关</li>
+<li>现在<span class="txt-highlight">所有问题的关键在于编译器不知道longest函数返回值来至于哪个参数</span>,<span class="txt-highlight">而生命周期标注<strong>最终</strong>就是为了让编译器知道它返回的引用与谁有关,这样就知道最后需要和谁的生命周期比较</span>, 这样就帮助了编译器进行静态分析,去防止悬垂指针和其他内存安全问题</li>
+<li>生命周期标注 只是描述多个借用之间的关系, 并不会改变他们的生命周期</li>
+<li><span class="txt-highlight">上面的例子中编译器不知道返回哪个, 意味着编译器需要将2种情况都考虑,使用情况最坏的哪个,就是生命周期最短的哪个, 因为你不可能让编译器强制认为返回其中一个,让编译通过吧? 例子中 最坏的情况是返回 string2的借用, 因为string2 生命周期很短,会导致result 悬垂引用</span></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="标注的真实含义" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="标注的真实含义"><span class="header-section-number">3.2</span> 标注的真实含义</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>只有引用类型才需要标注</li>
+<li>这个就类似类型来约束你申请的内存, 生命周期标注是<span class="txt-highlight">表示你的生命周期在哪个范围</span> , 可以理解为: <font color="red"><strong>生命周期标注表示生命周期的类型</strong></font></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="函数" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="函数"><span class="header-section-number">3.3</span> 函数</h3>
+<div class="callout callout-style-default callout-important callout-titled" title="前置知识: 什么是函数的签名(Function Signature)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+前置知识: 什么是函数的签名(Function Signature)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在编程中, 是指函数的定义中描述函数接口的部分. 它通常包括以下几个方面:</p>
+<ol type="1">
+<li>函数名: 函数的名称,用于标识和调用函数</li>
+<li>参数列表: 函数接受的参数及其类型. 参数列表定义了函数可以接收的数据类型和数量</li>
+<li>返回类型: 函数返回值的类型.如果函数不返回值,通常会标记为 void（在 C/C++ 中）或省略返回类型(在 Rust 中为 ())</li>
+<li>生命周期(在 Rust 中): Rust 中的函数签名还包括生命周期注解,用于描述引用之间的生命周期关系</li>
+</ol>
+</div>
+</div>
+<p>使用 ’a ’b 这种 单个简单字母, 放在 &amp;后面</p>
+<div class="sourceCode" id="cb7" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">&amp;</span><span class="dt">i32</span>        <span class="co">// 一个借用</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">i32</span>     <span class="co">// 一个带有显式生命周期的借用</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">mut</span> <span class="dt">i32</span> <span class="co">//</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>也可以先去看 <a href="#covariant-协变">covariant-协变</a>, 早期还没看covariant相关教程,只是看完book那个教程, 浪费了很多思考, 教程分不同批次,对于我来说是恶心的.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">例子1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">例子2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">例子3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">例子4 ’b:’a</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">例子5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">例子6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">例子7</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>报错了</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8" data-playground="rust" data-hl="8" data-filename="报错了" data-code-line-numbers="8"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">fn</span> longest(x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    x</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="op">}</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"xyz"</span>)<span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="分析">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+分析
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>上面这个例子, 你可能最开始有这样的疑惑,这不是很明显返回的是x吗,还需要标注生命周期吗?</li>
+<li>提示错误说函数签名没有标注生命周期</li>
+<li><span class="txt-highlight">高亮第8行处, 实际上编译器在编译到这里的时候,它是只能根据函数签名的信息来判断返回值来至于哪里,所以它不知道该函数返回值和谁有关了.</span>, 我们继续看例子2</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-result">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>还是报错了</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9" data-playground="rust" data-filename="还是报错了" data-hl="1-2" data-code-line-numbers="1-2"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">// 生命周期标注表示返回值与y 有关, 表示 返回值的生命周期必须符合 `'a`这样长的范围,至少和y 一样长</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>    x</span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="op">}</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="分析">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+分析
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>好了,这样我们标注了 返回值和y有关, 唉? 这是不是感觉就行了啊?</li>
+<li>报错了, 因为编译器编译longest函数, <span class="txt-highlight">它确实肯定是知道返回值是x的</span>, 然而我们设置的返回值类型是 <code>&amp;'a str</code>, x能否转换为这个类型?
+<ul>
+<li>不行!, 因为x的标注是 <code>'b</code> (没写就是默认自己的生命周期,这里就用<code>'b</code>表示) 与<code>'a</code> 没有指明任何关系, <span class="txt-highlight"><code>&amp;'b str</code> 类型 不能转换为 <code>&amp;'a str</code></span></li>
+</ul></li>
+<li><span class="txt-highlight">把’a 生命周期标注作为类型的一部分</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode cell-code" id="cb10" data-playground="rust" data-hl="2-7,16-19" data-code-line-numbers="2-7,16-19"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">// 从代码上看 y和返回值 没有任何关系, 那么我们不需要标注</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">// 表示 返回值的生命周期必须符合 'a这样长的范围</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">// 就这个例子而言, 编译器编译这个函数时是知道它返回 了 x</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">// 而x 符合 返回类型 &amp;'a str , 本身就是 'a 这样的长度</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">// 'a 的长度或说范围 是实际调用该函数时传递的参数的生命周期, 实际调用处是string1 是main函数都有效的生命周期</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">// 然后实际调用处接收者 result的生命周期 比如说是 'c , 将 'a 类型的 赋值给 'c 类型的 能否成功,  这里是可以的, 他们生命周期长度一样.</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co">// 赋值相当于类型转换, 'a 类型 转换为 'c 类型, 'a 如果是 'c 的子类 就可以了, 表示 'a的生命周期 &gt;= 'c</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>    x</span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="op">}</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="op">{</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"xyz"</span>)<span class="op">;</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>        <span class="co">// 注意编译器编译到这里, 它是不关注函数体的, 它只会关注到函数的签名</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>        <span class="co">// 如果函数签名没有生命周期标注,它根本不知道返回值和哪个参数有关.</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>        <span class="co">// 现在发现有了生命周期标注, 表示返回值和string1有关系</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a>        <span class="co">// 那么 string2的死活与它无关了.</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>    <span class="op">}</span> <span class="co">// 这个时候 string2 指向的 xyz (在堆上) 已经被free了</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a>      <span class="co">// 而编译器知道 longest 返回的是来至于第一个参数x: string1.as_str()</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a>      <span class="co">// 这个所谓的知道是通过 生命周期标注 知道的</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a>      <span class="co">// ok</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>例子2里我们说 ’b 因为没有指明 和’a的关系, 所以他们之间不能转换, 那么他们需要什么样的关系才能转换能?</p>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11" data-playground="rust" data-hl="2-4,9-10,19-26" data-code-line-numbers="2-4,9-10,19-26"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">// 设置返回值生命周期 约束为 'a , 表示至少和y 一样长</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">// 但是实际返回值是x, 它的生命周期 是 'b</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">// 'b 能不能转为 'a  就是问题的关键了. 当'b 是 'a的子类就可以了,('b:'a) 表示'b 生命周期比 &gt;= 'a</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">// 子类, 就是继承了父类 所有特征的类, 所以它可以转换为 父类, 这个好理解的(这里是子类生命周期比父类长)</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span><span class="ot">'b</span><span class="op">:</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    x</span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="op">}</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="kw">fn</span> longest2<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">where</span> <span class="co">// 和泛型 使用方式类似, 可以这样写</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">,</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="op">{</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>    x</span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="op">}</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>    <span class="op">{</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"xyz"</span>)<span class="op">;</span></span>
+<span id="cb11-19"><a href="#cb11-19"></a>        <span class="co">// string1 的生命周期比 string2 长</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a>        <span class="co">// 为了符合 签名中 'b 要&gt;= 'a , 只能转换为 'b = string2的生命周期</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a>        <span class="co">// 这样 'b = 'a  符合 'b:'a</span></span>
+<span id="cb11-22"><a href="#cb11-22"></a>        <span class="co">// 所以实际返回的x 它的生命周期变成了 string2 一样了,</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a>        <span class="co">// 当然根据签名我们直接知道与string2有关,</span></span>
+<span id="cb11-24"><a href="#cb11-24"></a>        <span class="co">//      它的生命周期就是string2的生命周期,因为string2 能活多久,它就多久</span></span>
+<span id="cb11-25"><a href="#cb11-25"></a>        <span class="co">// 编译直接报错,提示string2, borrowed value does not live long enough</span></span>
+<span id="cb11-26"><a href="#cb11-26"></a>        <span class="co">// 从代码角度看, 返回的值的生命周期和 string2一样, 而result的生命周期 比这个长,</span></span>
+<span id="cb11-27"><a href="#cb11-27"></a>        <span class="co">// 无法从一个 短的生命周期 赋值给一个长的生命周期, 可理解为父类无法转换为子类</span></span>
+<span id="cb11-28"><a href="#cb11-28"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a>    <span class="op">}</span> <span class="co">// string2 释放</span></span>
+<span id="cb11-30"><a href="#cb11-30"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb11-31"><a href="#cb11-31"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>报错了</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12" data-playground="rust" data-filename="报错了" data-hl="1-4,13-19" data-code-line-numbers="1-4,13-19"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">// 生命周期标注表示返回值与x,y有关, 表示 返回值的生命周期必须符合 'a这样长的范围</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">// 返回值 x 符合 'a 类型的生命周期 编译通过</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">// 传递来的时候, 确定出 'a =x的实参的生命周期 , 然后又确定出 'a=y的实参的生命周期</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">// 最终是 'a = x和y 实参生命周期短的那个</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>    x</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="op">}</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>    <span class="op">{</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"xyz"</span>)<span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>        <span class="co">// 注意编译器编译到这里, 它是不关心函数体的, 它只会关注到函数的签名</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>        <span class="co">// 所以它根本不知道返回值和哪个参数有关.(虽然函数内部很明显返回了谁)</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>        <span class="co">// 现在看了函数签名, 发现有了生命周期标注, 表示string1,string2有关系</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a>        <span class="co">// 从人的角度看, 可以理解为, 编译器在这种情形下会考虑最坏的情况,</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a>        <span class="co">// 所以这里认为返回值 返回生命周期短的那个, 就是string2,所以最终和string2有关</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a>        <span class="co">// 从代码角度看, 返回的值的生命周期是 string2, 而result的生命周期 比这个长,</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a>        <span class="co">// 无法从一个 短的生命周期 赋值给一个长的生命周期, 可理解为父类无法转换为子类.</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a>    <span class="op">}</span> <span class="co">// 这个时候 string2 指向的 xyz (在堆上) 已经被free了</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a>    <span class="co">// 报错了</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="sourceCode cell-code" id="cb13" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> y<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>        x</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>        y</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="op">}</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="op">}</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="op">{</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="st">"xyz"</span><span class="op">;</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2)<span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="op">}</span> <span class="co">// string2 所借用的 xyz 这个数据实际是在 只读区中分配的,生命周期是到程序运行结束,所以到这里,没有被free掉</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>      <span class="co">// println!("{}", string2); 注意这个还是会报错的, 因为变量string2 离开作用域 已经不可用了</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>      <span class="co">// OK</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="sourceCode cell-code" id="cb14" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> y<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>        x</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>        y</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="op">}</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="op">}</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>    <span class="op">{</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"xyz"</span>)<span class="op">;</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a>    <span class="op">}</span> </span>
+<span id="cb14-15"><a href="#cb14-15"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="生命周期的总结">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+生命周期的总结
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>返回值的 ’a 标注 如果与多个函数参数有关, 那么选择 生命周期短的那个参数, 表示 返回值与 该参数有关, 最后借用检查就知道返回值的生命周期和谁做比较</li>
+<li>如果返回值 ’a 就和一个参数有关, 那么就和它有关</li>
+</ol>
+</div>
+</div>
+<div class="sourceCode" id="cb15" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">// 不带参数的函数, 不过有一个生命周期参数 'a</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">// 'a: 表示至少和函数的生命周期一样长 : &gt;=</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="kw">fn</span> failed_borrow<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>() <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="kw">let</span> _x <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="co">// 报错：_x 的生命周期不够长</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="kw">let</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">i32</span> <span class="op">=</span> <span class="op">&amp;</span>_x<span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>    <span class="co">// 在函数内部使用生命周期 'a 作为显式类型标注将导致失败</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="co">// 因为 &amp;_x 的生命周期比 y 的短. 短生命周期不能强制转换成长生命周期.</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="op">}</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="结构体" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="结构体"><span class="header-section-number">3.4</span> 结构体</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>生命周期标注 ’a 表明这两个字段的生命周期是相同的,并且它们至少活得和 Book 实例一样久</li>
+<li>如果没有生命周期标注,编译器就无法确定<span class="txt-highlight">title 和 author 引用的数据是否会在 Book 实例化之前被释放</span></li>
+<li>生命周期标注提供了一种方式,让编译器能够检查引用是否在有效范围内,从而确保内存安全</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb16" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">struct</span> Book<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>    title<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>    author<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="op">}</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="kw">let</span> title <span class="op">=</span> <span class="st">"The Rust Programming Language"</span><span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>    <span class="kw">let</span> author <span class="op">=</span> <span class="st">"Steve Klabnik and Carol Nichols"</span><span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>    <span class="kw">let</span> book <span class="op">=</span> Book <span class="op">{</span> title<span class="op">,</span> author <span class="op">};</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a>    <span class="pp">println!</span>(<span class="st">"Book title: {}"</span><span class="op">,</span> book<span class="op">.</span>title)<span class="op">;</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>    <span class="pp">println!</span>(<span class="st">"Book author: {}"</span><span class="op">,</span> book<span class="op">.</span>author)<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="约束" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="约束"><span class="header-section-number">3.5</span> 约束</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>T: ’a
+<ul>
+<li>在 T <span class="txt-highlight">中的</span> 所有引用都必须至少和生命周期 ’a 活得一样长 (&gt;=’a)</li>
+</ul></li>
+<li>T: Trait + ’a
+<ul>
+<li>T 类型必须实现 Trait trait, 并且在 T 中的所有引用都必须至少和 ’a 活得一样长</li>
+</ul></li>
+<li>&amp;’a T
+<ul>
+<li>’a 表示T 的生命周期至少和’a 一样长</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb17" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="kw">let</span> s2 <span class="op">=</span> <span class="st">"hello"</span><span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>    test2(<span class="op">&amp;</span>s2)<span class="op">;</span> <span class="co">// ok</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>    test2(<span class="op">&amp;&amp;</span>s2)<span class="op">;</span> <span class="co">// 报错了</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>    test1(<span class="op">&amp;</span>s2) <span class="co">// 报错了 &amp;'static T , T 需要满足'static</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="op">}</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="kw">fn</span> test1<span class="op">&lt;</span>T<span class="op">&gt;</span>(_arg<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'static</span> T) <span class="op">{</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>    <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="op">}</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="co">// T: 'static 表示T中使用的引用 必须至少 比'static 一样长</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="co">// test2(&amp;s2); 调用的情况 这里T 是 String 类型, 不是引用类型,所以啥都行</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="kw">fn</span> test2<span class="op">&lt;</span>T<span class="op">:</span> <span class="ot">'static</span><span class="op">&gt;</span>(_arg<span class="op">:</span> <span class="op">&amp;</span>T) <span class="op">{</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>    <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="static" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="static"><span class="header-section-number">3.6</span> &amp;’static</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>整个程序的持续时间就是静态生命周期</p>
+</div>
+</div>
+<div class="sourceCode" id="cb18" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">let</span> s<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span> <span class="op">=</span> <span class="st">"I have a static lifetime."</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="泛型trait" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="泛型trait"><span class="header-section-number">3.7</span> 泛型,trait</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>lifetimes are a type of generic,所以会将它和泛型T的申明放在一起</p>
+</div>
+</div>
+<div class="sourceCode" id="cb19" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">use</span> <span class="pp">std::fmt::</span><span class="bu">Display</span><span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">fn</span> longest_with_an_announcement<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">&gt;</span>(</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>    y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>    ann<span class="op">:</span> T<span class="op">,</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="kw">where</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>    T<span class="op">:</span> <span class="bu">Display</span><span class="op">,</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="op">{</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>    <span class="pp">println!</span>(<span class="st">"Announcement! {}"</span><span class="op">,</span> ann)<span class="op">;</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>    <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> y<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>        x</span>
+<span id="cb19-14"><a href="#cb19-14"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a>        y</span>
+<span id="cb19-16"><a href="#cb19-16"></a>    <span class="op">}</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="标注省略三规则" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="标注省略三规则"><span class="header-section-number">3.8</span> 标注省略三规则</h3>
+<div class="sourceCode" id="cb20" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">// 早期像这样的,都是需要 进行生命周期标注的</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co">// fn first_word(s: &amp;str) -&gt; &amp;str {</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">fn</span> first_word<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(s<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="kw">let</span> bytes <span class="op">=</span> s<span class="op">.</span>as_bytes()<span class="op">;</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="cf">for</span> (i<span class="op">,</span> <span class="op">&amp;</span>item) <span class="kw">in</span> bytes<span class="op">.</span>iter()<span class="op">.</span>enumerate() <span class="op">{</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>        <span class="cf">if</span> item <span class="op">==</span> <span class="ch">b' '</span> <span class="op">{</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>            <span class="cf">return</span> <span class="op">&amp;</span>s[<span class="dv">0</span><span class="op">..</span>i]<span class="op">;</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>        <span class="op">}</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>    <span class="op">}</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>    <span class="op">&amp;</span>s[<span class="op">..</span>]</span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled" title="三个规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+三个规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>rust的开发人员注意到, 每次都要写很多这种标注, 很麻烦, 于是总结了一些规则,让编译器自动处理</li>
+<li>概念说明
+<ul>
+<li>生命周期在函数的参数时,被称为输入生命周期</li>
+<li>生命周期在函数的返回值时,被称为输出生命周期</li>
+</ul></li>
+<li><span class="txt-highlight">三个规则</span>
+<ol type="1">
+<li>每个引用参数都有自己的生命周期参数</li>
+<li>如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数</li>
+<li>如果有多个输入生命周期参数, 且其中一个是&amp;self 或 &amp;mut self(是方法), 则self的生命周期会被赋予所有的输出生命周期参数</li>
+</ol></li>
+<li><span class="txt-highlight">如果编译器应用完这3个规则,还有无法确定生命周期,那么就报错</span></li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb21" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">// 我们写的代码</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">fn</span> first_word(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{}</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="co">// 1. 编译器应用第一条规则后</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">fn</span> first_word<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(s<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{}</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="co">// 2. 编译器应用第二条规则后</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="kw">fn</span> first_word<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(s<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{}</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="co">// 我们写的代码</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="kw">fn</span> longest(x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{}</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="co">// 1. 编译器应用第一条规则后</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="co">// 2. 编译器应用第二条规则,发现有多个输入参数,pass</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="co">// 3. 编译器应用第三条规则,发现是个函数,不是方法,pass</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a><span class="co">//  结果, 返回值的生命周期 还是不确定, 所以报错了</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>结构体方法生命周期</p>
+<div class="sourceCode" id="cb22" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">// 需要在 impl后面申明,这个生命周期是结构体类型的一部分</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">impl</span><span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> ImportantExcerpt<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>    <span class="kw">fn</span> level(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>        <span class="dv">3</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>    <span class="op">}</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="op">}</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="co">// 1. 编译器应用第一条规则, &amp;'a self, 所以我们不用标注了</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co">// 我们来看看方法中多个参数的情况,</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="kw">impl</span><span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> ImportantExcerpt<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>    <span class="kw">fn</span> announce_and_return_part(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> announcement<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a>        <span class="pp">println!</span>(<span class="st">"Attention please: {}"</span><span class="op">,</span> announcement)<span class="op">;</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a>        <span class="kw">self</span><span class="op">.</span>part</span>
+<span id="cb22-14"><a href="#cb22-14"></a>    <span class="op">}</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="op">}</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a><span class="co">// 1. 编译器应用第一条规则后,</span></span>
+<span id="cb22-17"><a href="#cb22-17"></a>    <span class="kw">fn</span> announce_and_return_part(<span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">self</span><span class="op">,</span> announcement<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">{}</span></span>
+<span id="cb22-18"><a href="#cb22-18"></a><span class="co">// 2. 编译器应用第三条规则后,</span></span>
+<span id="cb22-19"><a href="#cb22-19"></a>    <span class="kw">fn</span> announce_and_return_part<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(<span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">self</span><span class="op">,</span> announcement<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="drop-check" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="drop-check"><span class="header-section-number">4</span> drop check</h2>
+</section>
+<section id="subtyping1" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="subtyping1"><span class="header-section-number">5</span> subtyping<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>在前面章节中 我们看到下面这样的代码</li>
+<li>这里 其实明确表示 需要传递的参数的 生命周期是一样长的,然而在实际调用的时候, 传递的参数的生命周期不一样,为什么可以这样呢</li>
+<li>还有返回值的生命周期类型 和接收者的生命周期类型 也是不一样的, 为什么也可以成功赋值呢</li>
+<li>之前就说到子类可以转换为 父类,<span class="txt-highlight">rust 提供这样的机制,可以让子类生命周期(长生命周期)降级转换为父类生命周期(短生命周期), 所以编译不会报错</span></li>
+</ul>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb23" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">// x 生命周期长的情况, 就降级转换为 和 y一样的短的生命周期</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">fn</span> longest<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> y<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>    x</span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="op">}</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="kw">let</span> string1 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"long string is long"</span>)<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="kw">let</span> result<span class="op">;</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="op">{</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>        <span class="kw">let</span> string2 <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"xyz"</span>)<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>        result <span class="op">=</span> longest(string1<span class="op">.</span>as_str()<span class="op">,</span> string2<span class="op">.</span>as_str())<span class="op">;</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>    <span class="op">}</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>    <span class="pp">println!</span>(<span class="st">"The longest string is {}"</span><span class="op">,</span> result)<span class="op">;</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="variance-型变2" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="variance-型变2"><span class="header-section-number">6</span> Variance 型变<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Variance in ’a</th>
+<th>Variance in T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&amp;'a T</code></td>
+<td>covariant</td>
+<td>covariant</td>
+</tr>
+<tr class="even">
+<td><code>&amp;'a mut T</code></td>
+<td>covariant</td>
+<td>invariant</td>
+</tr>
+<tr class="odd">
+<td><code>Box&lt;T&gt;</code></td>
+<td></td>
+<td>covariant</td>
+</tr>
+<tr class="even">
+<td><code>Vec&lt;T&gt;</code></td>
+<td></td>
+<td>covariant</td>
+</tr>
+<tr class="odd">
+<td><code>*const T</code></td>
+<td></td>
+<td>covariant</td>
+</tr>
+<tr class="even">
+<td><code>*mut T</code></td>
+<td></td>
+<td>invariant</td>
+</tr>
+<tr class="odd">
+<td><code>[T] and [T; n]</code></td>
+<td></td>
+<td>covariant</td>
+</tr>
+<tr class="even">
+<td><code>fn() -&gt; T</code></td>
+<td></td>
+<td>covariant</td>
+</tr>
+<tr class="odd">
+<td><code>fn(T) -&gt; ()</code></td>
+<td></td>
+<td>contravariant</td>
+</tr>
+<tr class="even">
+<td><code>std::cell::UnsafeCell&lt;T&gt;</code></td>
+<td></td>
+<td>invariant</td>
+</tr>
+<tr class="odd">
+<td><code>std::cell::Cell&lt;T&gt;</code></td>
+<td></td>
+<td>invariant</td>
+</tr>
+<tr class="even">
+<td><code>dyn Trait&lt;T&gt; + 'a</code></td>
+<td>covariant</td>
+<td>invariant</td>
+</tr>
+</tbody>
+</table>
+<section id="covariant-协变" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="covariant-协变"><span class="header-section-number">6.1</span> covariant 协变</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>协变指的是在类型层次中, <span class="txt-highlight">子类型可以替代父类型</span></li>
+<li>当<code>T:U</code>(T是U的子类) 时, <code>F&lt;T&gt;</code> 如果也是 <code>F&lt;U&gt;</code>的子类,那么就称为 <code>F&lt;T&gt;</code> 对于参数<code>T</code> 是协变关系</li>
+<li>在rust中, 生命周期有这类机制</li>
+</ul>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">&amp;’a T</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><font color="red">有趣的例子(重要)</font></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">&amp;’a mut T</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Box&lt;T&gt;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">fn() -&gt; T</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="协变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+协变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>&amp;'a T</code> 对于 <code>'a</code> 是协变的, 当 <code>'a:'b</code> ,那么 <code>&amp;'a T</code> 也是 <code>&amp;'b T</code> 的子类</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>例子说明</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24" data-playground="rust" data-hl="1-2,13-14" data-filename="例子说明" data-code-line-numbers="1-2,13-14"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">// 要求 2个借用变量的生命周期一样长, 而实际上传递的参数的生命周期不一样</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co">// rust 会通过将长的生命周期的参数 降级为 短生命周期参数一样长的 生命周期</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">fn</span> debug<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(a<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">,</span> b<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="pp">println!</span>(<span class="st">"a = {a:?} b = {b:?}"</span>)<span class="op">;</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="op">}</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="kw">let</span> hello<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span> <span class="op">=</span> <span class="st">"hello"</span><span class="op">;</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>    <span class="op">{</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>        <span class="kw">let</span> world <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"world"</span>)<span class="op">;</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a>        <span class="co">// 'world 生命周期短于 'static</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a>        <span class="kw">let</span> world <span class="op">=</span> <span class="op">&amp;</span>world<span class="op">;</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a>        <span class="co">// hello 隐式的从 &amp;'static str 降级 或者说转换为 &amp;'world str</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a>        <span class="co">// &amp;'static str是  &amp;'world str 的子类, 所以可以执行成功</span></span>
+<span id="cb24-15"><a href="#cb24-15"></a>        debug(hello<span class="op">,</span> world)<span class="op">;</span></span>
+<span id="cb24-16"><a href="#cb24-16"></a>    <span class="op">}</span></span>
+<span id="cb24-17"><a href="#cb24-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="协变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+协变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>&amp;'a T</code> 对于 <code>T</code> 是协变的, 当 <code>T:U</code> ,那么 <code>&amp;'a T</code> 也是 <code>&amp;'a U</code> 的子类</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>例子说明</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25" data-playground="rust" data-filename="例子说明" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">// 这里T 是 &amp;'b str ,U 是 &amp;'a str, 根据前面的因为'b:'a 则 &amp;'b str 是&amp;'a str 的子类</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co">// 现在程序OK, 就说明了, &amp;'a &amp;'b str 是 &amp;'a &amp;'a str 的子类了</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="kw">fn</span> covariant_ref<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>    x</span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="op">}</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="kw">let</span> x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span> <span class="op">=</span> <span class="st">"hello"</span><span class="op">;</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>    <span class="kw">let</span> y<span class="op">:</span> <span class="op">&amp;&amp;</span><span class="dt">str</span> <span class="op">=</span> covariant_ref(<span class="op">&amp;</span>x)<span class="op">;</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> y)<span class="op">;</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="sourceCode cell-code" id="cb26" data-playground="rust" data-hl="1,5-10,14,20,24,29-30" data-code-line-numbers="1,5-10,14,20,24,29-30"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">// 根据前面结构体章节, 我们知道 该结构体对于T 和 'a 都是协变的</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="kw">struct</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>    ptr<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> T<span class="op">,</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="op">}</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="co">// 编译通过, 可能没想到 这个竟然能通过</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a><span class="co">// 看参数 我们知道T:'a 表示T 中引用必须至少和'a 一样长,</span></span>
+<span id="cb26-7"><a href="#cb26-7"></a><span class="co">// 传递的T = &amp;'b str, 这个时候T的生命周期是'b,</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a><span class="co">// 它必须活着至少&gt;= 'a ,则MyStruct&lt;'a, &amp;'b str&gt; 推断出  'b:'a</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a><span class="co">// 看返回值 MyStruct&lt;'b, &amp;'a str&gt;,T的生命周期是'a, 它至少和'b 一样长, 即推断出: 'a:'b</span></span>
+<span id="cb26-10"><a href="#cb26-10"></a><span class="co">// 现在'a:'b  'b:'a  , 其实 'a='b</span></span>
+<span id="cb26-11"><a href="#cb26-11"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-12"><a href="#cb26-12"></a>    v</span>
+<span id="cb26-13"><a href="#cb26-13"></a><span class="op">}</span></span>
+<span id="cb26-14"><a href="#cb26-14"></a><span class="co">// 看看下面4个测试 来间接说明我们test1 的判断</span></span>
+<span id="cb26-15"><a href="#cb26-15"></a><span class="co">// 这个符合我们的判断对于 参数'a 和T 都是协变的, 很容易理解的版本</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a><span class="kw">fn</span> test2<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'c</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'d</span><span class="op">,</span> <span class="ot">'c</span><span class="op">,</span> <span class="ot">'d</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'c</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'d</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-17"><a href="#cb26-17"></a>    v</span>
+<span id="cb26-18"><a href="#cb26-18"></a><span class="op">}</span></span>
+<span id="cb26-19"><a href="#cb26-19"></a></span>
+<span id="cb26-20"><a href="#cb26-20"></a><span class="co">// 很容易得出 我们需要 'b:'c 才能通过编译</span></span>
+<span id="cb26-21"><a href="#cb26-21"></a><span class="kw">fn</span> test3<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'c</span><span class="op">,</span> <span class="ot">'c</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'c</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-22"><a href="#cb26-22"></a>    v</span>
+<span id="cb26-23"><a href="#cb26-23"></a><span class="op">}</span></span>
+<span id="cb26-24"><a href="#cb26-24"></a><span class="co">// 现在我们看看这个,'b:'c 才能通过编译, 而这里我们用 'a:'c 也能通过, 间接说明 'b:'a</span></span>
+<span id="cb26-25"><a href="#cb26-25"></a><span class="kw">fn</span> test4<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'c</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'c</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'c</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-26"><a href="#cb26-26"></a>    v</span>
+<span id="cb26-27"><a href="#cb26-27"></a><span class="op">}</span></span>
+<span id="cb26-28"><a href="#cb26-28"></a><span class="co">// 通过编译的.</span></span>
+<span id="cb26-29"><a href="#cb26-29"></a><span class="co">// 参数推断出 'a:'b  , 返回值推断出 'b:'c</span></span>
+<span id="cb26-30"><a href="#cb26-30"></a><span class="co">// 刚好符合 我们的要求, 直接不用设置了</span></span>
+<span id="cb26-31"><a href="#cb26-31"></a><span class="kw">fn</span> test5<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'c</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'c</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-32"><a href="#cb26-32"></a>    v</span>
+<span id="cb26-33"><a href="#cb26-33"></a><span class="op">}</span></span>
+<span id="cb26-34"><a href="#cb26-34"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="协变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+协变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>&amp;'a mut T</code> 对于 <code>'a</code> 是协变的</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>例子说明</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27" data-playground="rust" data-filename="例子说明" data-hl="1" data-code-line-numbers="1"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1"></a><span class="co">// 'b: 'a  ,这里没有报错, 则表示 &amp;'b mut T 也是  &amp;'a mut T 的子类</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="kw">fn</span> invariant_mut<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">,</span> T<span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="kw">mut</span> T) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">mut</span> T <span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>    x</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="op">}</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="kw">let</span> <span class="kw">mut</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="kw">let</span> y <span class="op">=</span> invariant_mut(<span class="op">&amp;</span><span class="kw">mut</span> x)<span class="op">;</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>    <span class="op">*</span>y <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="协变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+协变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>Box&lt;T&gt;</code> 对于 <code>T</code> 是协变的</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>例子说明</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28" data-playground="rust" data-filename="例子说明" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">fn</span> set_box_ref<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;&amp;</span><span class="ot">'static</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">{</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>    <span class="kw">let</span> s<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="pp">println!</span>(<span class="st">"{s}"</span>)<span class="op">;</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="op">}</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="kw">let</span> hello<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;&amp;</span><span class="ot">'static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="dt">Box</span><span class="pp">::</span>new(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>    set_box_ref(hello)<span class="op">;</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="协变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+协变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>fn() -&gt; T</code> 对于 <code>T</code> 是协变的</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>例子说明</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29" data-playground="rust" data-filename="例子说明" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">fn</span> set_fn_ret<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(f<span class="op">:</span> <span class="kw">fn</span>() <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>    <span class="kw">let</span> _<span class="op">:</span> <span class="kw">fn</span>() <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">=</span> f<span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="op">}</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co">// 直接报错的, 说明不是逆变的</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="co">// fn set_fn_ret2&lt;'a&gt;(f: fn() -&gt; &amp;'a str) {</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="co">//     let _: fn() -&gt; &amp;'static str = f;</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="co">// }</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a>    <span class="kw">fn</span> test() <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>        <span class="st">"hello"</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>    <span class="op">}</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a>    set_fn_ret(test)<span class="op">;</span></span>
+<span id="cb29-13"><a href="#cb29-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contravariance-逆变" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="contravariance-逆变"><span class="header-section-number">6.2</span> Contravariance 逆变</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>逆变指的是在类型层次中, 父类型可以替代子类型</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">fn(T) -&gt; ()</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="逆变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+逆变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>fn(T) -&gt; ()</code> 对于 <code>T</code> 是逆变的</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb30" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">// OK , 说明是逆变的</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="kw">fn</span> set_fn_arg<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(f<span class="op">:</span> <span class="kw">fn</span>(<span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>)) <span class="op">{</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a>    <span class="kw">let</span> _<span class="op">:</span> <span class="kw">fn</span>(<span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span>) <span class="op">=</span> f<span class="op">;</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="op">}</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="co">// 报错了, 不是协变</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="kw">fn</span> set_fn_arg2<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>(f<span class="op">:</span> <span class="kw">fn</span>(<span class="op">&amp;</span><span class="ot">'static</span> <span class="dt">str</span>)) <span class="op">{</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a>    <span class="kw">let</span> _<span class="op">:</span> <span class="kw">fn</span>(<span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span>) <span class="op">=</span> f<span class="op">;</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="op">}</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="invariant-不变" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="invariant-不变"><span class="header-section-number">6.3</span> invariant 不变</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>不是协变也不是逆变的情况, 就是不变</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">&amp;’a mut T</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="不变规则">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+不变规则
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>&amp;'a mut T</code> 对于 <code>T</code> 是不变的, 这意味着你不能将 <code>&amp;'a mut T</code> 隐式地转换成 <code>&amp;'a mut U</code> 即使 <code>T</code> 是 <code>U</code> 的子类型或者父类型</li>
+<li>和 协变规则2 比较一下</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>例子说明</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31" data-playground="rust" data-filename="例子说明" data-hl="1-4" data-code-line-numbers="1-4"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">// 前面已经验证 &amp;'b str 是&amp;'a str 的子类</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="co">// T 就是 &amp;'b str ,U 是 &amp;'a str</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co">// 然而编译报错, 说明了&amp;'a mut &amp;'b str 不是 &amp;'a mut &amp;'a str 的子类</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="co">// vscode 提示的错误 ,可以了解到 &amp;'a mut T 对于T 是不变的</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="kw">fn</span> covariant_ref<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">mut</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="kw">mut</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span> <span class="op">{</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a>    x</span>
+<span id="cb31-7"><a href="#cb31-7"></a><span class="op">}</span></span>
+<span id="cb31-8"><a href="#cb31-8"></a></span>
+<span id="cb31-9"><a href="#cb31-9"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a>    <span class="kw">let</span> <span class="kw">mut</span> x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">=</span> <span class="st">"hello"</span><span class="op">;</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>    <span class="kw">let</span> y<span class="op">:</span> <span class="op">&amp;&amp;</span><span class="dt">str</span> <span class="op">=</span> covariant_ref(<span class="op">&amp;</span><span class="kw">mut</span> x)<span class="op">;</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> y)<span class="op">;</span></span>
+<span id="cb31-13"><a href="#cb31-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="自定义类型的情况" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="自定义类型的情况"><span class="header-section-number">6.4</span> 自定义类型的情况</h3>
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="看下面代码">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+看下面代码
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>如果所有使用泛型A 的成员 对A 都是 协变的, 那么 MyType 对于A 就是 协变的</li>
+<li>如果所有使用泛型A 的成员 对A 都是 逆变的, 那么 MyType 对于A 就是 逆变的</li>
+<li>否则就是不变的</li>
+</ol>
+</div>
+</div>
+<div class="sourceCode" id="cb32" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">use</span> <span class="pp">std::cell::</span>Cell<span class="op">;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="kw">struct</span> MyType<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> A<span class="op">:</span> <span class="ot">'a</span><span class="op">,</span> B<span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> C<span class="op">,</span> D<span class="op">,</span> E<span class="op">,</span> F<span class="op">,</span> G<span class="op">,</span> H<span class="op">,</span> In<span class="op">,</span> Out<span class="op">,</span> Mixed<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>    a<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> A<span class="op">,</span>     <span class="co">// covariant over 'a and A</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>    b<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="kw">mut</span> B<span class="op">,</span> <span class="co">// covariant over 'b and invariant over B</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a></span>
+<span id="cb32-6"><a href="#cb32-6"></a>    c<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> C<span class="op">,</span>  <span class="co">// covariant over C</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a>    d<span class="op">:</span> <span class="op">*</span><span class="kw">mut</span> D<span class="op">,</span>    <span class="co">// invariant over D</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a></span>
+<span id="cb32-9"><a href="#cb32-9"></a>    e<span class="op">:</span> E<span class="op">,</span>         <span class="co">// covariant over E</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a>    f<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>F<span class="op">&gt;,</span>    <span class="co">// covariant over F</span></span>
+<span id="cb32-11"><a href="#cb32-11"></a>    g<span class="op">:</span> Cell<span class="op">&lt;</span>G<span class="op">&gt;,</span>   <span class="co">// invariant over G</span></span>
+<span id="cb32-12"><a href="#cb32-12"></a></span>
+<span id="cb32-13"><a href="#cb32-13"></a>    h1<span class="op">:</span> H<span class="op">,</span>        <span class="co">// would also be covariant over H except...</span></span>
+<span id="cb32-14"><a href="#cb32-14"></a>    h2<span class="op">:</span> Cell<span class="op">&lt;</span>H<span class="op">&gt;,</span>  <span class="co">// invariant over H, because invariance wins all conflicts</span></span>
+<span id="cb32-15"><a href="#cb32-15"></a></span>
+<span id="cb32-16"><a href="#cb32-16"></a>    i<span class="op">:</span> <span class="kw">fn</span>(In) <span class="op">-&gt;</span> Out<span class="op">,</span>       <span class="co">// contravariant over In, covariant over Out</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a></span>
+<span id="cb32-18"><a href="#cb32-18"></a>    k1<span class="op">:</span> <span class="kw">fn</span>(Mixed) <span class="op">-&gt;</span> <span class="dt">usize</span><span class="op">,</span> <span class="co">// would be contravariant over Mixed except..</span></span>
+<span id="cb32-19"><a href="#cb32-19"></a>    k2<span class="op">:</span> Mixed<span class="op">,</span>              <span class="co">// invariant over Mixed, because invariance wins all conflicts</span></span>
+<span id="cb32-20"><a href="#cb32-20"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-result">
+<div class="has_sbl_source_code callout callout-style-default callout-important callout-titled" title="举例 a: &amp;'a A">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+举例 a: &amp;’a A
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>注意 <code>&amp;'b Cat&lt;'c, T&gt;</code> 对于 <code>'b</code> 是协变的(将 <code>Cat&lt;'c, T&gt;</code> 看成一个整体 就是前面说过的 <code>&amp;'a T</code> 对于 <code>'a</code> 是协变的 )</li>
+<li><code>Cat&lt;'c, T&gt;</code> 因为成员对于 <code>'c</code> 是协变的, 所以 <code>Cat&lt;'c, T&gt;</code> 对于 <code>'c</code> 也是协变的</li>
+</ol>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>运行OK</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33" data-playground="rust" data-filename="运行OK" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">fn</span> covariant_mut<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">,</span> <span class="ot">'c</span><span class="op">:</span> <span class="ot">'d</span><span class="op">,</span> <span class="ot">'d</span><span class="op">,</span> T<span class="op">&gt;</span>(x<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'b</span> Cat<span class="op">&lt;</span><span class="ot">'c</span><span class="op">,</span> T<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="op">&amp;</span><span class="ot">'a</span> Cat<span class="op">&lt;</span><span class="ot">'d</span><span class="op">,</span> T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>    x</span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="op">}</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="kw">struct</span> Cat<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>    name<span class="op">:</span> <span class="op">&amp;</span><span class="ot">'a</span> T<span class="op">,</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a><span class="op">}</span></span>
+<span id="cb33-8"><a href="#cb33-8"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="phantomdata-类型3" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="phantomdata-类型3"><span class="header-section-number">7</span> PhantomData 类型<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></h2>
+<blockquote class="blockquote">
+<p>phantom: 幽灵, 无形的东西, 假象,虚构的事物 PhantomData 翻译为 幽灵数据 好了…</p>
+</blockquote>
+<section id="为什么需要4" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="为什么需要4"><span class="header-section-number">7.1</span> 为什么需要<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h3>
+<div class="code-result">
+<div class="sourceCode" id="cb34" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">struct</span> Iter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span><span class="co">// 没有使用到生命周期参数 'a</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>    ptr<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> T<span class="op">,</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>    end<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> T<span class="op">,</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="op">}</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="kw">struct</span> Dog<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span> <span class="co">// 没有使用到类型参数 T</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>    data<span class="op">:</span> <span class="dt">i32</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled" title="分析">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+分析
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>在<a href="#自定义类型的情况">自定义类型的情况</a>中,我们提到自定义类型对泛型参数A(生命周期也是一种泛型参数)的型变关系需要通过成员对A的型变关系来推断, 但是上面代码<code>struct Iter&lt;'a,T:'a&gt;</code>申明了生命周期参数, 但是实际光有申明又没法使用它(裸指针本身不带生命周期参数), 这样导致无法知道该类型的型变关系, 因此编译器会报错</li>
+<li><code>struct Dog&lt;T&gt;</code> 申明了泛型<code>T</code> 但是实际里面没有使用它, <code>Dog&lt;i32&gt;</code>和<code>Dog&lt;i64&gt;</code>就没有什么区别, 那么编译器会推断他们是可以互换的,这就很不合理</li>
+<li>PhantomData 类型可以解决这些问题,<code>std::marker::PhantomData</code>是一个特殊的标记类型, 不占用任何内存空间 ZST</li>
+<li>作用
+<ol type="1">
+<li>向编译器提供对静态分析有用的信息, 比如正确处理 泛型参数(T和生命周期)的 型变</li>
+<li>它用于在类型系统中表示和某类型有关, 但实际上并不存储该类型的值, 可以消除未使用类型参数的警告</li>
+<li>控制 Variance (协变,逆变还是不变)</li>
+</ol></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="消除未使用类型参数的错误" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="消除未使用类型参数的错误"><span class="header-section-number">7.2</span> 消除未使用类型参数的错误</h3>
+<div class="sourceCode" id="cb35" data-hl="6" data-code-line-numbers="6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">use</span> <span class="pp">std::marker::</span>PhantomData<span class="op">;</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="kw">struct</span> Dog<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>    data<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="co">// 这个字段不会增加结构体的内存占用</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="co">// 表示尽管结构体没有使用泛型T, 但是这里就认为它使用了T</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="co">// 像一个幽灵一样, 我们假装有这个一个字段 使用了 T , 就好比一个字段名 _marker:T 这样</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="co">// 只是表明该结构体 和 T 有关</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;</span>T<span class="op">&gt;,</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="控制variance" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="控制variance"><span class="header-section-number">7.3</span> 控制Variance</h3>
+<section id="控制-t" class="level4" data-number="7.3.1">
+<h4 data-number="7.3.1" class="anchored" data-anchor-id="控制-t"><span class="header-section-number">7.3.1</span> 控制 T</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Variance in T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PhantomData&lt;T&gt;</code></td>
+<td>covariant</td>
+</tr>
+<tr class="even">
+<td><code>PhantomData&lt;fn(T)&gt;</code></td>
+<td>contravariant</td>
+</tr>
+<tr class="odd">
+<td><code>PhantomData&lt;Cell&lt;T&gt;&gt;</code></td>
+<td>invariant</td>
+</tr>
+</tbody>
+</table>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">PhantomData&lt;T&gt;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">PhantomData&lt;fn(T)&gt;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">PhantomData&lt;Cell&lt;T&gt;&gt;</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>使整个结构体对于 T 是协变的</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb36" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">struct</span> Dog<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>    data<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;</span>T<span class="op">&gt;,</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="op">}</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a></span>
+<span id="cb36-6"><a href="#cb36-6"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">&gt;</span>(v<span class="op">:</span> Dog<span class="op">&lt;&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> Dog<span class="op">&lt;&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb36-7"><a href="#cb36-7"></a>    v</span>
+<span id="cb36-8"><a href="#cb36-8"></a><span class="op">}</span></span>
+<span id="cb36-9"><a href="#cb36-9"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>使整个结构体对于 T 是逆变的</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb37" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">struct</span> MyStruct<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>    data<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;</span><span class="kw">fn</span>(T)<span class="op">&gt;,</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="op">}</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a></span>
+<span id="cb37-6"><a href="#cb37-6"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a>    v</span>
+<span id="cb37-8"><a href="#cb37-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>使整个结构体对于 T 是不变的</li>
+<li>根据前面型变表格, 你可以使用其他比如<code>PhantomData&lt;*mut T&gt;</code></li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb38" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">struct</span> MyStruct<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>    data<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;</span><span class="pp">std::cell::</span>Cell<span class="op">&lt;</span>T<span class="op">&gt;&gt;,</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a><span class="op">}</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a></span>
+<span id="cb38-6"><a href="#cb38-6"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb38-7"><a href="#cb38-7"></a>    v</span>
+<span id="cb38-8"><a href="#cb38-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="控制-a" class="level4" data-number="7.3.2">
+<h4 data-number="7.3.2" class="anchored" data-anchor-id="控制-a"><span class="header-section-number">7.3.2</span> 控制 ’a</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Variance in ’a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PhantomData&lt;&amp;'a ()&gt;</code></td>
+<td>covariant</td>
+</tr>
+<tr class="even">
+<td><code>PhantomData&lt;fn(&amp;'a ())&gt;</code></td>
+<td>contravariant</td>
+</tr>
+<tr class="odd">
+<td><code>PhantomData&lt;Cell&lt;&amp;'a ()&gt;&gt;</code></td>
+<td>invariant</td>
+</tr>
+</tbody>
+</table>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">PhantomData&lt;&amp;’a ()&gt;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">PhantomData&lt;fn(&amp;’a ())&gt;</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">PhantomData&lt;Cell&lt;&amp;’a ()&gt;&gt;</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>使整个结构体对于 ’a 是协变的</li>
+</ul>
+</div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PhantomData&lt;&amp;'a ()&gt;</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39" data-filename="PhantomData<&amp;'a ()>" data-playground="rust" data-hl="5-9" data-code-line-numbers="5-9"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">use</span> <span class="pp">std::marker::</span>PhantomData<span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="kw">struct</span> MyIter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a>    ptr<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> T<span class="op">,</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>    end<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> T<span class="op">,</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>    <span class="co">// 我们知道结构体对于'a 的型变关系 取决于 里面的成员对于'a 的型变关系</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a>    <span class="co">// 本来结构体没有使用'a , 现在我们假装有一个成员 是 &amp;'a (), 比如假装一个成员是 name: &amp;'a ()</span></span>
+<span id="cb39-8"><a href="#cb39-8"></a>    <span class="co">// &amp;'a () 对'a 是协变的, 只要该成员使用了'a ,那么整个结构体对于'a 就是协变的了 (因为只有这个成员使用了'a)</span></span>
+<span id="cb39-9"><a href="#cb39-9"></a>    <span class="co">// 而对于T 来说, 看ptr 和end 成员就知道了, 他们对T 是协变的, 所以结构体对于T 也是协变的了</span></span>
+<span id="cb39-10"><a href="#cb39-10"></a>    <span class="co">// 可能有人会说 为什么不用 PhantomData&lt;&amp;'a T&gt; , 因为结构体对于T 的型变规则已经决定了, 由成员ptr 和end 确定</span></span>
+<span id="cb39-11"><a href="#cb39-11"></a>    <span class="co">// 所以你没有这个意图去写成 () , 等下后面的例子我们 改成 mut T 就能更理解了.</span></span>
+<span id="cb39-12"><a href="#cb39-12"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;&amp;</span><span class="ot">'a</span> ()<span class="op">&gt;,</span></span>
+<span id="cb39-13"><a href="#cb39-13"></a><span class="op">}</span></span>
+<span id="cb39-14"><a href="#cb39-14"></a><span class="co">// 编译ok</span></span>
+<span id="cb39-15"><a href="#cb39-15"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb39-16"><a href="#cb39-16"></a>    v</span>
+<span id="cb39-17"><a href="#cb39-17"></a><span class="op">}</span></span>
+<span id="cb39-18"><a href="#cb39-18"></a><span class="co">// 编译ok了,  T这个时候=&amp;'a str  返回值的T 是&amp;'c str</span></span>
+<span id="cb39-19"><a href="#cb39-19"></a><span class="co">//  说明了  MyIter 对于T 是协变</span></span>
+<span id="cb39-20"><a href="#cb39-20"></a><span class="kw">fn</span> test2<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'c</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'c</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'c</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb39-21"><a href="#cb39-21"></a>    v</span>
+<span id="cb39-22"><a href="#cb39-22"></a><span class="op">}</span></span>
+<span id="cb39-23"><a href="#cb39-23"></a></span>
+<span id="cb39-24"><a href="#cb39-24"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PhantomData&lt;&amp;'a mut T&gt;</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40" data-filename="PhantomData<&amp;'a mut T>" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">use</span> <span class="pp">std::marker::</span>PhantomData<span class="op">;</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="kw">struct</span> MyIter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a>    ptr<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> T<span class="op">,</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a>    end<span class="op">:</span> <span class="op">*</span><span class="kw">const</span> T<span class="op">,</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a>    <span class="co">// 注意这里 T 实际是不可能这样写的, 因为关于结构体对T的协变规则编译器已经能得出了, 你是没有意图去这样做的</span></span>
+<span id="cb40-6"><a href="#cb40-6"></a>    <span class="co">// 相当于假装这里有个成员 , 它的类型是 &amp;'a mut T</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a>    <span class="co">// &amp;mut T对T 是不可变的, 那么现在整个结构体对于T 从原来的协变 变成 不变了.</span></span>
+<span id="cb40-8"><a href="#cb40-8"></a>    <span class="co">// 这改变了 原本对T 的型变情况(*const T 对T 是协变的), 是完全没有必要的, 没有这个意图的.</span></span>
+<span id="cb40-9"><a href="#cb40-9"></a>    <span class="co">// 所以我们对这种情况使用 PhantomData&lt;&amp;'a ()&gt; 就可以了.</span></span>
+<span id="cb40-10"><a href="#cb40-10"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;&amp;</span><span class="ot">'a</span> <span class="kw">mut</span> T<span class="op">&gt;,</span></span>
+<span id="cb40-11"><a href="#cb40-11"></a><span class="op">}</span></span>
+<span id="cb40-12"><a href="#cb40-12"></a><span class="co">// 编译ok ,'a 是协变的</span></span>
+<span id="cb40-13"><a href="#cb40-13"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb40-14"><a href="#cb40-14"></a>    v</span>
+<span id="cb40-15"><a href="#cb40-15"></a><span class="op">}</span></span>
+<span id="cb40-16"><a href="#cb40-16"></a><span class="co">// 'a:'c , 'c:'a 说明需要'a='c, T 是不变的</span></span>
+<span id="cb40-17"><a href="#cb40-17"></a><span class="kw">fn</span> test2<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'c</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'c</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'c</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb40-18"><a href="#cb40-18"></a>    v</span>
+<span id="cb40-19"><a href="#cb40-19"></a><span class="op">}</span></span>
+<span id="cb40-20"><a href="#cb40-20"></a><span class="co">// 编译ok</span></span>
+<span id="cb40-21"><a href="#cb40-21"></a><span class="co">// 参数推断出'a:'b , 返回值推断出'b:'c</span></span>
+<span id="cb40-22"><a href="#cb40-22"></a><span class="co">// 因为我们需要  'a='b , 设置 'b:'a 就能编译通过.</span></span>
+<span id="cb40-23"><a href="#cb40-23"></a><span class="co">// 这里我们设置 'c:'a  能得出 'a='b='c了, 也是ok的</span></span>
+<span id="cb40-24"><a href="#cb40-24"></a><span class="co">// 对于T 是不变的</span></span>
+<span id="cb40-25"><a href="#cb40-25"></a><span class="kw">fn</span> test3<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'c</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'c</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb40-26"><a href="#cb40-26"></a>    v</span>
+<span id="cb40-27"><a href="#cb40-27"></a><span class="op">}</span></span>
+<span id="cb40-28"><a href="#cb40-28"></a></span>
+<span id="cb40-29"><a href="#cb40-29"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>PhantomData&lt;&amp;'a T&gt;</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41" data-filename="PhantomData<&amp;'a T>" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">use</span> <span class="pp">std::marker::</span>PhantomData<span class="op">;</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="kw">struct</span> MyIter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>    ptr<span class="op">:</span> <span class="op">*</span><span class="kw">mut</span> T<span class="op">,</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>    end<span class="op">:</span> <span class="op">*</span><span class="kw">mut</span> T<span class="op">,</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="co">// 因为自定义类型 对T 的型变要看成员对T的型变</span></span>
+<span id="cb41-7"><a href="#cb41-7"></a>    <span class="co">// 所以这里 PhantomData&lt;&amp;'a T&gt;,设置上对T 是协变的</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a>    <span class="co">// 但是实际上 是 不变的, 因为 成员类型*mut T对T 是不变的</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;&amp;</span><span class="ot">'a</span> T<span class="op">&gt;,</span></span>
+<span id="cb41-10"><a href="#cb41-10"></a><span class="op">}</span></span>
+<span id="cb41-11"><a href="#cb41-11"></a><span class="co">// 编译ok</span></span>
+<span id="cb41-12"><a href="#cb41-12"></a><span class="kw">fn</span> test<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">,</span> T<span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> T<span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb41-13"><a href="#cb41-13"></a>    v</span>
+<span id="cb41-14"><a href="#cb41-14"></a><span class="op">}</span></span>
+<span id="cb41-15"><a href="#cb41-15"></a><span class="co">// 编译错误, 因为MyIter 对于T 是不变的</span></span>
+<span id="cb41-16"><a href="#cb41-16"></a><span class="kw">fn</span> test2<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">&gt;</span>(v<span class="op">:</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'a</span> <span class="dt">str</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyIter<span class="op">&lt;</span><span class="ot">'b</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">'b</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb41-17"><a href="#cb41-17"></a>    v</span>
+<span id="cb41-18"><a href="#cb41-18"></a><span class="op">}</span></span>
+<span id="cb41-19"><a href="#cb41-19"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>使整个结构体对于 ’a 是逆变的</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb42" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb42-1"><a href="#cb42-1"></a><span class="kw">use</span> <span class="pp">std::marker::</span>PhantomData<span class="op">;</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="kw">struct</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>    data<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;</span><span class="kw">fn</span>(<span class="op">&amp;</span><span class="ot">'a</span> ())<span class="op">&gt;,</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a><span class="op">}</span></span>
+<span id="cb42-6"><a href="#cb42-6"></a></span>
+<span id="cb42-7"><a href="#cb42-7"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'b</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb42-8"><a href="#cb42-8"></a>    v</span>
+<span id="cb42-9"><a href="#cb42-9"></a><span class="op">}</span></span>
+<span id="cb42-10"><a href="#cb42-10"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>使整个结构体对于 ’a 是不变的</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb43" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">use</span> <span class="pp">std::marker::</span>PhantomData<span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="kw">struct</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>    data<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>    _marker<span class="op">:</span> PhantomData<span class="op">&lt;</span><span class="pp">std::cell::</span>Cell<span class="op">&lt;&amp;</span><span class="ot">'a</span> ()<span class="op">&gt;&gt;,</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="op">}</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="kw">fn</span> test1<span class="op">&lt;</span><span class="ot">'a</span><span class="op">:</span> <span class="ot">'b</span><span class="op">,</span> <span class="ot">'b</span><span class="op">:</span> <span class="ot">'a</span><span class="op">&gt;</span>(v<span class="op">:</span> MyStruct<span class="op">&lt;</span><span class="ot">'a</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> MyStruct<span class="op">&lt;</span><span class="ot">'b</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>    v</span>
+<span id="cb43-9"><a href="#cb43-9"></a><span class="op">}</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a><span class="kw">fn</span> main() <span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://doc.rust-lang.org/nomicon/subtyping.html#subtyping">subtyping</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://doc.rust-lang.org/nomicon/subtyping.html#variance">variance</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://doc.rust-lang.org/nomicon/phantom-data.html">phantom-data</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://rust-lang.github.io/rfcs/0738-variance.html#the-corner-case-unused-parameters-and-parameters-that-are-only-used-unsafely">rust rfcs#0738</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../../docs/programming/rust/basic/trait.html" class="pagination-link" aria-label="trait">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">trait</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../docs/programming/rust/basic/error.html" class="pagination-link" aria-label="错误处理">
+        <span class="nav-page-text">错误处理</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+<script src="../../../../site_libs/quarto-contrib/rust-playground-0.1.0/rust-playground.js"></script>
+</body></html>
