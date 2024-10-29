@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>references – 斯巴拉稀</title>
+<title>rust – 斯巴拉稀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,47 +20,30 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -86,7 +69,65 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-rust-links .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-links',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-links"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-rust-links'] = new List('listing-rust-links', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="../js/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,8 +138,8 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./favicon.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -108,15 +149,15 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./docs/basic/env.html"> 
+    <a class="nav-link" href="../docs/basic/env.html"> 
 <span class="menu-text">核心基础</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/advanced/01.mem.html"> 
+    <a class="nav-link" href="../docs/advanced/01.mem.html"> 
 <span class="menu-text">进阶</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/pkg/utils.html"> 
+    <a class="nav-link" href="../docs/pkg/utils.html"> 
 <span class="menu-text">库</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -125,13 +166,13 @@ div.csl-indent {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
         <li>
-    <a class="dropdown-item" href="./docs/hands-on/compiler/index.html">
+    <a class="dropdown-item" href="../docs/hands-on/compiler/index.html">
  <span class="dropdown-text">编译器doing</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./docs/blog/index.html"> 
+    <a class="nav-link" href="../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -146,31 +187,104 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">TOC</h2>
-   
-  <ul>
-  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<section id="references" class="level1 unnumbered">
-<h1 class="unnumbered">References</h1>
-<div id="refs" role="list">
-
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">rust</h1>
+<p class="subtitle lead">正在整理中…</p>
 </div>
 
 
-</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-custom" id="listing-rust-links">
+<div class="link-cards">
+<div class="card">
+<div class="card-body">
+<section id="基础" class="level4 unnumbered card-title">
+<h4 class="unnumbered anchored" data-anchor-id="基础">基础</h4>
+</section>
+<ul>
+<li><a href="../docs/basic/env.html">环境准备</a></li>
+<li><a href="../docs/basic/quick-start.html">快速入门</a></li>
+<li><a href="../docs/basic/expression.html">语句和表达式</a></li>
+<li><a href="../docs/basic/ownership.html">所有权与借用</a></li>
+<li><a href="../docs/basic/struct.html">结构体</a></li>
+<li><a href="../docs/basic/enum.html">枚举enum</a></li>
+<li><a href="../docs/basic/pattern-match.html">模式匹配</a></li>
+<li><a href="../docs/basic/collection.html">集合</a></li>
+<li><a href="../docs/basic/generic.html">泛型</a></li>
+<li><a href="../docs/basic/trait.html">trait</a></li>
+<li><a href="../docs/basic/lifetime.html">生命周期</a></li>
+<li><a href="../docs/basic/error.html">错误处理</a></li>
+<li><a href="../docs/basic/closure.html">闭包</a></li>
+<li><a href="../docs/basic/iterator.html">迭代器</a></li>
+<li><a href="../docs/basic/crate-mod.html">crate与模块</a></li>
+<li><a href="../docs/basic/cargo.html">cargo</a></li>
+<li><a href="../docs/basic/unsafe.html">unsafe</a></li>
+<li><a href="../docs/basic/ptr.html">智能指针</a></li>
+<li><a href="../docs/basic/macro.html">宏</a></li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<section id="并发与异步" class="level4 unnumbered card-title">
+<h4 class="unnumbered anchored" data-anchor-id="并发与异步">并发与异步</h4>
+</section>
+<ul>
+<li><a href="../docs/async/generator.html">生成器</a></li>
+<li><a href="../docs/async/concurrency.html">并发</a></li>
+<li><a href="../docs/advanced/01.mem.html">内存</a></li>
+<li><a href="../docs/advanced/02.type.html">奇异的类型</a></li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<section id="库" class="level4 unnumbered card-title">
+<h4 class="unnumbered anchored" data-anchor-id="库">库</h4>
+</section>
+<ul>
+<li><a href="../docs/pkg/utils.html">常用库</a></li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<section id="实战" class="level4 unnumbered card-title">
+<h4 class="unnumbered anchored" data-anchor-id="实战">实战</h4>
+</section>
+<ul>
+<li><a href="../docs/hands-on/compiler/index.html">编译器</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -740,10 +854,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
-</script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
 </div> <!-- /content -->
 
 

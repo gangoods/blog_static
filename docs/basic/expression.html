@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Blog – 斯巴拉稀</title>
+<title>rust 语句和表达式 – 斯巴拉稀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,9 +64,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../docs/basic/ownership.html" rel="next">
+<link href="../../docs/basic/quick-start.html" rel="prev">
 <link href="../../favicon.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -44,6 +78,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/rust-playground-0.1.0/run-rust-code-button.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,78 +105,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-image','listing-categories','listing-description','listing-word-count','listing-reading-time','listing-date','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: var(--title-block-banner-index-color);
-      }
-</style>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="../../js/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -155,7 +127,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/basic/env.html"> 
+    <a class="nav-link active" href="../../docs/basic/env.html" aria-current="page"> 
 <span class="menu-text">核心基础</span></a>
   </li>  
   <li class="nav-item">
@@ -178,7 +150,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../../docs/blog/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -188,116 +160,355 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">rust 语句和表达式</h1>
+        </a>     
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-            <p class="subtitle lead">关于实际工作或者学习中遇到的bug或其他问题都写在这里!</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基础篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">环境准备</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/quick-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">快速入门</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/expression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">语句和表达式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">所有权与借用</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">结构体</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/enum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">枚举</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/pattern-match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">模式匹配</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">集合</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/generic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">泛型</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/trait.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">trait</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/lifetime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生命周期</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">错误处理</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/closure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">闭包</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/iterator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">迭代器</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/crate-mod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">crate与模块</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/cargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cargo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/unsafe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">unsafe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/ptr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">智能指针</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/basic/macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">宏</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="test">test <span class="quarto-category-count">(1)</span></div></div></div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-
-
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="asc">
-          Modified - Oldest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="desc">
-          Modified - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">TOC</h2>
+   
+  <ul>
+  <li><a href="#概念" id="toc-概念" class="nav-link active" data-scroll-target="#概念"><span class="header-section-number">1</span> 概念</a></li>
+  <li><a href="#代码块表达式" id="toc-代码块表达式" class="nav-link" data-scroll-target="#代码块表达式"><span class="header-section-number">2</span> {} 代码块表达式</a></li>
+  <li><a href="#赋值表达式" id="toc-赋值表达式" class="nav-link" data-scroll-target="#赋值表达式"><span class="header-section-number">3</span> 赋值表达式</a></li>
+  <li><a href="#if-else-表达式" id="toc-if-else-表达式" class="nav-link" data-scroll-target="#if-else-表达式"><span class="header-section-number">4</span> if else 表达式</a></li>
+  </ul>
+</nav>
     </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+    <div class="quarto-title">
+    <h1 class="title d-none d-lg-block">rust 语句和表达式</h1>
+      </div>
+  
+  <div class="quarto-title-meta">
+            <div>
+      <div class="quarto-title-meta-heading">Created</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024-09-12 17:30:16</p>
+      </div>
+    </div>
+            <div>
+      <div class="quarto-title-meta-heading">Updated</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024-10-29 12:40:30</p>
+      </div>
+    </div>
+      </div>
+</header>
+
+
+<section id="概念" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="概念"><span class="header-section-number">1</span> 概念</h2>
+<img src="../../.diagram/073a7efd932497e54f519ce2253401df.svg" class="img-fluid" alt="Diagram">
+<div class="callout callout-style-default callout-tip callout-titled" title="知识点回顾">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="test" data-listing-date-sort="1722737483000" data-listing-file-modified-sort="1727754996700" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
-<div class="thumbnail">
-<p><a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external"></a></p><a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">hello</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('test'); return false;">
-test
-</div>
-</div>
-<div class="listing-description">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">world </a>
-</div>
-</div>
-<div class="metadata">
-<a href="../../docs/blog/posts/2024-08-04-hello.html" class="no-external">
-<div class="listing-date">
-2024-08-04 10:11:23
-</div>
-<div class="listing-reading-time">
-1 min
-</div>
-<div class="metadata-value listing-word-count">
-4 words
-</div>
-<div class="metadata-value listing-file-modified">
-2024-10-01 11:56:36
-</div>
-</a>
+<div class="callout-title-container flex-fill">
+知识点回顾
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>() 既是一种类型:单元类型, 也是一个值</p>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
 </div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+<section id="代码块表达式" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="代码块表达式"><span class="header-section-number">2</span> {} 代码块表达式</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>{}代码块表达式的值</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1" data-filename="{}代码块表达式的值" data-playground="rust" data-hl="2-4" data-code-line-numbers="2-4"><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">// {} 代码块 是有值的, 如果最后一个表达式后面有分号，那么整个代码块的值是 ()</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="co">// 所以我们可以将它赋值给变量, 注意最后 }后的分号 是表明这一整个是一个语句</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="co">// 可以说这个时候, {} 将语句变成了表达式,它的返回值是()</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="kw">let</span> tmp <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="op">};</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="pp">println!</span>(<span class="st">"a的值: {:?}"</span><span class="op">,</span> a)<span class="op">;</span> <span class="co">// ()</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="kw">let</span> tmp <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="dv">5</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="op">};</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="pp">println!</span>(<span class="st">"a的值: {:?}"</span><span class="op">,</span> a)<span class="op">;</span> <span class="co">// 5</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>函数体</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-hl="1-2" data-filename="函数体" data-code-line-numbers="1-2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">// 函数的函数体 {} 这个就可以理解为 {}表达式</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">// 所以现在可以理解能这些写</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">fn</span> test() <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    b</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>单独的{} 不带分号的情况</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="单独的{} 不带分号的情况" data-code-line-numbers=""><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fn</span> test() <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="kw">let</span> a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>        <span class="co">// 如果写了什么作为返回值, 就只能写 ()</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="co">// 当然我们不可能写类似这样的代码</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="co">// 因为这个{} 没有接收者</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>        ()</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="op">}</span>  <span class="co">//注意这里没有 ; </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>    b</span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>单独的{}; 带分号的情况</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4" data-playground="rust" data-filename="单独的{}; 带分号的情况" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">fn</span> test() <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>        <span class="kw">let</span> a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>        <span class="st">"aa"</span>  <span class="co">// 可以返回任何类型的值</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="op">};</span>  <span class="co">// 当你加了 ; 后, 这{}; 是一个语句,</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>        <span class="co">// 你可以理解为 将{} 表达式的值赋值给一个临时变量,</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>        <span class="co">// 所以{} 里面可以返回任何值</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    b</span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="op">}</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">fn</span> main()<span class="op">{}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="赋值表达式" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="赋值表达式"><span class="header-section-number">3</span> 赋值表达式</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>赋值表达式的值</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" data-playground="rust" data-filename="赋值表达式的值" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">let</span> y<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="co">// 赋值表达式 y=2, 我们知道表达式是有值的, 它的返回值是()</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="co">// let b = (y = 2); (y=2) 的括号可以省略,所以如下写法</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="kw">let</span> b <span class="op">=</span> y <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="pp">println!</span>(<span class="st">"y的值: {}"</span><span class="op">,</span> y)<span class="op">;</span> <span class="co">// 2</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="pp">println!</span>(<span class="st">"b的值: {:?}"</span><span class="op">,</span> b)<span class="op">;</span> <span class="co">// ()</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="co">// 直接报错, 右边是个语句,没有返回值</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="co">// let a=(let z=2;);</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>if中使用赋值表达式</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6" data-filename="if中使用赋值表达式" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">fn</span> main()<span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">let</span> z<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="co">// z=3 的返回值是() , 而 我们需要是的 bool类型</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="co">// 所以报错了.</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="cf">if</span> z <span class="op">=</span> <span class="dv">3</span> <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="pp">println!</span>(<span class="st">"hello"</span>)<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="op">}</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="if-else-表达式" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="if-else-表达式"><span class="header-section-number">4</span> if else 表达式</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>当成三元运算, 实际上这种方式更加的易于理解,可读性好</li>
+<li>三元运算,本身需要重新学习,时间一长,可能忘记了逻辑, 而if else天生就不会忘记</li>
+<li>这也是有些语言为什么不设计三元表达式的原因</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb7" data-playground="rust" data-code-line-numbers=""><pre class="sourceCode numberSource rust playground language-rust code-with-copy number-lines"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="kw">let</span> is_one <span class="op">=</span> <span class="cf">if</span> x <span class="op">==</span> <span class="dv">1</span> <span class="op">{</span> <span class="cn">true</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="cn">false</span> <span class="op">};</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> is_one)<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- ```rust {playground="rust"}
+fn m() {
+    let a = 1222;
+    {
+        a
+    };
+    println!("{a}");
+}
+fn m2() {
+    let a = 1333;
+    {
+        a;
+        ()
+    }
+    println!("{a}");
+}
+fn main() {
+    m();
+    m2();
+}
+``` -->
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -867,9 +1078,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://giscus.app/client.js" data-repo="gangoods/quarto_comment" data-repo-id="R_kgDOLw5H7w" data-category="Announcements" data-category-id="DIC_kwDOLw5H784Ce0jQ" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark_dimmed">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../docs/basic/quick-start.html" class="pagination-link" aria-label="快速入门">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">快速入门</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../docs/basic/ownership.html" class="pagination-link" aria-label="所有权与借用">
+        <span class="nav-page-text">所有权与借用</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
 
 
+<script src="../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+<script src="../../site_libs/quarto-contrib/rust-playground-0.1.0/rust-playground.js"></script>
 </body></html>
