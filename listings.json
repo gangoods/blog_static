@@ -1,64 +1,12 @@
 [
   {
-    "listing": "/docs/programming/css/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/programming/python/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/programming/underlying/index.html",
-    "items": []
-  },
-  {
     "listing": "/docs/blog/index.html",
     "items": [
-      "/docs/blog/posts/2024-08-04-hello.html"
+      "/docs/blog/posts/2024-10-07-macos-disk.html"
     ]
   },
   {
-    "listing": "/docs/devops/linux/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/devops/k8s/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/developer/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/middleware/mysql/index_.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/middleware/redis/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/devops/docker/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/devops/cicd/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/netprog/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/programming/go/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/programming/rust/index.html",
-    "items": []
-  },
-  {
-    "listing": "/docs/quarto/index.html",
+    "listing": "/docs/index.html",
     "items": []
   }
 ]
